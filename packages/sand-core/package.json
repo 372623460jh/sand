@@ -1,6 +1,6 @@
 {
   "name": "@jianghe/sand-core",
-  "version": "1.2.0",
+  "version": "1.0.1",
   "description": "sand核心",
   "main": "index.js",
   "license": "MIT",
@@ -15,8 +15,7 @@
     "url": "https://github.com/372623460jh/sand.git"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "registry": "https://registry.npmjs.org"
   },
-  "scripts": {},
-  "gitHead": "1ab4b85d8904f71090182a4461f8c90ad9aac010"
+  "scripts": {}
 }

@@ -1,0 +1,21 @@
+{
+  "name": "@jianghe/sand-core",
+  "version": "1.0.1",
+  "description": "sand核心",
+  "main": "index.js",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "jianghe",
+      "email": "573748150jh@163.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/372623460jh/sand.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "scripts": {}
+}

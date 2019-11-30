@@ -9,7 +9,7 @@
     "url": "https://github.com/372623460jh/sand.git"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "registry": "https://registry.npmjs.org"
   },
   "bugs": {
     "url": "https://github.com/372623460jh/sand/issues"
@@ -29,7 +29,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.17.0",
     "husky": "^3.0.9",
-    "lerna": "^3.19.0"
+    "lerna": "^2.11.0"
   },
   "scripts": {
     "init": "rm -rf node_modules && npm i && lerna clean --yes && npm run bootstrap",

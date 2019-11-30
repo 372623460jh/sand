@@ -1,6 +1,6 @@
 {
   "name": "@jianghe/sand-core",
-  "version": "1.0.3",
+  "version": "1.0.1-0",
   "description": "sand核心",
   "main": "index.js",
   "license": "MIT",

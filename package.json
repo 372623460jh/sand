@@ -28,11 +28,11 @@
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.17.0",
-    "husky": "^3.1.0",
+    "husky": "^3.0.9",
     "lerna": "^2.11.0"
   },
   "scripts": {
-    "init": "rm -rf node_modules && lerna clean --yes && npm run bootstrap",
+    "init": "rm -rf node_modules && npm i && lerna clean --yes && npm run bootstrap",
     "bootstrap": "lerna bootstrap --npm-client npm",
     "build": "",
     "publish": "lerna publish",

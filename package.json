@@ -45,5 +45,8 @@
       "pre-commit": "npm run lint:fix",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
+  },
+  "dependencies": {
+    "@jianghe/sand-core": "^1.1.5"
   }
 }

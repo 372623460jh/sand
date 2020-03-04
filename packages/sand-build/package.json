@@ -1,8 +1,8 @@
 {
-  "name": "@jianghe/sand-core",
-  "version": "1.1.5-bate.1",
+  "name": "@jianghe/sand-build",
+  "version": "1.0.0-bate.1",
   "private": false,
-  "description": "sand核心",
+  "description": "sand构建工具",
   "main": "index.js",
   "license": "MIT",
   "authors": [
@@ -19,5 +19,11 @@
     "registry": "https://registry.npmjs.org",
     "access": "public"
   },
-  "scripts": {}
+  "scripts": {},
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "signale": "1.4.0",
+    "yargs-parser": "13.1.1",
+    "father-build": "1.8.0"
+  }
 }

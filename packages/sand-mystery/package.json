@@ -1,0 +1,35 @@
+{
+  "name": "@jianghe/sand-mystery",
+  "version": "1.0.0-bate.1",
+  "private": false,
+  "description": "合并",
+  "main": "./bin/sand-mystery.js",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "jianghe",
+      "email": "573748150jh@163.com"
+    }
+  ],
+  "keywords": [
+    "sand-mystery"
+  ],
+  "bin": {
+    "sand-mystery": "./bin/sand-mystery.js"
+  },
+  "scripts": {},
+  "dependencies": {
+    "fstream": "^1.0.12",
+    "tar": "^2.2.2",
+    "chalk": "^2.4.2",
+    "commander": "^2.20.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/372623460jh/sand.git"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  }
+}

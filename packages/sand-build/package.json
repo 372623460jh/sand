@@ -1,6 +1,6 @@
 {
   "name": "@jianghe/sand-build",
-  "version": "1.0.0-bate.1",
+  "version": "1.0.0-bate.2",
   "private": false,
   "description": "sand构建工具",
   "main": "index.js",
@@ -22,8 +22,8 @@
   "scripts": {},
   "dependencies": {
     "chalk": "^3.0.0",
+    "father-build": "1.8.0",
     "signale": "1.4.0",
-    "yargs-parser": "13.1.1",
-    "father-build": "1.8.0"
+    "yargs-parser": "13.1.1"
   }
 }

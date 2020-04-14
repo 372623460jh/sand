@@ -1,3 +1,5 @@
+/* eslint-disable class-methods-use-this */
+/* eslint-disable no-underscore-dangle */
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
@@ -84,6 +86,7 @@ class Mystery {
     // 删除中间文件
     fs.unlinkSync(outputFilePath);
 
+    // eslint-disable-next-line no-console
     console.log('加密状态：', stat, ' 副密钥：', imageSize, ' 输出文件：', outputPath);
   }
 
@@ -114,6 +117,7 @@ class Mystery {
     picStream.pipe(picWriteStream);
     mainStream.pipe(writeStream);
 
+    // eslint-disable-next-line no-console
     console.log('文件路径：', outputPath, '图片路径：', outputPicPath);
   }
 }

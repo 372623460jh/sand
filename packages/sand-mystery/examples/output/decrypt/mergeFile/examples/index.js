@@ -1,5 +1,5 @@
-const path = require("path");
-const Mystery = require('../src/pojo/Mystery')
+const path = require('path');
+const Mystery = require('../src/pojo/Mystery');
 
 // /**
 //  * 加密
@@ -26,5 +26,5 @@ new Mystery().decrypt(
   path.resolve(__dirname, './output/encrypt/ss.png'),
   path.resolve(__dirname, './output/decrypt/'),
   '1472583690zx',
-  '16110'
+  '16110',
 );

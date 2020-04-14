@@ -16,8 +16,8 @@ program
 program
   .command('encrypt <picPath> <filePath> <outputPath> <mainKey>')
   .description('`sand-mystery encrypt` 加密')
-  //encrypt的子命令
-  .option("-n, --name <name>", "子命令名字用于签名")
+  // encrypt的子命令
+  .option('-n, --name <name>', '子命令名字用于签名')
   .action(encrypt); // 命中指令后指令encrypt回调
 
 // sand-mystery decrypt 命令
@@ -25,9 +25,10 @@ program
   .command('decrypt <filePath> <outputFilePath> <mainKey> <subKey>')
   .description('`sand-mystery decrypt` 解密')
   // 子命令
-  .option("-n, --name <name>", "子命令名字用于签名")
+  .option('-n, --name <name>', '子命令名字用于签名')
   .action(decrypt); // 命中指令后指令decrypt回调
 
+// eslint-disable-next-line no-console
 console.log(chalk.green(`${pkg.name}:  ${pkg.version}`));
 
 program.parse(process.argv);

@@ -2,6 +2,8 @@
 sand核心包仓库
 ## sand-core
 pc端spa框架构建相关
+## sand-build
+库构建工具
 
 TODO:
 1. 参考father/vue/slate写rollup打包配置，并提取成sand-rollup

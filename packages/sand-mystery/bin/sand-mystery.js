@@ -28,6 +28,7 @@ program
   .option('-n, --name <name>', '子命令名字用于签名')
   .action(decrypt); // 命中指令后指令decrypt回调
 
+// eslint-disable-next-line no-console
 console.log(chalk.green(`${pkg.name}:  ${pkg.version}`));
 
 program.parse(process.argv);

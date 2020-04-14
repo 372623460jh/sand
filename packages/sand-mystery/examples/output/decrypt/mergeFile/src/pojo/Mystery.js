@@ -1,16 +1,16 @@
+/* eslint-disable class-methods-use-this */
+/* eslint-disable no-underscore-dangle */
 const fs = require('fs');
-const path = require("path");
-const crypto = require("crypto");
+const path = require('path');
+const crypto = require('crypto');
 const {
   getFileBaseInfo,
   mergeStreamSync,
   splitStreamSync,
   reduceFolderSync,
-} = require("../common/utils");
+} = require('../common/utils');
 
 class Mystery {
-  constructor() {}
-
   /**
    * 加密
    * @param {*} stream 流
@@ -19,7 +19,7 @@ class Mystery {
   _cryptoEncrypt(stream, mainKey) {
     const encryptStream = crypto.createCipher('aes-256-cbc', mainKey);
     // 加密
-    return stream.pipe(encryptStream)
+    return stream.pipe(encryptStream);
   }
 
   /**
@@ -30,7 +30,7 @@ class Mystery {
   _cryptoDecrypt(stream, mainKey) {
     const decryptStream = crypto.createDecipher('aes-256-cbc', mainKey);
     // 解密
-    return stream.pipe(decryptStream)
+    return stream.pipe(decryptStream);
   }
 
   /**
@@ -49,7 +49,7 @@ class Mystery {
 
     // 压缩文件夹生成中间文件
     const {
-      outputFilePath
+      outputFilePath,
     } = await reduceFolderSync(filePath);
 
     // 读取中间压缩文件
@@ -58,6 +58,7 @@ class Mystery {
     } = getFileBaseInfo(outputFilePath, 'file');
 
     // 加密中间文件流
+    // eslint-disable-next-line no-underscore-dangle
     const gzEncryptStream = this._cryptoEncrypt(gzStream, mainKey);
 
     // 合并流数组
@@ -68,12 +69,13 @@ class Mystery {
 
     // 合并
     const {
-      stat
+      stat,
     } = await mergeStreamSync(mergeStreamArr, writeStream);
 
     // 删除中间文件
     fs.unlinkSync(outputFilePath);
 
+    // eslint-disable-next-line no-console
     console.log('加密状态：', stat, ' 副密钥：', imageSize, ' 输出文件：', outputPath);
   }
 
@@ -85,12 +87,12 @@ class Mystery {
    * @param {*} subKey 子密钥
    */
   async decrypt(filePath, outputFilePath, mainKey, subKey) {
-
     // 根据subKey拆分流
     const [picStream, mainEncryptStream] = splitStreamSync(filePath, subKey);
 
     // 第二段流解密
-    const mainStream = this._cryptoDecrypt(mainEncryptStream, mainKey)
+    // eslint-disable-next-line no-underscore-dangle
+    const mainStream = this._cryptoDecrypt(mainEncryptStream, mainKey);
 
     // 输入出路径
     const outputPath = path.resolve(outputFilePath, './finish.gz');
@@ -105,6 +107,7 @@ class Mystery {
     picStream.pipe(picWriteStream);
     mainStream.pipe(writeStream);
 
+    // eslint-disable-next-line no-console
     console.log('文件路径：', outputPath, '图片路径：', outputPicPath);
   }
 }

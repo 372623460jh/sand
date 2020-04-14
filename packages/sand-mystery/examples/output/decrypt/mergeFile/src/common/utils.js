@@ -1,5 +1,5 @@
 const fs = require('fs');
-const path = require("path");
+const path = require('path');
 const zlib = require('zlib');
 const tar = require('tar');
 const fstream = require('fstream');
@@ -15,7 +15,7 @@ const stream = require('stream');
  */
 function getFileBaseInfo(fileDir, mode) {
   // 绝对路径
-  let filePath = fileDir;
+  const filePath = fileDir;
   // 文件名/文件夹名
   let fileName = '';
   // 扩展名
@@ -43,7 +43,7 @@ function getFileBaseInfo(fileDir, mode) {
     isFile, // 是不是文件
     extName, // 扩展名
     fileStream, // 文件流
-  }
+  };
 }
 
 /**
@@ -61,6 +61,7 @@ function reduceFolderSync(inputPath) {
   // 创建一个gzip转换流，是一个可读可写流。
   const gzip = zlib.createGzip();
   // 返回一个promise
+  // eslint-disable-next-line no-unused-vars
   return new Promise((resolve, reject) => {
     // 读操作
     const r = fstream.Reader({
@@ -69,17 +70,18 @@ function reduceFolderSync(inputPath) {
     });
     // 写操作
     const w = fstream.Writer({
-      path: outputFilePath // 输出文件
-    })
-    w.on('close', function (e) {
+      path: outputFilePath, // 输出文件
+    });
+    // eslint-disable-next-line no-unused-vars
+    w.on('close', (e) => {
       // 同步写完回调
       resolve({
         outputFilePath,
-      })
-    })
+      });
+    });
     // 打包 压缩 写文件
     r.pipe(tar.Pack()).pipe(gzip).pipe(w);
-  })
+  });
 }
 
 /**
@@ -101,13 +103,13 @@ function mergeStream(streamArr = [], writeStream, resolve, reject) {
     }
   } else {
     // 取出第一个流
-    const stream = streamArr.shift();
+    const firstStream = streamArr.shift();
     // 写入
-    stream.pipe(writeStream, {
-      end: false
+    firstStream.pipe(writeStream, {
+      end: false,
     });
     // 监听写入是否完毕
-    stream.on("end", () => {
+    firstStream.on('end', () => {
       mergeStream(streamArr, writeStream, resolve, reject);
     });
   }
@@ -120,18 +122,18 @@ function mergeStream(streamArr = [], writeStream, resolve, reject) {
  */
 function mergeStreamSync(streamArr = [], writeStream) {
   return new Promise((resolve, reject) => {
-    mergeStream(streamArr, writeStream, resolve, reject)
+    mergeStream(streamArr, writeStream, resolve, reject);
   });
 }
 
 /**
  * buffer转stream
- * @param {*} buffer 
+ * @param {*} buffer
  */
 function bufferToStream(buffer) {
   // 创建一个bufferstream
   const bufferStream = new stream.PassThrough();
-  //将Buffer写入
+  // 将Buffer写入
   bufferStream.end(buffer);
   return bufferStream;
 }
@@ -142,7 +144,6 @@ function bufferToStream(buffer) {
  * @param {*} size 拆分位置
  */
 function splitStreamSync(filePath, subKey) {
-
   // 字符串转数字
   const size = +subKey;
 
@@ -179,7 +180,13 @@ function splitStreamSync(filePath, subKey) {
    * length 是一个整数，指定要读取的字节数。
    * position 参数指定从文件中开始读取的位置。null表示从头开始读
    */
-  const mainNum = fs.readSync(fd, mainFileBuffer, 0, mainFileBuffer.length, size);
+  const mainNum = fs.readSync(
+    fd,
+    mainFileBuffer,
+    0,
+    mainFileBuffer.length,
+    size,
+  );
 
   if (picNum !== size || mainNum !== mainFileSize) {
     // 读取的buffer大小有问题
@@ -198,4 +205,4 @@ module.exports = {
   mergeStreamSync,
   splitStreamSync,
   reduceFolderSync,
-}
+};

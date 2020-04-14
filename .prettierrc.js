@@ -1,5 +1,5 @@
 // 代码格式化配置
-module.exports = {
+module.exports ={
   // 最大长度
   printWidth: 80,
   // tab缩进大小,默认为2

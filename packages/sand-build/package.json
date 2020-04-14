@@ -1,9 +1,9 @@
 {
   "name": "@jianghe/sand-build",
-  "version": "1.0.0-bate.2",
+  "version": "1.0.0",
   "private": false,
-  "description": "sand构建工具",
-  "main": "index.js",
+  "description": "sand库构建工具",
+  "main": "./bin/sand-build.js",
   "license": "MIT",
   "authors": [
     {
@@ -11,6 +11,41 @@
       "email": "573748150jh@163.com"
     }
   ],
+  "keywords": [
+    "sand-build"
+  ],
+  "bin": {
+    "sand-build": "./bin/sand-build.js"
+  },
+  "scripts": {},
+	"dependencies": {
+		"@babel/cli": "^7.7.4",
+		"@babel/core": "^7.7.4",
+		"@babel/plugin-external-helpers": "^7.7.4",
+		"@babel/plugin-proposal-class-properties": "^7.7.4",
+		"@babel/plugin-transform-modules-commonjs": "^7.7.4",
+		"@babel/plugin-transform-runtime": "^7.7.4",
+		"@babel/polyfill": "^7.6.0",
+		"@babel/preset-env": "^7.7.4",
+		"@babel/preset-react": "^7.7.4",
+		"@babel/preset-typescript": "^7.7.4",
+		"@babel/register": "^7.7.4",
+		"@babel/runtime": "^7.7.4",
+		"chalk": "^2.4.2",
+		"commander": "^2.20.0",
+		"lodash": "^4.17.15",
+		"rollup": "^1.27.5",
+		"rollup-plugin-alias": "2.2.0",
+		"rollup-plugin-babel": "^4.3.3",
+		"rollup-plugin-commonjs": "^8.3.0",
+		"rollup-plugin-json": "^4.0.0",
+		"rollup-plugin-node-builtins": "^2.1.2",
+		"rollup-plugin-node-globals": "^1.4.0",
+		"rollup-plugin-node-resolve": "^5.2.0",
+		"rollup-plugin-replace": "^2.2.0",
+		"rollup-plugin-terser": "^5.1.2",
+		"rollup-plugin-typescript2": "^0.25.2"
+	},
   "repository": {
     "type": "git",
     "url": "https://github.com/372623460jh/sand.git"
@@ -18,12 +53,5 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org",
     "access": "public"
-  },
-  "scripts": {},
-  "dependencies": {
-    "chalk": "^3.0.0",
-    "father-build": "1.8.0",
-    "signale": "1.4.0",
-    "yargs-parser": "13.1.1"
   }
 }

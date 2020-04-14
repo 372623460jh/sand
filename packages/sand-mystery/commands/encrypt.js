@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const chalk = require('chalk');
 const Mystery = require('../src/pojo/Mystery');
 

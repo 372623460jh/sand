@@ -22,31 +22,35 @@
     "@commitlint/cli": "^8.2.0",
     "@commitlint/config-conventional": "^8.2.0",
     "babel-eslint": "^10.0.3",
-    "cross-env": "^6.0.3",
-    "eslint": "^5.7.1",
+    "cross-env": "^7.0.2",
+    "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",
+    "eslint-import-resolver-alias": "^1.1.2",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.17.0",
-    "husky": "^3.0.9",
-    "lerna": "^2.11.0"
+    "lerna": "2.11.0",
+    "pre-commit": "^1.2.2",
+    "stylelint": "^13.2.0",
+    "stylelint-scss": "^3.13.0"
   },
   "scripts": {
-    "init": "rm -rf node_modules && npm i && lerna clean --yes && npm run bootstrap",
-    "bootstrap": "lerna bootstrap --npm-client npm",
-    "build": "",
-    "publish": "lerna publish",
-    "lint": "eslint ./packages --ext .jsx,.js",
+    "init": "npm run clean && npm i && npm run bootstrap",
+    "clean": "rm -rf ./node_modules ./packages/*/{dist,esm,cjs,./node_modules} && lerna clean --yes ",
+    "bootstrap": "lerna bootstrap --hoist && npm run build",
+    "build": "node ./packages/sand-build/bin/sand-build.js build -e dev -l",
+    "build:watch": "node ./packages/sand-build/bin/sand-build.js build -e dev -l -w",
+    "build:production": "node ./packages/sand-build/bin/sand-build.js build -e prod -l",
+    "publish": "npm run build:production && lerna publish",
+    "lint": "eslint ./packages --ext .jsx,.js,.ts,.tsx",
     "lint:fix": "npm run lint -- --fix",
-    "lint-cached": "eslint $(git diff-index --cached HEAD --name-only --diff-filter ACMR | egrep '.(js|jsx)$')"
+    "lint:style": "stylelint \"packages/**/*.{acss,less}\" --syntax less",
+    "lint:style:fix": "npm run lint:style -- --fix",
+    "test": "",
+    "ci": "npm run lint:fix && npm run lint:style:fix && npm run test && npm run lint && npm run lint:style"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint:fix",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
-  "dependencies": {
-    "@jianghe/sand-core": "^1.1.5"
-  }
+  "pre-commit": [
+    "ci"
+  ],
+  "ci": {}
 }

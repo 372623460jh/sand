@@ -32,6 +32,8 @@ const configurations = [
     // 是否是ts,默认false
     // ts会去加载./packages/${pkgName}/tsconfig.json
     isTs: false,
+    // 是否单独提取css文件，默认是true
+    cssExtract: true,
     // 别名,内置了@ -> src的别名
     // model -> ./packages/lib1/src/model/index.js
     alias: [
@@ -44,6 +46,7 @@ const configurations = [
     // var MyBundle = (function ($) {
     // }(window.jQuery));
     // umd打包时不需要将底线库,jquery打包
+    // sand-build umd构建时默认会将peerDependencies中的依赖添加到umdGlobals中，不打进bundle包中
     umdGlobals: {
       'lodash': '_',
       'jQuery': '$',

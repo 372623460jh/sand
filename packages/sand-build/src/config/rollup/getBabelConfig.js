@@ -9,7 +9,7 @@ function getBabelConfig({
   return {
     runtimeHelpers: true,
     include: [`packages/${pathName}/src/**`],
-    extensions: ['.js', '.ts', '.tsx'],
+    extensions: ['.js', '.ts', '.tsx', '.jsx'],
     presets: [
       '@babel/preset-typescript',
       [

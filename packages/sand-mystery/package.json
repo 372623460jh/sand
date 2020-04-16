@@ -1,6 +1,6 @@
 {
   "name": "@jianghe/sand-mystery",
-  "version": "1.0.0-bate.5",
+  "version": "1.0.0-bate.6",
   "private": false,
   "description": "合并",
   "main": "./bin/sand-mystery.js",

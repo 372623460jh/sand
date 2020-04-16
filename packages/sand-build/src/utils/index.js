@@ -13,6 +13,14 @@ function logError(e) {
 }
 
 /**
+ * 获取require的default
+ * @param {*} obj
+ */
+function getDefault(obj) {
+  return obj.default || obj;
+}
+
+/**
  * 递归创建目录 同步方法
  * @param {*} dirname 目录
  */
@@ -73,7 +81,18 @@ function createSymbolicLink(linkPath, sourcePath) {
   return false;
 }
 
+/**
+ * 获取绝对路径
+ * @param {*} p
+ */
+function getPath(absPath, p) {
+  return path.resolve(absPath, p);
+}
+
 module.exports = {
   mkdirsSync,
   createSymbolicLink,
+  getPath,
+  getDefault,
+  logError,
 };

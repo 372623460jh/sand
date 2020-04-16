@@ -1,0 +1,38 @@
+{
+  "name": "@jianghe/component-test",
+  "version": "1.0.0",
+  "description": "react 组件测试",
+  "authors": [
+    {
+      "name": "jianghe",
+      "email": "372623460jh@163.com"
+    }
+  ],
+  "homepage": "",
+  "license": "MIT",
+  "main": "dist/component-test.js",
+  "module": "esm/component-test.js",
+  "cjs": "cjs/component-test.js",
+  "files": [
+    "dist",
+    "esm",
+    "cjs"
+  ],
+  "peerDependencies": {
+    "antd": "^3.20.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0"
+  },
+  "dependencies": {
+    "classnames": "^2.2.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/372623460jh/sand.git"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  }
+}

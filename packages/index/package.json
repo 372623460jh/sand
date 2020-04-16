@@ -1,0 +1,33 @@
+{
+  "name": "index",
+  "version": "1.0.0",
+  "description": "webpack配置入口",
+  "authors": [
+    {
+      "name": "jianghe",
+      "email": "372623460jh@163.com"
+    }
+  ],
+  "homepage": "",
+  "license": "MIT",
+  "main": "dist/index-entry.js",
+  "module": "esm/index-entry.js",
+  "cjs": "cjs/index-entry.js",
+  "files": [
+    "dist",
+    "esm",
+    "cjs"
+  ],
+  "peerDependencies": {
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/372623460jh/sand.git"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  }
+}

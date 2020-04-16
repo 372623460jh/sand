@@ -2,24 +2,9 @@
 const rollup = require('rollup');
 const chalk = require('chalk');
 const path = require('path');
+const startApp = require('./config/webpack/script/dev');
 const factory = require('./config/rollup');
-const { createSymbolicLink } = require('./utils');
-
-/**
- * 获取require的default
- * @param {*} obj
- */
-function getDefault(obj) {
-  return obj.default || obj;
-}
-
-/**
- * 错误处理
- * @param {*} e
- */
-function logError(e) {
-  console.log(chalk.red(e));
-}
+const { createSymbolicLink, logError, getDefault } = require('./utils');
 
 /**
  * 处理rc文件生成可用的配置文件
@@ -32,7 +17,7 @@ function handleConfig(env) {
   let configs = [];
   configurations.forEach((config) => {
     // 调用factory生成rollup打包配置
-    configs = configs.concat([...factory(config, process.cwd(), env)]);
+    configs = configs.concat([...factory(config, env)]);
   });
   return {
     configs,
@@ -46,10 +31,10 @@ function handleConfig(env) {
  */
 async function buildEntry(config) {
   const { output } = config;
-  console.log(chalk.green(`${chalk.yellow('[BUILD]')} -> ${output.file}`));
   const bundle = await rollup.rollup(config);
   await bundle.generate(output);
   await bundle.write(output);
+  console.log(chalk.green(`${chalk.yellow('[BUILD]')} -> ${output.file}`));
 }
 
 /**
@@ -147,7 +132,7 @@ function createLink(packagesInfo) {
 }
 
 /**
- * 指令回调
+ * 启动rollup指令回调
  * @param {*} options 指令入参
  */
 async function build(options) {
@@ -164,8 +149,8 @@ async function build(options) {
     try {
       console.log(chalk.yellow('======== sand-build 开始构建（build）========'));
       /**
-       * 构建所有配置
-       */
+         * 构建所有配置
+         */
       await buildAll(configs);
       console.log(chalk.yellow('======== sand-build 构建结束（build）========'));
     } catch (error) {
@@ -174,4 +159,17 @@ async function build(options) {
   }
 }
 
-module.exports = build;
+/**
+ * 启动webpack服务回调
+ * @param {*} options 指令入参
+ */
+function start(options) {
+  const { env = 'dev' } = options;
+  // 启动webpack服务
+  startApp(env);
+}
+
+module.exports = {
+  build,
+  start,
+};

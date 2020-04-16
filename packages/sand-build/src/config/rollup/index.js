@@ -8,23 +8,146 @@ const resolve = require('rollup-plugin-node-resolve');
 const typescript = require('rollup-plugin-typescript2');
 const alias = require('rollup-plugin-alias');
 const { terser } = require('rollup-plugin-terser');
+const postcss = require('rollup-plugin-postcss');
+const autoprefixer = require('autoprefixer');
 const { startCase } = require('lodash');
 const path = require('path');
 const { getBabelConfig } = require('./getBabelConfig');
 const { getDepsConfig } = require('./getDepsConfig');
 
 /**
+ * 获取文件的相对与.sandbuildrc.js文件的目录
+ * @param {*} p
+ */
+const pathResolve = (p) => path.resolve(process.cwd(), p);
+
+/**
+ * 根据options生成plugins
+ * @param {*} options
+ */
+function getBasePlugins(options = {}) {
+  const {
+    // 是否单独提起css文件
+    cssExtract,
+    // 构建环境
+    env,
+    // 是不是ts
+    isTs,
+    // 别名配置
+    aliasConfig,
+    // 包名
+    pathName,
+    // isUmd
+    isUmd,
+    // umd构建时用来兼容commonjs
+    namedExports,
+  } = options;
+
+  // 是否是生产环境
+  const isProd = env === 'production';
+
+  /**
+   * 基础别名，将@/* -> src/*
+   */
+  const baseAlias = [
+    {
+      find: /^@\/(.*)/,
+      replacement: pathResolve(`./packages/${pathName}/src/$1`),
+    },
+  ];
+
+  return [
+    // 处理css,less
+    postcss({
+      // 是否单独提起css文件
+      extract: cssExtract,
+      // 支持的文件扩展名
+      extensions: ['.css', '.less'],
+      // 将css注入到head中
+      inject: true,
+      // // css modules
+      // modules: false,
+      // .module.css .module.less 自动使用css module
+      autoModules: true,
+      // 压缩css
+      minimize: isProd,
+      use: {
+        less: {
+          plugins: [],
+          javascriptEnabled: true,
+        },
+      },
+      // 插件
+      plugins: [
+        // 添加前缀
+        autoprefixer({
+          overrideBrowserslist: [
+            'last 2 versions',
+            'ios >= 9',
+            'android >= 4',
+          ],
+        }),
+      ],
+    }),
+    // rollup-plugin-node-resolve, 它会允许加载在 node_modules 中的第三方模块。
+    resolve({
+      preferBuiltins: true,
+      browser: true,
+      // 允许引入以下3种文件类型
+      extensions: ['.js', '.jsx', 'ts', 'tsx', '.json'],
+    }),
+    // 支持ts
+    isTs && typescript({
+      abortOnError: false,
+      tsconfig: pathResolve(`./packages/${pathName}/tsconfig.json`),
+      clean: true,
+    }),
+    // 支持json模块的引入
+    json(),
+    // 替换代码中的'process.env.NODE_ENV'为JSON.stringify(env)
+    replace({
+      'process.env.NODE_ENV': JSON.stringify(env),
+    }),
+    // 让浏览器端支持node内置模块
+    builtins(),
+    // 使用babel处理代码
+    babel(
+      getBabelConfig({ isUmd, pathName }),
+    ),
+    // 别名
+    alias({
+      entries: [
+        ...baseAlias,
+        ...aliasConfig,
+      ],
+    }),
+    // 让浏览器端支持node内置模块
+    globals(),
+    // umd 使用 rollup-plugin-commonjs, 它会将 CommonJS 模块转换为 ES6,来为 Rollup 获得兼容。
+    isUmd && commonjs({
+      // 忽略
+      exclude: [`packages/${pathName}/src/**`],
+      namedExports: {
+        ...namedExports,
+      },
+    }),
+    // 如果是umd并且是生产环境就使用uglify压缩代码
+    isUmd && isProd && terser(),
+  ].filter(Boolean); // .filter(Boolean)用于移除数组中的false
+}
+
+/**
  * 根据配置，环境，模块化规范返回Rollup配置
  * @param {*} config 配置
- * @param {*} rootPath 配置的根目录
  * @param {*} env 环境
  * @param {*} target 模块化规范，umd|cjs|esm
  */
-function configure(config, rootPath, env, target) {
+function configure(config, env, target) {
   // 是否是生产环境
   const isProd = env === 'production';
   // 是否是umd
   const isUmd = target === 'umd';
+
   const {
     pathName = '', // 需要打包的包文件名
     pkgName = '', // 构建出来的文件名
@@ -33,13 +156,8 @@ function configure(config, rootPath, env, target) {
     alias: aliasConfig = [], // 别名
     umdGlobals = {}, // 全局模块
     namedExports = {}, // cjs的模块在umd打包时需要手动声明名称：
+    cssExtract = true, // 是否单独提起css文件
   } = config;
-
-  /**
-   * 获取文件的相对与.sandbuildrc.js文件的目录
-   * @param {*} p
-   */
-  const pathResolve = (p) => path.resolve(rootPath, p);
 
   const { version = '' } = pkg;
 
@@ -67,69 +185,17 @@ function configure(config, rootPath, env, target) {
     }
   };
 
-  /**
-   * 基础别名，将@/* -> src/*
-   */
-  const baseAlias = [
-    {
-      find: /^@\/(.*)/,
-      replacement: pathResolve(`./packages/${pathName}/src/$1`),
-    },
-  ];
-
-  const plugins = [
-    // rollup-plugin-node-resolve, 它会允许加载在 node_modules 中的第三方模块。
-    resolve({
-      browser: true,
-    }),
-
-    // 支持ts
-    isTs && typescript({
-      abortOnError: false,
-      tsconfig: pathResolve(`./packages/${pathName}/tsconfig.json`),
-      clean: true,
-    }),
-
-    // umd 使用 rollup-plugin-commonjs, 它会将 CommonJS 模块转换为 ES6,来为 Rollup 获得兼容。
-    isUmd && commonjs({
-      // 忽略
-      exclude: [`packages/${pathName}/src/**`],
-      namedExports: {
-        ...namedExports,
-      },
-    }),
-
-    // 支持json模块的引入
-    json(),
-
-    // 替换代码中的'process.env.NODE_ENV'为JSON.stringify(env)
-    replace({
-      'process.env.NODE_ENV': JSON.stringify(env),
-    }),
-
-    // 让浏览器端支持node内置模块
-    builtins(),
-
-    // 使用babel处理代码
-    babel(
-      getBabelConfig({ isUmd, pathName }),
-    ),
-
-    // 别名
-    alias({
-      entries: [
-        ...baseAlias,
-        ...aliasConfig,
-      ],
-    }),
-
-    // 让浏览器端支持node内置模块
-    globals(),
-
-    // 如果是umd并且是生产环境就使用uglify压缩代码
-    isUmd && isProd && terser(),
-
-  ].filter(Boolean); // .filter(Boolean)用于移除数组中的false
+  // 获取插件配置
+  const plugins = getBasePlugins({
+    // 是否单独提起css文件
+    cssExtract,
+    env,
+    isTs,
+    aliasConfig,
+    pathName,
+    isUmd,
+    namedExports,
+  });
 
   if (isUmd) {
     // umd构建配置
@@ -149,16 +215,13 @@ function configure(config, rootPath, env, target) {
         // var MyBundle = (function ($) {
         // }(window.jQuery));
         globals: {
+          // ...getDepsMap({ pkg }),
           ...umdGlobals,
         },
         banner,
       },
       // 外部引用不打包
       external: Object.keys(umdGlobals || {}),
-      // rollup watch 模式时忽略node_module下的文件变化
-      watch: {
-        exclude: 'node_modules/**',
-      },
     };
   }
 
@@ -168,7 +231,7 @@ function configure(config, rootPath, env, target) {
     input,
     onwarn,
     output: target === 'esm' ? {
-      file: pathResolve(`./packages/${pathName}/esm/${pkgName}.es.js`),
+      file: pathResolve(`./packages/${pathName}/esm/${pkgName}.js`),
       format: 'es',
       sourcemap: true,
       banner,
@@ -179,8 +242,8 @@ function configure(config, rootPath, env, target) {
       sourcemap: true,
       banner,
     },
-    // We need to explicitly state which modules are external, meaning that they are present at runtime. In the case of non-UMD configs, this meansall non-Slate packages.
-    // 我们需要显式地声明哪些模块是外部的，这意味着它们在运行时出现。对于非umd配置，这意味着所有的非slate包。
+    // 我们需要显式地声明哪些模块是外部的，这意味着它们在运行时出现。
+    // 对于非umd配置，这意味着所有的非slate包。
     external: (id) =>
     // 当构建时有引入模块时会执行该回调方法，如果返回true就表示是外部引入，false表示是内部引入，内部引入将会被打包构建，外部映入将不会被打包。
     // dependencies和peerDependencies中声明的包都会被当做外部引用不打包到项目中。
@@ -196,13 +259,13 @@ function configure(config, rootPath, env, target) {
  * @param {*} rootPath
  * @param {*} env
  */
-function factory(config, rootPath, env) {
+function factory(config, env) {
   const isProd = env === 'prod';
   return [
-    configure(config, rootPath, 'development', 'cjs'), // dev环境cjs输出
-    configure(config, rootPath, 'development', 'esm'), // dev环境esm输出
-    isProd && configure(config, rootPath, 'development', 'umd'), // prod环境 非压缩 umd 输出
-    isProd && configure(config, rootPath, 'production', 'umd'), // prod环境 umd 输出
+    configure(config, 'development', 'cjs'), // dev环境cjs输出
+    configure(config, 'development', 'esm'), // dev环境esm输出
+    isProd && configure(config, 'development', 'umd'), // prod环境 非压缩 umd 输出
+    isProd && configure(config, 'production', 'umd'), // prod环境 umd 输出
   ].filter(Boolean); // .filter(Boolean)用于移除数组中的false
 }
 

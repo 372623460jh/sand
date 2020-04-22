@@ -12,6 +12,6 @@ TODO:
 4. jtest测试模块ci
 5. sand-pc依赖于sand-webpack做pc端spa脚手架参考oc（react+reactRouter+redux+reactRedux）
 6. sand-mob
-
+1
 npm config set registry https://registry.npmjs.org
 npm config set registry https://registry.npm.taobao.org

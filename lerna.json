@@ -14,7 +14,8 @@
       "verifyRegistry": false,
       "verifyAccess": false,
       "allowBranch": [
-        "master"
+        "master",
+        "jianghe20200416-feat"
       ]
     }
   },

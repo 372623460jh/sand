@@ -7,7 +7,6 @@ TODO:
 1. jtest测试模块ci
 2. sand-pc依赖于sand-webpack做pc端spa脚手架
 3. sand-mob
-4. 
 
 npm config set registry https://registry.npmjs.org
 npm config set registry https://registry.npm.taobao.org

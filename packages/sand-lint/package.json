@@ -1,0 +1,40 @@
+{
+  "name": "@jianghe/sand-lint",
+  "version": "1.0.1-1",
+  "private": false,
+  "description": "sand-lint统一规范",
+  "main": "./react.js",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "jianghe",
+      "email": "573748150jh@163.com"
+    }
+  ],
+  "keywords": [
+    "sand-lint"
+  ],
+  "scripts": {},
+  "peerDependencies": {
+    "eslint": "^6.8.0",
+    "stylelint": "^13.2.0"
+  },
+  "dependencies": {
+    "babel-eslint": "^10.0.3",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "stylelint-scss": "^3.13.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/372623460jh/sand.git"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  }
+}

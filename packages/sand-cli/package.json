@@ -1,9 +1,9 @@
 {
-  "name": "@jianghe/sand-mystery",
-  "version": "1.0.1-0",
+  "name": "@jianghe/sand-cli",
+  "version": "1.0.0-2",
   "private": false,
-  "description": "合并",
-  "main": "./bin/sand-mystery.js",
+  "description": "sand cli工具",
+  "main": "./bin/sand-cli.js",
   "license": "MIT",
   "authors": [
     {
@@ -12,17 +12,23 @@
     }
   ],
   "keywords": [
-    "sand-mystery"
+    "sand-cli"
   ],
   "bin": {
-    "sand-mystery": "./bin/sand-mystery.js"
+    "sand-cli": "./bin/sand-cli.js"
   },
-  "scripts": {},
+  "scripts": {
+    "copy:staging": "node ./script/copyStaging.js",
+    "init": "node ./bin/sand-cli.js init"
+  },
   "dependencies": {
     "chalk": "^2.4.2",
+    "child_process": "^1.0.2",
     "commander": "^2.20.0",
-    "fstream": "^1.0.12",
-    "tar": "^2.2.2"
+    "copy-dir": "^1.1.0",
+    "edit-json-file": "^1.2.1",
+    "empty-dir": "^2.0.0",
+    "inquirer": "^6.5.0"
   },
   "repository": {
     "type": "git",

@@ -1,8 +1,8 @@
 {
   "name": "@jianghe/sand-lint",
-  "version": "1.0.1-3",
+  "version": "1.0.1-4",
   "private": false,
-  "description": "sand-lint统一规范",
+  "description": "sand项目的lint统一规范",
   "main": "./react.js",
   "license": "MIT",
   "authors": [

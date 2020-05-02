@@ -1,32 +1,18 @@
 {
-  "name": "sand",
+  "name": "sand-lib-staging",
   "version": "1.0.0",
-  "description": "sand核心包仓库",
+  "description": "sand-lib脚手架",
   "author": "jianghe",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/372623460jh/sand.git"
-  },
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org"
-  },
-  "bugs": {
-    "url": "https://github.com/372623460jh/sand/issues"
-  },
-  "homepage": "https://github.com/372623460jh/sand#readme",
   "engines": {
     "node": ">=8.0.0"
   },
   "scripts": {
     "init": "npm run clean && npm i && npm run bootstrap",
-    "clean": "rm -rf ./node_modules ./packages/*/{dist,esm,cjs,./node_modules} && npm run clean:staging && lerna clean --yes ",
+    "clean": "rm -rf ./node_modules ./packages/*/{dist,esm,cjs,./node_modules} && lerna clean --yes ",
     "bootstrap": "lerna bootstrap --npm-client npm --hoist && npm run build",
-    "clean:staging": "rm -rf ./packages/sand-cli/staging",
-    "copy:staging": "node ./packages/sand-cli/script/copyStaging.js",
-    "build": "npm run copy:staging && sand-build build -e dev -l",
-    "build:watch": "npm run copy:staging && sand-build build -e dev -l -w",
-    "build:production": "npm run copy:staging && sand-build build -e prod -l",
+    "build": "sand-build build -e dev -l",
+    "build:watch": "sand-build build -e dev -l -w",
+    "build:production": "sand-build build -e prod -l",
     "server": "sand-build start -e dev",
     "start": "npm-run-all --parallel --print-label build:watch server",
     "publish": "npm run build:production && lerna publish",

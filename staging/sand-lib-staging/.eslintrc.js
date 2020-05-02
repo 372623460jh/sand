@@ -9,7 +9,7 @@ module.exports = {
     'import/resolver': {
       alias: {
         map: [
-          ['@', './packages/index/src'],
+          ['@', './packages/component-test/src'],
         ],
       },
     },

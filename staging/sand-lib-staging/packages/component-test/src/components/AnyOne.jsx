@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { PropTypes } from 'prop-types';
 import { Button } from 'antd';
+import sayHello from '@/utils/sayHello';
 import styles from './AnyOne.module.less';
 import './index.less';
 
@@ -8,6 +9,8 @@ function AnyOne(props) {
   const {
     source,
   } = props;
+
+  sayHello();
 
   // 控制渠道点击
   const [sence, setSence] = useState(source);

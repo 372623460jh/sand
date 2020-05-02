@@ -4,7 +4,6 @@
 /packages/*/cjs
 /packages/*/dist
 /packages/*/node_modules
-/packages/sand-cli/staging
 
 # OS files.
 .DS_Store

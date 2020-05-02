@@ -61,13 +61,15 @@ async function copyStaging() {
     sourcePath,
     // eslint-disable-next-line no-unused-vars
     (stat, fileFullPath, filePath, fileName) => {
+      // fileFullPath: 拷贝源带名字路径
+      // filePath: 拷贝源路径
       if (
         stat === 'file'
         && fileName === 'package.json'
         && path.basename(filePath) !== stagingName
       ) {
         // 非根目录下的package.json改成package-backup.json
-        packageJsonArr.push(filePath);
+        packageJsonArr.push(path.join(sourcePath, filePath.replace(stagingPath, '')));
       }
       const realPath = fileFullPath.replace(sourcePath, '');
       console.log(chalk.magenta('[初始化脚手架]'), `拷贝: ${path.join(targetPath, realPath)}`);
@@ -77,7 +79,7 @@ async function copyStaging() {
 
   // 将package-backup.json处理成package.json
   packageJsonArr.forEach((filePath) => {
-    console.log(`${chalk.magenta('[初始化脚手架]')} 重命名: ${path.join(filePath, 'package.json')} -> ${path.join(targetPath, 'package-backup.json')}`);
+    console.log(`${chalk.magenta('[初始化脚手架]')} 重命名: ${path.join(filePath, 'package.json')} -> ${path.join(filePath, 'package-backup.json')}`);
     fs.renameSync(path.join(filePath, 'package.json'), path.join(filePath, 'package-backup.json'));
   });
 }

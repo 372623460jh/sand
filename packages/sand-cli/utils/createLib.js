@@ -114,8 +114,8 @@ async function createLib() {
         return false;
       }
       if (stat === 'file' && fileName === 'package-backup.json') {
-        // package-backup.json
-        packageJsonArr.push(filePath);
+        // package-backup.json改成package.json
+        packageJsonArr.push(path.join(targetPath, filePath.replace(sourcePath, '')));
       }
       const realPath = fileFullPath.replace(sourcePath, '');
       console.log(chalk.magenta('生成: '), `${path.join(targetPath, realPath)}`);
@@ -125,7 +125,7 @@ async function createLib() {
 
   // 将package-backup.json处理成package.json
   packageJsonArr.forEach((filePath) => {
-    fs.renameSync(path.join(filePath, 'package-backup.json'), path.join(targetPath, 'package.json'));
+    fs.renameSync(path.join(filePath, 'package-backup.json'), path.join(filePath, 'package.json'));
   });
 
   // 安装依赖

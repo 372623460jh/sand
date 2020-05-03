@@ -1,6 +1,6 @@
 {
   "name": "@jianghe/sand-build",
-  "version": "1.0.2-7",
+  "version": "1.0.2-8",
   "private": false,
   "description": "sand库构建工具",
   "main": "./bin/sand-build.js",
@@ -28,6 +28,7 @@
     "@babel/plugin-external-helpers": "^7.7.4",
     "@babel/plugin-proposal-class-properties": "^7.7.4",
     "@babel/plugin-proposal-decorators": "^7.1.2",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-transform-modules-commonjs": "^7.7.4",
     "@babel/plugin-transform-runtime": "^7.7.4",
     "@babel/polyfill": "^7.6.0",
@@ -40,9 +41,11 @@
     "autoprefixer": "^9.7.6",
     "babel-loader": "^8.0.2",
     "babel-plugin-import": "^1.12.0",
+    "babel-plugin-path-chunk-name": "^1.1.0",
     "chalk": "^2.4.2",
     "commander": "^2.20.0",
     "connect-history-api-fallback": "^1.5.0",
+    "copy-webpack-plugin": "^4.6.0",
     "css-loader": "^1.0.0",
     "express": "^4.16.3",
     "file-loader": "^2.0.0",
@@ -70,13 +73,13 @@
     "terser-webpack-plugin": "^1.2.3",
     "url-loader": "^1.1.1",
     "webpack": "^4.19.1",
+    "webpack-bundle-analyzer": "^3.1.0",
     "webpack-cli": "^3.1.0",
     "webpack-dev-middleware": "^3.3.0",
     "webpack-hot-middleware": "^2.24.1"
   },
   "devDependencies": {
     "cross-env": "^7.0.2",
-    "webpack-bundle-analyzer": "^3.1.0",
     "webpack-dev-server": "^3.1.9"
   },
   "repository": {

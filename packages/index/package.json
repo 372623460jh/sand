@@ -1,5 +1,5 @@
 {
-  "name": "index",
+  "name": "@jianghe/index",
   "version": "1.0.1-0",
   "description": "webpack配置入口",
   "authors": [

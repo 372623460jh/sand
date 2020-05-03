@@ -15,7 +15,7 @@ program
   .description('sand-build build --watch --link --env <env>')
   // build的子命令
   .option('-w, --watch', '开启监听')
-  .option('-t, --type <type>', '构建类型（lib||web）')
+  .option('-t, --type <type>', '构建类型（lib||mob||pc||demo）')
   .option('-e, --env <env>', '构建方式（prod||dev）')
   .option('-l, --link', '构建完成后在根目录下的node_modules下创建软链接链接到构建产物方便调试')
   .action(build); // 命中指令后指令build回调
@@ -25,7 +25,7 @@ program
   .command('start')
   .description('sand-build start --env <env>')
   // build的子命令
-  .option('-e, --env <env>', '构建方式（prod||dev）')
+  .option('-t, --type <type>', '构建类型（mob||pc||demo）')
   .action(start); // 命中指令后指令build回调
 
 // eslint-disable-next-line no-console

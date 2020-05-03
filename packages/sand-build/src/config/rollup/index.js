@@ -11,15 +11,9 @@ const { terser } = require('rollup-plugin-terser');
 const postcss = require('rollup-plugin-postcss');
 const autoprefixer = require('autoprefixer');
 const { startCase } = require('lodash');
-const path = require('path');
 const { getBabelConfig } = require('./getBabelConfig');
 const { getDepsConfig } = require('./getDepsConfig');
-
-/**
- * 获取文件的相对与.sandbuildrc.js文件的目录
- * @param {*} p
- */
-const pathResolve = (p) => path.resolve(process.cwd(), p);
+const { getPath, getBrowsersList } = require('../../utils');
 
 /**
  * 根据options生成plugins
@@ -41,6 +35,8 @@ function getBasePlugins(options = {}) {
     isUmd,
     // umd构建时用来兼容commonjs
     namedExports,
+    // 构建文件绝对路径
+    packagesPath,
   } = options;
 
   // 是否是生产环境
@@ -52,7 +48,7 @@ function getBasePlugins(options = {}) {
   const baseAlias = [
     {
       find: /^@\/(.*)/,
-      replacement: pathResolve(`./packages/${pathName}/src/$1`),
+      replacement: getPath(packagesPath, `./${pathName}/src/$1`),
     },
   ];
 
@@ -80,13 +76,7 @@ function getBasePlugins(options = {}) {
       // 插件
       plugins: [
         // 添加前缀
-        autoprefixer({
-          overrideBrowserslist: [
-            'last 2 versions',
-            'ios >= 9',
-            'android >= 4',
-          ],
-        }),
+        autoprefixer(getBrowsersList(isProd)),
       ],
     }),
     // rollup-plugin-node-resolve, 它会允许加载在 node_modules 中的第三方模块。
@@ -99,7 +89,7 @@ function getBasePlugins(options = {}) {
     // 支持ts
     isTs && typescript({
       abortOnError: false,
-      tsconfig: pathResolve(`./packages/${pathName}/tsconfig.json`),
+      tsconfig: getPath(packagesPath, `./${pathName}/tsconfig.json`),
       clean: true,
     }),
     // 支持json模块的引入
@@ -112,7 +102,7 @@ function getBasePlugins(options = {}) {
     builtins(),
     // 使用babel处理代码
     babel(
-      getBabelConfig({ isUmd, pathName }),
+      getBabelConfig({ packagesPath, isUmd, pathName }),
     ),
     // 别名
     alias({
@@ -126,7 +116,7 @@ function getBasePlugins(options = {}) {
     // umd 使用 rollup-plugin-commonjs, 它会将 CommonJS 模块转换为 ES6,来为 Rollup 获得兼容。
     isUmd && commonjs({
       // 忽略
-      exclude: [`packages/${pathName}/src/**`],
+      exclude: [`${getPath(packagesPath, `./${pathName}/src/**`)}`],
       namedExports: {
         ...namedExports,
       },
@@ -149,6 +139,8 @@ function configure(config, env, target) {
   const isUmd = target === 'umd';
 
   const {
+    entry = '', // 入口文件，绝对路径
+    packagesPath = '', // packages文件目录，绝对路径
     pathName = '', // 需要打包的包文件名
     pkgName = '', // 构建出来的文件名
     pkg = {}, // package.json对象
@@ -162,7 +154,7 @@ function configure(config, env, target) {
   const { version = '' } = pkg;
 
   // 入口文件
-  const input = pathResolve(`./packages/${pathName}/src/${isTs ? 'index.ts' : 'index.js'}`);
+  const input = entry;
 
   // 广告
   const banner = '/*!\n'
@@ -195,6 +187,7 @@ function configure(config, env, target) {
     pathName,
     isUmd,
     namedExports,
+    packagesPath,
   });
 
   if (isUmd) {
@@ -207,7 +200,7 @@ function configure(config, env, target) {
         // umd方式输出
         format: 'umd',
         // 输出路径从package.json中读
-        file: pathResolve(`./packages/${pathName}/${isProd ? `dist/${pkgName}.min.js` : `dist/${pkgName}.js`}`),
+        file: getPath(packagesPath, `./${pathName}/${isProd ? `dist/${pkgName}.min.js` : `dist/${pkgName}.js`}`),
         exports: 'named',
         // 首字母大写
         name: startCase(pkgName).replace(/ /g, ''),
@@ -231,12 +224,12 @@ function configure(config, env, target) {
     input,
     onwarn,
     output: target === 'esm' ? {
-      file: pathResolve(`./packages/${pathName}/esm/${pkgName}.js`),
+      file: getPath(packagesPath, `./${pathName}/esm/${pkgName}.js`),
       format: 'es',
       sourcemap: true,
       banner,
     } : {
-      file: pathResolve(`./packages/${pathName}/cjs/${pkgName}.js`),
+      file: getPath(packagesPath, `./${pathName}/cjs/${pkgName}.js`),
       format: 'cjs',
       exports: 'named',
       sourcemap: true,
@@ -260,7 +253,7 @@ function configure(config, env, target) {
  * @param {*} env
  */
 function factory(config, env) {
-  const isProd = env === 'prod';
+  const isProd = env === 'production';
   return [
     configure(config, 'development', 'cjs'), // dev环境cjs输出
     configure(config, 'development', 'esm'), // dev环境esm输出

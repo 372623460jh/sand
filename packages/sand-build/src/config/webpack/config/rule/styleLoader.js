@@ -1,5 +1,6 @@
 const autoprefixer = require('autoprefixer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { getBrowsersList } = require('../../../../utils');
 
 /**
  * 获取style的loader
@@ -15,6 +16,7 @@ function getStyleLoader(isProd, enableModule = false, enableLess = false) {
     {
       loader: 'css-loader',
       options: {
+        // css-loader 前还有几个loader
         importLoaders: enableLess ? 2 : 1,
         modules: enableModule,
         camelCase: 'dashesOnly',
@@ -26,13 +28,7 @@ function getStyleLoader(isProd, enableModule = false, enableLess = false) {
       loader: 'postcss-loader',
       options: {
         plugins: [
-          autoprefixer({
-            overrideBrowserslist: [
-              'last 2 versions',
-              'ios >= 9',
-              'android >= 4',
-            ],
-          }),
+          autoprefixer(getBrowsersList(isProd)),
         ],
       },
     },
@@ -53,38 +49,39 @@ function getStyleLoader(isProd, enableModule = false, enableLess = false) {
  * 获取公共的loader
  * @param {*} isProd 是否生产环境
  */
-function getCommonLoader(isProd) {
-  return [{
-    // css
-    test: function test(filePath) {
-      return (/\.css$/.test(filePath)
+function getCommonStyleLoader(isProd) {
+  return [
+    {
+      // css
+      test: function test(filePath) {
+        return (/\.css$/.test(filePath)
           && !/\.module\.css$/.test(filePath)
-      );
+        );
+      },
+      use: getStyleLoader(isProd, false, false),
     },
-    use: getStyleLoader(isProd, false, false),
-  },
-  {
-    // less
-    test: function test(filePath) {
-      return (/\.less$/.test(filePath)
+    {
+      // less
+      test: function test(filePath) {
+        return (/\.less$/.test(filePath)
           && !/\.module\.less$/.test(filePath)
-      );
+        );
+      },
+      use: getStyleLoader(isProd, false, true),
     },
-    use: getStyleLoader(isProd, false, true),
-  },
-  {
-    // css(css module)
-    test: /\.(module).css$/,
-    use: getStyleLoader(isProd, true, false),
-  },
-  {
-    // less(less module)
-    test: /\.(module).less$/,
-    use: getStyleLoader(isProd, true, true),
-  },
+    {
+      // css(css module)
+      test: /\.(module).css$/,
+      use: getStyleLoader(isProd, true, false),
+    },
+    {
+      // less(less module)
+      test: /\.(module).less$/,
+      use: getStyleLoader(isProd, true, true),
+    },
   ];
 }
 
 module.exports = {
-  getCommonLoader,
+  getCommonStyleLoader,
 };

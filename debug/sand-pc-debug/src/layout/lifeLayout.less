@@ -1,0 +1,41 @@
+.main{
+  margin: 20px auto 0;
+  width: 1200px;
+  min-height: 360px;
+  position: relative;
+  border: 1px solid #dedede;
+  box-shadow: 0 0 6px #ccc;
+  clear: both;
+  overflow: hidden;
+  background: #fff;
+  
+  .submenu{
+    position: relative;
+    z-index: 10;
+    width: 230px;
+    height: 100%;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    float: left;
+  }
+
+  .divider {
+    position: absolute;
+    left: 230px;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    height: 100%;
+    border-right: 1px solid #e7e7e7;
+    z-index: 1;
+  }
+  
+  .content{
+    box-sizing: border-box;
+    padding: 20px 40px 40px;
+    width: 967px;
+    float: right;
+    padding: 20px 40px 40px;
+    min-height: 640px;
+  }
+}

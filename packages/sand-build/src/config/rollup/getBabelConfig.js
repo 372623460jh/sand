@@ -1,14 +1,17 @@
+const { getPath } = require('../../utils');
+
 /**
  * 获取bable配置
  * @param {*} param0
  */
 function getBabelConfig({
+  packagesPath, // packages文件目录，绝对路径
   pathName,
   isUmd,
 }) {
   return {
     runtimeHelpers: true,
-    include: [`packages/${pathName}/src/**`],
+    include: [`${getPath(packagesPath, `./${pathName}/src/**`)}`],
     extensions: ['.js', '.ts', '.tsx', '.jsx'],
     presets: [
       '@babel/preset-typescript',

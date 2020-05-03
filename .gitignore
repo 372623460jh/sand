@@ -5,6 +5,11 @@
 /packages/*/dist
 /packages/*/node_modules
 /packages/sand-cli/staging
+/debug/**/esm
+/debug/**/cjs
+/debug/**/dist
+/debug/**/node_modules
+/examples/dist
 
 # OS files.
 .DS_Store

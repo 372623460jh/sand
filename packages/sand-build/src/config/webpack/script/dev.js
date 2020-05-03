@@ -1,21 +1,39 @@
+/* eslint-disable no-console */
 const webpack = require('webpack');
 const webpackDevMiddle = require('webpack-dev-middleware');
 const apiFallback = require('connect-history-api-fallback')();
 const webpackHotMiddle = require('webpack-hot-middleware');
 const express = require('express');
 // webpack dev config
-const getWebpackConfig = require('../config/dev.config');
+const chalk = require('chalk');
+const getDevWebpackConfig = require('../config/devConfig');
 const { getDefault, getPath } = require('../../../utils');
 
 /**
  * 启动应用
+ * obj: {
+ *    env: prod/dev
+ *    type: pc/mob/demo
+ * }
  */
-function startApp(env) {
+function startApp(obj) {
+  console.log(chalk.green('[start] Webpack dev环境启动服务'));
+
+  const { env, type, sandbuildrcPath = '' } = obj;
   // 动态读取sandbuildrc.js配置
-  // eslint-disable-next-line
-  const { port = 9531 } = getDefault(require(getPath(process.cwd(), './.sandbuildrc.js')));
+  const opts = getDefault(
+    // eslint-disable-next-line
+    require(sandbuildrcPath || getPath(process.cwd(), './.sandbuildrc.js')),
+  );
+  const { port = 9531 } = opts;
+
   // 使用webpack处理webpack_dev_config
-  const compiler = webpack(getWebpackConfig(env));
+  const compiler = webpack(getDevWebpackConfig({
+    ...opts,
+    env,
+    type,
+  }));
+
   // 创建express实例
   const app = express();
   // 使用webpack-dev-middleware包装compiler
@@ -46,7 +64,7 @@ function startApp(env) {
 
   app.listen(port, () => {
     // eslint-disable-next-line no-console
-    console.log(`Listening at http://127.0.0.1:${port}\n`);
+    console.log(`[start] Listening at http://127.0.0.1:${port}\n`);
   });
 }
 

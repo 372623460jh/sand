@@ -1,19 +1,25 @@
 /* eslint-disable no-console */
 const rollup = require('rollup');
 const chalk = require('chalk');
-const path = require('path');
 const startApp = require('./config/webpack/script/dev');
+const buildApp = require('./config/webpack/script/prod');
 const factory = require('./config/rollup');
-const { createSymbolicLink, logError, getDefault } = require('./utils');
+const { typeEnum } = require('./constant');
+const {
+  createSymbolicLink, logError, getDefault, getPath,
+} = require('./utils');
 
 /**
  * 处理rc文件生成可用的配置文件
  * @param {*} env 环境，prod还是dev
  */
-function handleConfig(env) {
+function handleConfig(props) {
+  const { env, sandbuildrcPath } = props;
   // 动态读取sandbuildrc.js配置
-  // eslint-disable-next-line
-  const { configurations = [] } = getDefault(require(path.resolve(process.cwd(), './.sandbuildrc.js')));
+  const { configurations = [] } = getDefault(
+    // eslint-disable-next-line
+    require(sandbuildrcPath || getPath(process.cwd(), './.sandbuildrc.js')),
+  );
   let configs = [];
   configurations.forEach((config) => {
     // 调用factory生成rollup打包配置
@@ -102,26 +108,18 @@ function watching(configs) {
 }
 
 /**
- * 获取绝对路径
- * @param {*} p
- */
-function pathResolve(p) {
-  return path.resolve(process.cwd(), p);
-}
-
-/**
  * 根据配置文件创建软链接
  * @param {*} packagesInfo 配置文件
  */
 function createLink(packagesInfo) {
   console.log(chalk.yellow('======== sand-build 开始创建软链（link）========'));
   for (let index = 0; index < packagesInfo.length; index++) {
-    const { pkg = {}, pathName = '' } = packagesInfo[index];
+    const { pkg = {}, pathName = '', packagesPath } = packagesInfo[index];
     const { name = '' } = pkg;
     // node_modules下的根据包名创建的目录
-    const nodeModulesPath = pathResolve(`./node_modules/${name}`);
+    const nodeModulesPath = getPath(process.cwd(), `./node_modules/${name}`);
     // packages下的真实包名
-    const realPath = pathResolve(`./packages/${pathName}`);
+    const realPath = getPath(packagesPath, `./${pathName}`);
     // 创建软链接
     if (createSymbolicLink(nodeModulesPath, realPath)) {
       // 软连创建成功
@@ -136,37 +134,65 @@ function createLink(packagesInfo) {
  * @param {*} options 指令入参
  */
 async function build(options) {
-  const { watch, link, env = 'dev' } = options;
-  const { configs, packagesInfo } = handleConfig(env);
-  if (link) {
-    // 需要在.sandbuildrc.js所在目录中的node_modules下创建软链，
-    // 链接到packages中的对应包，方便调试packages中的应用
-    createLink(packagesInfo);
-  }
-  if (watch) {
-    watching(configs);
-  } else {
-    try {
-      console.log(chalk.yellow('======== sand-build 开始构建（build）========'));
-      /**
-         * 构建所有配置
-         */
-      await buildAll(configs);
-      console.log(chalk.yellow('======== sand-build 构建结束（build）========'));
-    } catch (error) {
-      logError(error);
+  const {
+    watch,
+    link,
+    type = typeEnum.pc,
+    sandbuildrcPath = '', // 指定sandbuildrc入口只有debug时会有此入参
+  } = options;
+  if (type === typeEnum.lib) {
+    // lib
+    const { configs, packagesInfo } = handleConfig(options);
+    if (link) {
+      // 需要在.sandbuildrc.js所在目录中的node_modules下创建软链，
+      // 链接到packages中的对应包，方便调试packages中的应用
+      createLink(packagesInfo);
     }
+    if (watch) {
+      watching(configs);
+    } else {
+      try {
+        console.log(chalk.yellow('======== sand-build 开始构建（build）========'));
+        /**
+           * 构建所有配置
+           */
+        await buildAll(configs);
+        console.log(chalk.yellow('======== sand-build 构建结束（build）========'));
+      } catch (error) {
+        logError(error);
+      }
+    }
+  } else {
+    buildApp({
+      type,
+      env: 'production',
+      sandbuildrcPath,
+    });
   }
 }
 
 /**
  * 启动webpack服务回调
  * @param {*} options 指令入参
+ * type取值pc/mob/demo
  */
 function start(options) {
-  const { env = 'dev' } = options;
-  // 启动webpack服务
-  startApp(env);
+  const {
+    type = typeEnum.pc,
+    sandbuildrcPath = '', // 指定sandbuildrc入口只有debug时会有此入参
+  } = options;
+  // start都是dev
+  const env = 'development';
+  if (type === typeEnum.pc || type === typeEnum.demo) {
+    // pc或者demo时启动webpack服务
+    startApp({
+      type,
+      env,
+      sandbuildrcPath,
+    });
+  } else {
+    logError(`暂不支持${type}类型的start`);
+  }
 }
 
 module.exports = {

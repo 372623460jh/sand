@@ -22,7 +22,7 @@ function AnyOne(props) {
   return (
     <div className={styles.testModule}>
       <div className="test">testcss</div>
-      <Button onClick={onSenceChange}>test</Button>
+      <Button type="primary" onClick={onSenceChange}>Primary</Button>
       <span>{sence}</span>
     </div>
   );

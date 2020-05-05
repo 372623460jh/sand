@@ -1,6 +1,6 @@
 {
   "name": "@jianghe/sand-core",
-  "version": "1.0.2-12",
+  "version": "1.0.2-13",
   "private": false,
   "description": "sand pc的核心功能",
   "license": "MIT",
@@ -13,11 +13,6 @@
   "main": "./index.js",
   "module": "esm/sand-core.js",
   "cjs": "cjs/sand-core.js",
-  "files": [
-    "dist",
-    "esm",
-    "cjs"
-  ],
   "keywords": [
     "sand-core"
   ],

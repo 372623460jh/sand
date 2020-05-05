@@ -25,9 +25,7 @@
   "scripts": {},
   "peerDependencies": {
     "antd": "^3.20.0",
-    "prop-types": "^15.7.2",
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0"
+    "@jianghe/sand-core": "^1.0.2-13"
   },
   "dependencies": {
     "classnames": "^2.2.6"

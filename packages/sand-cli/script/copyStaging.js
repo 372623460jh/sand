@@ -5,7 +5,10 @@ const fs = require('fs');
 const path = require('path');
 
 // 脚手架名字
-const stagingName = 'sand-lib-staging';
+const stagingName = [
+  'sand-lib-staging',
+  'sand-pc-staging',
+];
 
 /**
  * 删除文件夹
@@ -66,7 +69,7 @@ async function copyStaging() {
       if (
         stat === 'file'
         && fileName === 'package.json'
-        && path.basename(filePath) !== stagingName
+        && !stagingName.includes(path.basename(filePath))
       ) {
         // 非根目录下的package.json改成package-backup.json
         packageJsonArr.push(path.join(sourcePath, filePath.replace(stagingPath, '')));

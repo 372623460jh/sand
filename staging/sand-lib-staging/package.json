@@ -37,13 +37,11 @@
     "npm-run-all": "^4.1.5",
     "pre-commit": "^1.2.2",
     "stylelint": "^13.2.0",
+    "@jianghe/sand-build": "^1.0.2-8",
     "@jianghe/sand-lint": "^1.0.2-8"
   },
   "dependencies": {
-    "@jianghe/sand-build": "^1.0.2-8",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "antd": "^3.20.0",
-    "prop-types": "^15.7.2"
+    "@jianghe/sand-core": "^1.0.2-13",
+    "antd": "^3.20.0"
   }
 }

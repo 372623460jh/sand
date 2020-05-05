@@ -49,6 +49,8 @@ import path from 'path'
     entryHtml: '',
     // 入口文件
     entry: '',
+    // sand-demo入口文件所在文件夹
+    demoBasePath: path.resolve(__dirname, './examples'),
   }
   // rollup 配置
   configurations: [

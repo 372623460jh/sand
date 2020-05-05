@@ -1,6 +1,6 @@
 const glob = require('glob');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { getPath } = require('../../../utils');
+const { getPath, logError } = require('../../../utils');
 
 /**
  * 遍历demoBasePath(默认examples)下的页面输出成
@@ -116,10 +116,13 @@ function getHtmlWebpackPlugin(entryMap, opts) {
 function getSandPcWebpackPlugin(opts) {
   const { webpackOptions = {} } = opts;
   const { htmlTitle = '', entryHtml } = webpackOptions;
+  if (!entryHtml) {
+    logError('entryHtml必填');
+  }
   return [
     new HtmlWebpackPlugin({
       filename: 'index.html', // 输出文件名
-      template: entryHtml || getPath(__dirname, '../common/pc/index-entry.html'),
+      template: entryHtml,
       inject: 'body', // 打包js注入到模板中的位置， true(body)/注入到body底部；head/script插入到head中， false/不往模板中插入js,
       chunks: ['vendors', 'common'], // 在多入口中，可以决定引用哪些编译后的js文件
       chunksSortMode: 'dependency', // 对编译后的多个js 进行引用排序，1 dependency/依赖关系排序；2 auto; 3 none; 4: function;
@@ -146,7 +149,10 @@ function getSandPcWebpackPlugin(opts) {
 function getSandPcEntry(opts) {
   const { env, webpackOptions } = opts;
   const { entry = '' } = webpackOptions;
-  const vendors = [entry || getPath(__dirname, '../common/pc/index-entry.jsx')];
+  if (!entry) {
+    logError('entry必填');
+  }
+  const vendors = [entry];
   if (env === 'development') {
     // 每一个entry,在后面加入webpack-hot-middleware/client?noInfo=true&reload=true从而实现浏览器自动刷新
     vendors.push('webpack-hot-middleware/client?noInfo=true&timeout=20000&reload=true&quiet=true');

@@ -64,7 +64,7 @@ function startApp(obj) {
 
   app.listen(port, () => {
     // eslint-disable-next-line no-console
-    console.log(`[start] Listening at http://127.0.0.1:${port}\n`);
+    console.log(chalk.green(`[start] Listening at http://127.0.0.1:${port}\n`));
   });
 }
 

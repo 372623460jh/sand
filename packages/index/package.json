@@ -19,8 +19,7 @@
     "cjs"
   ],
   "peerDependencies": {
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0"
+    "@jianghe/sand-core": "^1.0.2-13"
   },
   "repository": {
     "type": "git",

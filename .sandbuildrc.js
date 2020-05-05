@@ -1,4 +1,5 @@
 const index = require('./packages/index/package.json');
+const sandCore = require('./packages/sand-core/package.json');
 const path = require('path');
 
 module.exports = {
@@ -24,6 +25,23 @@ module.exports = {
       umdGlobals: {
         'react': 'react',
         'react-dom': 'react-dom',
+      },
+    },
+    {
+      entry: path.resolve(__dirname, './packages/sand-core/index.js'),
+      packagesPath: path.resolve(__dirname, './packages'),
+      pathName: 'sand-core',
+      pkgName: 'sand-core',
+      pkg: sandCore,
+      cssExtract: false,
+      umdGlobals: {
+        'react': 'react',
+        'react-dom': 'react-dom',
+        'react-router-dom': 'react-router-dom',
+        'react-redux': 'react-redux',
+        'react-loadable': 'react-loadable',
+        'dva-core': 'dva-core',
+        'prop-types': 'prop-types',
       },
     },
   ],

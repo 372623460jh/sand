@@ -55,7 +55,7 @@ module.exports = {
     'length-zero-no-unit': true,
     'color-hex-case': 'lower',
     'color-hex-length': 'short',
-    'selector-max-id': 0,
+    'selector-max-id': null,
     'comment-whitespace-inside': 'always',
   },
 };

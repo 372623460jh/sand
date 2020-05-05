@@ -4,8 +4,8 @@
  * (c) 2019-2020 Jiang He
  * Released under the MIT License.
  */
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from '@jianghe/sand-core/react';
+import ReactDOM from '@jianghe/sand-core/react-dom';
 
 function _defineProperty(obj, key, value) {
   if (key in obj) {

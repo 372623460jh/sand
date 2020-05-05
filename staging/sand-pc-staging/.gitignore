@@ -1,0 +1,10 @@
+/yarn.lock
+/node_modules
+/dist
+
+# OS files.
+.DS_Store
+.idea/
+.vscode/
+.git
+*.log

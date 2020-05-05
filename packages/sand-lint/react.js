@@ -32,5 +32,6 @@ module.exports = {
     'react/static-property-placement': [0], // 禁止propType放到class内部报错
     'react/state-in-constructor': [0], // 允许state不在constructor中定义
     'no-param-reassign': [0], // 允许对函数入参进行操作
+    'react/forbid-prop-types': [0], // prop-types允许使用object，any等
   },
 };

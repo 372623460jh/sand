@@ -1,6 +1,6 @@
 {
   "name": "@jianghe/sand-build",
-  "version": "1.0.2-11",
+  "version": "1.0.2-12",
   "private": false,
   "description": "sand库构建工具",
   "main": "./bin/sand-build.js",

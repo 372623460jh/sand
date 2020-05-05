@@ -1,9 +1,9 @@
 {
-  "name": "@jianghe/sand-mystery",
-  "version": "1.0.2-10",
+  "name": "@jianghe/sand-core",
+  "version": "1.0.2-11",
   "private": false,
-  "description": "合并",
-  "main": "./bin/sand-mystery.js",
+  "description": "sand pc的核心功能",
+  "main": "./index.js",
   "license": "MIT",
   "authors": [
     {
@@ -12,17 +12,17 @@
     }
   ],
   "keywords": [
-    "sand-mystery"
+    "sand-core"
   ],
-  "bin": {
-    "sand-mystery": "./bin/sand-mystery.js"
-  },
   "scripts": {},
   "dependencies": {
-    "chalk": "^2.4.2",
-    "commander": "^2.20.0",
-    "fstream": "^1.0.12",
-    "tar": "^2.2.2"
+    "dva-core": "^1.4.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-loadable": "^5.5.0",
+    "react-redux": "^6.0.1",
+    "react-router-dom": "^4.3.1"
   },
   "repository": {
     "type": "git",

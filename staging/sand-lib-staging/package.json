@@ -8,7 +8,7 @@
   },
   "scripts": {
     "init": "npm run clean && npm i && npm run bootstrap",
-    "clean": "rm -rf ./node_modules ./packages/*/{dist,esm,cjs,./node_modules} && lerna clean --yes ",
+    "clean": "rm -rf ./node_modules ./packages/*/{dist,esm,cjs,node_modules} ./examples/dist && lerna clean --yes ",
     "bootstrap": "lerna bootstrap --npm-client npm --hoist && npm run build",
     "build": "sand-build build -t lib -e development -l",
     "build:watch": "sand-build build -t lib -e development -l -w",

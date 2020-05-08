@@ -14,7 +14,6 @@ module.exports = {
       entry: path.resolve(__dirname, './packages/sand-core/index.js'),
       pkgPath: path.resolve(__dirname, './packages/sand-core'),
       bundleName: 'sand-core',
-      cssExtract: false,
       umdGlobals: {
         'react': 'react',
         'react-dom': 'react-dom',

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import React, { useState } from '@jianghe/sand-core/react';
 import { PropTypes } from '@jianghe/sand-core';
 import { Button } from 'antd';

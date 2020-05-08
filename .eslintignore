@@ -2,5 +2,3 @@ dist
 esm
 cjs
 node_modules
-test
-staging

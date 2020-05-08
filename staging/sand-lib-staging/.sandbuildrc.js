@@ -1,6 +1,5 @@
 const path = require('path');
 
-
 module.exports = {
   // webpack服务启动端口
   port: 9898,
@@ -15,6 +14,7 @@ module.exports = {
       entry: path.resolve(__dirname, './packages/component-test/src/index.js'),
       pkgPath: path.resolve(__dirname, './packages/component-test'),
       bundleName: 'component-test',
+      cssExtract: true,
       umdGlobals: {
         'antd': 'antd',
         '@jianghe/sand-core': 'sand-core',

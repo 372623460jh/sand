@@ -1,6 +1,6 @@
 {
   "name": "@jianghe/sand-cli",
-  "version": "1.0.1-6",
+  "version": "1.0.2-0",
   "private": false,
   "description": "sand cli工具",
   "main": "./bin/sand-cli.js",

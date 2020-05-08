@@ -19,6 +19,9 @@ pc脚手架
 ### sand-mob-staging
 移动脚手架
 
+## debug
+见./debug/README.md
+
 TODO:
 1. jtest测试模块ci
 2. sand-pc依赖于sand-webpack做pc端spa脚手架

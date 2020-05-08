@@ -6,7 +6,8 @@ const { getPath } = require('../../../../utils');
  * 获取基础的babel配置
  */
 function getCommonPlugin(opts) {
-  const { type = typeEnum.pc } = opts;
+  const { type = typeEnum.pc, webpackOptions = {} } = opts;
+  const { basePath } = webpackOptions;
   if (type === typeEnum.pc) {
     // sand-pc 拷贝assets
     return [
@@ -16,8 +17,8 @@ function getCommonPlugin(opts) {
        */
       new CopyWebpackPlugin([
         {
-          from: getPath(process.cwd(), './src/assets'),
-          to: getPath(process.cwd(), './dist/assets'),
+          from: getPath(basePath, './src/assets'),
+          to: getPath(basePath, './dist/assets'),
           ignore: ['.*'],
         },
       ]),

@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const chalk = require('chalk');
 const { logError } = require('../../../utils');
 const getProdWebpackConfig = require('../config/prodConfig');
-const { getDefault, getPath } = require('../../../utils');
+const { getPath, getSandBuildConfig } = require('../../../utils');
 
 /**
  * 启动应用
@@ -16,11 +16,9 @@ function buildApp(obj) {
   console.log(chalk.green('[build] Webpack pro环境，开始编译，构建。'));
 
   const { env, type, sandbuildrcPath = '' } = obj;
+
   // 动态读取sandbuildrc.js配置
-  const opts = getDefault(
-    // eslint-disable-next-line
-    require(sandbuildrcPath || getPath(process.cwd(), './.sandbuildrc.js')),
-  );
+  const opts = getSandBuildConfig(sandbuildrcPath || getPath(process.cwd(), './.sandbuildrc.js'));
 
   // 使用webpack处理webpack_dev_config
   const compiler = webpack(getProdWebpackConfig({
@@ -35,7 +33,7 @@ function buildApp(obj) {
       logError('[build] Webpack 编译失败。');
       process.exit(1);
     } else {
-    // spinner.stop()
+      // spinner.stop()
       process.stdout.write(
         stats.toString({
           colors: true,

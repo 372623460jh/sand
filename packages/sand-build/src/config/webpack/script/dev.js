@@ -7,7 +7,7 @@ const express = require('express');
 // webpack dev config
 const chalk = require('chalk');
 const getDevWebpackConfig = require('../config/devConfig');
-const { getDefault, getPath } = require('../../../utils');
+const { getSandBuildConfig, getPath } = require('../../../utils');
 
 /**
  * 启动应用
@@ -20,11 +20,10 @@ function startApp(obj) {
   console.log(chalk.green('[start] Webpack dev环境启动服务'));
 
   const { env, type, sandbuildrcPath = '' } = obj;
+
   // 动态读取sandbuildrc.js配置
-  const opts = getDefault(
-    // eslint-disable-next-line
-    require(sandbuildrcPath || getPath(process.cwd(), './.sandbuildrc.js')),
-  );
+  const opts = getSandBuildConfig(sandbuildrcPath || getPath(process.cwd(), './.sandbuildrc.js'));
+
   const { port = 9531 } = opts;
 
   // 使用webpack处理webpack_dev_config

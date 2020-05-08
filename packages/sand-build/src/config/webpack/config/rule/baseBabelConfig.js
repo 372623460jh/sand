@@ -15,7 +15,7 @@ function getBaseBabelConfig() {
         },
       ],
       [
-        'path-chunk-name', // 动态引入的chunks使用path作为没名字
+        'babel-plugin-path-chunk-name', // chunk命名：动态引入的chunks使用path作为名字
         {
           delay: true,
         },

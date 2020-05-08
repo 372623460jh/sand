@@ -11,11 +11,12 @@ const { logError } = require('../../../utils');
  * @param {*} opts
  */
 function getOutputConfig(opts) {
-  const { type = typeEnum.pc } = opts;
+  const { type = typeEnum.pc, webpackOptions = {} } = opts;
+  const { basePath } = webpackOptions;
   if (type === typeEnum.pc) {
     return {
       // 输出路径
-      path: getPath(process.cwd(), './dist'),
+      path: getPath(basePath, './dist'),
       filename: '[name].js',
       chunkFilename: '[name].js',
       publicPath: '/',
@@ -24,7 +25,7 @@ function getOutputConfig(opts) {
   if (type === typeEnum.demo) {
     return {
       // 输出路径
-      path: getPath(process.cwd(), './examples/dist'),
+      path: getPath(basePath, './examples/dist'),
       filename: '[name].js',
       publicPath: '/',
     };
@@ -60,9 +61,9 @@ function getCommonConfig(opts) {
     splitChunks: {
       cacheGroups: {
         // chunks
-        // all: 不管文件是动态还是非动态载入，统一将文件分离。当页面首次载入会引入所有的包
-        // async： 将异步加载的文件分离，首次一般不引入，到需要异步引入的组件才会引入。
-        // initial：将异步和非异步的文件分离，如果一个文件被异步引入也被非异步引入，那它会被打包两次（注意和all区别），用于分离页面首次需要加载的包。
+        //  all: 不管文件是动态还是非动态载入，统一将文件分离。当页面首次载入会引入所有的包
+        //  async： 将异步加载的文件分离，首次一般不引入，到需要异步引入的组件才会引入。
+        //  initial：将异步和非异步的文件分离，如果一个文件被异步引入也被非异步引入，那它会被打包两次（注意和all区别），用于分离页面首次需要加载的包。
         common: { // 项目基本框架等
           chunks: 'all',
           test: /(react|react-dom|react-router-dom|babel-polyfill|antd)/,
@@ -71,7 +72,7 @@ function getCommonConfig(opts) {
         },
         // 项目静态部分资源
         vendors: {
-          chunks: 'async',
+          chunks: 'initial',
           priority: 90, // 打包优先级
           name: 'vendors',
         },

@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { getPath, logError } = require('../../../utils');
 
 /**
- * 遍历demoBasePath(默认examples)下的页面输出成
+ * 遍历basePath/examples下的页面输出成
  * {
  *   'todolist/todolist':{
  *     'html': 'examples/todolist/todolist-entry.html',
@@ -14,16 +14,20 @@ const { getPath, logError } = require('../../../utils');
  */
 function getEntryMap(opts) {
   const { webpackOptions = {} } = opts;
-  const { demoBasePath = 'examples', entry, entryHtml } = webpackOptions;
-  const relativePath = demoBasePath.replace(`${process.cwd()}/`, '');
+  const { basePath, entry, entryHtml } = webpackOptions;
+  const examplesPath = getPath(basePath, './examples');
+  const relativePath = examplesPath.replace(`${process.cwd()}/`, '');
   // *(entry.js|entry.jsx|entry.html) 表示匹配中其中额一个或多个
   const files = glob.sync(`${relativePath}/**/*-*(entry.js|entry.jsx|entry.html)`);
   const regHtml = /\.html$/;
   const regAll = /-entry\.(jsx|html|js)$/;
+  if (!entryHtml || !entry) {
+    logError('entryHtml,entry必填');
+  }
   const entryMap = {
     index: {
-      html: entryHtml || getPath(__dirname, '../common/demo/index-entry.html'),
-      entry: entry || getPath(__dirname, '../common/demo/index-entry.js'),
+      html: entryHtml,
+      entry,
     },
   };
   for (let index = 0; index < files.length; index++) {
@@ -82,9 +86,7 @@ function getWebpackEntry(entryMap, opts) {
  * @param {*} entryMap
  * @param {*} opts
  */
-function getHtmlWebpackPlugin(entryMap, opts) {
-  const { webpackOptions = {} } = opts;
-  const { htmlTitle = '' } = webpackOptions;
+function getHtmlWebpackPlugin(entryMap) {
   const entryMapArr = Object.keys(entryMap);
   const htmlWebpackPluginArr = [];
   for (let index = 0; index < entryMapArr.length; index++) {
@@ -98,10 +100,13 @@ function getHtmlWebpackPlugin(entryMap, opts) {
           chunks: ['vendors', 'common', entryName], // 在多入口中，可以决定引用哪些编译后的js文件
           chunksSortMode: 'dependency', // 对编译后的多个js 进行引用排序，1 dependency/依赖关系排序；2 auto; 3 none; 4: function;
           hash: true, // 给编译的js加？hash 用于清楚缓存  //<script type=text/javascript src=bundle.js?22b9692e22e7be37b57e></script>
-          params: { // 输出到html中的参数
-            title: htmlTitle || 'sand-space',
+          // minify 的作用是对 html 文件进行压缩
+          minify: {
+            removeAttributeQuotes: true, // 对属性的引号进行删除
+            minifyJS: true,
+            minifyCSS: true,
           },
-          title: entryName,
+          params: {},
         }),
       );
     }
@@ -115,7 +120,7 @@ function getHtmlWebpackPlugin(entryMap, opts) {
  */
 function getSandPcWebpackPlugin(opts) {
   const { webpackOptions = {} } = opts;
-  const { htmlTitle = '', entryHtml } = webpackOptions;
+  const { entryHtml } = webpackOptions;
   if (!entryHtml) {
     logError('entryHtml必填');
   }
@@ -133,10 +138,7 @@ function getSandPcWebpackPlugin(opts) {
         minifyJS: true,
         minifyCSS: true,
       },
-      // 输出到html中的参数
-      params: {
-        title: htmlTitle || 'sand-pc',
-      },
+      params: {},
     }),
   ];
 }

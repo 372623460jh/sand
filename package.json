@@ -20,13 +20,14 @@
   },
   "scripts": {
     "init": "npm run clean && npm i && npm run bootstrap",
-    "clean": "rm -rf ./node_modules ./packages/*/{dist,esm,cjs,./node_modules} && npm run clean:staging && lerna clean --yes ",
-    "bootstrap": "lerna bootstrap --npm-client npm --hoist && npm run build",
+    "clean": "rm -rf ./node_modules ./packages/*/{dist,esm,cjs,node_modules} && npm run clean:debug && npm run clean:staging && lerna clean --yes",
+    "clean:debug": "rm -rf ./debug/*/{dist,esm,cjs} ./debug/*/*/{dist,esm,cjs} ./debug/*/*/*/{dist,esm,cjs}",
     "clean:staging": "rm -rf ./packages/sand-cli/staging",
+    "bootstrap": "lerna bootstrap --npm-client npm --hoist && npm run build",
     "copy:staging": "node ./packages/sand-cli/script/copyStaging.js",
-    "build": "npm run copy:staging && sand-build build -t lib -e development",
-    "build:watch": "npm run copy:staging && sand-build build -t lib -e development -w",
-    "build:production": "npm run copy:staging && sand-build build -t lib -e production",
+    "build": "npm run copy:staging && sand-build build -t lib -e development -l",
+    "build:watch": "npm run copy:staging && sand-build build -t lib -e development -w -l",
+    "build:production": "npm run copy:staging && sand-build build -t lib -e production -l",
     "build:demo": "sand-build build -t demo -e production",
     "server": "sand-build start -t demo",
     "start": "npm-run-all --parallel --print-label build:watch server",
@@ -51,11 +52,10 @@
     "npm-run-all": "^4.1.5",
     "pre-commit": "^1.2.2",
     "stylelint": "^13.2.0",
-    "@jianghe/sand-lint": "^1.0.2-8",
-    "@jianghe/sand-build": "^1.0.2-8"
+    "@jianghe/sand-lint": "^1.0.3-0",
+    "@jianghe/sand-build": "^1.0.3-0"
   },
   "dependencies": {
-    "@jianghe/sand-core": "^1.0.2-13",
     "antd": "^3.20.0"
   }
 }

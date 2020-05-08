@@ -28,12 +28,12 @@
     "pre-commit": "^1.2.2",
     "eslint": "^6.8.0",
     "stylelint": "^13.2.0",
-    "@jianghe/sand-build": "^1.0.2-10",
-    "@jianghe/sand-lint": "^1.0.2-10"
+    "@jianghe/sand-build": "^1.0.3-0",
+    "@jianghe/sand-lint": "^1.0.3-0"
   },
   "dependencies": {
     "antd": "^3.20.0",
     "debug": "^3.1.0",
-    "@jianghe/sand-core": "^1.0.2-11"
+    "@jianghe/sand-core": "^1.0.3-0"
   }
 }

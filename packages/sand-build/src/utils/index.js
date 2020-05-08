@@ -3,6 +3,7 @@ const fs = require('fs');
 const chalk = require('chalk');
 const path = require('path');
 const childProcess = require('child_process');
+const { DEFAULT_PORT } = require('../constant');
 
 /**
  * 错误处理
@@ -105,6 +106,104 @@ function getBrowsersList(isProd) {
   };
 }
 
+/**
+ * webpackOptions标准化
+ * @param {*} options
+ */
+function stdWebpackOptions(options) {
+  const {
+    entryHtml = '', // 入口html（必填）
+    entry = '', // 入口文件（必填）
+    basePath = process.cwd(), // 项目跟目录（非必填，默认process.cwd()）
+    babelConfig = undefined, // bable配置用于替换内置babel配置（非必填，默认：内置babel配置）
+    otherRules = [], // webpack要扩展的其他rules（非必填，默认：[]）
+    alias = {}, // 别名,非必填
+  } = options;
+  if (!entryHtml || !entry) {
+    logError('webpackOptions.entryHtml和webpackOptions.entry为必填项');
+  }
+  return {
+    entryHtml,
+    entry,
+    basePath,
+    babelConfig,
+    otherRules,
+    alias,
+  };
+}
+
+/**
+ * configurations标准化
+ * @param {*} options
+ */
+function stdRollupConfig(options) {
+  const stdOpts = [];
+  for (let n = 0; n < options.length; n++) {
+    const {
+      entry = '', // 入口文件，绝对路径
+      pkgPath = '', // 包的目录
+      bundleName = '', // 构建出来的文件名, 必填
+      isTs,
+      cssExtract,
+      alias = [],
+      umdGlobals = {},
+      namedExports = {},
+    } = options[n];
+    if (!entry || !pkgPath || !bundleName) {
+      logError('configurations[].entry和configurations[].pkgPath和configurations[].bundleName为必填项');
+      break;
+    }
+    // 读取package.json
+    // eslint-disable-next-line
+    const pkgJson = require(getPath(pkgPath, './package.json'));
+    stdOpts.push({
+      entry,
+      pkgPath,
+      bundleName,
+      pkg: pkgJson,
+      isTs: !!isTs,
+      cssExtract: !!cssExtract,
+      alias,
+      umdGlobals,
+      namedExports,
+    });
+  }
+  return stdOpts;
+}
+
+/**
+ * 标准化SandBuild配置
+ * @param {*} options
+ */
+function stdSandBuildOpts(options) {
+  // 标准化后的配置
+  const stdOpts = {};
+  const { port, webpackOptions, configurations } = options;
+  // 标准化端口
+  stdOpts.port = port || DEFAULT_PORT;
+  if (webpackOptions) {
+    stdOpts.webpackOptions = stdWebpackOptions(webpackOptions);
+  }
+  if (
+    configurations
+    && Array.isArray(configurations)
+    && configurations.length > 0
+  ) {
+    stdOpts.configurations = stdRollupConfig(configurations);
+  }
+  return stdOpts;
+}
+
+/**
+ * 读取sandbuildrc.js配置
+ * @param {*} path 配置所在路径
+ */
+function getSandBuildConfig(SandBuildPath) {
+  // 动态读取sandbuildrc.js配置
+  // eslint-disable-next-line
+  return stdSandBuildOpts(getDefault(require(SandBuildPath)));
+}
+
 module.exports = {
   mkdirsSync,
   createSymbolicLink,
@@ -112,4 +211,5 @@ module.exports = {
   getDefault,
   logError,
   getBrowsersList,
+  getSandBuildConfig,
 };

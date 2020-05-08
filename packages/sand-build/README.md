@@ -30,9 +30,15 @@ import path from 'path'
   port: 9538,
   // webpack补充配置
   webpackOptions: {
-    // bable配置用于替换内置babel配置,不填使用默认,非必填
+    // 入口html（必填）
+    entryHtml: '',
+    // 入口文件（必填）
+    entry: '',
+    // 项目跟目录（非必填，默认process.cwd()）
+    basePath: '',
+    // bable配置用于替换内置babel配置（非必填，默认：内置babel配置）
     babelConfig: {},
-    // webpack要扩展的其他rules，没有可以不传,非必填
+    // webpack要扩展的其他rules（非必填，默认：[]）
     otherRules: [
       {
         test,
@@ -41,39 +47,23 @@ import path from 'path'
     ],
     // 别名,非必填
     alias: {},
-    // htmlTitle,非必填
-    htmlTitle: '',
-    // 显示模块分析
-    showBundleAnalyzer: false,
-    // 入口html
-    entryHtml: '',
-    // 入口文件
-    entry: '',
-    // sand-demo入口文件所在文件夹
-    demoBasePath: path.resolve(__dirname, './examples'),
   }
   // rollup 配置
+  // 用于生成依赖文件,会用作rollup external 判断在deps中的库不会被打入包中
+  // 读取版本号
   configurations: [
     {
       // 入口文件，绝对路径
       entry: '',
-      // packages文件目录，绝对路径
-      packagesPath: '',
-      // 需要构建的包的文件名
-      // 只能对应./packages/${pathName}/src/index.js或index.ts
-      // 具体加载index.js还是index.ts由isTs参数决定,必填
-      pathName: 'lib1',
+      // 需要构建库的入口文件，绝对路径./packages/包名
+      pkgPath: '',
       // 构建出来的文件名,必填
-      pkgName: 'module1'
-      // 要构建的包的package.json ,必填
-      // 用于生成依赖文件,会用作rollup external 判断在deps中的库不会被打入包中
-      // 读取版本号
-      pkg: lib1,
+      bundleName: 'module1'
       // 是否是ts,默认false
-      // ts会去加载./packages/${pkgName}/tsconfig.json
+      // ts会去加载 ${pkgPath}/tsconfig.json
       isTs: false,
-      // 是否单独提取css文件，默认是true
-      cssExtract: true,
+      // 是否单独提取css文件，默认是false
+      cssExtract: false,
       // 别名,内置了@ -> src的别名
       // model -> ./packages/lib1/src/model/index.js
       alias: [

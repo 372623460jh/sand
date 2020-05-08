@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const getCommonConfig = require('./commonConfig');
 const utils = require('./utils');
 const { typeEnum } = require('../../../constant');
@@ -11,42 +10,24 @@ const { typeEnum } = require('../../../constant');
  * 获取入口
  * @param {*} opts
  */
-function getEntry(opts) {
+function getEntryAndPlugins(opts) {
   const { type = typeEnum.pc } = opts;
   if (type === typeEnum.demo) {
     // 解析examples目录生成入口map
     const entryMap = utils.getEntryMap(opts);
     // 根据entryMap生成webpack entryMap
-    return utils.getWebpackEntry(entryMap, opts);
+    return {
+      entry: utils.getWebpackEntry(entryMap, opts),
+      plugins: utils.getHtmlWebpackPlugin(entryMap, opts),
+    };
   }
   if (type === typeEnum.pc) {
-    return utils.getSandPcEntry(opts);
+    return {
+      entry: utils.getSandPcEntry(opts),
+      plugins: utils.getSandPcWebpackPlugin(opts),
+    };
   }
-  return {};
-}
-
-/**
- * 获取插件
- * @param {*} opts
- */
-function getPlugins(opts) {
-  const { webpackOptions = {} } = opts;
-  const { showBundleAnalyzer = false } = webpackOptions;
-  return showBundleAnalyzer ? [
-    // chunks可视化
-    new BundleAnalyzerPlugin({
-      analyzerMode: 'server',
-      analyzerHost: '127.0.0.1',
-      analyzerPort: 8889,
-      reportFilename: 'report.html',
-      defaultSizes: 'parsed',
-      openAnalyzer: true,
-      generateStatsFile: false,
-      statsFilename: 'stats.json',
-      statsOptions: null,
-      logLevel: 'info',
-    }),
-  ] : [];
+  return { entry: {}, plugins: [] };
 }
 
 /**
@@ -62,11 +43,16 @@ function getProdWebpackConfig(opts) {
     commonPlugin, // 公共插件
   } = getCommonConfig(opts);
 
+  const {
+    entry = {},
+    plugins = [],
+  } = getEntryAndPlugins(opts);
+
   return {
     // 生产环境
     mode: 'production',
     // 入口
-    entry: getEntry(opts),
+    entry,
     // 出口
     output,
     // 解析
@@ -108,7 +94,7 @@ function getProdWebpackConfig(opts) {
           canPrint: true,
         }),
       ])
-      .concat(getPlugins(opts)),
+      .concat(plugins),
     // 代码分离，公共js打包
     optimization: {
       noEmitOnErrors: true,

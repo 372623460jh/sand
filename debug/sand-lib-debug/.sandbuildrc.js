@@ -1,5 +1,4 @@
 const path = require('path');
-const ComponentTest = require('./packages/component-test/package.json');
 
 module.exports = {
   // webpack服务启动端口
@@ -8,15 +7,14 @@ module.exports = {
   configurations: [
     {
       entry: path.resolve(__dirname, './packages/component-test/src/index.js'),
-      packagesPath: path.resolve(__dirname, './packages'),
-      pathName: 'component-test',
-      pkgName: 'component-test',
-      pkg: ComponentTest,
+      pkgPath: path.resolve(__dirname, './packages/component-test'),
+      bundleName: 'comp',
+      cssExtract: true,
       umdGlobals: {
         'antd': 'antd',
-        'prop-types': 'prop-types',
-        'react': 'react',
-        'react-dom': 'react-dom',
+        '@jianghe/sand-core': 'sand-core',
+        '@jianghe/sand-core/react': 'react',
+        '@jianghe/sand-core/react-dom': 'react-dom',
       },
     },
   ],

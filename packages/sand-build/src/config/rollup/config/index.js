@@ -11,9 +11,10 @@ const { terser } = require('rollup-plugin-terser');
 const postcss = require('rollup-plugin-postcss');
 const autoprefixer = require('autoprefixer');
 const { startCase } = require('lodash');
+const path = require('path');
 const { getBabelConfig } = require('./getBabelConfig');
 const { getDepsConfig } = require('./getDepsConfig');
-const { getPath, getBrowsersList } = require('../../utils');
+const { getPath, getBrowsersList } = require('../../../utils');
 
 /**
  * 根据options生成plugins
@@ -30,12 +31,12 @@ function getBasePlugins(options = {}) {
     // 别名配置
     aliasConfig,
     // 包名
-    pathName,
+    pkgName,
     // isUmd
     isUmd,
     // umd构建时用来兼容commonjs
     namedExports,
-    // 构建文件绝对路径
+    // packages文件绝对路径
     packagesPath,
   } = options;
 
@@ -48,7 +49,7 @@ function getBasePlugins(options = {}) {
   const baseAlias = [
     {
       find: /^@\/(.*)/,
-      replacement: getPath(packagesPath, `./${pathName}/src/$1`),
+      replacement: getPath(packagesPath, `./${pkgName}/src/$1`),
     },
   ];
 
@@ -89,7 +90,7 @@ function getBasePlugins(options = {}) {
     // 支持ts
     isTs && typescript({
       abortOnError: false,
-      tsconfig: getPath(packagesPath, `./${pathName}/tsconfig.json`),
+      tsconfig: getPath(packagesPath, `./${pkgName}/tsconfig.json`),
       clean: true,
     }),
     // 支持json模块的引入
@@ -102,7 +103,7 @@ function getBasePlugins(options = {}) {
     builtins(),
     // 使用babel处理代码
     babel(
-      getBabelConfig({ packagesPath, isUmd, pathName }),
+      getBabelConfig({ packagesPath, isUmd, pkgName }),
     ),
     // 别名
     alias({
@@ -116,7 +117,7 @@ function getBasePlugins(options = {}) {
     // umd 使用 rollup-plugin-commonjs, 它会将 CommonJS 模块转换为 ES6,来为 Rollup 获得兼容。
     isUmd && commonjs({
       // 忽略
-      exclude: [`${getPath(packagesPath, `./${pathName}/src/**`)}`],
+      exclude: [`${getPath(packagesPath, `./${pkgName}/src/**`)}`],
       namedExports: {
         ...namedExports,
       },
@@ -140,25 +141,28 @@ function configure(config, env, target) {
 
   const {
     entry = '', // 入口文件，绝对路径
-    packagesPath = '', // packages文件目录，绝对路径
-    pathName = '', // 需要打包的包文件名
-    pkgName = '', // 构建出来的文件名
+    pkgPath = '', // 需要构建库的入口文件，绝对路径
+    bundleName = '', // 构建出来的文件名
     pkg = {}, // package.json对象
     isTs = false, // 是不是ts
     alias: aliasConfig = [], // 别名
     umdGlobals = {}, // 全局模块
     namedExports = {}, // cjs的模块在umd打包时需要手动声明名称：
-    cssExtract = true, // 是否单独提起css文件
+    cssExtract = false, // 是否单独提起css文件
   } = config;
 
+  // 版本
   const { version = '' } = pkg;
-
+  // 包名
+  const pkgName = path.basename(pkgPath);
+  // packages文件绝对路径
+  const packagesPath = getPath(pkgPath, '../../packages');
   // 入口文件
   const input = entry;
 
   // 广告
   const banner = '/*!\n'
-    + ` * ${pkgName}.js v${version}\n`
+    + ` * ${bundleName}.js v${version}\n`
     + ` * (c) 2019-${new Date().getFullYear()} Jiang He\n`
     + ' * Released under the MIT License.\n'
     + ' */';
@@ -184,7 +188,7 @@ function configure(config, env, target) {
     env,
     isTs,
     aliasConfig,
-    pathName,
+    pkgName,
     isUmd,
     namedExports,
     packagesPath,
@@ -200,10 +204,10 @@ function configure(config, env, target) {
         // umd方式输出
         format: 'umd',
         // 输出路径从package.json中读
-        file: getPath(packagesPath, `./${pathName}/${isProd ? `dist/${pkgName}.min.js` : `dist/${pkgName}.js`}`),
+        file: getPath(packagesPath, `./${pkgName}/${isProd ? `dist/${bundleName}.min.js` : `dist/${bundleName}.js`}`),
         exports: 'named',
         // 首字母大写
-        name: startCase(pkgName).replace(/ /g, ''),
+        name: startCase(bundleName).replace(/ /g, ''),
         // 全局模块，例如告诉Rollup jQuery 模块的id等同于 $ 变量最后生成umd代码时会是
         // var MyBundle = (function ($) {
         // }(window.jQuery));
@@ -224,12 +228,12 @@ function configure(config, env, target) {
     input,
     onwarn,
     output: target === 'esm' ? {
-      file: getPath(packagesPath, `./${pathName}/esm/${pkgName}.js`),
+      file: getPath(packagesPath, `./${pkgName}/esm/${bundleName}.js`),
       format: 'es',
       sourcemap: true,
       banner,
     } : {
-      file: getPath(packagesPath, `./${pathName}/cjs/${pkgName}.js`),
+      file: getPath(packagesPath, `./${pkgName}/cjs/${bundleName}.js`),
       format: 'cjs',
       exports: 'named',
       sourcemap: true,

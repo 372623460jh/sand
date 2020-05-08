@@ -1,25 +1,41 @@
-import Loadable from 'react-loadable';
+/* eslint-disable react/jsx-props-no-spreading */
+import React, {
+  lazy,
+  Suspense,
+  Component,
+} from 'react';
 
 /**
  * 默认loading动画
  */
-function DefaultLoading() {
+// eslint-disable-next-line func-names
+let DefaultLoading = function () {
   return null;
+};
+
+function async(module, { loading = DefaultLoading } = {}) {
+  const LazyComponent = lazy(module);
+  const LoadingComponent = loading;
+
+  return class LazyLoader extends Component {
+    // 异步加载需要暴露一个接口去类同步获取真实内容
+    static preload() {
+      return module();
+    }
+
+    render() {
+      return (
+        <Suspense fallback={<LoadingComponent {...this.props} />}>
+          <LazyComponent {...this.props} />
+        </Suspense>
+      );
+    }
+  };
 }
 
-/**
- * 动态加载组件的方法
- * @param {*} module react组件
- * @param {*} param1
- */
-function async(module, { loading = DefaultLoading, ...rest } = {}) {
-  return Loadable({
-    delay: 0,
-    ...rest,
-    loader: module,
-    loading,
-  });
-}
+async.setDefaultLoading = function setDefaultLoading(LoadingComponent) {
+  DefaultLoading = LoadingComponent;
+};
 
 export {
   async,

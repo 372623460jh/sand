@@ -1,15 +1,16 @@
 {
   "name": "@jianghe/sand-cli",
-  "version": "1.0.3-2",
+  "version": "1.0.3-3",
   "private": false,
   "description": "sand cli工具",
   "main": "./bin/sand-cli.js",
   "license": "MIT",
   "files": [
-    "staging",
     "bin",
     "commands",
+    "config",
     "script",
+    "staging",
     "utils"
   ],
   "authors": [

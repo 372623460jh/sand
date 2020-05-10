@@ -1,6 +1,6 @@
 {
   "name": "@jianghe/sand-build",
-  "version": "1.0.3-1",
+  "version": "1.0.3-2",
   "private": false,
   "description": "sand库构建工具",
   "main": "./bin/sand-build.js",
@@ -77,7 +77,6 @@
     "webpack-hot-middleware": "^2.24.1"
   },
   "devDependencies": {
-    "cross-env": "^7.0.2",
     "webpack-dev-server": "^3.1.9"
   },
   "repository": {

@@ -6,14 +6,15 @@ const editJsonFile = require('edit-json-file');
 const copyDir = require('copy-dir');
 const fs = require('fs');
 const childProcess = require('child_process');
-
-// 脚手架名字
-const stagingName = 'sand-lib-staging';
+const { stagingEnum } = require('../config/constants');
 
 /**
- * 创建sand-lib的脚手架
+ * 创建脚手架
  */
-async function createLib() {
+async function createStaging(opts) {
+  const { type = 'sand-lib' } = opts;
+  // 文件名
+  const { fileName: stagingName = 'sand-lib-staging' } = stagingEnum[type];
   // 对应模板所在位置
   const sourcePath = path.resolve(__dirname, `../staging/${stagingName}`);
   // 当前文件路径
@@ -146,4 +147,4 @@ async function createLib() {
   console.log(chalk.magenta('安装完成, 请执行 `npm run start` 运行项目'));
 }
 
-module.exports = createLib;
+module.exports = createStaging;

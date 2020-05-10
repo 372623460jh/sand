@@ -8,7 +8,7 @@
   },
   "scripts": {
     "init": "npm run clean && npm i && npm run bootstrap",
-    "clean": "rm -rf ./node_modules ./packages/*/{dist,esm,cjs,node_modules} ./examples/dist && lerna clean --yes ",
+    "clean": "rm -rf ./node_modules ./packages/*/{dist,esm,cjs,node_modules} ./dist && lerna clean --yes ",
     "bootstrap": "lerna bootstrap --npm-client npm --hoist && npm run build",
     "build": "sand-build build -t lib -e development -l",
     "build:watch": "sand-build build -t lib -e development -l -w",
@@ -31,17 +31,16 @@
   "devDependencies": {
     "@commitlint/cli": "^8.2.0",
     "@commitlint/config-conventional": "^8.2.0",
-    "cross-env": "^7.0.2",
     "eslint": "^6.8.0",
     "lerna": "2.11.0",
     "npm-run-all": "^4.1.5",
     "pre-commit": "^1.2.2",
     "stylelint": "^13.2.0",
-    "@jianghe/sand-build": "^1.0.3-0",
-    "@jianghe/sand-lint": "^1.0.3-0"
+    "@jianghe/sand-build": "^1.0.3-3",
+    "@jianghe/sand-lint": "^1.0.3-3"
   },
   "dependencies": {
-    "@jianghe/sand-core": "^1.0.3-0",
-    "antd": "^3.20.0"
+    "@jianghe/sand-core": "^1.0.3-3",
+    "antd": "^4.2.0"
   }
 }

@@ -25,7 +25,7 @@ function getOutputConfig(opts) {
   if (type === typeEnum.demo) {
     return {
       // 输出路径
-      path: getPath(basePath, './examples/dist'),
+      path: getPath(basePath, './dist'),
       filename: '[name].js',
       publicPath: '/',
     };

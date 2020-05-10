@@ -1,9 +1,9 @@
 import React from '@jianghe/sand-core/react';
 import { PropTypes, renderRoutes } from '@jianghe/sand-core';
 import {
-  Layout, Menu, Breadcrumb, Icon,
+  Layout, Menu, Breadcrumb,
 } from 'antd';
-
+import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
@@ -42,7 +42,7 @@ class BaseLayout extends React.PureComponent {
                 key="sub1"
                 title={(
                   <span>
-                    <Icon type="user" />
+                    <UserOutlined />
                     subnav 1
                   </span>
                 )}
@@ -56,7 +56,7 @@ class BaseLayout extends React.PureComponent {
                 key="sub2"
                 title={(
                   <span>
-                    <Icon type="laptop" />
+                    <LaptopOutlined />
                     subnav 2
                   </span>
                 )}
@@ -70,7 +70,7 @@ class BaseLayout extends React.PureComponent {
                 key="sub3"
                 title={(
                   <span>
-                    <Icon type="notification" />
+                    <NotificationOutlined />
                     subnav 3
                   </span>
                 )}

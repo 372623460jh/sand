@@ -90,6 +90,8 @@ import path from 'path'
         'react-dom': ['findDOMNode'],
         'react-dom/server': ['renderToStaticMarkup'],
       },
+      // bable配置用于替换内置babel配置（非必填，默认：内置babel配置）
+      babelConfig: {},
     },
   ]
 }

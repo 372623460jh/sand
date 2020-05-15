@@ -148,6 +148,7 @@ function stdRollupConfig(options) {
       alias = [],
       umdGlobals = {},
       namedExports = {},
+      babelConfig = undefined, // bable配置用于替换内置babel配置（非必填，默认：内置babel配置）
     } = options[n];
     if (!entry || !pkgPath || !bundleName) {
       logError('configurations[].entry和configurations[].pkgPath和configurations[].bundleName为必填项');
@@ -166,6 +167,7 @@ function stdRollupConfig(options) {
       alias,
       umdGlobals,
       namedExports,
+      babelConfig,
     });
   }
   return stdOpts;

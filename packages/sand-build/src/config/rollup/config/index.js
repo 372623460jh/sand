@@ -38,6 +38,8 @@ function getBasePlugins(options = {}) {
     namedExports,
     // packages文件绝对路径
     packagesPath,
+    // 覆盖的babel配置
+    babelConfig,
   } = options;
 
   // 是否是生产环境
@@ -103,7 +105,11 @@ function getBasePlugins(options = {}) {
     builtins(),
     // 使用babel处理代码
     babel(
-      getBabelConfig({ packagesPath, isUmd, pkgName }),
+      babelConfig || getBabelConfig({
+        packagesPath,
+        isUmd,
+        pkgName,
+      }),
     ),
     // 别名
     alias({
@@ -149,6 +155,7 @@ function configure(config, env, target) {
     umdGlobals = {}, // 全局模块
     namedExports = {}, // cjs的模块在umd打包时需要手动声明名称：
     cssExtract = false, // 是否单独提起css文件
+    babelConfig = undefined, // bable配置用于替换内置babel配置（非必填，默认：内置babel配置）
   } = config;
 
   // 版本
@@ -167,6 +174,7 @@ function configure(config, env, target) {
     + ' * Released under the MIT License.\n'
     + ' */';
 
+  // 获取包依赖
   const deps = getDepsConfig({ pkg });
 
   /**
@@ -183,6 +191,7 @@ function configure(config, env, target) {
 
   // 获取插件配置
   const plugins = getBasePlugins({
+    babelConfig,
     // 是否单独提起css文件
     cssExtract,
     env,
@@ -203,7 +212,7 @@ function configure(config, env, target) {
       output: {
         // umd方式输出
         format: 'umd',
-        // 输出路径从package.json中读
+        // 输出
         file: getPath(packagesPath, `./${pkgName}/${isProd ? `dist/${bundleName}.min.js` : `dist/${bundleName}.js`}`),
         exports: 'named',
         // 首字母大写
@@ -212,7 +221,6 @@ function configure(config, env, target) {
         // var MyBundle = (function ($) {
         // }(window.jQuery));
         globals: {
-          // ...getDepsMap({ pkg }),
           ...umdGlobals,
         },
         banner,

@@ -44,7 +44,15 @@ function getBabelConfig({
             useESModules: true,
           },
       ],
+      // 支持class
       '@babel/plugin-proposal-class-properties',
+      // 支持注解
+      [
+        '@babel/plugin-proposal-decorators',
+        {
+          legacy: true,
+        },
+      ],
     ],
   };
 }

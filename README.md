@@ -26,7 +26,7 @@ sand相关脚手架的cli工具。详细文档见./packages/sand-cli/README.md
 2. sand-demo-staging，sand-pc-stagingsand-lib-staging sand-build测试文件
 
 ## 3. TODO:
-- ~~rollup支持babel扩展
+- ~~rollup支持babel扩展~~
 - 使用jtest来支持ci命令
 - sand-pc-staging依赖的sand-core优化
 - 支持react嵌入markdown

@@ -2,19 +2,20 @@ const { getSandBuildConfig } = require('../src/utils');
 const { getPath } = require('../src/utils');
 
 test('读取并标准化.sandbuildrc.js => json', () => {
+  const rootPath = process.cwd();
   // 标准化后的配置
   const result = {
     port: 9533,
     webpackOptions: {
-      entryHtml: '/Users/jianghe/Desktop/jianghe_ws/sand/examples/common/index.html',
-      entry: '/Users/jianghe/Desktop/jianghe_ws/sand/examples/common/index.jsx',
-      basePath: '/Users/jianghe/Desktop/jianghe_ws/sand',
+      entryHtml: getPath(rootPath, './examples/common/index.html'),
+      entry: getPath(rootPath, './examples/common/index.jsx'),
+      basePath: rootPath,
       otherRules: [],
       alias: {},
     },
     configurations: [{
-      entry: '/Users/jianghe/Desktop/jianghe_ws/sand/packages/sand-core/index.js',
-      pkgPath: '/Users/jianghe/Desktop/jianghe_ws/sand/packages/sand-core',
+      entry: getPath(rootPath, './packages/sand-core/index.js'),
+      pkgPath: getPath(rootPath, './packages/sand-core'),
       bundleName: 'sand-core',
       pkg: {
         name: '@jianghe/sand-core',

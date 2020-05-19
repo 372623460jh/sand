@@ -4,6 +4,8 @@ dist
 cjs
 esm
 node_modules
+coverage
+/packages/sand-mystery/examples/output/decrypt/*
 
 # OS files.
 .DS_Store

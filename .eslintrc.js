@@ -5,6 +5,7 @@ module.exports = {
   extends: require.resolve('@jianghe/sand-lint/react'),
   rules: {},
   env: {
+    // 忽略jest报错
     jest: true,
   },
   settings: {

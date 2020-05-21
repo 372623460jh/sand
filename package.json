@@ -37,7 +37,7 @@
     "lint:fix": "npm run lint -- --fix",
     "lint:style": "stylelint \"packages/**/*.less\" \"examples/**/*.less\" \"staging/**/*.less\" --syntax less",
     "lint:style:fix": "npm run lint:style -- --fix",
-    "test": "jest --coverage",
+    "test": "jest",
     "ci": "npm run lint:fix && npm run lint:style:fix && npm run lint && npm run lint:style && npm run test"
   },
   "pre-commit": [

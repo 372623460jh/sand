@@ -10,6 +10,7 @@ test('读取并标准化.sandbuildrc.js => json', () => {
       entryHtml: getPath(rootPath, './examples/common/index.html'),
       entry: getPath(rootPath, './examples/common/index.jsx'),
       basePath: rootPath,
+      babelConfig: undefined,
       otherRules: [],
       alias: {},
     },
@@ -19,7 +20,7 @@ test('读取并标准化.sandbuildrc.js => json', () => {
       bundleName: 'sand-core',
       pkg: {
         name: '@jianghe/sand-core',
-        version: '1.0.3-5',
+        version: '1.0.3-6',
         private: false,
         description: 'sand pc的核心功能',
         license: 'MIT',
@@ -54,6 +55,7 @@ test('读取并标准化.sandbuildrc.js => json', () => {
       isTs: false,
       cssExtract: false,
       alias: [],
+      babelConfig: undefined,
       umdGlobals: {
         react: 'react',
         'react-dom': 'react-dom',

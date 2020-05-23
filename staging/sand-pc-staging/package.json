@@ -8,26 +8,26 @@
   },
   "scripts": {
     "init": "npm run clean && npm i && npm run start",
-    "clean": "rm -rf ./node_modules ./dist",
+    "clean": "rm -rf ./node_modules ./dist ./package-lock.json ./coverage",
     "build": "sand-build build -t pc",
     "start": "sand-build start -t pc",
     "lint": "eslint ./src --ext .jsx,.js,.ts,.tsx",
     "lint:fix": "npm run lint -- --fix",
     "lint:style": "stylelint \"src/**/*.less\" --syntax less",
     "lint:style:fix": "npm run lint:style -- --fix",
-    "test": "",
+    "test": "jest",
     "ci": "npm run lint:fix && npm run lint:style:fix && npm run test && npm run lint && npm run lint:style"
   },
   "pre-commit": [
     "ci"
   ],
-  "ci": {},
   "devDependencies": {
     "@commitlint/cli": "^8.2.0",
     "@commitlint/config-conventional": "^8.2.0",
     "pre-commit": "^1.2.2",
     "eslint": "^6.8.0",
     "stylelint": "^13.2.0",
+    "jest": "^26.0.1",
     "@jianghe/sand-build": "^1.0.3-3",
     "@jianghe/sand-lint": "^1.0.3-3"
   },

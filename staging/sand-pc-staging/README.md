@@ -5,6 +5,7 @@ sand-pc脚手架。
 
 ## 指令
 npm run init: 删除node_modules,dist，并重新安装，启动服务
+npm run clean: 删除node_modules,dist
 npm run build: 构建
 npm run start: 启动pc调试服务
-npm run ci: lint&&ci
+npm run ci: lint&&test

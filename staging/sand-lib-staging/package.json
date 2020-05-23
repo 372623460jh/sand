@@ -8,7 +8,7 @@
   },
   "scripts": {
     "init": "npm run clean && npm i && npm run bootstrap",
-    "clean": "rm -rf ./node_modules ./packages/*/{dist,esm,cjs,node_modules} ./dist && lerna clean --yes ",
+    "clean": "rm -rf ./node_modules ./packages/*/{dist,esm,cjs,node_modules} ./dist ./package-lock.json ./coverage && lerna clean --yes ",
     "bootstrap": "lerna bootstrap --npm-client npm --hoist && npm run build",
     "build": "sand-build build -t lib -e development -l",
     "build:watch": "sand-build build -t lib -e development -l -w",
@@ -21,13 +21,12 @@
     "lint:fix": "npm run lint -- --fix",
     "lint:style": "stylelint \"packages/**/*.less\" \"examples/**/*.less\" --syntax less",
     "lint:style:fix": "npm run lint:style -- --fix",
-    "test": "",
-    "ci": "npm run lint:fix && npm run lint:style:fix && npm run test && npm run lint && npm run lint:style"
+    "test": "jest",
+    "ci": "npm run lint:fix && npm run lint:style:fix && npm run lint && npm run lint:style && npm run test"
   },
   "pre-commit": [
     "ci"
   ],
-  "ci": {},
   "devDependencies": {
     "@commitlint/cli": "^8.2.0",
     "@commitlint/config-conventional": "^8.2.0",
@@ -36,6 +35,7 @@
     "npm-run-all": "^4.1.5",
     "pre-commit": "^1.2.2",
     "stylelint": "^13.2.0",
+    "jest": "^26.0.1",
     "@jianghe/sand-build": "^1.0.3-3",
     "@jianghe/sand-lint": "^1.0.3-3"
   },

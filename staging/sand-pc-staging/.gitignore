@@ -1,6 +1,7 @@
 /yarn.lock
 /node_modules
 /dist
+/coverage
 
 # OS files.
 .DS_Store

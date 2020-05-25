@@ -1,6 +1,6 @@
 {
   "name": "@jianghe/sand-mystery",
-  "version": "1.0.3-6",
+  "version": "1.0.3-7",
   "private": false,
   "description": "合并",
   "main": "./bin/sand-mystery.js",

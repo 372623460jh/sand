@@ -34,6 +34,7 @@ async function init() {
     case 'sand-pc':
     case 'sand-demo':
     case 'sand-lib':
+    case 'sand-bff':
       // 选择项目脚手架
       createStaging({ type: stagingEnum[type].name });
       break;

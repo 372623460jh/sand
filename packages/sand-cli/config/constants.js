@@ -16,6 +16,10 @@ const stagingEnum = {
     name: 'sand-mob',
     fileName: 'sand-mob-staging',
   },
+  'sand-bff': {
+    name: 'sand-bff',
+    fileName: 'sand-bff-staging',
+  },
 };
 
 module.exports = {

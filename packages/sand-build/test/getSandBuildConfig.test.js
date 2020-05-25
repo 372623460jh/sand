@@ -1,5 +1,6 @@
 const { getSandBuildConfig } = require('../src/utils');
 const { getPath } = require('../src/utils');
+const { version } = require('../../sand-core/package.json');
 
 test('读取并标准化.sandbuildrc.js => json', () => {
   const rootPath = process.cwd();
@@ -20,7 +21,7 @@ test('读取并标准化.sandbuildrc.js => json', () => {
       bundleName: 'sand-core',
       pkg: {
         name: '@jianghe/sand-core',
-        version: '1.0.3-6',
+        version,
         private: false,
         description: 'sand pc的核心功能',
         license: 'MIT',

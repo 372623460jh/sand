@@ -1,5 +1,3 @@
-const cors = require('koa2-cors');
-
 /**
  * 用于校验请求地址是否在域名白名单内，在的化才允许跨域请求
  * @param {*} ct 上下文
@@ -24,7 +22,7 @@ function checkCorsOrigin(ctx) {
  * 获取cors配置
  */
 function getCors() {
-  return cors({
+  return {
     origin: checkCorsOrigin,
     // 设置获取其他自定义字段
     exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],
@@ -36,7 +34,7 @@ function getCors() {
     allowMethods: ['GET', 'POST'],
     // 接受的header参数
     allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
-  });
+  };
 }
 
 module.exports = {

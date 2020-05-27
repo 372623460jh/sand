@@ -1,4 +1,4 @@
-import { decodeHtml, encodeHtml } from '../utils';
+import { decodeHtml, encodeHtml } from '../common/utils';
 
 describe('decode or encode', () => {
   // dva 相关测试

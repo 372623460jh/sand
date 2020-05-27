@@ -1,0 +1,1 @@
+该文件夹下的文件在sand-build构建时会把原封不动的copy至dist文件夹下

@@ -1,4 +1,4 @@
-const { getTimeSub } = require('../utils/time');
+const { getTimeSub } = require('../common/utils/time');
 
 describe('getTimeSub', () => {
   test('getTimeSub', () => {

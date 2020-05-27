@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+  <meta charset=UTF-8>
+  <meta name=viewport content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+  <title>标准模板</title>
+  <script>
+    // 动态设置webpack的publicPath
+    window.__webpack_public_path__ = '<%=publicPath %>';
+  </script>
+  <% cssAssets.forEach(function(item){ %>
+    <link href="<%=item %>" rel=stylesheet>
+  <% }) %>
+</head>
+
+<body>
+  <div id=root></div>
+  <% jsAssets.forEach(function(item){ %>
+    <script type=text/javascript src="<%=item %>"></script>
+  <% }) %>
+</body> 
+</html>

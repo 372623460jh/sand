@@ -4,6 +4,7 @@ const webpackDevMiddle = require('webpack-dev-middleware');
 const apiFallback = require('connect-history-api-fallback')();
 const webpackHotMiddle = require('webpack-hot-middleware');
 const express = require('express');
+const cors = require('cors');
 // webpack dev config
 const chalk = require('chalk');
 const getDevWebpackConfig = require('../config/devConfig');
@@ -58,6 +59,12 @@ function startApp(obj) {
   const hotMiddleware = webpackHotMiddle(compiler, {});
   // 使用connect-history-api-fallback中间件
   app.use(apiFallback);
+  // 解决hml update.json跨域的问题
+  app.use(cors({
+    origin: '*', // 指定接收的地址
+    methods: ['GET', 'POST'], // 指定接收的请求类型
+    alloweHeaders: ['Content-Type', 'Authorization'], // 指定header
+  }));
   app.use(devMiddleware);
   app.use(hotMiddleware);
 

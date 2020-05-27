@@ -67,7 +67,8 @@ function getWebpackEntry(entryMap, opts) {
           // 绝对路径
           entryMap[entryName].entry,
           // 每一个entry,在后面加入webpack-hot-middleware/client?noInfo=true&reload=true从而实现浏览器自动刷新
-          'webpack-hot-middleware/client?noInfo=true&timeout=20000&reload=true&quiet=true',
+          // dynamicPublicPath设置为true使用webpack publicPath作为前缀path,可以__webpack_public_path__在入口点的运行时动态设置
+          'webpack-hot-middleware/client?path=__webpack_hmr&noInfo=true&timeout=20000&reload=true&quiet=true&dynamicPublicPath=true',
         ];
       } else {
         // 既有html又有entry是一个鉴权的entry
@@ -157,7 +158,8 @@ function getSandPcEntry(opts) {
   const vendors = [entry];
   if (env === 'development') {
     // 每一个entry,在后面加入webpack-hot-middleware/client?noInfo=true&reload=true从而实现浏览器自动刷新
-    vendors.push('webpack-hot-middleware/client?noInfo=true&timeout=20000&reload=true&quiet=true');
+    // dynamicPublicPath设置为true使用webpack publicPath作为前缀path,可以__webpack_public_path__在入口点的运行时动态设置
+    vendors.push('webpack-hot-middleware/client?path=__webpack_hmr&noInfo=true&timeout=20000&reload=true&quiet=true&dynamicPublicPath=true');
   }
   return {
     vendors,

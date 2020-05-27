@@ -1,9 +1,13 @@
 .idea
 .git
-/node_modules
 yarn.lock
-coverage
 .DS_Store
 .idea
 .vscode
 *.log
+
+dist
+cjs
+esm
+node_modules
+coverage

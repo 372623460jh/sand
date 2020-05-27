@@ -1,5 +1,5 @@
 const dbController = require('../db/dbController');
-const { getTimeSub } = require('../utils/time');
+const { getTimeSub } = require('../common/utils/time');
 
 const resumeModule = {
   getSkills: async (userId) => {

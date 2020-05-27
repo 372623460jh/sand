@@ -3,38 +3,52 @@
   "version": "1.0.0",
   "description": "sand通用的bff应用",
   "main": "./src/app.js",
-  "scripts": {
-    "init": "npm run clean && npm i && npm run start",
-    "clean": "rm -rf ./node_modules ./coverage ./package-lock.json",
-    "start": "node ./src/app.js",
-    "lint": "eslint ./src --ext .js,.ts",
-    "lint:fix": "npm run lint -- --fix",
-    "test": "jest",
-    "ci": "npm run lint:fix && npm run lint && npm run test"
-  },
+  "author": "jianghe",
+  "license": "MIT",
   "engines": {
     "node": ">=10.16.0"
   },
   "pre-commit": [
     "ci"
   ],
-  "author": "jianghe",
-  "license": "MIT",
-  "dependencies": {
-    "koa": "^2.12.0",
-    "koa-bodyparser": "^4.2.0",
-    "koa-router": "^7.0.0",
-    "koa2-cors": "^2.0.4",
-    "sequelize": "3.24.1",
-    "mysql": "2.11.1"
+  "scripts": {
+    "init": "npm run clean && npm i && npm run start",
+    "clean": "rm -rf ./node_modules ./dist ./package-lock.json ./coverage",
+    "start": "npm-run-all --parallel --print-label start:pc start:bff",
+    "start:bff": "node ./server/app.js",
+    "start:pc": "sand-build start -t pc",
+    "build": "sand-build build -t pc",
+    "lint": "eslint ./src ./server --ext .js,.ts",
+    "lint:fix": "npm run lint -- --fix",
+    "lint:style": "stylelint \"src/**/*.less\" --syntax less",
+    "lint:style:fix": "npm run lint:style -- --fix",
+    "test": "jest",
+    "ci": "npm run lint:fix && npm run lint:style:fix && npm run lint && npm run lint:style && npm run test"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.2.0",
     "@commitlint/config-conventional": "^8.2.0",
-    "eslint": "^6.8.0",
     "pre-commit": "^1.2.2",
+    "eslint": "^6.8.0",
+    "stylelint": "^13.2.0",
     "jest": "^26.0.1",
+    "npm-run-all": "^4.1.5",
     "babel-eslint": "^10.1.0",
-    "eslint-config-airbnb-base": "^14.1.0"
+    "@jianghe/sand-build": "^1.0.3-9",
+    "@jianghe/sand-lint": "^1.0.3-9"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^4.1.0",
+    "@jianghe/sand-core": "^1.0.3-9",
+    "antd": "^4.2.0",
+    "debug": "^3.1.0",
+    "ejs": "^3.1.3",
+    "koa": "^2.12.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-router": "^7.0.0",
+    "koa-views": "^6.2.3",
+    "koa2-cors": "^2.0.4",
+    "mysql": "2.11.1",
+    "sequelize": "3.24.1"
   }
 }

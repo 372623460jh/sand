@@ -21,7 +21,7 @@
   "scripts": {
     "init": "npm run clean && npm i && npm run bootstrap",
     "clean": "npm run clean:base && npm run clean:debug && npm run clean:staging && lerna clean --yes",
-    "clean:base": "rm -rf ./node_modules ./coverage ./packages/*/{dist,esm,cjs,node_modules} ./dist",
+    "clean:base": "rm -rf ./node_modules ./coverage ./package-lock.json ./packages/*/{dist,esm,cjs,node_modules} ./dist",
     "clean:debug": "rm -rf ./debug/*/{dist,esm,cjs} ./debug/*/*/*/{dist,esm,cjs}",
     "clean:staging": "rm -rf ./packages/sand-cli/staging",
     "bootstrap": "lerna bootstrap --npm-client npm --hoist && npm run build",

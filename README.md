@@ -30,6 +30,8 @@ sand相关脚手架的cli工具。详细文档见./packages/sand-cli/README.md
 - ~~使用jest来支持ci命令~~
 - ~~给每一个package增加单测用例~~
 - ~~给每一个脚手架增加jest和单测用例~~
+- sand-build从express换成koa2
+- sand-build支持type等于bff,koa2构建分为两种构建dev和prod。执行start，dev模式揉合webpackDevMiddle中间件和webpackHotMiddle中间件,可以考虑sand-build提供方法，返回webpack配置，再在app.js使用webpackDevMiddle中间件和webpackHotMiddle中间件来启动web服务
 - sand-bff脚手架（基于koa2）
 - sand-lint下增加eslin-node配置
 - 解决sand-mystery的jest报错

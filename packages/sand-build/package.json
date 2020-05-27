@@ -1,6 +1,6 @@
 {
   "name": "@jianghe/sand-build",
-  "version": "1.0.3-8",
+  "version": "1.0.3-9",
   "private": false,
   "description": "sand库构建工具",
   "main": "./bin/sand-build.js",
@@ -45,6 +45,7 @@
     "commander": "^2.20.0",
     "connect-history-api-fallback": "^1.5.0",
     "copy-webpack-plugin": "^4.6.0",
+    "cors": "^2.8.5",
     "css-loader": "^1.0.0",
     "express": "^4.16.3",
     "file-loader": "^2.0.0",

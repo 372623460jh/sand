@@ -25,6 +25,9 @@ sand相关脚手架的cli工具。详细文档见./packages/sand-cli/README.md
 1. sand-cli-staging sand-cli工具测试文件
 2. sand-demo-staging，sand-pc-stagingsand-lib-staging sand-build测试文件
 
+### CHANGELOG
+每次执行完git commit后post-commit hook生成CHANGELOG.md文件。
+
 ## 3. TODO:
 - ~~rollup支持babel扩展~~
 - ~~使用jest来支持ci命令~~

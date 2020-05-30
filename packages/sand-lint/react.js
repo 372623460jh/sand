@@ -11,6 +11,8 @@ module.exports = {
     window: false,
   },
   env: {
+    // 忽略jest报错
+    jest: true,
     browser: true,
     node: true,
     commonjs: true,

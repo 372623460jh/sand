@@ -35,11 +35,13 @@ sand相关脚手架的cli工具。详细文档见./packages/sand-cli/README.md
 - ~~给每一个域名申请ssl证书，并且完成每个子域名的https配置~~
 - ~~完成assets.zirupay.com，images.zirupay.com，resume.zirupay.com，www.zirupay.com~~
 - ~~完成resume apk~~
+- ~~sand-lint下增加eslin-node配置~~
+- ~~sand-build从express换成koa2~~
+- 自动生成change log
+- sand-pc-staging依赖的sand-core优化
+置，再在app.js使用webpackDevMiddle中间件和webpackHotMiddle中间件来启动web服务
 - 完成images.zirupay.com图片上传管理
-- sand-build从express换成koa2
-- sand-build支持type等于bff,koa2构建分为两种构建dev和prod。执行start，dev模式揉合webpackDevMiddle中间件和webpackHotMiddle中间件,可以考虑sand-build提供方法，返回webpack配置，再在app.js使用webpackDevMiddle中间件和webpackHotMiddle中间件来启动web服务
-- sand-lint下增加eslin-node配置
 - 解决sand-mystery的jest报错
 - sand-docs脚手架支持，集成https://github.com/facebook/docusaurus
-- sand-pc-staging依赖的sand-core优化
 - sand-mob脚手架开发
+- (可以考虑将将bff和pc构建时合并)sand-build支持type等于bff,koa2构建分为两种构建dev和prod。执行start，dev模式揉合webpackDevMiddle中间件和webpackHotMiddle中间件,可以考虑sand-build提供方法，返回webpack配

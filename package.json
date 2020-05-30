@@ -1,6 +1,6 @@
 {
   "name": "sand",
-  "version": "1.0.0",
+  "version": "1.0.3-11",
   "description": "sand核心包仓库",
   "author": "jianghe",
   "license": "MIT",
@@ -44,6 +44,9 @@
   "pre-commit": [
     "ci"
   ],
+  "post-commit": [
+    "changelog"
+  ],
   "devDependencies": {
     "@commitlint/cli": "^8.2.0",
     "@commitlint/config-conventional": "^8.2.0",
@@ -54,6 +57,7 @@
     "jest": "^26.0.1",
     "lerna": "2.11.0",
     "npm-run-all": "^4.1.5",
+    "post-commit": "0.0.1",
     "pre-commit": "^1.2.2",
     "stylelint": "^13.2.0"
   },

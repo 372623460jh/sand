@@ -1,5 +1,6 @@
 import React from '@jianghe/sand-core/react';
-import { PropTypes, renderRoutes } from '@jianghe/sand-core';
+import PropTypes from '@jianghe/sand-core/prop-types';
+import { renderRoutes } from '@jianghe/sand-core/router-config';
 import {
   Layout, Menu, Breadcrumb,
 } from 'antd';

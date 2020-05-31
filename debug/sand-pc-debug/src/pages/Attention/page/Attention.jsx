@@ -1,5 +1,7 @@
 import React from '@jianghe/sand-core/react';
-import { connect, PropTypes, setModel } from '@jianghe/sand-core';
+import { setModel } from '@jianghe/sand-core';
+import PropTypes from '@jianghe/sand-core/prop-types';
+import { connect } from '@jianghe/sand-core/react-redux';
 import attentionModel from '../model/attention';
 
 class Attention extends React.PureComponent {

@@ -38,10 +38,12 @@ test('读取并标准化.sandbuildrc.js => json', () => {
         scripts: {},
         dependencies: {
           'dva-core': '^1.4.0',
+          history: '^4.9.0',
           'prop-types': '^15.7.2',
           react: '^16.13.1',
           'react-dom': '^16.13.1',
           'react-redux': '^6.0.1',
+          'react-router-config': '^5.0.0',
           'react-router-dom': '^4.3.1',
         },
         repository: {

@@ -1,5 +1,5 @@
 import React, { useState } from '@jianghe/sand-core/react';
-import { PropTypes } from '@jianghe/sand-core';
+import PropTypes from '@jianghe/sand-core/prop-types';
 import { Button } from 'antd';
 import sayHello from '@/utils/sayHello';
 import styles from './AnyOne.module.less';

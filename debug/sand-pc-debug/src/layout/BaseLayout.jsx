@@ -1,5 +1,5 @@
 import React from '@jianghe/sand-core/react';
-import { PropTypes, renderRoutes } from '@jianghe/sand-core';
+import PropTypes from '@jianghe/sand-core/prop-types';
 import {
   Layout, Menu, Breadcrumb,
 } from 'antd';
@@ -10,11 +10,11 @@ const { Header, Content, Sider } = Layout;
 
 class BaseLayout extends React.PureComponent {
   static propTypes = {
-    route: PropTypes.object.isRequired,
+    children: PropTypes.any.isRequired,
   }
 
   render() {
-    const { route } = this.props;
+    const { children } = this.props;
     return (
       <Layout>
         <Header className="header">
@@ -92,7 +92,7 @@ class BaseLayout extends React.PureComponent {
               background: '#fff', padding: 24, margin: 0, minHeight: 280,
             }}
             >
-              {renderRoutes(route.routes)}
+              {children}
             </Content>
           </Layout>
         </Layout>

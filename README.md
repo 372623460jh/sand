@@ -26,7 +26,7 @@ sand相关脚手架的cli工具。详细文档见./packages/sand-cli/README.md
 2. sand-demo-staging，sand-pc-stagingsand-lib-staging sand-build测试文件
 
 ### CHANGELOG
-每次执行完git commit后post-commit hook生成CHANGELOG.md文件。
+每次执行完git commit后post-commit hook生成CHANGELOG.backup.md文件。
 
 ## 3. TODO:
 - ~~rollup支持babel扩展~~
@@ -40,11 +40,24 @@ sand相关脚手架的cli工具。详细文档见./packages/sand-cli/README.md
 - ~~完成resume apk~~
 - ~~sand-lint下增加eslin-node配置~~
 - ~~sand-build从express换成koa2~~
-- 自动生成change log
-- sand-pc-staging依赖的sand-core优化
-置，再在app.js使用webpackDevMiddle中间件和webpackHotMiddle中间件来启动web服务
-- 完成images.zirupay.com图片上传管理
+- ~~自动生成change log~~
+- ~~sand-pc-staging依赖的sand-core优化~~
+
+- sand-node-staging 微服务应用脚手架
+- sand-bff-staging bff应用&微服务应用脚手架
 - 解决sand-mystery的jest报错
 - sand-docs脚手架支持，集成https://github.com/facebook/docusaurus
 - sand-mob脚手架开发
-- (可以考虑将将bff和pc构建时合并)sand-build支持type等于bff,koa2构建分为两种构建dev和prod。执行start，dev模式揉合webpackDevMiddle中间件和webpackHotMiddle中间件,可以考虑sand-build提供方法，返回webpack配
+- 完成images.zirupay.com图片上传管理
+
+## 4. 提案
+- sand-build支持type:bff,koa2构建分为两种构建dev和prod。执行start，dev模式揉合webpackDevMiddle中间件和webpackHotMiddle中间件,可以考虑sand-build提供方法，返回webpack配置，再在app.js使用webpackDevMiddle中间件和webpackHotMiddle中间件来启动web服务
+
+
+sand-pc-staging 只支持history路由，默认的路由routerPrefix = '/spa' 可配置
+sand-bff-staging 前端部分也只支持history路由，遇到127.0.0.1:8080/spa/* 将被路由至ssr  handler，如127.0.0.1:8080/api/* 路由至api handler
+
+
+history
+react-router-dom
+react-router-config

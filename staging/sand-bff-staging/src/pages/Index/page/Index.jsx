@@ -1,5 +1,5 @@
 import React from '@jianghe/sand-core/react';
-import { NavLink } from '@jianghe/sand-core/router';
+import { NavLink } from '@jianghe/sand-core/router-dom';
 
 class Index extends React.PureComponent {
   render() {

@@ -9,6 +9,8 @@ const getDevWebpackConfig = require('../config/devConfig');
 const koaDevMiddleware = require('../../../middleware/devMiddleware');
 // koa2 hotMiddleware
 const koaHotMiddleware = require('../../../middleware/hotMiddleware');
+// koa2 historyApiMiddleware
+const historyApiFallback = require('../../../middleware/historyApiMiddleware');
 const { getSandBuildConfig, getPath } = require('../../../utils');
 
 /**
@@ -37,6 +39,9 @@ function startApp(obj) {
     env,
     type,
   }));
+
+  // 使用koa2 historyApiMiddleware来解决history路由的问题使所有get请求都请求到index.html除了/api/* 路由
+  app.use(historyApiFallback({ whiteList: ['/api/*'] }));
 
   // 解决hml update.json跨域的问题
   app.use(cors({

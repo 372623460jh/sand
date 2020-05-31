@@ -24,7 +24,7 @@
     "clean:base": "rm -rf ./node_modules ./coverage ./package-lock.json ./packages/*/{dist,esm,cjs,node_modules} ./dist",
     "clean:debug": "rm -rf ./debug/*/{dist,esm,cjs} ./debug/*/*/*/{dist,esm,cjs}",
     "clean:staging": "rm -rf ./packages/sand-cli/staging",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.backup.md -s",
     "bootstrap": "lerna bootstrap --npm-client npm --hoist && npm run build",
     "copy:staging": "node ./packages/sand-cli/script/copyStaging.js",
     "build": "npm run copy:staging && sand-build build -t lib -e development -l",

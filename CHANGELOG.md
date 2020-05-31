@@ -1,10 +1,18 @@
-<a name="1.0.0-1"></a>
-# 1.0.0-1 (2020-05-30)
-
+<a name="1.0.0-2"></a>
+# 1.0.0-2 (2020-05-30)
 
 ### Features
 
 * [@jianghe](https://github.com/jianghe)/sand-lint增加eslint-node, [@jianghe](https://github.com/jianghe)/sand-build构建从服务从express切koa2 ([c124462](https://github.com/372623460jh/sand/commit/c124462))
+* CHANGELOG ([887340c](https://github.com/372623460jh/sand/commit/887340c))
+* CHANGELOG ([779b1d1](https://github.com/372623460jh/sand/commit/779b1d1))
+* 第一版changelog ([a9198c0](https://github.com/372623460jh/sand/commit/a9198c0))
+
+<a name="1.0.0-1"></a>
+# 1.0.0-1 (2020-05-30)
+
+### Features
+
 * 20200422 ([12cb173](https://github.com/372623460jh/sand/commit/12cb173))
 * 20200423 ([c33eb6e](https://github.com/372623460jh/sand/commit/c33eb6e))
 * 20200425 ([c95eef1](https://github.com/372623460jh/sand/commit/c95eef1))
@@ -16,7 +24,6 @@
 * 20200518 ([8db9fc8](https://github.com/372623460jh/sand/commit/8db9fc8))
 * 20200518 ([4f29898](https://github.com/372623460jh/sand/commit/4f29898))
 * 20200522 ([7be556c](https://github.com/372623460jh/sand/commit/7be556c))
-* CHANGELOG ([887340c](https://github.com/372623460jh/sand/commit/887340c))
 * sand 改用sand-build构建 ([bfdd07c](https://github.com/372623460jh/sand/commit/bfdd07c))
 * sand-build 初始化 ([afb8a33](https://github.com/372623460jh/sand/commit/afb8a33))
 * sand-cli支持pc和demo,升级antd4.*,优化代码,debug编写 ([752f4ab](https://github.com/372623460jh/sand/commit/752f4ab))
@@ -44,8 +51,4 @@
 * 文档修改和rollup支持babel替换 ([ded20ab](https://github.com/372623460jh/sand/commit/ded20ab))
 * 梳理sand-bff应用目录结构 ([a362b92](https://github.com/372623460jh/sand/commit/a362b92))
 * 添加mystery功能 ([4e2b31a](https://github.com/372623460jh/sand/commit/4e2b31a))
-* 第一版changelog ([a9198c0](https://github.com/372623460jh/sand/commit/a9198c0))
 * 给每一个脚手架增加jest和单测用例 ([4b0e312](https://github.com/372623460jh/sand/commit/4b0e312))
-
-
-

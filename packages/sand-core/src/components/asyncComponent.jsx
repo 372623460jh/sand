@@ -8,13 +8,17 @@ import React, {
 /**
  * 默认loading动画
  */
-// eslint-disable-next-line func-names
-let DefaultLoading = function () {
-  return null;
-};
+let DefaultLoading = () => null;
 
+/**
+ * 动态加载HOC组件
+ * @param {*} module 组件path
+ * @param {*} param1 opts
+ */
 function async(module, { loading = DefaultLoading } = {}) {
+  // lazy加载模块
   const LazyComponent = lazy(module);
+  // 加载时的组件
   const LoadingComponent = loading;
 
   return class LazyLoader extends Component {
@@ -37,6 +41,4 @@ async.setDefaultLoading = function setDefaultLoading(LoadingComponent) {
   DefaultLoading = LoadingComponent;
 };
 
-export {
-  async,
-};
+export default async;

@@ -56,13 +56,33 @@ function historyApiFallback(options) {
       return next();
     }
 
-    // white list check
+    // 白名单，只有命中白名单里的请求才重定向到index.html
     if (options.whiteList) {
+      // 是否命中白名单
       let isFlag = false;
       options.whiteList.forEach((item) => {
-        if (!isFlag) isFlag = new RegExp(item).test(ctx.url);
+        if (!isFlag) {
+          isFlag = new RegExp(item).test(ctx.url);
+        }
       });
-      if (isFlag) return next();
+      if (!isFlag) {
+        // 都没命中，该请求不重定向
+        return next();
+      }
+    }
+
+    // 黑名单，只有命中黑名单里的请求才不重定向到index.html
+    if (options.blackList) {
+      let isFlag = false;
+      options.blackList.forEach((item) => {
+        if (!isFlag) {
+          isFlag = new RegExp(item).test(ctx.url);
+        }
+      });
+      if (isFlag) {
+        // 命中，该请求不重定向
+        return next();
+      }
     }
 
     const parsedUrl = url.parse(ctx.url);

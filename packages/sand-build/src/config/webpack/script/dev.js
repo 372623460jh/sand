@@ -28,7 +28,11 @@ function startApp(obj) {
   // 动态读取sandbuildrc.js配置
   const opts = getSandBuildConfig(sandbuildrcPath || getPath(process.cwd(), './.sandbuildrc.js'));
 
-  const { port = 9531 } = opts;
+  const { port = 9531, webpackOptions = {} } = opts;
+
+  const { historyApiOpts = {} } = webpackOptions;
+
+  const { enable = false } = historyApiOpts;
 
   // 创建koa2实例
   const app = new Koa();
@@ -40,8 +44,11 @@ function startApp(obj) {
     type,
   }));
 
-  // 使用koa2 historyApiMiddleware来解决history路由的问题使所有get请求都请求到index.html除了/api/* 路由
-  app.use(historyApiFallback({ whiteList: ['/api/*'] }));
+  // 是否启用中间件
+  if (enable) {
+    // 使用koa2 historyApiMiddleware来解决history路由的问题使所有get请求都请求到index.html除了/api/* 路由
+    app.use(historyApiFallback(historyApiOpts));
+  }
 
   // 解决hml update.json跨域的问题
   app.use(cors({

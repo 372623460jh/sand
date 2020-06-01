@@ -14,6 +14,7 @@ test('读取并标准化.sandbuildrc.js => json', () => {
       babelConfig: undefined,
       otherRules: [],
       alias: {},
+      historyApiOpts: {},
     },
     configurations: [{
       entry: getPath(rootPath, './packages/sand-core/index.js'),

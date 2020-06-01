@@ -19,6 +19,10 @@ const elementId = '#root';
 // routerPrefix
 const routerPrefix = '/spa';
 
+// 为懒加载添加cdn支持
+// eslint-disable-next-line
+__webpack_public_path__ = window.__webpack_public_path__ || '/'; 
+
 /**
  * 获取路由配置的方法
  */

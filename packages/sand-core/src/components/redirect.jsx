@@ -1,7 +1,5 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { locationsAreEqual } from 'history';
 
 /**
  * 用于重定向的HOC
@@ -14,21 +12,7 @@ function redirect({
   strict,
   from,
 }) {
-  return class RedirectWrapper extends Component {
-    static propTypes = {
-      location: PropTypes.object.isRequired,
-    }
-
-    /**
-     * 是否需要更新组件生命周期
-     * @param {*} nextProps
-     */
-    shouldComponentUpdate(nextProps) {
-      const { location } = this.props;
-      // location没变时不需要重新渲染界面
-      return !locationsAreEqual(nextProps.location, location);
-    }
-
+  return class RedirectWrapper extends React.PureComponent {
     // push 当为true时将push一个新的实体到历史中代替当前
     // exact 是否完全匹配
     // to: route.redirect.to 跳转路径

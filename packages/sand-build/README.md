@@ -47,6 +47,15 @@ import path from 'path'
     ],
     // 别名,非必填
     alias: {},
+    // history中间件选项，决定哪些请求需要重定向到index.html,解决history路由找不到页面的情况,非必填
+    historyApiOpts: {
+      // 是否启用
+      enable: true,
+      // 白名单
+      whiteList: ['^/spa(?:/|$)', '^/$'],
+      // 黑名单
+      blackList: [],
+    }
   }
   // rollup 配置
   // 用于生成依赖文件,会用作rollup external 判断在deps中的库不会被打入包中

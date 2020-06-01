@@ -1,0 +1,30 @@
+.layoutBox {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.centerBox {
+  display: flex;
+  flex: 1 1 auto;
+  height: calc(100% - 64px);
+}
+
+.contentBox {
+  flex: 1 1 auto;
+  height: 100%;
+  background: #fff;
+  overflow-y: scroll;
+
+  // // 隐藏滚动条
+  // &::-webkit-scrollbar {
+  //   display: none;
+  // }
+
+  .subPage {
+    padding: 20px;
+    min-height: 500px;
+  }
+}

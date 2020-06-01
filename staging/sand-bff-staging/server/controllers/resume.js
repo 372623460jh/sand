@@ -29,11 +29,20 @@ class ResumeController {
 
 const resumeController = new ResumeController();
 
-module.exports = {
-  // 获取技能接口
-  'GET /getSkills/:userId': resumeController.getSkills,
-  // 获取项目接口
-  'GET /getProject/:userId': resumeController.getProject,
-  // 获取主信息接口
-  'GET /getMainInfo/:userId': resumeController.getMainInfo,
-};
+module.exports = [
+  {
+    method: 'GET',
+    route: '/getSkills/:userId',
+    controller: resumeController.getSkills,
+  },
+  {
+    method: 'GET',
+    route: '/getProject/:userId',
+    controller: resumeController.getProject,
+  },
+  {
+    method: 'GET',
+    route: '/getMainInfo/:userId',
+    controller: resumeController.getMainInfo,
+  },
+];

@@ -118,6 +118,7 @@ function stdWebpackOptions(options) {
     babelConfig = undefined, // bable配置用于替换内置babel配置（非必填，默认：内置babel配置）
     otherRules = [], // webpack要扩展的其他rules（非必填，默认：[]）
     alias = {}, // 别名,非必填
+    historyApiOpts = {}, // history中间件选项，决定哪些请求需要重定向到index.html,解决history路由找不到页面的情况
   } = options;
   if (!entryHtml || !entry) {
     logError('webpackOptions.entryHtml和webpackOptions.entry为必填项');
@@ -129,6 +130,7 @@ function stdWebpackOptions(options) {
     babelConfig,
     otherRules,
     alias,
+    historyApiOpts,
   };
 }
 

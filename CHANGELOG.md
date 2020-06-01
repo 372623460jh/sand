@@ -1,8 +1,13 @@
+<a name="1.0.0-3"></a>
+# 1.0.0-3 (2020-05-31)
+
+### Features
+* 完善优化[@jianghe](https://github.com/jianghe)/sand-core 路由部分的功能, ([d9f539f](https://github.com/372623460jh/sand/commit/d9f539f))
+
 <a name="1.0.0-2"></a>
 # 1.0.0-2 (2020-05-30)
 
 ### Features
-
 * [@jianghe](https://github.com/jianghe)/sand-lint增加eslint-node, [@jianghe](https://github.com/jianghe)/sand-build构建从服务从express切koa2 ([c124462](https://github.com/372623460jh/sand/commit/c124462))
 * CHANGELOG ([887340c](https://github.com/372623460jh/sand/commit/887340c))
 * CHANGELOG ([779b1d1](https://github.com/372623460jh/sand/commit/779b1d1))
@@ -12,7 +17,6 @@
 # 1.0.0-1 (2020-05-30)
 
 ### Features
-
 * 20200422 ([12cb173](https://github.com/372623460jh/sand/commit/12cb173))
 * 20200423 ([c33eb6e](https://github.com/372623460jh/sand/commit/c33eb6e))
 * 20200425 ([c95eef1](https://github.com/372623460jh/sand/commit/c95eef1))

@@ -14,8 +14,12 @@ if (process.env.NODE_ENV !== 'production') {
 
 const error = debug('sand-error:>');
 const log = debug('sand-log:>');
+const req = debug('sand-req:>');
+const res = debug('sand-res:>');
 
 export default {
   error,
   log,
+  req,
+  res,
 };

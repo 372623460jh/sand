@@ -5,22 +5,25 @@ const koaRouter = require('koa-router');
 /**
  * 将控制器根据key添加到router中
  * @param router koa_router对象
- * @param mapping 控制器文件
+ * @param ctrArr 控制器数组
  */
-function addMapping(kRouter, mapping) {
-  for (const url in mapping) {
-    if (url.startsWith('GET ')) {
+function addArray(kRouter, ctrArr) {
+  for (let n = 0; n < ctrArr.length; n++) {
+    const { method, route, controller } = ctrArr[n];
+    if (!method || !route || !controller) {
+      console.log('controller配置不合法');
+      return;
+    }
+    if (method === 'GET') {
       // 将get添加到router
-      const urlPath = url.substring(4);
-      kRouter.get(urlPath, mapping[url]);
-      console.log(`注册URL: GET ${urlPath}`);
-    } else if (url.startsWith('POST ')) {
+      kRouter.get(route, controller);
+      console.log(`注册URL: GET ${route}`);
+    } else if (method === 'POST') {
       // 将post添加到router
-      const urlPath = url.substring(5);
-      kRouter.post(urlPath, mapping[url]);
-      console.log(`注册URL: POST ${urlPath}`);
+      kRouter.post(route, controller);
+      console.log(`注册URL: POST ${route}`);
     } else {
-      console.log(`无效URL: ${url}`);
+      console.log(`无效URL: ${route}`);
     }
   }
 }
@@ -36,9 +39,10 @@ function addControllers(kRouter, dir) {
   const jsFiles = files.filter((f) => f.endsWith('.js'));
   for (const file of jsFiles) {
     console.log(`解析 ${file} 下的所有controller...`);
+    // 读取controller数组
     // eslint-disable-next-line
-    const mapping = require(`${dir}/${file}`);
-    addMapping(kRouter, mapping);
+    const ctrArr = require(`${dir}/${file}`);
+    addArray(kRouter, ctrArr);
   }
 }
 

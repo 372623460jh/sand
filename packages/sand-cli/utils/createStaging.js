@@ -104,7 +104,10 @@ async function createStaging(opts) {
   copyDir.sync(
     sourcePath,
     targetPath,
-    (stat, fileFullPath, filePath, fileName) => {
+    (stat, fileFullPath, fileName) => {
+      // fileFullPath: 拷贝源带名字路径
+      // filePath: 上级路径
+      const filePath = path.resolve(fileFullPath, '..');
       if (
         stat === 'file'
         && fileName === 'package.json'

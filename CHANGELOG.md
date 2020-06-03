@@ -2,6 +2,7 @@
 # 1.0.0-5 (2020-06-03)
 
 ### Features
+* sand-bff增加log4j日志模块,编写日志中间件;基于dumi编写文档系统,给sand-lib脚手架增加文档目录,给sand增加文档目录,增加sand-docs脚手架 ([be71c39](https://github.com/372623460jh/sand/commit/be71c39))
 
 <a name="1.0.0-4"></a>
 # 1.0.0-4 (2020-06-01)

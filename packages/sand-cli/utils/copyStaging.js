@@ -63,13 +63,14 @@ async function copyStaging() {
   copyDir.sync(
     stagingPath,
     sourcePath,
-    // eslint-disable-next-line no-unused-vars
-    (stat, fileFullPath, filePath, fileName) => {
+    (stat, fileFullPath, fileName) => {
       // fileFullPath: 拷贝源带名字路径
-      // filePath: 拷贝源路径
+      // filePath: 上级路径
+      const filePath = path.resolve(fileFullPath, '..');
       if (
         stat === 'file'
         && fileName === 'package.json'
+        // 文件的目录名是不是在stagingNameArr
         && !stagingNameArr.includes(path.basename(filePath))
       ) {
         // 非根目录下的package.json改成package-backup.json
@@ -81,7 +82,7 @@ async function copyStaging() {
     },
   );
 
-  // 将package-backup.json处理成package.json
+  // 将package.json处理成package-backup.json
   packageJsonArr.forEach((filePath) => {
     console.log(`${chalk.magenta('[初始化脚手架]')} 重命名: ${path.join(filePath, 'package.json')} -> ${path.join(filePath, 'package-backup.json')}`);
     fs.renameSync(path.join(filePath, 'package.json'), path.join(filePath, 'package-backup.json'));

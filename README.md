@@ -44,13 +44,41 @@ sand相关脚手架的cli工具。详细文档见./packages/sand-cli/README.md
 - ~~sand-pc-staging依赖的sand-core优化~~
 - ~~history中间件支持黑名单模式，只有某个路由下的才302到index.html~~
 - ~~sand-bff-staging bff应用&微服务应用脚手架~~
+- ~~sand-bff-staging log~~
+- ~~基于dumi对文档进行支持~~
 
-- sand-bff-staging log
-- sand-docs脚手架支持，集成https://github.com/facebook/docusaurus
-- sand-mob脚手架开发
+- 所有项目依赖升级为最新版本，eslint升7。
+- sand-utils组件库，提供像fetch之类的方法
 - 解决sand-mystery的jest报错
-- sand-node-staging 微服务应用脚手架
+- 学习dumi源码，sand原生支持
 - 完成images.zirupay.com图片上传管理
+- ts学习，sand全部ts化
+- docker学习，服务器容器化
 
 ## 4. 提案
+- sand-mob脚手架开发
+- sand-bff-staging node-schedule 处理定时任务
+- sand-node-staging 微服务应用脚手架，只提供服务
 - sand-build支持type:bff,koa2构建分为两种构建dev和prod。执行start，dev模式揉合webpackDevMiddle中间件和webpackHotMiddle中间件,可以考虑sand-build提供方法，返回webpack配置，再在app.js使用webpackDevMiddle中间件和webpackHotMiddle中间件来启动web服务
+
+## 格局/规划
+### 领域（排名先后代表个人倾向）
+- 金融（rich个人项目）
+- 游戏（tb做的事情）
+- 内容（zfb做的事情）
+
+### 技术（排名先后代表个人需要投入的多少）
+1. 游戏前端
+2. web服务端（node）
+3. 游戏服务端（node）
+4. web前端
+
+### 沉淀
+- 金融：个人项目，web服务端（node），web前端，互联网业内综合第一：zfb
+- 游戏：游戏项目，游戏服务端（node），游戏前端（2d游戏引擎），互联网业内综合第一：tx
+- 内容：图文编辑器，web服务端（node），web前端，互联网业内综合第一：tt
+
+### 规划
+去tx一点是去游戏部门，
+去tt一定去内容生产部门，
+去zfb去金融核心部门。

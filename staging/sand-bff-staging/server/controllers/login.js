@@ -3,7 +3,6 @@ class LoginController {
    * 登录控制器
    */
   async login(ctx) {
-    console.log('命中登录控制器');
     ctx.cookies.set(
       'userId',
       'jianghe',

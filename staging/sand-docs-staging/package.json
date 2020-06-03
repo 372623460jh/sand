@@ -1,0 +1,23 @@
+{
+  "name": "sand-docs-staging",
+  "version": "1.0.0",
+  "description": "sand文档库脚手架",
+  "author": "jianghe",
+  "engines": {
+    "node": ">=10.16.0"
+  },
+  "scripts": {
+    "init": "npm run clean && npm i && npm run start",
+    "clean": "rm -rf ./node_modules ./.umi ./dist-docs",
+    "start": "dumi dev",
+    "build": "dumi build"
+  },
+  "devDependencies": {
+    "dumi": "^1.0.30"
+  },
+  "dependencies": {
+    "@jianghe/sand-core": "^1.0.3-13",
+    "@ant-design/icons": "^4.2.1",
+    "antd": "^4.3.1"
+  }
+}

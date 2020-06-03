@@ -22,18 +22,18 @@
     "ci"
   ],
   "devDependencies": {
-    "@commitlint/cli": "^8.2.0",
-    "@commitlint/config-conventional": "^8.2.0",
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
     "eslint": "^6.8.0",
-    "stylelint": "^13.2.0",
+    "stylelint": "^13.5.0",
     "pre-commit": "^1.2.2",
     "jest": "^26.0.1",
     "@jianghe/sand-build": "^1.0.3-13",
     "@jianghe/sand-lint": "^1.0.3-13"
   },
   "dependencies": {
-    "@ant-design/icons": "^4.1.0",
+    "@ant-design/icons": "^4.2.1",
     "@jianghe/sand-core": "^1.0.3-13",
-    "antd": "^4.2.0"
+    "antd": "^4.3.1"
   }
 }

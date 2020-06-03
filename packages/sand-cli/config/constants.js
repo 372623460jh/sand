@@ -20,6 +20,10 @@ const stagingEnum = {
     name: 'sand-bff',
     fileName: 'sand-bff-staging',
   },
+  'sand-docs': {
+    name: 'sand-docs',
+    fileName: 'sand-docs-staging',
+  },
 };
 
 module.exports = {

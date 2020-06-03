@@ -1,9 +1,5 @@
 /yarn.lock
-/coverage
 node_modules
-esm
-cjs
-dist
 dist-docs
 
 # OS files.

@@ -39,7 +39,7 @@
 │   │   └── config # 公共配置
 │   ├── controllers # 控制器
 │   ├── db # 数据库相关
-│   ├── middleWare # 中间件
+│   ├── middleware # 中间件
 │   ├── model # 模型
 │   ├── test # 单测文件
 │   ├── view # ejs模板

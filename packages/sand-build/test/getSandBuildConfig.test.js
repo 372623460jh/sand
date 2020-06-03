@@ -67,6 +67,8 @@ test('读取并标准化.sandbuildrc.js => json', () => {
         'react-redux': 'react-redux',
         'dva-core': 'dva-core',
         'prop-types': 'prop-types',
+        history: 'history',
+        'react-router-config': 'react-router-config',
       },
       namedExports: {},
     }],

@@ -1,6 +1,5 @@
 const path = require('path');
 
-
 module.exports = {
   // webpack服务启动端口
   port: 9538,

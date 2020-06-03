@@ -18,6 +18,8 @@ module.exports = {
         'react': 'react',
         'react-dom': 'react-dom',
         'react-router-dom': 'react-router-dom',
+        'react-router-config': 'react-router-config',
+        'history': 'history',
         'react-redux': 'react-redux',
         'dva-core': 'dva-core',
         'prop-types': 'prop-types',

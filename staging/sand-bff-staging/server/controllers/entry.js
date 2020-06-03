@@ -9,7 +9,6 @@ class EntryController {
    * 入口页面控制器
    */
   async entryIndex(ctx) {
-    console.log('命中入口页面控制器');
     // 根据环境 获取css和js的资源
     const {
       cssAssets = [],

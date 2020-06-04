@@ -46,7 +46,9 @@ async function copyStaging() {
   // 拷贝到哪
   const sourcePath = path.resolve(__dirname, '../staging');
 
-  console.log(chalk.green(`[初始化脚手架] 拷贝: ${stagingPath} 到 ${sourcePath}`));
+  console.log(
+    chalk.green(`[初始化脚手架] 拷贝: ${stagingPath} 到 ${sourcePath}`)
+  );
 
   // 非根目录下的package.json
   const packageJsonArr = [];
@@ -60,32 +62,41 @@ async function copyStaging() {
   /**
    * 拷贝sand/staging -> sand/packages/sand-cli/staging
    */
-  copyDir.sync(
-    stagingPath,
-    sourcePath,
-    (stat, fileFullPath, fileName) => {
-      // fileFullPath: 拷贝源带名字路径
-      // filePath: 上级路径
-      const filePath = path.resolve(fileFullPath, '..');
-      if (
-        stat === 'file'
-        && fileName === 'package.json'
-        // 文件的目录名是不是在stagingNameArr
-        && !stagingNameArr.includes(path.basename(filePath))
-      ) {
-        // 非根目录下的package.json改成package-backup.json
-        packageJsonArr.push(path.join(sourcePath, filePath.replace(stagingPath, '')));
-      }
-      const realPath = fileFullPath.replace(sourcePath, '');
-      console.log(chalk.magenta('[初始化脚手架]'), `拷贝: ${path.join(targetPath, realPath)}`);
-      return true;
-    },
-  );
+  copyDir.sync(stagingPath, sourcePath, (stat, fileFullPath, fileName) => {
+    // fileFullPath: 拷贝源带名字路径
+    // filePath: 上级路径
+    const filePath = path.resolve(fileFullPath, '..');
+    if (
+      stat === 'file' &&
+      fileName === 'package.json' &&
+      // 文件的目录名是不是在stagingNameArr
+      !stagingNameArr.includes(path.basename(filePath))
+    ) {
+      // 非根目录下的package.json改成package-backup.json
+      packageJsonArr.push(
+        path.join(sourcePath, filePath.replace(stagingPath, ''))
+      );
+    }
+    const realPath = fileFullPath.replace(sourcePath, '');
+    console.log(
+      chalk.magenta('[初始化脚手架]'),
+      `拷贝: ${path.join(targetPath, realPath)}`
+    );
+    return true;
+  });
 
   // 将package.json处理成package-backup.json
   packageJsonArr.forEach((filePath) => {
-    console.log(`${chalk.magenta('[初始化脚手架]')} 重命名: ${path.join(filePath, 'package.json')} -> ${path.join(filePath, 'package-backup.json')}`);
-    fs.renameSync(path.join(filePath, 'package.json'), path.join(filePath, 'package-backup.json'));
+    console.log(
+      `${chalk.magenta('[初始化脚手架]')} 重命名: ${path.join(
+        filePath,
+        'package.json'
+      )} -> ${path.join(filePath, 'package-backup.json')}`
+    );
+    fs.renameSync(
+      path.join(filePath, 'package.json'),
+      path.join(filePath, 'package-backup.json')
+    );
   });
 }
 

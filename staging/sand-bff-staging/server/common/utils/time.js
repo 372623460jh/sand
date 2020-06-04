@@ -20,7 +20,6 @@ const getTimeSub = (nowTime, oldTime) => {
   const leave3 = leave2 % (60 * 1000); // 计算分钟数后剩余的毫秒数
   const seconds = Math.round(leave3 / 1000);
 
-
   return {
     year,
     day: days,

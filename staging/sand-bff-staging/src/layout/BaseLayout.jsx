@@ -11,7 +11,7 @@ import styles from './BaseLayout.module.less';
 class BaseLayout extends React.PureComponent {
   static propTypes = {
     children: PropTypes.any.isRequired,
-  }
+  };
 
   render() {
     const { children } = this.props;
@@ -21,9 +21,7 @@ class BaseLayout extends React.PureComponent {
         <div className={styles.centerBox}>
           <MenuBox />
           <div className={styles.contentBox}>
-            <div className={styles.subPage}>
-              {children}
-            </div>
+            <div className={styles.subPage}>{children}</div>
             <FooterBox />
           </div>
         </div>

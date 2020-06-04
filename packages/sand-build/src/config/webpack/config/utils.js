@@ -18,7 +18,9 @@ function getEntryMap(opts) {
   const examplesPath = getPath(basePath, './examples');
   const relativePath = examplesPath.replace(`${process.cwd()}/`, '');
   // *(entry.js|entry.jsx|entry.html) 表示匹配中其中额一个或多个
-  const files = glob.sync(`${relativePath}/**/*-*(entry.js|entry.jsx|entry.html)`);
+  const files = glob.sync(
+    `${relativePath}/**/*-*(entry.js|entry.jsx|entry.html)`
+  );
   const regHtml = /\.html$/;
   const regAll = /-entry\.(jsx|html|js)$/;
   if (!entryHtml || !entry) {
@@ -34,7 +36,9 @@ function getEntryMap(opts) {
     const filePath = files[index];
     // 生成唯一标识页面的entryName
     // examples/todolist/todolist-entry.html => todolist/todolist
-    const entryName = filePath.replace(`${relativePath}/`, '').replace(regAll, '');
+    const entryName = filePath
+      .replace(`${relativePath}/`, '')
+      .replace(regAll, '');
     // 用于标记是html还是entry
     const flog = regHtml.test(filePath) ? 'html' : 'entry';
     if (entryMap[entryName]) {
@@ -108,7 +112,7 @@ function getHtmlWebpackPlugin(entryMap) {
             minifyCSS: true,
           },
           params: {},
-        }),
+        })
       );
     }
   }
@@ -144,7 +148,6 @@ function getSandPcWebpackPlugin(opts) {
   ];
 }
 
-
 /**
  * 获取sand-pc entry
  * @param {*}
@@ -159,7 +162,9 @@ function getSandPcEntry(opts) {
   if (env === 'development') {
     // 每一个entry,在后面加入webpack-hot-middleware/client?noInfo=true&reload=true从而实现浏览器自动刷新
     // dynamicPublicPath设置为true使用webpack publicPath作为前缀path,可以__webpack_public_path__在入口点的运行时动态设置
-    vendors.push('webpack-hot-middleware/client?path=__webpack_hmr&noInfo=true&timeout=20000&reload=true&quiet=true&dynamicPublicPath=true');
+    vendors.push(
+      'webpack-hot-middleware/client?path=__webpack_hmr&noInfo=true&timeout=20000&reload=true&quiet=true&dynamicPublicPath=true'
+    );
   }
   return {
     vendors,

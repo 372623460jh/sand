@@ -55,13 +55,9 @@ async function createStaging(opts) {
   /**
    * 用户输入的脚手架基本信息
    */
-  const {
-    name,
-    version,
-    description,
-    author,
-    license,
-  } = await inquirer.prompt(steps);
+  const { name, version, description, author, license } = await inquirer.prompt(
+    steps
+  );
 
   // 基于模板的package.json去修改相关属性
   const file = editJsonFile(path.resolve(sourcePath, './package.json'));
@@ -77,14 +73,14 @@ async function createStaging(opts) {
   console.log('');
 
   // 提示用户是否确认创建
-  const {
-    confirmed,
-  } = await inquirer.prompt([{
-    type: 'confirm',
-    name: 'confirmed',
-    default: true,
-    message: '确认创建?',
-  }]);
+  const { confirmed } = await inquirer.prompt([
+    {
+      type: 'confirm',
+      name: 'confirmed',
+      default: true,
+      message: '确认创建?',
+    },
+  ]);
 
   if (!confirmed) {
     console.log(chalk.red('已退出。'));
@@ -101,35 +97,36 @@ async function createStaging(opts) {
   const packageJsonArr = [];
 
   // 拷贝其他模板文件到当前目录中
-  copyDir.sync(
-    sourcePath,
-    targetPath,
-    (stat, fileFullPath, fileName) => {
-      // fileFullPath: 拷贝源带名字路径
-      // filePath: 上级路径
-      const filePath = path.resolve(fileFullPath, '..');
-      if (
-        stat === 'file'
-        && fileName === 'package.json'
-        // 只有脚手架根目录下的package.json不拷贝
-        && path.basename(filePath) === stagingName
-      ) {
-        // 不拷贝package.json，package.json使用编辑后生成的文件
-        return false;
-      }
-      if (stat === 'file' && fileName === 'package-backup.json') {
-        // package-backup.json改成package.json
-        packageJsonArr.push(path.join(targetPath, filePath.replace(sourcePath, '')));
-      }
-      const realPath = fileFullPath.replace(sourcePath, '');
-      console.log(chalk.magenta('生成: '), `${path.join(targetPath, realPath)}`);
-      return true;
-    },
-  );
+  copyDir.sync(sourcePath, targetPath, (stat, fileFullPath, fileName) => {
+    // fileFullPath: 拷贝源带名字路径
+    // filePath: 上级路径
+    const filePath = path.resolve(fileFullPath, '..');
+    if (
+      stat === 'file' &&
+      fileName === 'package.json' &&
+      // 只有脚手架根目录下的package.json不拷贝
+      path.basename(filePath) === stagingName
+    ) {
+      // 不拷贝package.json，package.json使用编辑后生成的文件
+      return false;
+    }
+    if (stat === 'file' && fileName === 'package-backup.json') {
+      // package-backup.json改成package.json
+      packageJsonArr.push(
+        path.join(targetPath, filePath.replace(sourcePath, ''))
+      );
+    }
+    const realPath = fileFullPath.replace(sourcePath, '');
+    console.log(chalk.magenta('生成: '), `${path.join(targetPath, realPath)}`);
+    return true;
+  });
 
   // 将package-backup.json处理成package.json
   packageJsonArr.forEach((filePath) => {
-    fs.renameSync(path.join(filePath, 'package-backup.json'), path.join(filePath, 'package.json'));
+    fs.renameSync(
+      path.join(filePath, 'package-backup.json'),
+      path.join(filePath, 'package.json')
+    );
   });
 
   // 安装依赖

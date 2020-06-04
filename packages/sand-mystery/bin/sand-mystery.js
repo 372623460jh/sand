@@ -9,8 +9,7 @@ const decrypt = require('../commands/decrypt');
 const pkg = require('../package.json');
 
 // 版本号指令
-program
-  .version(`${pkg.version}`, '-v, --version');
+program.version(`${pkg.version}`, '-v, --version');
 
 // sand-mystery encrypt 命令
 program

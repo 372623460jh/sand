@@ -27,9 +27,7 @@ function getStyleLoader(isProd, enableModule = false, enableLess = false) {
     {
       loader: 'postcss-loader',
       options: {
-        plugins: [
-          autoprefixer(getBrowsersList(isProd)),
-        ],
+        plugins: [autoprefixer(getBrowsersList(isProd))],
       },
     },
   ];
@@ -54,18 +52,14 @@ function getCommonStyleLoader(isProd) {
     {
       // css
       test: function test(filePath) {
-        return (/\.css$/.test(filePath)
-          && !/\.module\.css$/.test(filePath)
-        );
+        return /\.css$/.test(filePath) && !/\.module\.css$/.test(filePath);
       },
       use: getStyleLoader(isProd, false, false),
     },
     {
       // less
       test: function test(filePath) {
-        return (/\.less$/.test(filePath)
-          && !/\.module\.less$/.test(filePath)
-        );
+        return /\.less$/.test(filePath) && !/\.module\.less$/.test(filePath);
       },
       use: getStyleLoader(isProd, false, true),
     },

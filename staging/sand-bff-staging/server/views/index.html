@@ -8,16 +8,18 @@
   <script>
     // 动态设置webpack的publicPath
     window.__webpack_public_path__ = '<%=publicPath %>';
+
   </script>
   <% cssAssets.forEach(function(item){ %>
-    <link href="<%=item %>" rel=stylesheet>
+  <link href="<%=item %>" rel=stylesheet>
   <% }) %>
 </head>
 
 <body>
   <div id=root></div>
   <% jsAssets.forEach(function(item){ %>
-    <script type=text/javascript src="<%=item %>"></script>
+  <script type=text/javascript src="<%=item %>"></script>
   <% }) %>
-</body> 
+</body>
+
 </html>

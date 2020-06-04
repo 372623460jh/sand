@@ -11,11 +11,11 @@ module.exports = {
       bundleName: 'comp',
       cssExtract: true,
       umdGlobals: {
-        'antd': 'antd',
+        antd: 'antd',
         '@jianghe/sand-core': 'sand-core',
         '@jianghe/sand-core/react': 'react',
         '@jianghe/sand-core/react-dom': 'react-dom',
       },
     },
   ],
-}
+};

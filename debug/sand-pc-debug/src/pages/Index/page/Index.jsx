@@ -22,7 +22,9 @@ class Index extends React.PureComponent {
         <br />
         <NavLink to="/spa/attention/aaa">/spa/attention/aaa</NavLink>
         <br />
-        <NavLink to="/spa/attention/index/aaa">/spa/attention/index/aaa</NavLink>
+        <NavLink to="/spa/attention/index/aaa">
+          /spa/attention/index/aaa
+        </NavLink>
       </div>
     );
   }

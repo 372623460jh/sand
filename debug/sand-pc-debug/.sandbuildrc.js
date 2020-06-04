@@ -14,6 +14,6 @@ module.exports = {
       enable: true,
       // 白名单
       whiteList: ['^/spa(?:/|$)', '^/$'],
-    }
+    },
   },
-}
+};

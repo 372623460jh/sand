@@ -1,25 +1,33 @@
 ## 命令行参数
+
 ### build
-type === lib时env，link，watch参数才生效
-type === pc/mob/demo时env，link，watch参数不生效
-- --type 构建类型 pc/mob/lib/demo必填
-- --env 环境，传prod时会进行umd构建
-- --link 构建完成后在根目录下的node_modules下创建软链接链接到构建产物方便调试
+
+type === lib 时 env，link，watch 参数才生效
+type === pc/mob/demo 时 env，link，watch 参数不生效
+
+- --type 构建类型 pc/mob/lib/demo 必填
+- --env 环境，传 prod 时会进行 umd 构建
+- --link 构建完成后在根目录下的 node_modules 下创建软链接链接到构建产物方便调试
 - --watch 开启监听
 
 ### start
-start使用webpack启动服务，只有mob||pc||demo有start模式，start没有env参数，都是env===dev
-- --type 构建类型 pc/mob/demo必填
 
-### 调试sand-build库时
-由于lerna安装是将依赖安装至/packages/sand-build目录下，导致在项目根目录下执行sand-build找不到依赖，可以将sand-build下的依赖在根目录中安装一遍，来解决这个问题,或者使用lerna bootstrap --hoist来提升依赖的安装位置。使用npm方式安装sand-build工具没有此问题。
+start 使用 webpack 启动服务，只有 mob||pc||demo 有 start 模式，start 没有 env 参数，都是 env===dev
+
+- --type 构建类型 pc/mob/demo 必填
+
+### 调试 sand-build 库时
+
+由于 lerna 安装是将依赖安装至/packages/sand-build 目录下，导致在项目根目录下执行 sand-build 找不到依赖，可以将 sand-build 下的依赖在根目录中安装一遍，来解决这个问题,或者使用 lerna bootstrap --hoist 来提升依赖的安装位置。使用 npm 方式安装 sand-build 工具没有此问题。
 
 ### 调试方式
+
 ```
 node ./packages/sand-build/bin/sand-build.js build --env prod --watch --link
 ```
 
-### 一个完整的.sandbuildrc.js配置
+### 一个完整的.sandbuildrc.js 配置
+
 ```
 import factory from './config/rollup';
 import lib1 from './packages/lib1/package.json';
@@ -77,7 +85,7 @@ import path from 'path'
       // model -> ./packages/lib1/src/model/index.js
       alias: [
         {
-          find: 'model', 
+          find: 'model',
           replacement: path.resolve(__dirname, './packages/lib1/src/model/index.js')
         }
       ]
@@ -92,7 +100,7 @@ import path from 'path'
       },
       // cjs的模块在umd打包时需要手动声明名称例如：
       // esrever是一个node模块在esm中使用
-      // import { reverse } from 'esrever'; 
+      // import { reverse } from 'esrever';
       // 在umd打包时会报错需要手动声明'esrever': ['reverse'],
       namedExports: {
         'esrever': ['reverse'],

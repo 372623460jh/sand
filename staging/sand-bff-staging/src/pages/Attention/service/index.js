@@ -16,7 +16,4 @@ function setUserInfo(params) {
   return post(setUserInfoUrl, { ...params });
 }
 
-export {
-  getUserInfo,
-  setUserInfo,
-};
+export { getUserInfo, setUserInfo };

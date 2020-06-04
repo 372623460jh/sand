@@ -1,28 +1,27 @@
-  
-{
-  "lerna": "2.11.0",
-  "packages": [
-    "packages/sand-build",
-    "packages/sand-lint",
-    "packages/sand-cli",
-    "packages/sand-mystery",
-    "packages/sand-core"
-  ],
-  "command": {
-    "version": {
-      "conventionalCommits": true
+  {
+    "lerna": "2.11.0",
+    "packages": [
+      "packages/sand-build",
+      "packages/sand-lint",
+      "packages/sand-cli",
+      "packages/sand-mystery",
+      "packages/sand-core"
+    ],
+    "command": {
+      "version": {
+        "conventionalCommits": true
+      },
+      "publish": {
+        "npmClient": "npm",
+        "registry": "https://npm.pkg.github.com",
+        "verifyRegistry": false,
+        "verifyAccess": false,
+        "allowBranch": [
+          "master",
+          "jianghe20200416-feat"
+        ]
+      }
     },
-    "publish": {
-      "npmClient": "npm",
-      "registry": "https://npm.pkg.github.com",
-      "verifyRegistry": false,
-      "verifyAccess": false,
-      "allowBranch": [
-        "master",
-        "jianghe20200416-feat"
-      ]
-    }
-  },
-  "version": "independent",
-  "npmClient": "npm"
-}
+    "version": "independent",
+    "npmClient": "npm"
+  }

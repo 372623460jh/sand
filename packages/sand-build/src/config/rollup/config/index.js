@@ -90,11 +90,12 @@ function getBasePlugins(options = {}) {
       extensions: ['.js', '.jsx', 'ts', 'tsx', '.json'],
     }),
     // 支持ts
-    isTs && typescript({
-      abortOnError: false,
-      tsconfig: getPath(packagesPath, `./${pkgName}/tsconfig.json`),
-      clean: true,
-    }),
+    isTs &&
+      typescript({
+        abortOnError: false,
+        tsconfig: getPath(packagesPath, `./${pkgName}/tsconfig.json`),
+        clean: true,
+      }),
     // 支持json模块的引入
     json(),
     // 替换代码中的'process.env.NODE_ENV'为JSON.stringify(env)
@@ -105,29 +106,28 @@ function getBasePlugins(options = {}) {
     builtins(),
     // 使用babel处理代码
     babel(
-      babelConfig || getBabelConfig({
-        packagesPath,
-        isUmd,
-        pkgName,
-      }),
+      babelConfig ||
+        getBabelConfig({
+          packagesPath,
+          isUmd,
+          pkgName,
+        })
     ),
     // 别名
     alias({
-      entries: [
-        ...baseAlias,
-        ...aliasConfig,
-      ],
+      entries: [...baseAlias, ...aliasConfig],
     }),
     // 让浏览器端支持node内置模块
     globals(),
     // umd 使用 rollup-plugin-commonjs, 它会将 CommonJS 模块转换为 ES6,来为 Rollup 获得兼容。
-    isUmd && commonjs({
-      // 忽略
-      exclude: [`${getPath(packagesPath, `./${pkgName}/src/**`)}`],
-      namedExports: {
-        ...namedExports,
-      },
-    }),
+    isUmd &&
+      commonjs({
+        // 忽略
+        exclude: [`${getPath(packagesPath, `./${pkgName}/src/**`)}`],
+        namedExports: {
+          ...namedExports,
+        },
+      }),
     // 如果是umd并且是生产环境就使用uglify压缩代码
     isUmd && isProd && terser(),
   ].filter(Boolean); // .filter(Boolean)用于移除数组中的false
@@ -168,11 +168,12 @@ function configure(config, env, target) {
   const input = entry;
 
   // 广告
-  const banner = '/*!\n'
-    + ` * ${bundleName}.js v${version}\n`
-    + ` * (c) 2019-${new Date().getFullYear()} Jiang He\n`
-    + ' * Released under the MIT License.\n'
-    + ' */';
+  const banner =
+    '/*!\n' +
+    ` * ${bundleName}.js v${version}\n` +
+    ` * (c) 2019-${new Date().getFullYear()} Jiang He\n` +
+    ' * Released under the MIT License.\n' +
+    ' */';
 
   // 获取包依赖
   const deps = getDepsConfig({ pkg });
@@ -213,7 +214,12 @@ function configure(config, env, target) {
         // umd方式输出
         format: 'umd',
         // 输出
-        file: getPath(packagesPath, `./${pkgName}/${isProd ? `dist/${bundleName}.min.js` : `dist/${bundleName}.js`}`),
+        file: getPath(
+          packagesPath,
+          `./${pkgName}/${
+            isProd ? `dist/${bundleName}.min.js` : `dist/${bundleName}.js`
+          }`
+        ),
         exports: 'named',
         // 首字母大写
         name: startCase(bundleName).replace(/ /g, ''),
@@ -235,26 +241,28 @@ function configure(config, env, target) {
     plugins,
     input,
     onwarn,
-    output: target === 'esm' ? {
-      file: getPath(packagesPath, `./${pkgName}/esm/${bundleName}.js`),
-      format: 'es',
-      sourcemap: true,
-      banner,
-    } : {
-      file: getPath(packagesPath, `./${pkgName}/cjs/${bundleName}.js`),
-      format: 'cjs',
-      exports: 'named',
-      sourcemap: true,
-      banner,
-    },
+    output:
+      target === 'esm'
+        ? {
+            file: getPath(packagesPath, `./${pkgName}/esm/${bundleName}.js`),
+            format: 'es',
+            sourcemap: true,
+            banner,
+          }
+        : {
+            file: getPath(packagesPath, `./${pkgName}/cjs/${bundleName}.js`),
+            format: 'cjs',
+            exports: 'named',
+            sourcemap: true,
+            banner,
+          },
     // 我们需要显式地声明哪些模块是外部的，这意味着它们在运行时出现。
     // 对于非umd配置，这意味着所有的非slate包。
     external: (id) =>
-    // 当构建时有引入模块时会执行该回调方法，如果返回true就表示是外部引入，false表示是内部引入，内部引入将会被打包构建，外部映入将不会被打包。
-    // dependencies和peerDependencies中声明的包都会被当做外部引用不打包到项目中。
-    // eslint-disable-next-line implicit-arrow-linebreak
-      !!deps.find((dep) => dep === id || id.startsWith(`${dep}/`))
-    ,
+      // 当构建时有引入模块时会执行该回调方法，如果返回true就表示是外部引入，false表示是内部引入，内部引入将会被打包构建，外部映入将不会被打包。
+      // dependencies和peerDependencies中声明的包都会被当做外部引用不打包到项目中。
+      // eslint-disable-next-line implicit-arrow-linebreak
+      !!deps.find((dep) => dep === id || id.startsWith(`${dep}/`)),
   };
 }
 

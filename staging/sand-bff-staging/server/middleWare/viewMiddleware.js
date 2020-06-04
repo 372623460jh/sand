@@ -11,7 +11,7 @@ function viewMiddleware() {
       map: {
         html: 'ejs', // 模板为ejs
       },
-    },
+    }
   );
 }
 

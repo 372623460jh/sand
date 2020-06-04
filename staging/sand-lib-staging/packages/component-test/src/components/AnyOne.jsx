@@ -7,9 +7,7 @@ import styles from './AnyOne.module.less';
 import './index.less';
 
 function AnyOne(props) {
-  const {
-    source,
-  } = props;
+  const { source } = props;
 
   sayHello();
 
@@ -23,7 +21,9 @@ function AnyOne(props) {
   return (
     <div className={styles.testModule}>
       <div className="test">testcss</div>
-      <Button type="primary" onClick={onSenceChange}>Primary</Button>
+      <Button type="primary" onClick={onSenceChange}>
+        Primary
+      </Button>
       <span>{sence}</span>
     </div>
   );

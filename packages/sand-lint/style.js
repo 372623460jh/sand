@@ -2,9 +2,9 @@ module.exports = {
   plugins: ['stylelint-scss'],
   rules: {
     /*
-      * stylelint possible-errors 类目下的规则，即 stylelint-config-recommended 中的规则
-      * https://stylelint.io/user-guide/rules/#possible-errors
-      */
+     * stylelint possible-errors 类目下的规则，即 stylelint-config-recommended 中的规则
+     * https://stylelint.io/user-guide/rules/#possible-errors
+     */
     'at-rule-no-unknown': null,
     'scss/at-rule-no-unknown': true,
     'block-no-empty': null, // 不作为必修问题
@@ -30,9 +30,12 @@ module.exports = {
     'no-extra-semicolons': true,
     'no-invalid-double-slash-comments': true,
     'property-no-unknown': true,
-    'selector-pseudo-class-no-unknown': [true, {
-      ignorePseudoClasses: ['global', 'local', 'export'],
-    }],
+    'selector-pseudo-class-no-unknown': [
+      true,
+      {
+        ignorePseudoClasses: ['global', 'local', 'export'],
+      },
+    ],
     'selector-pseudo-element-no-unknown': true,
     'selector-type-no-unknown': true,
     'string-no-newline': true,

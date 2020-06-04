@@ -7,7 +7,9 @@ function getQueryValue(key) {
   const vars = query.split('&');
   for (let i = 0; i < vars.length; i++) {
     const pair = vars[i].split('=');
-    if (pair[0] === key) { return pair[1]; }
+    if (pair[0] === key) {
+      return pair[1];
+    }
   }
   return false;
 }
@@ -37,8 +39,4 @@ function decodeHtml(htmlString) {
   return temp.innerText || temp.textContent;
 }
 
-export {
-  getQueryValue,
-  encodeHtml,
-  decodeHtml,
-};
+export { getQueryValue, encodeHtml, decodeHtml };

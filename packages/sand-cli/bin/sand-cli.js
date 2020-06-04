@@ -5,8 +5,7 @@ const chalk = require('chalk');
 const init = require('../commands/init');
 const pkg = require('../package.json');
 
-program
-  .version(`${pkg.version}`, '-v, --version');
+program.version(`${pkg.version}`, '-v, --version');
 
 // sand-cli init 命令
 program

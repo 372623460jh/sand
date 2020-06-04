@@ -7,7 +7,8 @@ const url = require('url');
 function evaluateRewriteRule(parsedUrl, match, rule) {
   if (typeof rule === 'string') {
     return rule;
-  } if (typeof rule !== 'function') {
+  }
+  if (typeof rule !== 'function') {
     throw new Error('Rewrite rule can only be of type string of function.');
   }
   return rule({
@@ -29,7 +30,8 @@ function acceptsHtml(header, options) {
 function getLogger(options) {
   if (options && options.logger) {
     return options.logger;
-  } if (options && options.verbose) {
+  }
+  if (options && options.verbose) {
     // eslint-disable-next-line no-console
     return console.log.bind(console);
   }
@@ -43,16 +45,39 @@ function historyApiFallback(options) {
   // eslint-disable-next-line consistent-return
   return async (ctx, next) => {
     if (ctx.method !== 'GET') {
-      logger('Not rewriting', ctx.method, ctx.url, 'because the method is not GET.');
+      logger(
+        'Not rewriting',
+        ctx.method,
+        ctx.url,
+        'because the method is not GET.'
+      );
       return next();
-    } if (!ctx.header || typeof ctx.header.accept !== 'string') {
-      logger('Not rewriting', ctx.method, ctx.url, 'because the client did not send an HTTP accept header.');
+    }
+    if (!ctx.header || typeof ctx.header.accept !== 'string') {
+      logger(
+        'Not rewriting',
+        ctx.method,
+        ctx.url,
+        'because the client did not send an HTTP accept header.'
+      );
       return next();
-    } if (ctx.header.accept.indexOf('application/json') === 0) {
-      logger('Not rewriting', ctx.method, ctx.url, 'because the client prefers JSON.');
+    }
+    if (ctx.header.accept.indexOf('application/json') === 0) {
+      logger(
+        'Not rewriting',
+        ctx.method,
+        ctx.url,
+        'because the client prefers JSON.'
+      );
       return next();
-    } if (!acceptsHtml(ctx.header.accept, options)) {
-      logger('Not rewriting', ctx.method, ctx.url, 'because the client does not accept HTML.');
+    }
+    if (!acceptsHtml(ctx.header.accept, options)) {
+      logger(
+        'Not rewriting',
+        ctx.method,
+        ctx.url,
+        'because the client does not accept HTML.'
+      );
       return next();
     }
 
@@ -101,8 +126,16 @@ function historyApiFallback(options) {
       }
     }
 
-    if (parsedUrl.pathname.indexOf('.') !== -1 && options.disableDotRule !== true) {
-      logger('Not rewriting', ctx.method, ctx.url, 'because the path includes a dot (.) character.');
+    if (
+      parsedUrl.pathname.indexOf('.') !== -1 &&
+      options.disableDotRule !== true
+    ) {
+      logger(
+        'Not rewriting',
+        ctx.method,
+        ctx.url,
+        'because the path includes a dot (.) character.'
+      );
       return next();
     }
     rewriteTarget = options.index || '/index.html';

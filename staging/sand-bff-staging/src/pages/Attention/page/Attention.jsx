@@ -19,7 +19,7 @@ class Attention extends React.PureComponent {
     getFetch({
       userName: 'jianghe1993',
     });
-  }
+  };
 
   setUserInfo = () => {
     const { setFetch } = this.props;
@@ -27,7 +27,7 @@ class Attention extends React.PureComponent {
       userId: '112233112233',
       userName: 'jianghe0417',
     });
-  }
+  };
 
   render() {
     const { userId, userName } = this.props;
@@ -56,10 +56,7 @@ class Attention extends React.PureComponent {
 }
 
 function mapStateToProps(state) {
-  const {
-    userId,
-    userName,
-  } = state['jianghe/test'];
+  const { userId, userName } = state['jianghe/test'];
   return {
     userId,
     userName,

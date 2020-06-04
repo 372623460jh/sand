@@ -23,12 +23,7 @@ async function encrypt(picPath, filePath, outputPath, mainKey, options) {
     console.log(chalk.red('入参有误'));
   } else {
     // 加密
-    new Mystery().encrypt(
-      picPath,
-      filePath,
-      outputPath,
-      mainKey,
-    );
+    new Mystery().encrypt(picPath, filePath, outputPath, mainKey);
   }
 }
 

@@ -57,9 +57,7 @@ export default function request(url, params) {
     const isAbort = err.xhr && err.xhr.status === 0 && err.xhr.readyState === 4;
     if (!isAbort) {
       let code = null;
-      let {
-        message = '',
-      } = err;
+      let { message = '' } = err;
       if (message === 'timeout') {
         message = '请求超时，请重试！';
         code = 'TIME_OUT';
@@ -81,11 +79,13 @@ export default function request(url, params) {
     return Promise.reject(error);
   }
 
-  return axios({ ...reqParams })
-    // 请求结果日志输出
-    .then(logRes)
-    // 处理网络异常等报错
-    .catch(processError);
+  return (
+    axios({ ...reqParams })
+      // 请求结果日志输出
+      .then(logRes)
+      // 处理网络异常等报错
+      .catch(processError)
+  );
 }
 
 /**

@@ -6,9 +6,7 @@ import styles from './AnyOne.module.less';
 import './index.less';
 
 function AnyOne(props) {
-  const {
-    source,
-  } = props;
+  const { source } = props;
 
   sayHello();
 

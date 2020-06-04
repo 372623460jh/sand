@@ -8,4 +8,4 @@ module.exports = {
     entry: path.resolve(__dirname, './src/entry/index.jsx'),
     entryHtml: path.resolve(__dirname, './src/entry/index.html'),
   },
-}
+};

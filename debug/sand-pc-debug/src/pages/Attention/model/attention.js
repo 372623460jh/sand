@@ -21,7 +21,7 @@ export default {
 
   effects: {
     // 获取文章数据
-    * [TEST_FETCH]({ payload }, { put }) {
+    *[TEST_FETCH]({ payload }, { put }) {
       yield put({
         type: SET_STATE,
         payload: {

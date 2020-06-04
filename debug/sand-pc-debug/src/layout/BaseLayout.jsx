@@ -1,9 +1,11 @@
 import React from '@jianghe/sand-core/react';
 import PropTypes from '@jianghe/sand-core/prop-types';
+import { Layout, Menu, Breadcrumb } from 'antd';
 import {
-  Layout, Menu, Breadcrumb,
-} from 'antd';
-import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
+  UserOutlined,
+  LaptopOutlined,
+  NotificationOutlined,
+} from '@ant-design/icons';
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
@@ -11,7 +13,7 @@ const { Header, Content, Sider } = Layout;
 class BaseLayout extends React.PureComponent {
   static propTypes = {
     children: PropTypes.any.isRequired,
-  }
+  };
 
   render() {
     const { children } = this.props;
@@ -40,12 +42,12 @@ class BaseLayout extends React.PureComponent {
             >
               <SubMenu
                 key="sub1"
-                title={(
+                title={
                   <span>
                     <UserOutlined />
                     subnav 1
                   </span>
-                )}
+                }
               >
                 <Menu.Item key="1">option1</Menu.Item>
                 <Menu.Item key="2">option2</Menu.Item>
@@ -54,12 +56,12 @@ class BaseLayout extends React.PureComponent {
               </SubMenu>
               <SubMenu
                 key="sub2"
-                title={(
+                title={
                   <span>
                     <LaptopOutlined />
                     subnav 2
                   </span>
-                )}
+                }
               >
                 <Menu.Item key="5">option5</Menu.Item>
                 <Menu.Item key="6">option6</Menu.Item>
@@ -68,12 +70,12 @@ class BaseLayout extends React.PureComponent {
               </SubMenu>
               <SubMenu
                 key="sub3"
-                title={(
+                title={
                   <span>
                     <NotificationOutlined />
                     subnav 3
                   </span>
-                )}
+                }
               >
                 <Menu.Item key="9">option9</Menu.Item>
                 <Menu.Item key="10">option10</Menu.Item>
@@ -88,9 +90,13 @@ class BaseLayout extends React.PureComponent {
               <Breadcrumb.Item>List</Breadcrumb.Item>
               <Breadcrumb.Item>App</Breadcrumb.Item>
             </Breadcrumb>
-            <Content style={{
-              background: '#fff', padding: 24, margin: 0, minHeight: 280,
-            }}
+            <Content
+              style={{
+                background: '#fff',
+                padding: 24,
+                margin: 0,
+                minHeight: 280,
+              }}
             >
               {children}
             </Content>

@@ -43,10 +43,7 @@ function getProdWebpackConfig(opts) {
     commonPlugin, // 公共插件
   } = getCommonConfig(opts);
 
-  const {
-    entry = {},
-    plugins = [],
-  } = getEntryAndPlugins(opts);
+  const { entry = {}, plugins = [] } = getEntryAndPlugins(opts);
 
   return {
     // 生产环境

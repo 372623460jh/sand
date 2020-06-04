@@ -6,7 +6,7 @@ class Index extends React.Component {
   state = {
     // eslint-disable-next-line no-undef
     entryMap: __entryMap__,
-  }
+  };
 
   renderRouter() {
     const { entryMap } = this.state;
@@ -15,12 +15,10 @@ class Index extends React.Component {
     entryMapArr.forEach((item) => {
       if (item !== 'index') {
         arr.push(
-          (
-            <div key={item} className={styles.listItem}>
-              <a href={`/${item}.html`}>{item}</a>
-              <br />
-            </div>
-          ),
+          <div key={item} className={styles.listItem}>
+            <a href={`/${item}.html`}>{item}</a>
+            <br />
+          </div>
         );
       }
     });
@@ -28,11 +26,7 @@ class Index extends React.Component {
   }
 
   render() {
-    return (
-      <div className={styles.list}>
-        {this.renderRouter()}
-      </div>
-    );
+    return <div className={styles.list}>{this.renderRouter()}</div>;
   }
 }
 

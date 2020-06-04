@@ -25,7 +25,7 @@ export default {
 
   effects: {
     // 获取用户信息
-    * [TEST_FETCH]({ payload }, { put, call }) {
+    *[TEST_FETCH]({ payload }, { put, call }) {
       const { data } = yield call(getUserInfo, payload);
       const { stat, result } = data;
       if (stat === 'ok') {
@@ -40,7 +40,7 @@ export default {
       }
     },
     // 设置用户信息
-    * [SET_FETCH]({ payload }, { put, call }) {
+    *[SET_FETCH]({ payload }, { put, call }) {
       const { data } = yield call(setUserInfo, payload);
       const { stat, result } = data;
       if (stat === 'ok') {

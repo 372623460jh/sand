@@ -3,7 +3,11 @@ import async from './components/asyncComponent';
 import redirect from './components/redirect';
 import RouteLoader from './components/RouteLoader';
 import {
-  setRoutes, getRoutes, getDva, getStore, setModel,
+  setRoutes,
+  getRoutes,
+  getDva,
+  getStore,
+  setModel,
 } from './SandPc/SandPc';
 
 export {

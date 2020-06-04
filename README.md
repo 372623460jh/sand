@@ -1,62 +1,89 @@
-# sand v1.0.0 
-sand相关工具包仓库
+# sand v1.0.0
+
+sand 相关工具包仓库
 
 ## 1. 项目列表
+
 ### sand-build
-库构建工具，rollup库构建，webpack工具构建，详细文档见./packages/sand-build/README.md
+
+库构建工具，rollup 库构建，webpack 工具构建，详细文档见./packages/sand-build/README.md
+
 ### sand-mystery
+
 加解密工具。详细文档见./packages/sand-mystery/README.md
+
 ### sand-lint
-统一的lint规范。详细文档见./packages/sand-lint/README.md
+
+统一的 lint 规范。详细文档见./packages/sand-lint/README.md
+
 ### sand-core
-pc端脚手架核心框架。详细文档见./packages/sand-core/README.md
+
+pc 端脚手架核心框架。详细文档见./packages/sand-core/README.md
+
 ### sand-cli
-sand相关脚手架的cli工具。详细文档见./packages/sand-cli/README.md
+
+sand 相关脚手架的 cli 工具。详细文档见./packages/sand-cli/README.md
 
 ## 2. 目录结构
-### staging目录
-脚手架文件目录，sand工具构建时会将staging目录下的脚手架拷贝至sand-cli/staging中
+
+### staging 目录
+
+脚手架文件目录，sand 工具构建时会将 staging 目录下的脚手架拷贝至 sand-cli/staging 中
+
 1. sand-lib-staging 库脚手架
 2. sand-demo-staging 示例脚手架
-3. sand-pc-staging pc脚手架
-4. sand-mob-staging 移动脚手架（TODO）
-### debug目录
-该文件夹下存放相关工具库的测试方法，直接vscode node调试各个文件夹下的debug.js即可。详见./debug/README.md
-1. sand-cli-staging sand-cli工具测试文件
-2. sand-demo-staging，sand-pc-stagingsand-lib-staging sand-build测试文件
+3. sand-pc-staging pc 脚手架
+4. sand-bff-staging bff 应用脚手架
+5. sand-docs-staging 基于 dumi 的文档脚手架
+6. sand-mob-staging 移动脚手架（TODO）
+
+### debug 目录
+
+该文件夹下存放相关工具库的测试方法，直接 vscode node 调试各个文件夹下的 debug.js 即可。详见./debug/README.md
+
+1. sand-cli-staging sand-cli 工具测试文件
+2. sand-demo-staging，sand-pc-stagingsand-lib-staging sand-build 测试文件
 
 ### CHANGELOG
-每次执行完git commit后post-commit hook生成CHANGELOG.backup.md文件。
+
+每次执行完 git commit 后 post-commit hook 生成 CHANGELOG.backup.md 文件。再手动将 diff 配置到 CHANGELOG.md
 
 ## 3. TODO:
-- ~~rollup支持babel扩展~~
-- ~~使用jest来支持ci命令~~
-- ~~给每一个package增加单测用例~~
-- ~~给每一个脚手架增加jest和单测用例~~
-- ~~给每一个脚手架增加jest和单测用例~~
-- ~~sand-bff脚手架（基于koa2）~~
-- ~~给每一个域名申请ssl证书，并且完成每个子域名的https配置~~
-- ~~完成assets.zirupay.com，images.zirupay.com，resume.zirupay.com，www.zirupay.com~~
-- ~~完成resume apk~~
-- ~~sand-lint下增加eslin-node配置~~
-- ~~sand-build从express换成koa2~~
-- ~~自动生成change log~~
-- ~~sand-pc-staging依赖的sand-core优化~~
-- ~~history中间件支持黑名单模式，只有某个路由下的才302到index.html~~
-- ~~sand-bff-staging bff应用&微服务应用脚手架~~
-- ~~sand-bff-staging log~~
-- ~~基于dumi对文档进行支持~~
 
-- 所有项目依赖升级为最新版本，eslint升7。
-- sand-utils组件库，提供像fetch之类的方法
-- 解决sand-mystery的jest报错
-- 学习dumi源码，sand原生支持
-- 完成images.zirupay.com图片上传管理
-- ts学习，sand全部ts化
-- docker学习，服务器容器化
+- ~~rollup 支持 babel 扩展~~
+- ~~使用 jest 来支持 ci 命令~~
+- ~~给每一个 package 增加单测用例~~
+- ~~给每一个脚手架增加 jest 和单测用例~~
+- ~~给每一个脚手架增加 jest 和单测用例~~
+- ~~sand-bff 脚手架（基于 koa2）~~
+- ~~给每一个域名申请 ssl 证书，并且完成每个子域名的 https 配置~~
+- ~~完成 assets.zirupay.com，images.zirupay.com，resume.zirupay.com，www.zirupay.com~~
+- ~~完成 resume apk~~
+- ~~sand-lint 下增加 eslin-node 配置~~
+- ~~sand-build 从 express 换成 koa2~~
+- ~~自动生成 change log~~
+- ~~sand-pc-staging 依赖的 sand-core 优化~~
+- ~~history 中间件支持黑名单模式，只有某个路由下的才 302 到 index.html~~
+- ~~sand-bff-staging bff 应用&微服务应用脚手架~~
+- ~~sand-bff-staging log~~
+- ~~基于 dumi 对文档进行支持~~
+- ~~所有项目依赖升级为最新安全版本~~
+- ts 学习
+- sand-utils 纯 js 类库，提供像 fetch 之类的方法
+- 基于 dumi 进行 sand 配套文档编写
+- 解决 sand-mystery 的 jest 报错
+- 学习 dumi 源码，sand 原生支持
+- sand 全部 ts 化,eslint 升 7,rollup 升 2，@babel 升 7.10
+- docker 学习，服务器容器化
+- sand-bff-staging node-schedule 处理定时任务
 
 ## 4. 提案
-- sand-mob脚手架开发
-- sand-bff-staging node-schedule 处理定时任务
-- sand-node-staging 微服务应用脚手架，只提供服务
-- sand-build支持type:bff,koa2构建分为两种构建dev和prod。执行start，dev模式揉合webpackDevMiddle中间件和webpackHotMiddle中间件,可以考虑sand-build提供方法，返回webpack配置，再在app.js使用webpackDevMiddle中间件和webpackHotMiddle中间件来启动web服务
+
+- sand-mob 脚手架开发
+- sand-node-staging 微服务应用脚手架，只提供服务，rpc 框架
+- sand-build 支持 type:bff,koa2 构建分为两种构建 dev 和 prod。执行 start，dev 模式揉合 webpackDevMiddle 中间件和 webpackHotMiddle 中间件,可以考虑 sand-build 提供方法，返回 webpack 配置，再在 app.js 使用 webpackDevMiddle 中间件和 webpackHotMiddle 中间件来启动 web 服务
+
+## 5. 项目
+
+- 完成 images.zirupay.com 图片上传管理
+- rich 项目

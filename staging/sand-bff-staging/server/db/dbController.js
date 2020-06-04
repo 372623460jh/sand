@@ -14,7 +14,7 @@ const sequelize = new Sequelize(
       min: 0,
       idle: 30000,
     },
-  },
+  }
 );
 
 const dbController = {
@@ -30,7 +30,7 @@ const dbController = {
         {
           replacements: [userId],
           type: sequelize.QueryTypes.SELECT,
-        },
+        }
       );
       return p;
     } catch (err) {
@@ -44,8 +44,10 @@ const dbController = {
    */
   getProject: async (userId) => {
     try {
-      const p = await sequelize.query('select * FROM project WHERE userId = ? order BY orderIndex desc;',
-        { replacements: [userId], type: sequelize.QueryTypes.SELECT });
+      const p = await sequelize.query(
+        'select * FROM project WHERE userId = ? order BY orderIndex desc;',
+        { replacements: [userId], type: sequelize.QueryTypes.SELECT }
+      );
       return p;
     } catch (err) {
       console.error(err);
@@ -58,8 +60,10 @@ const dbController = {
    */
   getPerson: async (userId) => {
     try {
-      const p = await sequelize.query('SELECT * FROM person WHERE userId = ? limit 1;',
-        { replacements: [userId], type: sequelize.QueryTypes.SELECT });
+      const p = await sequelize.query(
+        'SELECT * FROM person WHERE userId = ? limit 1;',
+        { replacements: [userId], type: sequelize.QueryTypes.SELECT }
+      );
       return p;
     } catch (err) {
       console.error(err);
@@ -72,8 +76,10 @@ const dbController = {
    */
   getJob: async (userId) => {
     try {
-      const p = await sequelize.query('SELECT * FROM job WHERE userId = ? order BY beginTime desc;',
-        { replacements: [userId], type: sequelize.QueryTypes.SELECT });
+      const p = await sequelize.query(
+        'SELECT * FROM job WHERE userId = ? order BY beginTime desc;',
+        { replacements: [userId], type: sequelize.QueryTypes.SELECT }
+      );
       return p;
     } catch (err) {
       console.error(err);
@@ -86,8 +92,10 @@ const dbController = {
    */
   getIntension: async (userId) => {
     try {
-      const p = await sequelize.query('select position,trade,pay,intensionDesc from intension where userId = ?;',
-        { replacements: [userId], type: sequelize.QueryTypes.SELECT });
+      const p = await sequelize.query(
+        'select position,trade,pay,intensionDesc from intension where userId = ?;',
+        { replacements: [userId], type: sequelize.QueryTypes.SELECT }
+      );
       return p;
     } catch (err) {
       console.error(err);

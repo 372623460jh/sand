@@ -60,14 +60,10 @@ class Mystery {
     } = getFileBaseInfo(picPath, 'file');
 
     // 压缩文件夹生成中间文件
-    const {
-      outputFilePath,
-    } = await reduceFolderSync(filePath);
+    const { outputFilePath } = await reduceFolderSync(filePath);
 
     // 读取中间压缩文件
-    const {
-      fileStream: gzStream,
-    } = getFileBaseInfo(outputFilePath, 'file');
+    const { fileStream: gzStream } = getFileBaseInfo(outputFilePath, 'file');
 
     // 加密中间文件流
     const gzEncryptStream = this._cryptoEncrypt(gzStream, mainKey);
@@ -79,15 +75,20 @@ class Mystery {
     const writeStream = fs.createWriteStream(outputPath);
 
     // 合并
-    const {
-      stat,
-    } = await mergeStreamSync(mergeStreamArr, writeStream);
+    const { stat } = await mergeStreamSync(mergeStreamArr, writeStream);
 
     // 删除中间文件
     fs.unlinkSync(outputFilePath);
 
     // eslint-disable-next-line no-console
-    console.log('加密状态：', stat, ' 副密钥：', imageSize, ' 输出文件：', outputPath);
+    console.log(
+      '加密状态：',
+      stat,
+      ' 副密钥：',
+      imageSize,
+      ' 输出文件：',
+      outputPath
+    );
   }
 
   /**

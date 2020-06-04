@@ -8,7 +8,7 @@
   },
   "scripts": {
     "init": "npm run clean && npm i && npm run start",
-    "clean": "rm -rf ./node_modules ./.umi ./dist-docs",
+    "clean": "rm -rf ./node_modules ./.umi ./dist-docs ./package-lock.json",
     "start": "dumi dev",
     "build": "dumi build"
   },

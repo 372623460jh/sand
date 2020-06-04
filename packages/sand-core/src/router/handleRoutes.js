@@ -34,9 +34,7 @@ function handleRoute(route, parentPath) {
 
   if (Array.isArray(route.routes)) {
     // 子路由
-    route.routes.forEach(
-      (childRoute) => handleRoute(childRoute, route.path),
-    );
+    route.routes.forEach((childRoute) => handleRoute(childRoute, route.path));
   }
 }
 

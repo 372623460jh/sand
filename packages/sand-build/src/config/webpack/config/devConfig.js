@@ -3,7 +3,6 @@ const getCommonConfig = require('./commonConfig');
 const utils = require('./utils');
 const { typeEnum } = require('../../../constant');
 
-
 /**
  * 获取入口
  * @param {*} opts
@@ -43,10 +42,7 @@ function getDevWebpackConfig(opts) {
     commonPlugin, // 公共插件
   } = getCommonConfig(opts);
 
-  const {
-    entry = {},
-    plugins = [],
-  } = getEntryAndPlugins(opts);
+  const { entry = {}, plugins = [] } = getEntryAndPlugins(opts);
 
   return {
     // 开发模式
@@ -73,9 +69,10 @@ function getDevWebpackConfig(opts) {
         new webpack.DefinePlugin({
           'process.env.NODE_ENV': JSON.stringify('development'),
           // 将代码中__entryMap__替换成entryMap
-          __entryMap__: type === typeEnum.demo
-            ? JSON.stringify(utils.getEntryMap(opts))
-            : {},
+          __entryMap__:
+            type === typeEnum.demo
+              ? JSON.stringify(utils.getEntryMap(opts))
+              : {},
         }),
         new webpack.HotModuleReplacementPlugin(), // 热替换插件
       ])

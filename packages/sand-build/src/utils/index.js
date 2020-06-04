@@ -54,7 +54,9 @@ function createSymbolicLink(linkPath, sourcePath) {
 
   // 软链接起始已经存在，先删除
   if (fs.existsSync(linkPath)) {
-    console.log(chalk.green(`${chalk.yellow('[LINK]')} 删除原始软链接 ${linkPath}`));
+    console.log(
+      chalk.green(`${chalk.yellow('[LINK]')} 删除原始软链接 ${linkPath}`)
+    );
     fs.unlinkSync(linkPath);
   }
 
@@ -96,13 +98,11 @@ function getPath(absPath, p) {
  */
 function getBrowsersList(isProd) {
   return {
-    overrideBrowserslist: isProd ? [
-      'last 2 versions',
-      'ios >= 9',
-      'android >= 4',
-    ] : [
-      'last 2 Chrome versions', // 开发环境，默认只支持Chrome最新的2个版本
-    ],
+    overrideBrowserslist: isProd
+      ? ['last 2 versions', 'ios >= 9', 'android >= 4']
+      : [
+          'last 2 Chrome versions', // 开发环境，默认只支持Chrome最新的2个版本
+        ],
   };
 }
 
@@ -153,7 +153,9 @@ function stdRollupConfig(options) {
       babelConfig = undefined, // bable配置用于替换内置babel配置（非必填，默认：内置babel配置）
     } = options[n];
     if (!entry || !pkgPath || !bundleName) {
-      logError('configurations[].entry和configurations[].pkgPath和configurations[].bundleName为必填项');
+      logError(
+        'configurations[].entry和configurations[].pkgPath和configurations[].bundleName为必填项'
+      );
       break;
     }
     // 读取package.json
@@ -189,9 +191,9 @@ function stdSandBuildOpts(options) {
     stdOpts.webpackOptions = stdWebpackOptions(webpackOptions);
   }
   if (
-    configurations
-    && Array.isArray(configurations)
-    && configurations.length > 0
+    configurations &&
+    Array.isArray(configurations) &&
+    configurations.length > 0
   ) {
     stdOpts.configurations = stdRollupConfig(configurations);
   }

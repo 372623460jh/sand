@@ -1,9 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, {
-  lazy,
-  Suspense,
-  Component,
-} from 'react';
+import React, { lazy, Suspense, Component } from 'react';
 
 /**
  * 默认loading动画

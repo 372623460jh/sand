@@ -12,13 +12,21 @@ function ctrLogMiddleware() {
     } else if (method === 'POST') {
       data = ctx.request.body;
     } else {
-      errorLog.error(`请求方式不合法，仅支持GET/POST方法 path=${originPath} || method=${method} || data=${JSON.stringify(data)}`);
+      errorLog.error(
+        `请求方式不合法，仅支持GET/POST方法 path=${originPath} || method=${method} || data=${JSON.stringify(
+          data
+        )}`
+      );
       // TODO: 返回通用报错
     }
     // 日志记录
-    commonLog.info(`path=${originPath} || method=${method} || data=${JSON.stringify(data)}`);
+    commonLog.info(
+      `path=${originPath} || method=${method} || data=${JSON.stringify(data)}`
+    );
     // 控制台输出
-    defaultLog.debug(`path=${originPath} || method=${method} || data=${JSON.stringify(data)}`);
+    defaultLog.debug(
+      `path=${originPath} || method=${method} || data=${JSON.stringify(data)}`
+    );
     await next();
   };
 }

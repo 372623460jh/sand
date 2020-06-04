@@ -21,11 +21,7 @@ const WrapBaseComponent = (Component) => {
 
       // 通过renderRoutes渲染该Component下对应的子路由
       // this.props.route是对应路由的子路由
-      return (
-        <Component route={route}>
-          {renderRoutes(route.routes)}
-        </Component>
-      );
+      return <Component route={route}>{renderRoutes(route.routes)}</Component>;
     }
   }
 

@@ -5,7 +5,6 @@ const tar = require('tar');
 const fstream = require('fstream');
 const stream = require('stream');
 
-
 /**
  * 读取文件基本信息
  * @param {*} fileDir 文件绝对路径
@@ -148,10 +147,10 @@ function splitStreamSync(filePath, subKey) {
   const size = +subKey;
 
   // 读取文件
-  const {
-    filePath: decryptFilePath,
-    fileSize,
-  } = getFileBaseInfo(filePath, 'file');
+  const { filePath: decryptFilePath, fileSize } = getFileBaseInfo(
+    filePath,
+    'file'
+  );
 
   // 主文件大小
   const mainFileSize = fileSize - size;
@@ -181,12 +180,14 @@ function splitStreamSync(filePath, subKey) {
     mainFileBuffer, // 主文件数据将写入的缓冲区。
     0, // buffer 中开始写入的偏移量。
     mainFileBuffer.length, // 是一个整数，指定要读取的字节数。
-    size, // 参数指定从文件中开始读取的位置。null表示从头开始读
+    size // 参数指定从文件中开始读取的位置。null表示从头开始读
   );
 
   if (picNum !== size || mainNum !== mainFileSize) {
     // 读取的buffer大小有问题
-    throw new Error(`读取的buffer大小有问题: ${picNum} !== ${size} || ${mainNum} !== ${mainFileSize}`);
+    throw new Error(
+      `读取的buffer大小有问题: ${picNum} !== ${size} || ${mainNum} !== ${mainFileSize}`
+    );
   }
 
   // 转成stream

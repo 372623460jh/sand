@@ -17,7 +17,7 @@ function handleConfig(props) {
   const { env, sandbuildrcPath } = props;
   // 读取sandbuildrc.js配置,并且标准化配置
   const { configurations = [] } = getSandBuildConfig(
-    sandbuildrcPath || getPath(process.cwd(), './.sandbuildrc.js'),
+    sandbuildrcPath || getPath(process.cwd(), './.sandbuildrc.js')
   );
   // rollup配置
   let configs = [];
@@ -55,17 +55,19 @@ function buildAll(allConfig) {
   return new Promise((resolve, reject) => {
     const next = () => {
       // 构建单个配置
-      buildEntry(allConfig[built]).then(() => {
-        built++;
-        if (built < total) {
-          next();
-        } else {
-          // 构建结束
-          resolve();
-        }
-      }).catch((e) => {
-        reject(e);
-      });
+      buildEntry(allConfig[built])
+        .then(() => {
+          built++;
+          if (built < total) {
+            next();
+          } else {
+            // 构建结束
+            resolve();
+          }
+        })
+        .catch((e) => {
+          reject(e);
+        });
     };
     next();
   });
@@ -121,7 +123,13 @@ function createLink(packagesInfo) {
     // 创建软链接
     if (createSymbolicLink(nodeModulesPath, pkgPath)) {
       // 软连创建成功
-      console.log(chalk.green(`${chalk.yellow('[LINK]')} 创建软链接 ${nodeModulesPath} -> ${pkgPath}`));
+      console.log(
+        chalk.green(
+          `${chalk.yellow(
+            '[LINK]'
+          )} 创建软链接 ${nodeModulesPath} -> ${pkgPath}`
+        )
+      );
     }
   }
   console.log(chalk.yellow('======== sand-build 软链创建完成（link）========'));
@@ -146,12 +154,16 @@ async function buildLib(options) {
     watching(configs);
   } else {
     try {
-      console.log(chalk.yellow('======== sand-build 开始构建（build）========'));
+      console.log(
+        chalk.yellow('======== sand-build 开始构建（build）========')
+      );
       /**
-         * 构建所有配置
-         */
+       * 构建所有配置
+       */
       await buildAll(configs);
-      console.log(chalk.yellow('======== sand-build 构建结束（build）========'));
+      console.log(
+        chalk.yellow('======== sand-build 构建结束（build）========')
+      );
     } catch (error) {
       logError(error);
     }

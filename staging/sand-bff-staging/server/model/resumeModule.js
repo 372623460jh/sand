@@ -93,10 +93,10 @@ const resumeModule = {
     return data;
   },
   /**
-     * 获取首页信息
-     * @param userId
-     * @returns {Promise.<{}>}
-     */
+   * 获取首页信息
+   * @param userId
+   * @returns {Promise.<{}>}
+   */
   getMainInfo: async (userId) => {
     const data = {};
     try {
@@ -123,7 +123,11 @@ const resumeModule = {
           worktem2.companyNature = jobArr[index].companyNature;
           const bt = jobArr[index].beginTime;
           const et = jobArr[index].endTime;
-          worktem2.timeTrunk = `${bt.getFullYear()}.${bt.getMonth() + 1}~${et.getFullYear() === 2222 ? '至今' : `${et.getFullYear()}.${et.getMonth() + 1}`}`;
+          worktem2.timeTrunk = `${bt.getFullYear()}.${bt.getMonth() + 1}~${
+            et.getFullYear() === 2222
+              ? '至今'
+              : `${et.getFullYear()}.${et.getMonth() + 1}`
+          }`;
           work.push(worktem1);
           workInfo.push(worktem2);
         });
@@ -140,7 +144,9 @@ const resumeModule = {
             sex: person.sex,
             age: `${getTimeSub(new Date(), person.birthday).year}岁`,
             education: person.education,
-            workTime: `${getTimeSub(new Date(), person.endTime).year + 1}工作经验`,
+            workTime: `${
+              getTimeSub(new Date(), person.endTime).year + 1
+            }工作经验`,
             tel: person.tel,
             email: person.email,
             work,
@@ -149,7 +155,11 @@ const resumeModule = {
           intension: intensionArr,
           education: {
             school: person.school,
-            learnTime: `${lebt.getFullYear()}.${lebt.getMonth() + 1}~${leet.getFullYear() === 2222 ? '至今' : `${leet.getFullYear()}.${leet.getMonth() + 1}`}`,
+            learnTime: `${lebt.getFullYear()}.${lebt.getMonth() + 1}~${
+              leet.getFullYear() === 2222
+                ? '至今'
+                : `${leet.getFullYear()}.${leet.getMonth() + 1}`
+            }`,
             education: person.education,
             degree: person.degree,
             major: person.major,

@@ -22,14 +22,8 @@ async function decrypt(filePath, outputFilePath, mainKey, subKey, options) {
     console.log(chalk.red('入参有误'));
   } else {
     // 解密
-    new Mystery().decrypt(
-      filePath,
-      outputFilePath,
-      mainKey,
-      subKey,
-    );
+    new Mystery().decrypt(filePath, outputFilePath, mainKey, subKey);
   }
 }
-
 
 module.exports = decrypt;

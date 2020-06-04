@@ -17,4 +17,3 @@ import '../../packages/component-test/esm/component-test.css';
 
 export default () => <AnyOne source="11111" />;
 ```
-

@@ -8,9 +8,7 @@ module.exports = {
     // 忽略别名导致的找不到模块报错
     'import/resolver': {
       alias: {
-        map: [
-          ['@', './packages/component-test/src'],
-        ],
+        map: [['@', './packages/component-test/src']],
       },
     },
   },

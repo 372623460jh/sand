@@ -15,15 +15,15 @@ module.exports = {
       pkgPath: path.resolve(__dirname, './packages/sand-core'),
       bundleName: 'sand-core',
       umdGlobals: {
-        'react': 'react',
+        react: 'react',
         'react-dom': 'react-dom',
         'react-router-dom': 'react-router-dom',
         'react-router-config': 'react-router-config',
-        'history': 'history',
+        history: 'history',
         'react-redux': 'react-redux',
         'dva-core': 'dva-core',
         'prop-types': 'prop-types',
       },
     },
   ],
-}
+};

@@ -50,24 +50,18 @@ log4js.configure({
   categories: {
     // 默认分类,当所有的日志没有匹配到对应的分类时会使用该分类进行输出
     default: {
-      appenders: [
-        'console',
-      ],
+      appenders: ['console'],
       level: 'all',
     },
     // 错误日志
     errorLog: {
       // 输出源
-      appenders: [
-        'errorLog',
-      ],
+      appenders: ['errorLog'],
       level: 'error',
     },
     // 普通日志
     commonLog: {
-      appenders: [
-        'commonLog',
-      ],
+      appenders: ['commonLog'],
       level: 'info',
     },
   },

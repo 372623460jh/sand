@@ -2,9 +2,9 @@
  * react eslint配置
  */
 module.exports = {
-  extends: [
-    'eslint-config-airbnb',
-  ].map(require.resolve),
+  extends: ['eslint-config-airbnb', 'plugin:prettier/recommended'].map(
+    require.resolve
+  ),
   parser: require.resolve('babel-eslint'),
   globals: {
     document: false,
@@ -19,13 +19,17 @@ module.exports = {
     es6: true,
   },
   rules: {
-    'max-len': ['error', { // 最大长度规则
-      ignoreComments: true, // 忽略注释
-      ignoreStrings: true, // 忽略字符串
-      ignoreUrls: true, // 忽略url
-      ignoreRegExpLiterals: true,
-      ignoreTemplateLiterals: true,
-    }],
+    'max-len': [
+      'error',
+      {
+        // 最大长度规则
+        ignoreComments: true, // 忽略注释
+        ignoreStrings: true, // 忽略字符串
+        ignoreUrls: true, // 忽略url
+        ignoreRegExpLiterals: true,
+        ignoreTemplateLiterals: true,
+      },
+    ],
     'jsx-a11y/no-static-element-interactions': [0],
     'jsx-a11y/img-has-alt': [0],
     'jsx-a11y/anchor-is-valid': [0],

@@ -25,9 +25,7 @@ module.exports = {
   coverageDirectory: 'coverage',
 
   // 排除出coverage的文件列表
-  coveragePathIgnorePatterns: [
-    '<rootDir>/node_modules/',
-  ],
+  coveragePathIgnorePatterns: ['<rootDir>/node_modules/'],
 
   // A list of reporter names that Jest uses when writing coverage reports
   // coverageReporters: [

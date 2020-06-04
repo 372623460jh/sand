@@ -3,9 +3,21 @@
 import '@babel/polyfill';
 
 // IE 8,9 typeof console.log 返回 'object'不能apply的情况
-if (Function.prototype.bind && window.console && typeof console.log === 'object') {
+if (
+  Function.prototype.bind &&
+  window.console &&
+  typeof console.log === 'object'
+) {
   [
-    'log', 'info', 'warn', 'error', 'assert', 'dir', 'clear', 'profile', 'profileEnd',
+    'log',
+    'info',
+    'warn',
+    'error',
+    'assert',
+    'dir',
+    'clear',
+    'profile',
+    'profileEnd',
   ].forEach(function rebind(method) {
     console[method] = this.bind(console[method], console);
   }, Function.prototype.call);
@@ -15,5 +27,5 @@ if (Function.prototype.bind && window.console && typeof console.log === 'object'
 if (!window.location.origin) {
   const { protocol, hostname, port } = window.location;
   // eslint-disable-next-line
-  window.location.origin = protocol+ '//' + hostname + (port ? ':' + port : '');
+  window.location.origin = `${protocol}//${hostname}${port ? `:${port}` : ''}`;
 }

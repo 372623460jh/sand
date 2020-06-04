@@ -1,1 +1,1 @@
-sand-pc spa的入口html,jsx,less
+sand-pc spa 的入口 html,jsx,less

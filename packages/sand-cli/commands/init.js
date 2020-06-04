@@ -22,13 +22,15 @@ async function init() {
   }
 
   // 用户自主选择
-  const { type } = await inquirer.prompt([{
-    type: 'list',
-    name: 'type',
-    default: 'lib',
-    message: '请选择要初始化的项目类型:',
-    choices: Object.keys(stagingEnum),
-  }]);
+  const { type } = await inquirer.prompt([
+    {
+      type: 'list',
+      name: 'type',
+      default: 'lib',
+      message: '请选择要初始化的项目类型:',
+      choices: Object.keys(stagingEnum),
+    },
+  ]);
 
   switch (type) {
     case 'sand-pc':

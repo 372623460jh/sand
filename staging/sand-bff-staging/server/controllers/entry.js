@@ -10,11 +10,9 @@ class EntryController {
    */
   async entryIndex(ctx) {
     // 根据环境 获取css和js的资源
-    const {
-      cssAssets = [],
-      jsAssets = [],
-      publicPath = '',
-    } = getAssets(ENV_ENUM.PROD);
+    const { cssAssets = [], jsAssets = [], publicPath = '' } = getAssets(
+      ENV_ENUM.PROD
+    );
     // 渲染模板（./views/index.html）
     await ctx.render('index', {
       cssAssets,

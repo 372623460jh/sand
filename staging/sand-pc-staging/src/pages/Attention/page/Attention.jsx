@@ -31,9 +31,7 @@ class Attention extends React.PureComponent {
 }
 
 function mapStateToProps(state) {
-  const {
-    test,
-  } = state['jianghe/test'];
+  const { test } = state['jianghe/test'];
   return {
     test,
   };

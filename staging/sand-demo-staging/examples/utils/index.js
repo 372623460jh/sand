@@ -23,7 +23,4 @@ function decodeHtml(htmlString) {
   return temp.innerText || temp.textContent;
 }
 
-export {
-  encodeHtml,
-  decodeHtml,
-};
+export { encodeHtml, decodeHtml };

@@ -18,7 +18,12 @@ function TodoList() {
         {count}
       </h1>
       <div className={styles.btn}>
-        <Button type="primary" shape="circle" onClick={add} icon={<PlusOutlined />} />
+        <Button
+          type="primary"
+          shape="circle"
+          onClick={add}
+          icon={<PlusOutlined />}
+        />
       </div>
     </div>
   );

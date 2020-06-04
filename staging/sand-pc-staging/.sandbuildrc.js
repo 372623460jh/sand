@@ -1,6 +1,5 @@
 const path = require('path');
 
-
 module.exports = {
   // webpack服务启动端口
   port: 9899,
@@ -14,6 +13,6 @@ module.exports = {
       enable: true,
       // 白名单
       whiteList: ['^/spa(?:/|$)', '^/$'],
-    }
+    },
   },
-}
+};

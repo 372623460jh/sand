@@ -1,6 +1,6 @@
 module.exports = {
   extends: require.resolve('@jianghe/sand-lint/style'),
   rules: {
-    "selector-max-id": null,
-  }
+    'selector-max-id': null,
+  },
 };

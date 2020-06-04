@@ -14,7 +14,7 @@ const ctrLogMiddleware = require('./middleware/ctrLogMiddleware');
 // 模版引擎中间件用于ssr前端spa页面
 const viewMiddleware = require('./middleware/viewMiddleware');
 // 控制台日志
-const {defaultLog} = require('./common/utils/log');
+const { defaultLog } = require('./common/utils/log');
 
 // 端口
 const { port } = serverConfig;

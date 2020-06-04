@@ -12,9 +12,7 @@ module.exports = {
     // 忽略别名导致的找不到模块报错
     'import/resolver': {
       alias: {
-        map: [
-          ['@', './packages/index/src'],
-        ],
+        map: [['@', './packages/index/src']],
       },
     },
   },

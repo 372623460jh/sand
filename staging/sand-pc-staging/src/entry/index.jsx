@@ -29,7 +29,11 @@ function getRoutes(prefix) {
   // 第一个参数是相对路径
   // 第二个参数是是否包含子目录
   // 第三个参数是匹配文件的正则
-  const subRouteConfig = require.context('../pages', true, /router-config\.js$/);
+  const subRouteConfig = require.context(
+    '../pages',
+    true,
+    /router-config\.js$/
+  );
   // 遍历配置
   subRouteConfig.keys().forEach((key) => {
     let config = subRouteConfig(key);
@@ -66,12 +70,10 @@ const history = createBrowserHistory({});
 
 // 渲染界面
 ReactDOM.render(
-  (
-    <Provider store={getStore()}>
-      <Router history={history}>
-        <RouteLoader routes={routeConfig} />
-      </Router>
-    </Provider>
-  ),
-  window.document.querySelector(elementId),
+  <Provider store={getStore()}>
+    <Router history={history}>
+      <RouteLoader routes={routeConfig} />
+    </Router>
+  </Provider>,
+  window.document.querySelector(elementId)
 );

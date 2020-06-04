@@ -19,7 +19,7 @@ function buildApp(obj) {
 
   // 动态读取sandbuildrc.js配置
   const opts = getSandBuildConfig(
-    sandbuildrcPath || getPath(process.cwd(), './.sandbuildrc.js')
+    sandbuildrcPath || getPath(process.cwd(), './.sandbuildrc.js'),
   );
 
   // 使用webpack处理webpack_dev_config
@@ -28,7 +28,7 @@ function buildApp(obj) {
       ...opts,
       env,
       type,
-    })
+    }),
   );
 
   // 编译回调方法
@@ -47,7 +47,7 @@ function buildApp(obj) {
           chunkModules: false,
           hash: false,
           version: false,
-        })
+        }),
       );
       console.log(chalk.green('[build] Webpack 编译成功，详细看/dist目录。'));
       process.exit(0);

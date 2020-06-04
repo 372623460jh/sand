@@ -49,7 +49,7 @@ function historyApiFallback(options) {
         'Not rewriting',
         ctx.method,
         ctx.url,
-        'because the method is not GET.'
+        'because the method is not GET.',
       );
       return next();
     }
@@ -58,7 +58,7 @@ function historyApiFallback(options) {
         'Not rewriting',
         ctx.method,
         ctx.url,
-        'because the client did not send an HTTP accept header.'
+        'because the client did not send an HTTP accept header.',
       );
       return next();
     }
@@ -67,7 +67,7 @@ function historyApiFallback(options) {
         'Not rewriting',
         ctx.method,
         ctx.url,
-        'because the client prefers JSON.'
+        'because the client prefers JSON.',
       );
       return next();
     }
@@ -76,7 +76,7 @@ function historyApiFallback(options) {
         'Not rewriting',
         ctx.method,
         ctx.url,
-        'because the client does not accept HTML.'
+        'because the client does not accept HTML.',
       );
       return next();
     }
@@ -127,14 +127,14 @@ function historyApiFallback(options) {
     }
 
     if (
-      parsedUrl.pathname.indexOf('.') !== -1 &&
-      options.disableDotRule !== true
+      parsedUrl.pathname.indexOf('.') !== -1
+      && options.disableDotRule !== true
     ) {
       logger(
         'Not rewriting',
         ctx.method,
         ctx.url,
-        'because the path includes a dot (.) character.'
+        'because the path includes a dot (.) character.',
       );
       return next();
     }

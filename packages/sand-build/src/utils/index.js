@@ -55,7 +55,7 @@ function createSymbolicLink(linkPath, sourcePath) {
   // 软链接起始已经存在，先删除
   if (fs.existsSync(linkPath)) {
     console.log(
-      chalk.green(`${chalk.yellow('[LINK]')} 删除原始软链接 ${linkPath}`)
+      chalk.green(`${chalk.yellow('[LINK]')} 删除原始软链接 ${linkPath}`),
     );
     fs.unlinkSync(linkPath);
   }
@@ -101,8 +101,8 @@ function getBrowsersList(isProd) {
     overrideBrowserslist: isProd
       ? ['last 2 versions', 'ios >= 9', 'android >= 4']
       : [
-          'last 2 Chrome versions', // 开发环境，默认只支持Chrome最新的2个版本
-        ],
+        'last 2 Chrome versions', // 开发环境，默认只支持Chrome最新的2个版本
+      ],
   };
 }
 
@@ -154,7 +154,7 @@ function stdRollupConfig(options) {
     } = options[n];
     if (!entry || !pkgPath || !bundleName) {
       logError(
-        'configurations[].entry和configurations[].pkgPath和configurations[].bundleName为必填项'
+        'configurations[].entry和configurations[].pkgPath和configurations[].bundleName为必填项',
       );
       break;
     }
@@ -191,9 +191,9 @@ function stdSandBuildOpts(options) {
     stdOpts.webpackOptions = stdWebpackOptions(webpackOptions);
   }
   if (
-    configurations &&
-    Array.isArray(configurations) &&
-    configurations.length > 0
+    configurations
+    && Array.isArray(configurations)
+    && configurations.length > 0
   ) {
     stdOpts.configurations = stdRollupConfig(configurations);
   }

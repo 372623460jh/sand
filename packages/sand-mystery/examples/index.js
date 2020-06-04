@@ -13,7 +13,7 @@ function encrypt() {
     path.resolve(__dirname, './input/image/111.png'),
     path.resolve(__dirname, './input/file/sss'),
     path.resolve(__dirname, './output/encrypt/ss.png'),
-    '1472583690zx'
+    '1472583690zx',
   );
 }
 
@@ -29,7 +29,7 @@ function decrypt() {
     path.resolve(__dirname, './output/encrypt/ss.png'),
     path.resolve(__dirname, './output/decrypt/'),
     '1472583690zx',
-    '16110'
+    '16110',
   );
 }
 

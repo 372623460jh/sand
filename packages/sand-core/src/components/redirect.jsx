@@ -19,14 +19,13 @@ function redirect({
     // from: route.path || '' 路由全路径
     render() {
       // 修复react-router 4.4下 to不是object导致的无限onUpdate问题
-      const realTo =
-        typeof to === 'string'
-          ? {
-              pathname: to,
-              search: '',
-              hash: '',
-            }
-          : to;
+      const realTo = typeof to === 'string'
+        ? {
+          pathname: to,
+          search: '',
+          hash: '',
+        }
+        : to;
 
       return (
         <Redirect

@@ -18,7 +18,7 @@ const devMiddleware = (compiler, opts) => {
           ctx.set(name, value);
         },
       },
-      next
+      next,
     );
   };
 };

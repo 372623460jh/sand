@@ -68,6 +68,8 @@ sand 相关脚手架的 cli 工具。详细文档见./packages/sand-cli/README.m
 - ~~sand-bff-staging log~~
 - ~~基于 dumi 对文档进行支持~~
 - ~~所有项目依赖升级为最新安全版本~~
+- prettier 和 eslint 格式冲突问题。移除 prettier。eslint+vscode（auto fix，on save format）+pre-commit（run eslint --fix）; 使用 ESLint 与 eslint-plugin-prettier 的结果是最终得到的代码是充分尊重 Prettier 的结果，而 prettier-eslint-cli 则是先执行 Prettier 然后再自动使用 eslint --fix 将与 ESLint 规则冲突的代码修正成 ESLint 想要的结果。这样其实引入 Prettier 不会影响你原有的设置。
+- 脚手架项目抽离
 - ts 学习
 - sand-utils 纯 js 类库，提供像 fetch 之类的方法
 - 基于 dumi 进行 sand 配套文档编写

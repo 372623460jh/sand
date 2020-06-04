@@ -19,18 +19,18 @@ function getBabelConfig({
         '@babel/preset-env',
         isUmd
           ? {
-              modules: false,
-            }
+            modules: false,
+          }
           : {
-              exclude: [
-                '@babel/plugin-transform-regenerator',
-                '@babel/transform-async-to-generator',
-              ],
-              modules: false,
-              targets: {
-                esmodules: true,
-              },
+            exclude: [
+              '@babel/plugin-transform-regenerator',
+              '@babel/transform-async-to-generator',
+            ],
+            modules: false,
+            targets: {
+              esmodules: true,
             },
+          },
       ],
       '@babel/preset-react',
     ],
@@ -40,9 +40,9 @@ function getBabelConfig({
         isUmd
           ? {}
           : {
-              regenerator: false,
-              useESModules: true,
-            },
+            regenerator: false,
+            useESModules: true,
+          },
       ],
       // 支持class
       '@babel/plugin-proposal-class-properties',

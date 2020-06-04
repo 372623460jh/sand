@@ -18,7 +18,7 @@ class Index extends React.Component {
           <div key={item} className={styles.listItem}>
             <a href={`/${item}.html`}>{item}</a>
             <br />
-          </div>
+          </div>,
         );
       }
     });

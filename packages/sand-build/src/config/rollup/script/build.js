@@ -17,7 +17,7 @@ function handleConfig(props) {
   const { env, sandbuildrcPath } = props;
   // 读取sandbuildrc.js配置,并且标准化配置
   const { configurations = [] } = getSandBuildConfig(
-    sandbuildrcPath || getPath(process.cwd(), './.sandbuildrc.js')
+    sandbuildrcPath || getPath(process.cwd(), './.sandbuildrc.js'),
   );
   // rollup配置
   let configs = [];
@@ -126,9 +126,9 @@ function createLink(packagesInfo) {
       console.log(
         chalk.green(
           `${chalk.yellow(
-            '[LINK]'
-          )} 创建软链接 ${nodeModulesPath} -> ${pkgPath}`
-        )
+            '[LINK]',
+          )} 创建软链接 ${nodeModulesPath} -> ${pkgPath}`,
+        ),
       );
     }
   }
@@ -155,14 +155,14 @@ async function buildLib(options) {
   } else {
     try {
       console.log(
-        chalk.yellow('======== sand-build 开始构建（build）========')
+        chalk.yellow('======== sand-build 开始构建（build）========'),
       );
       /**
        * 构建所有配置
        */
       await buildAll(configs);
       console.log(
-        chalk.yellow('======== sand-build 构建结束（build）========')
+        chalk.yellow('======== sand-build 构建结束（build）========'),
       );
     } catch (error) {
       logError(error);

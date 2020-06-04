@@ -76,7 +76,6 @@
 ├── .eslintignore # eslint 忽略
 ├── .eslintrc.js # eslint 配置
 ├── .gitignore # git 忽略
-├── .prettierrc.js # 代码样式优化
 ├── .sandbuildrc.js # sand-build 构建配置
 ├── .stylelintignore # stylelint 忽略
 ├── .stylelintrc.js # stylelint 配置

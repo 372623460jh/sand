@@ -77,6 +77,6 @@ test('读取并标准化.sandbuildrc.js => json', () => {
   };
   // 断言
   expect(
-    getSandBuildConfig(getPath(__dirname, '../../../.sandbuildrc.js'))
+    getSandBuildConfig(getPath(__dirname, '../../../.sandbuildrc.js')),
   ).toEqual(result);
 });

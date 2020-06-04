@@ -2,9 +2,7 @@
  * react eslint配置
  */
 module.exports = {
-  extends: ['eslint-config-airbnb', 'plugin:prettier/recommended'].map(
-    require.resolve
-  ),
+  extends: ['eslint-config-airbnb'].map(require.resolve),
   parser: require.resolve('babel-eslint'),
   globals: {
     document: false,

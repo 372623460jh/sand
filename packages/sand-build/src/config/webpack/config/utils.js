@@ -19,7 +19,7 @@ function getEntryMap(opts) {
   const relativePath = examplesPath.replace(`${process.cwd()}/`, '');
   // *(entry.js|entry.jsx|entry.html) 表示匹配中其中额一个或多个
   const files = glob.sync(
-    `${relativePath}/**/*-*(entry.js|entry.jsx|entry.html)`
+    `${relativePath}/**/*-*(entry.js|entry.jsx|entry.html)`,
   );
   const regHtml = /\.html$/;
   const regAll = /-entry\.(jsx|html|js)$/;
@@ -112,7 +112,7 @@ function getHtmlWebpackPlugin(entryMap) {
             minifyCSS: true,
           },
           params: {},
-        })
+        }),
       );
     }
   }
@@ -163,7 +163,7 @@ function getSandPcEntry(opts) {
     // 每一个entry,在后面加入webpack-hot-middleware/client?noInfo=true&reload=true从而实现浏览器自动刷新
     // dynamicPublicPath设置为true使用webpack publicPath作为前缀path,可以__webpack_public_path__在入口点的运行时动态设置
     vendors.push(
-      'webpack-hot-middleware/client?path=__webpack_hmr&noInfo=true&timeout=20000&reload=true&quiet=true&dynamicPublicPath=true'
+      'webpack-hot-middleware/client?path=__webpack_hmr&noInfo=true&timeout=20000&reload=true&quiet=true&dynamicPublicPath=true',
     );
   }
   return {

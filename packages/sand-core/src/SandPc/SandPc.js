@@ -60,4 +60,6 @@ function setModel(model) {
   return !sandPc.app ? getDva().model(model) : sandPc.app.model(model);
 }
 
-export { setRoutes, getRoutes, getStore, setModel, getDva };
+export {
+  setRoutes, getRoutes, getStore, setModel, getDva,
+};

@@ -21,7 +21,7 @@ const hotMiddleware = (compiler, opts) => {
         },
         end: () => {},
       },
-      next
+      next,
     );
   };
 };

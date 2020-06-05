@@ -55,10 +55,8 @@ async function createStaging(opts) {
   /**
    * 用户输入的脚手架基本信息
    */
-  const {
- name, version, description, author, license 
-} = await inquirer.prompt(
-    steps,
+  const { name, version, description, author, license } = await inquirer.prompt(
+    steps
   );
 
   // 基于模板的package.json去修改相关属性
@@ -104,10 +102,10 @@ async function createStaging(opts) {
     // filePath: 上级路径
     const filePath = path.resolve(fileFullPath, '..');
     if (
-      stat === 'file'
-      && fileName === 'package.json'
+      stat === 'file' &&
+      fileName === 'package.json' &&
       // 只有脚手架根目录下的package.json不拷贝
-      && path.basename(filePath) === stagingName
+      path.basename(filePath) === stagingName
     ) {
       // 不拷贝package.json，package.json使用编辑后生成的文件
       return false;
@@ -115,7 +113,7 @@ async function createStaging(opts) {
     if (stat === 'file' && fileName === 'package-backup.json') {
       // package-backup.json改成package.json
       packageJsonArr.push(
-        path.join(targetPath, filePath.replace(sourcePath, '')),
+        path.join(targetPath, filePath.replace(sourcePath, ''))
       );
     }
     const realPath = fileFullPath.replace(sourcePath, '');
@@ -127,7 +125,7 @@ async function createStaging(opts) {
   packageJsonArr.forEach((filePath) => {
     fs.renameSync(
       path.join(filePath, 'package-backup.json'),
-      path.join(filePath, 'package.json'),
+      path.join(filePath, 'package.json')
     );
   });
 

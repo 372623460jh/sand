@@ -27,7 +27,7 @@ function startApp(obj) {
 
   // 动态读取sandbuildrc.js配置
   const opts = getSandBuildConfig(
-    sandbuildrcPath || getPath(process.cwd(), './.sandbuildrc.js'),
+    sandbuildrcPath || getPath(process.cwd(), './.sandbuildrc.js')
   );
 
   const { port = 9531, webpackOptions = {} } = opts;
@@ -45,7 +45,7 @@ function startApp(obj) {
       ...opts,
       env,
       type,
-    }),
+    })
   );
 
   // 是否启用中间件
@@ -69,7 +69,7 @@ function startApp(obj) {
       credentials: true,
       // 接受的header参数
       allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
-    }),
+    })
   );
 
   // 使用devMiddleware包装compiler
@@ -92,7 +92,7 @@ function startApp(obj) {
       },
       quiet: true,
       noInfo: true,
-    }),
+    })
   );
 
   // 使用hotMiddleware包装compiler

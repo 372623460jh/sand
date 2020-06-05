@@ -90,8 +90,8 @@ function getBasePlugins(options = {}) {
       extensions: ['.js', '.jsx', 'ts', 'tsx', '.json'],
     }),
     // 支持ts
-    isTs
-      && typescript({
+    isTs &&
+      typescript({
         abortOnError: false,
         tsconfig: getPath(packagesPath, `./${pkgName}/tsconfig.json`),
         clean: true,
@@ -106,12 +106,12 @@ function getBasePlugins(options = {}) {
     builtins(),
     // 使用babel处理代码
     babel(
-      babelConfig
-        || getBabelConfig({
+      babelConfig ||
+        getBabelConfig({
           packagesPath,
           isUmd,
           pkgName,
-        }),
+        })
     ),
     // 别名
     alias({
@@ -120,8 +120,8 @@ function getBasePlugins(options = {}) {
     // 让浏览器端支持node内置模块
     globals(),
     // umd 使用 rollup-plugin-commonjs, 它会将 CommonJS 模块转换为 ES6,来为 Rollup 获得兼容。
-    isUmd
-      && commonjs({
+    isUmd &&
+      commonjs({
         // 忽略
         exclude: [`${getPath(packagesPath, `./${pkgName}/src/**`)}`],
         namedExports: {
@@ -168,9 +168,12 @@ function configure(config, env, target) {
   const input = entry;
 
   // 广告
-  const banner =    `${'/*!\n'` * ${bundleName}.js v${version}\n`} * (c) 2019-${new Date().getFullYear()} Jiang He\n`
-    + ' * Released under the MIT License.\n';
-  (' */');
+  const banner =
+    '/*!\n' +
+    ` * ${bundleName}.js v${version}\n` +
+    ` * (c) 2019-${new Date().getFullYear()} Jiang He\n` +
+    ' * Released under the MIT License.\n' +
+    ' */';
 
   // 获取包依赖
   const deps = getDepsConfig({ pkg });
@@ -215,7 +218,7 @@ function configure(config, env, target) {
           packagesPath,
           `./${pkgName}/${
             isProd ? `dist/${bundleName}.min.js` : `dist/${bundleName}.js`
-          }`,
+          }`
         ),
         exports: 'named',
         // 首字母大写
@@ -241,18 +244,18 @@ function configure(config, env, target) {
     output:
       target === 'esm'
         ? {
-          file: getPath(packagesPath, `./${pkgName}/esm/${bundleName}.js`),
-          format: 'es',
-          sourcemap: true,
-          banner,
-        }
+            file: getPath(packagesPath, `./${pkgName}/esm/${bundleName}.js`),
+            format: 'es',
+            sourcemap: true,
+            banner,
+          }
         : {
-          file: getPath(packagesPath, `./${pkgName}/cjs/${bundleName}.js`),
-          format: 'cjs',
-          exports: 'named',
-          sourcemap: true,
-          banner,
-        },
+            file: getPath(packagesPath, `./${pkgName}/cjs/${bundleName}.js`),
+            format: 'cjs',
+            exports: 'named',
+            sourcemap: true,
+            banner,
+          },
     // 我们需要显式地声明哪些模块是外部的，这意味着它们在运行时出现。
     // 对于非umd配置，这意味着所有的非slate包。
     external: (id) =>

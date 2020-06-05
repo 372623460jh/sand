@@ -53,8 +53,8 @@
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
-    "@jianghe/sand-build": "1.0.3-21",
-    "@jianghe/sand-lint": "1.0.3-21",
+    "@jianghe/sand-build": "1.0.3-23",
+    "@jianghe/sand-lint": "1.0.3-23",
     "conventional-changelog": "^3.1.21",
     "dumi": "^1.0.30",
     "eslint": "^6.8.0",

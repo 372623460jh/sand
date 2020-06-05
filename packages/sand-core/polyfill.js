@@ -4,9 +4,9 @@ import '@babel/polyfill';
 
 // IE 8,9 typeof console.log 返回 'object'不能apply的情况
 if (
-  Function.prototype.bind
-  && window.console
-  && typeof console.log === 'object'
+  Function.prototype.bind &&
+  window.console &&
+  typeof console.log === 'object'
 ) {
   [
     'log',

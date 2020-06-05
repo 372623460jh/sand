@@ -2,7 +2,7 @@
  * eslint-node配置
  */
 module.exports = {
-  extends: ['eslint-config-airbnb-base'].map(require.resolve),
+  extends: ['eslint-config-airbnb-base', 'prettier'],
   parser: require.resolve('babel-eslint'),
   plugins: ['prettier'],
   env: {

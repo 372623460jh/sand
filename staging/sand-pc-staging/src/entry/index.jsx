@@ -32,7 +32,7 @@ function getRoutes(prefix) {
   const subRouteConfig = require.context(
     '../pages',
     true,
-    /router-config\.js$/,
+    /router-config\.js$/
   );
   // 遍历配置
   subRouteConfig.keys().forEach((key) => {
@@ -75,5 +75,5 @@ ReactDOM.render(
       <RouteLoader routes={routeConfig} />
     </Router>
   </Provider>,
-  window.document.querySelector(elementId),
+  window.document.querySelector(elementId)
 );

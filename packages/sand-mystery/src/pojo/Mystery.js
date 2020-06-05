@@ -87,7 +87,7 @@ class Mystery {
       ' 副密钥：',
       imageSize,
       ' 输出文件：',
-      outputPath,
+      outputPath
     );
   }
 

@@ -18,7 +18,7 @@ program
   .option('-e, --env <env>', '构建方式（prod||dev）')
   .option(
     '-l, --link',
-    '构建完成后在根目录下的node_modules下创建软链接链接到构建产物方便调试',
+    '构建完成后在根目录下的node_modules下创建软链接链接到构建产物方便调试'
   )
   .action(build); // 命中指令后指令build回调
 

@@ -2,7 +2,7 @@
  * react eslint配置
  */
 module.exports = {
-  extends: ['eslint-config-airbnb'].map(require.resolve),
+  extends: ['eslint-config-airbnb', 'prettier'],
   parser: require.resolve('babel-eslint'),
   plugins: ['prettier'],
   globals: {
@@ -39,5 +39,6 @@ module.exports = {
     'react/state-in-constructor': [0], // 允许state不在constructor中定义
     'no-param-reassign': [0], // 允许对函数入参进行操作
     'react/forbid-prop-types': [0], // prop-types允许使用object，any等
+    'react/jsx-wrap-multilines': [0], // 单个jsx元素外包裹括号
   },
 };

@@ -1,17 +1,17 @@
 ---
-title: 入口
+title: 脚手架
 # 菜单展示在哪，content在内容区域展示，menu左侧
-toc: menu
+toc: content
 # 左侧菜单的顺序，越小越靠前
 order: 1
 # 导航栏配置
 nav:
   # 分组名
-  title: 导航栏菜单1
+  title: 脚手架
   # 文档显示顺序越小越靠左
-  order: 1
+  order: 2
 ---
 
-# 入口
+# 脚手架
 
-## 入口相关内容
+## 脚手架相关内容

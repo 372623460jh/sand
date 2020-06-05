@@ -68,22 +68,23 @@ sand 相关脚手架的 cli 工具。详细文档见./packages/sand-cli/README.m
 - ~~sand-bff-staging log~~
 - ~~基于 dumi 对文档进行支持~~
 - ~~所有项目依赖升级为最新安全版本~~
-- prettier 和 eslint 格式冲突问题。移除 prettier。eslint+vscode（auto fix，on save format）+pre-commit（run eslint --fix）; 使用 ESLint 与 eslint-plugin-prettier 的结果是最终得到的代码是充分尊重 Prettier 的结果，而 prettier-eslint-cli 则是先执行 Prettier 然后再自动使用 eslint --fix 将与 ESLint 规则冲突的代码修正成 ESLint 想要的结果。这样其实引入 Prettier 不会影响你原有的设置。
-- 脚手架项目抽离
-- ts 学习
+- ~~prettier 和 eslint 格式冲突问题。~~
+- ~~基于 dumi 进行 sand 配套文档编写~~
+- sand 系列文档编写
 - sand-utils 纯 js 类库，提供像 fetch 之类的方法
-- 基于 dumi 进行 sand 配套文档编写
+- eslint 升 7,rollup 升 2，@babel 升 7.10
+- sand 全部 ts 化
+- 脚手架项目抽离，sand-cli init 时动态拉脚手架项目
 - 解决 sand-mystery 的 jest 报错
-- 学习 dumi 源码，sand 原生支持
-- sand 全部 ts 化,eslint 升 7,rollup 升 2，@babel 升 7.10
-- docker 学习，服务器容器化
 - sand-bff-staging node-schedule 处理定时任务
 
-## 4. 提案
+## 4. 学习，调研，提案
 
+- ts
+- node 微服务，sand-node-staging 微服务应用脚手架，只提供服务，gRPC 框架
+- docker 学习，服务器容器化
+- 学习 dumi 源码，sand 原生支持
 - sand-mob 脚手架开发
-- sand-node-staging 微服务应用脚手架，只提供服务，rpc 框架
-- sand-build 支持 type:bff,koa2 构建分为两种构建 dev 和 prod。执行 start，dev 模式揉合 webpackDevMiddle 中间件和 webpackHotMiddle 中间件,可以考虑 sand-build 提供方法，返回 webpack 配置，再在 app.js 使用 webpackDevMiddle 中间件和 webpackHotMiddle 中间件来启动 web 服务
 
 ## 5. 项目
 

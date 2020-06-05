@@ -4,6 +4,7 @@
 module.exports = {
   extends: ['eslint-config-airbnb-base'].map(require.resolve),
   parser: require.resolve('babel-eslint'),
+  plugins: ['prettier'],
   env: {
     // 忽略jest报错
     jest: true,
@@ -11,6 +12,7 @@ module.exports = {
     node: true,
   },
   rules: {
+    'prettier/prettier': 'error',
     'no-console': 0, // 允许console
     'no-restricted-syntax': 0, // 允许for in
   },

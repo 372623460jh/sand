@@ -168,11 +168,9 @@ function configure(config, env, target) {
   const input = entry;
 
   // 广告
-  const banner = '/*!\n'
-    + ` * ${bundleName}.js v${version}\n`
-    + ` * (c) 2019-${new Date().getFullYear()} Jiang He\n`
-    + ' * Released under the MIT License.\n'
-    + ' */';
+  const banner =    `${'/*!\n'` * ${bundleName}.js v${version}\n`} * (c) 2019-${new Date().getFullYear()} Jiang He\n`
+    + ' * Released under the MIT License.\n';
+  (' */');
 
   // 获取包依赖
   const deps = getDepsConfig({ pkg });

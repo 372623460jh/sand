@@ -61,5 +61,5 @@ function setModel(model) {
 }
 
 export {
-  setRoutes, getRoutes, getStore, setModel, getDva,
+ setRoutes, getRoutes, getStore, setModel, getDva 
 };

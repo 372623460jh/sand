@@ -23,12 +23,12 @@ function MenuBox() {
       >
         <SubMenu
           key="sub1"
-          title={(
+          title={
             <span>
               <UserOutlined />
               subnav 1
             </span>
-          )}
+          }
         >
           <Menu.Item key="1">option1</Menu.Item>
           <Menu.Item key="2">option2</Menu.Item>
@@ -45,12 +45,12 @@ function MenuBox() {
         </SubMenu>
         <SubMenu
           key="sub2"
-          title={(
+          title={
             <span>
               <LaptopOutlined />
               subnav 2
             </span>
-          )}
+          }
         >
           <Menu.Item key="5">option5</Menu.Item>
           <Menu.Item key="6">option6</Menu.Item>
@@ -59,12 +59,12 @@ function MenuBox() {
         </SubMenu>
         <SubMenu
           key="sub3"
-          title={(
+          title={
             <span>
               <NotificationOutlined />
               subnav 3
             </span>
-          )}
+          }
         >
           <Menu.Item key="9">option9</Menu.Item>
           <Menu.Item key="10">option10</Menu.Item>

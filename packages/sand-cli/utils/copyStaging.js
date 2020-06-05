@@ -47,7 +47,7 @@ async function copyStaging() {
   const sourcePath = path.resolve(__dirname, '../staging');
 
   console.log(
-    chalk.green(`[初始化脚手架] 拷贝: ${stagingPath} 到 ${sourcePath}`),
+    chalk.green(`[初始化脚手架] 拷贝: ${stagingPath} 到 ${sourcePath}`)
   );
 
   // 非根目录下的package.json
@@ -67,20 +67,20 @@ async function copyStaging() {
     // filePath: 上级路径
     const filePath = path.resolve(fileFullPath, '..');
     if (
-      stat === 'file'
-      && fileName === 'package.json'
+      stat === 'file' &&
+      fileName === 'package.json' &&
       // 文件的目录名是不是在stagingNameArr
-      && !stagingNameArr.includes(path.basename(filePath))
+      !stagingNameArr.includes(path.basename(filePath))
     ) {
       // 非根目录下的package.json改成package-backup.json
       packageJsonArr.push(
-        path.join(sourcePath, filePath.replace(stagingPath, '')),
+        path.join(sourcePath, filePath.replace(stagingPath, ''))
       );
     }
     const realPath = fileFullPath.replace(sourcePath, '');
     console.log(
       chalk.magenta('[初始化脚手架]'),
-      `拷贝: ${path.join(targetPath, realPath)}`,
+      `拷贝: ${path.join(targetPath, realPath)}`
     );
     return true;
   });
@@ -90,12 +90,12 @@ async function copyStaging() {
     console.log(
       `${chalk.magenta('[初始化脚手架]')} 重命名: ${path.join(
         filePath,
-        'package.json',
-      )} -> ${path.join(filePath, 'package-backup.json')}`,
+        'package.json'
+      )} -> ${path.join(filePath, 'package-backup.json')}`
     );
     fs.renameSync(
       path.join(filePath, 'package.json'),
-      path.join(filePath, 'package-backup.json'),
+      path.join(filePath, 'package-backup.json')
     );
   });
 }

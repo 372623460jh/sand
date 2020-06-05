@@ -56,8 +56,8 @@ async function createStaging(opts) {
    * 用户输入的脚手架基本信息
    */
   const {
-    name, version, description, author, license,
-  } = await inquirer.prompt(
+ name, version, description, author, license 
+} = await inquirer.prompt(
     steps,
   );
 

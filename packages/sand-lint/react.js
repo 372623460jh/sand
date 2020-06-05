@@ -4,6 +4,7 @@
 module.exports = {
   extends: ['eslint-config-airbnb'].map(require.resolve),
   parser: require.resolve('babel-eslint'),
+  plugins: ['prettier'],
   globals: {
     document: false,
     window: false,
@@ -17,6 +18,7 @@ module.exports = {
     es6: true,
   },
   rules: {
+    'prettier/prettier': 'error',
     'max-len': [
       'error',
       {

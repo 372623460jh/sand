@@ -1,14 +1,14 @@
 ---
-title: 快速上手
+title: sand-demo
 # 菜单展示在哪，content在内容区域展示，menu左侧
 toc: content
 # 左侧菜单的顺序，越小越靠前
 order: 2
 ---
 
-# 快速上手
+# sand-demo
 
-## 快速上手相关内容
+## sand-demo 相关内容
 
 ```jsx
 import React from 'react';

@@ -4,7 +4,7 @@ hero:
   title: Sand
   desc: 一枚（群）前端（全栈）程序猿的日常积累，最佳实践
   actions:
-    - text: 快速上手
+    - text: 快速开始
       link: /start
 # 特性
 features:

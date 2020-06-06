@@ -8,7 +8,7 @@
 
 ### Features
 
-无
+- 完成 sand 文档的搭建,解决项目 prettier 和 eslint 的兼容问题 ([0aff922](https://github.com/372623460jh/sand/commit/0aff922))
 
 <a name="1.0.0-5"></a>
 

@@ -1,5 +1,7 @@
 # sand v1.0.0
 
+[中文文档](https://sand.zirupay.com/)
+
 sand 相关工具包仓库
 
 ## 1. 项目列表
@@ -70,7 +72,7 @@ sand 相关脚手架的 cli 工具。详细文档见./packages/sand-cli/README.m
 - ~~所有项目依赖升级为最新安全版本~~
 - ~~prettier 和 eslint 格式冲突问题。~~
 - ~~基于 dumi 进行 sand 配套文档编写~~
-- sand 系列文档编写
+- sand 文档完善
 - sand-utils 纯 js 类库，提供像 fetch 之类的方法
 - eslint 升 7,rollup 升 2，@babel 升 7.10
 - sand 全部 ts 化

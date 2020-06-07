@@ -30,26 +30,27 @@
     "@commitlint/config-conventional": "^8.3.4",
     "pre-commit": "^1.2.2",
     "eslint": "^6.8.0",
-    "stylelint": "^13.5.0",
+    "stylelint": "^13.6.0",
     "jest": "^26.0.1",
     "npm-run-all": "^4.1.5",
-    "@jianghe/sand-build": "^1.0.3-13",
-    "@jianghe/sand-lint": "^1.0.3-13"
+    "@jianghe/sand-build": "^1.0.3",
+    "@jianghe/sand-lint": "^1.0.3"
   },
   "dependencies": {
     "@ant-design/icons": "^4.2.1",
-    "@jianghe/sand-core": "^1.0.3-13",
-    "antd": "^4.3.1",
+    "@jianghe/sand-core": "^1.0.3",
+    "antd": "^4.3.2",
     "axios": "^0.19.2",
     "debug": "^4.1.1",
     "ejs": "^3.1.3",
     "koa": "^2.12.0",
     "koa-bodyparser": "^4.3.0",
-    "koa-router": "^7.4.0",
+    "koa-router": "^9.0.1",
     "koa-views": "^6.2.3",
+    "koa-session": "6.0.0",
     "koa2-cors": "^2.0.6",
     "log4js": "^6.3.0",
-    "mysql": "2.18.1",
-    "sequelize": "3.24.1"
+    "mysql2": "2.1.0",
+    "sequelize": "5.21.12"
   }
 }

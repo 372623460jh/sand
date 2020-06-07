@@ -73,6 +73,7 @@ sand 相关脚手架的 cli 工具。详细文档见./packages/sand-cli/README.m
 - ~~prettier 和 eslint 格式冲突问题。~~
 - ~~基于 dumi 进行 sand 配套文档编写~~
 - sand 文档完善
+- node 应用间 session 同步
 - sand-utils 纯 js 类库，提供像 fetch 之类的方法
 - eslint 升 7,rollup 升 2，@babel 升 7.10
 - sand 全部 ts 化

@@ -13,6 +13,8 @@ const { getCors } = require('./middleware/corsMiddleware');
 const ctrLogMiddleware = require('./middleware/ctrLogMiddleware');
 // 模版引擎中间件用于ssr前端spa页面
 const viewMiddleware = require('./middleware/viewMiddleware');
+// 登录模块中间件
+const authMiddleware = require('./middleware/authMiddleware');
 // 控制台日志
 const { defaultLog } = require('./common/utils/log');
 
@@ -33,6 +35,9 @@ app.use(bodyParser());
 
 // controller日志输出中间件
 app.use(ctrLogMiddleware());
+
+// 登录模块中间件
+app.use(authMiddleware(app));
 
 // 加载controller中间件
 app.use(ctrMiddleware());

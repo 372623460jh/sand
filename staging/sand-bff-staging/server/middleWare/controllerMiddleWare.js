@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const koaRouter = require('koa-router');
+const KoaRouter = require('koa-router');
 
 /**
  * 将控制器根据key添加到router中
@@ -54,7 +54,7 @@ function controllerMiddleWare() {
   // 扫描controllers
   const controllersDir = path.resolve(__dirname, '../controllers');
   // 实例化koaRouter
-  const kRouter = new koaRouter();
+  const kRouter = new KoaRouter();
   // 解析controllers下的所有控制器添加路由
   addControllers(kRouter, controllersDir);
   return kRouter.routes();

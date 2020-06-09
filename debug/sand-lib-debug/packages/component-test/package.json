@@ -24,8 +24,8 @@
   ],
   "scripts": {},
   "peerDependencies": {
-    "antd": "^4.2.0",
-    "@jianghe/sand-core": "^1.0.3-13"
+    "antd": "^4.3.3",
+    "@jianghe/sand-core": "^1.0.4-3"
   },
   "dependencies": {
     "classnames": "^2.2.6"

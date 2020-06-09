@@ -1,6 +1,6 @@
 ## 使用
 
-sand cli 工具
+sand cli 工具。
 
 ### 安装
 

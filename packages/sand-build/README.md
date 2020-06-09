@@ -2,8 +2,8 @@
 
 ### build
 
-type === lib 时 env，link，watch 参数才生效
-type === pc/mob/demo 时 env，link，watch 参数不生效
+type === lib 时 env，link，watch 参数才生效。
+type === pc/mob/demo 时 env，link，watch 参数不生效。
 
 - --type 构建类型 pc/mob/lib/demo 必填
 - --env 环境，传 prod 时会进行 umd 构建

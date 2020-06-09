@@ -17,6 +17,8 @@ const viewMiddleware = require('./middleware/viewMiddleware');
 const authMiddleware = require('./middleware/authMiddleware');
 // 控制台日志
 const { defaultLog } = require('./common/utils/log');
+// 登录中间件白名单配置
+const { authWhiteList } = require('./common/config/env');
 
 // 端口
 const { port } = serverConfig;
@@ -37,7 +39,7 @@ app.use(bodyParser());
 app.use(ctrLogMiddleware());
 
 // 登录模块中间件
-app.use(authMiddleware(app));
+app.use(authMiddleware(authWhiteList));
 
 // 加载controller中间件
 app.use(ctrMiddleware());

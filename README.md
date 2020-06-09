@@ -72,8 +72,15 @@ sand 相关脚手架的 cli 工具。详细文档见./packages/sand-cli/README.m
 - ~~所有项目依赖升级为最新安全版本~~
 - ~~prettier 和 eslint 格式冲突问题。~~
 - ~~基于 dumi 进行 sand 配套文档编写~~
+- ~~redis 安装~~
+- ~~重复登录~~
+- ~~node 应用间 session 同步~~
+- ~~sand-lint babel-eslint 放 dependencies~~
+- 登录接口非对称加密
+- sand-bff node 启动时可以区分环境
+- 登录，登出过程中报错，当做事务来处理
 - sand 文档完善
-- node 应用间 session 同步
+- sso 登录实现 按照 https://www.yuque.com/b121/sand/ha39k6
 - sand-utils 纯 js 类库，提供像 fetch 之类的方法
 - eslint 升 7,rollup 升 2，@babel 升 7.10
 - sand 全部 ts 化

@@ -1,7 +1,7 @@
 import React from '@jianghe/sand-core/react';
 import { NavLink } from '@jianghe/sand-core/router-dom';
 import { Button } from 'antd';
-import { get } from '../../../common/fetch';
+import { post } from '../../../common/fetch';
 import styles from './index.module.less';
 
 class Index extends React.PureComponent {
@@ -9,13 +9,22 @@ class Index extends React.PureComponent {
    * 登录
    */
   login = () => {
-    get('/login/login.json', { nickname: 'jianghe', passwd: '123123' });
+    post('/login.json', { accountName: 'jianghe', password: '112233' });
+  };
+
+  /**
+   * 测试
+   */
+  test = () => {
+    post('/test.json', {});
   };
 
   /**
    * 登出
    */
-  logout = () => {};
+  logout = () => {
+    post('/logout.json', {});
+  };
 
   render() {
     return (
@@ -49,7 +58,8 @@ class Index extends React.PureComponent {
           /spa/attention/index/aaa
         </NavLink>
         <Button onClick={this.login}>登录</Button>
-        <Button onClick={this.logout}>注销</Button>
+        <Button onClick={this.test}>测试</Button>
+        <Button onClick={this.logout}>登出</Button>
       </div>
     );
   }

@@ -1,6 +1,6 @@
 {
   "name": "@jianghe/sand-lint",
-  "version": "1.0.3",
+  "version": "1.0.4-0",
   "private": false,
   "description": "sand项目的lint统一规范",
   "main": "./react.js",
@@ -27,12 +27,12 @@
     "eslint": "^6.8.0",
     "stylelint": "^13.6.0"
   },
-  "devDependencies": {
+  "dependencies": {
     "babel-eslint": "^10.1.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-config-prettier": "6.11.0",
     "eslint-import-resolver-alias": "^1.1.2",
-    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-import": "^2.21.1",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "3.1.3",
     "eslint-plugin-react": "^7.20.0",

@@ -77,6 +77,7 @@ sand 相关脚手架的 cli 工具。详细文档见./packages/sand-cli/README.m
 - ~~node 应用间 session 同步~~
 - ~~sand-lint babel-eslint 放 dependencies~~
 - 登录接口非对称加密
+- 脚手架.gitignore 拷贝丢失问题
 - sand-bff node 启动时可以区分环境
 - 登录，登出过程中报错，当做事务来处理
 - sand 文档完善

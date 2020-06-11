@@ -76,12 +76,14 @@ sand 相关脚手架的 cli 工具。详细文档见./packages/sand-cli/README.m
 - ~~重复登录~~
 - ~~node 应用间 session 同步~~
 - ~~sand-lint babel-eslint 放 dependencies~~
-- 登录接口非对称加密实现
+- ~~登录接口非对称加密~~
+- ~~sand-bff node 应用启动时可以区分环境，并把该环境写到前端。~~
+- ~~sso 登录实现 按照 https://www.yuque.com/b121/sand/ha39k6~~
+- ~~@ => src~~
+- node 错误处理解决方案
 - 脚手架.gitignore 拷贝丢失问题
-- sand-bff node 启动时可以区分环境
 - 登录，登出过程中报错，当做事务来处理
 - sand 文档完善
-- sso 登录实现 按照 https://www.yuque.com/b121/sand/ha39k6
 - sand-utils 纯 js 类库，提供像 fetch 之类的方法
 - eslint 升 7,rollup 升 2，@babel 升 7.10
 - sand 全部 ts 化

@@ -39,11 +39,11 @@
     "stylelint": "^13.6.0",
     "jest": "^26.0.1",
     "dumi": "^1.0.31",
-    "@jianghe/sand-build": "^1.0.4-3",
-    "@jianghe/sand-lint": "^1.0.4-3"
+    "@jianghe/sand-build": "^1.0.4-4",
+    "@jianghe/sand-lint": "^1.0.4-4"
   },
   "dependencies": {
-    "@jianghe/sand-core": "^1.0.4-3",
+    "@jianghe/sand-core": "^1.0.4-4",
     "@ant-design/icons": "^4.2.1",
     "antd": "^4.3.3"
   }

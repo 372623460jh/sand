@@ -9,6 +9,12 @@
     // 动态设置webpack的publicPath
     window.__webpack_public_path__ = '<%=publicPath %>';
 
+    // 当前服务端环境
+    window.__server_env__ = '<%=serverEnv %>';
+
+    // 公钥
+    window.__public_key__ = `<%=publicKey %>`;
+
   </script>
   <% cssAssets.forEach(function(item){ %>
   <link href="<%=item %>" rel=stylesheet>

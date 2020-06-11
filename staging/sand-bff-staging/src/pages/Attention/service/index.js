@@ -1,4 +1,4 @@
-import { get, post } from '../../../common/fetch';
+import { get, post } from '@/common/fetch';
 
 /**
  * 获取用户信息

@@ -16,6 +16,14 @@
 1. 对 sand-pc 执行 build 在./dist 下生成构建产物
 2. 这样可以直接将./dist,./server,./node_module 拷贝至服务器，直接 pm2 运行./server/app.js 即可
 
+### 关于调试部署
+
+1. 开发环境调试直接执行 npm run start 即可
+2. 单独启动前端资源服务 npm run dev:pc
+3. 单独启动 node 服务 npm run start:bff
+4. 生产环境前端资源构建 npm run build:bc
+5. 生成环境建议用 pm2,执行 npm run prod:bff 相当于执行 pm2 start ecosystem.config.js --env production 根据配置启动 pm2
+
 ### 方案
 
 最终确定的方案

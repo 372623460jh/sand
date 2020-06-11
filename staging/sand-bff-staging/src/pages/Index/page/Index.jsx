@@ -1,7 +1,8 @@
 import React from '@jianghe/sand-core/react';
 import { NavLink } from '@jianghe/sand-core/router-dom';
 import { Button } from 'antd';
-import { post } from '../../../common/fetch';
+import { post } from '@/common/fetch';
+import { encryptLoginInfo } from '@/common/utils/cert';
 import styles from './index.module.less';
 
 class Index extends React.PureComponent {
@@ -9,7 +10,19 @@ class Index extends React.PureComponent {
    * 登录
    */
   login = () => {
-    post('/login.json', { accountName: 'jianghe', password: '112233' });
+    /**
+     * 加密登录信息
+     */
+    const encryptStr = encryptLoginInfo(
+      {
+        accountName: 'jianghe',
+        password: '112233',
+      },
+      // eslint-disable-next-line no-underscore-dangle
+      window.__public_key__
+    );
+
+    post('/login.json', { info: encryptStr });
   };
 
   /**

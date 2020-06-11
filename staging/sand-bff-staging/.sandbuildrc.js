@@ -5,7 +5,13 @@ module.exports = {
   port: 9538,
   //webpack配置
   webpackOptions: {
+    // 入口文件
     entry: path.resolve(__dirname, './src/entry/index.jsx'),
+    // 入口html
     entryHtml: path.resolve(__dirname, './src/entry/index.html'),
+    // 别名
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
   },
 };

@@ -1,6 +1,7 @@
 const redis = require('../db/redis');
 const { errorLog } = require('../common/utils/log');
 const errorCode = require('../common/error');
+const { decryptByPrivateKey } = require('../common/utils/cert');
 const {
   sessionTTL,
   getSessionId,
@@ -8,11 +9,32 @@ const {
   getCookieConfig,
 } = require('../common/config/sessionConf');
 
+/**
+ * 解密，校验登录信息的方法
+ * @param {h} loginInfoStr 登录字符
+ */
+const checkLoginInfo = (loginInfoStr) => {
+  /**
+   * 秘钥有效期
+   */
+  const valid = 30 * 1000;
+  const [timestamp, loginInfo] = decryptByPrivateKey(loginInfoStr).split(
+    '$$sand$$'
+  );
+  const clientTime = Number(timestamp);
+  const now = new Date().getTime();
+  if (now - clientTime > 0 && now - clientTime < valid) {
+    // 在有效期内
+    return JSON.parse(loginInfo);
+  }
+  throw new Error('登录信息时间校验失败');
+};
+
 class LoginController {
   /**
    * 登录
    */
-  async login(ctx) {
+  async login(ctx, next) {
     // 从ctx.sandSession取出userInfo sessionId
     const { sessionId, userInfo } = ctx.sandSession;
 
@@ -24,11 +46,39 @@ class LoginController {
       };
     } else {
       // 取出账号，密码
-      const { accountName = '', password = '' } = ctx.request.body;
+      const { info = '' } = ctx.request.body;
+
+      // 账号
+      let accountName = '';
+
+      // 密码
+      let password = '';
+
+      // 非对称加解密
+      try {
+        // 解密，校验登录信息的方法
+        const loginInfo = checkLoginInfo(info);
+        accountName = loginInfo.accountName || '';
+        password = loginInfo.password || '';
+      } catch (error) {
+        const { code, desc } = errorCode.L0010;
+        const { message } = error;
+        // 解密失败
+        errorLog.error(`${code}: ${desc}: ${message}`);
+        ctx.response.body = {
+          stat: 'faild',
+          errorCode: code,
+          errorMsg: '登录失败',
+        };
+        return;
+      }
 
       // TODO: 查询数据库
 
-      if (accountName === 'jianghe' && password === '112233') {
+      if (
+        accountName === 'jianghe' &&
+        password === 'd0970714757783e6cf17b26fb8e2298f'
+      ) {
         // 账号密码正确
         // 生成加密sessionId
         const { sessionId: realSessionId, signSessionId } = getSessionId(
@@ -93,6 +143,7 @@ class LoginController {
         };
       }
     }
+    await next();
   }
 
   /**

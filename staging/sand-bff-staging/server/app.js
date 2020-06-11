@@ -4,7 +4,6 @@
 const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
 const cors = require('koa2-cors');
-const { serverConfig } = require('./common/config/serverConf');
 // 加载控制器的中间件返回koa_router.routes对象
 const ctrMiddleware = require('./middleware/controllerMiddleware');
 // cors中间件
@@ -18,10 +17,10 @@ const authMiddleware = require('./middleware/authMiddleware');
 // 控制台日志
 const { defaultLog } = require('./common/utils/log');
 // 登录中间件白名单配置
-const { authWhiteList } = require('./common/config/env');
+const { authWhiteList, initNowEnvConst } = require('./common/utils/env');
 
-// 端口
-const { port } = serverConfig;
+// 初始化当前环境信息
+const { PORT } = initNowEnvConst();
 
 // 实例化
 const app = new Koa();
@@ -45,6 +44,6 @@ app.use(authMiddleware(authWhiteList));
 app.use(ctrMiddleware());
 
 // listen
-app.listen(port);
+app.listen(PORT);
 
-defaultLog.info(`sand-bff监听 http://127.0.0.1:${port}`);
+defaultLog.info(`sand-bff监听 http://127.0.0.1:${PORT}`);

@@ -47,6 +47,11 @@ const loginErrorCodeEnum = {
     code: 'L0009',
     desc: '上下文中没有sessionId，无法检测登录状态',
   },
+  // crypto私钥解密失败或登录有效时间校验失败
+  L0010: {
+    code: 'L0010',
+    desc: 'crypto私钥解密失败或登录有效时间校验失败',
+  },
 };
 
 module.exports = loginErrorCodeEnum;

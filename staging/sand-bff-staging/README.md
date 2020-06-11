@@ -1,5 +1,10 @@
 # sand-bff v1.0.0
 
+## 依赖
+
+1. 开发环境依赖于 nodemon，需先 npm i nodemon -g
+1. 生产环境依赖于 pm2，需先 npm i pm2 -g
+
 ## 1. TODO:
 
 - ~~eslint-node 纯 node 基于 airbnb-base， bff 应用基于 sand-lint/react~~

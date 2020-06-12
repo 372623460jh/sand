@@ -80,48 +80,22 @@ sand 相关脚手架的 cli 工具。详细文档见./packages/sand-cli/README.m
 - ~~sand-bff node 应用启动时可以区分环境，并把该环境写到前端。~~
 - ~~sso 登录实现 按照 https://www.yuque.com/b121/sand/ha39k6~~
 - ~~@ => src~~
-- node-bff 项目优化，通用错误处理中间件，定时任务通用方法，通用日志处理方法
-- node-bff 项目分层 service，model，controller。controller 处理入口，service 处理业务逻辑，model 领域模型，项目文件优化成:
-  node-bff
-  ├── index.js
-  ├── app
-  | ├── router.js // 路由配置
-  │ ├── assets // 静态资源
-  │ | └── test.json
-  │ ├── controller // 控制器
-  │ | └── home.js
-  │ ├── service // 业务逻辑
-  │ | └── user.js
-  │ ├── middleware // 中间件
-  │ | └── logMiddleware.js
-  │ ├── schedule // 定时任务
-  │ | └── task.js
-  │ ├── model // 领域模型
-  │ | └── user.js
-  │ └── view 视图
-  │ | └── home.html
-  ├── common
-  | ├── config // 配置
-  │ | └── index.js
-  | ├── utils // 工具
-  │ | └── index.js
-  └── test
-  │ └── controller
-  └── └── home.test.js
+- ~~node-bff 项目分层 service，model，controller。controller 处理入口，service 处理业务逻辑，model 领域模型，项目文件目录优化~~
+- node-bff 项目优化，通用错误处理中间件，node-schedule 处理定时任务，定时任务通用方法，通用日志处理方法
 - sand-utils 纯 js 类库，提供像 fetch 之类的方法
 - 脚手架.gitignore 拷贝丢失问题，脚手架项目抽离，sand-cli init 时动态拉脚手架项目可以解决该问题
 - sand 文档完善
-- sand-bff-staging node-schedule 处理定时任务
 - eslint 升 7,rollup 升 2，@babel 升 7.10
-- 登录，登出过程中报错，当做事务来处理
 
 ## bug
 
+- 登录，登出过程中报错，当做事务来处理
 - 解决 sand-mystery 的 jest 报错
 
 ## 4. 学习，调研，提案
 
-- 看 egg 思想，看 koa2 源码。
+- 看 koa2 源码。
+- 看 egg 思想。
 - ts，sand 全部 ts 化
 - node 微服务，sand-node-staging 微服务应用脚手架，只提供服务，gRPC 框架
 - docker 学习，服务器容器化

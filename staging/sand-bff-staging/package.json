@@ -15,7 +15,7 @@
     "init": "npm run clean && npm i && npm run start",
     "clean": "rm -rf ./node_modules ./dist ./package-lock.json ./coverage ./log",
     "start": "npm-run-all --parallel --print-label dev:pc dev:bff",
-    "dev:bff": "cross-env NODE_ENV=development PORT=9539 nodemon ./server/app.js",
+    "dev:bff": "cross-env NODE_ENV=development PORT=9539 nodemon ./server/index.js",
     "prod:bff": "pm2 start ecosystem.config.js --env production",
     "dev:pc": "sand-build start -t pc",
     "build:bc": "sand-build build -t pc",

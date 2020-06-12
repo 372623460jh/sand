@@ -13,13 +13,13 @@
 ### start 命令
 
 1. 对 sand-pc 执行 start -watch 在/下生成监听的构建产物
-2. 执行./server/app.js
+2. 执行./server/index.js
 3. .sandbuildrc.js 中无需配置 port
 
 ### build 命令
 
 1. 对 sand-pc 执行 build 在./dist 下生成构建产物
-2. 这样可以直接将./dist,./server,./node_module 拷贝至服务器，直接 pm2 运行./server/app.js 即可
+2. 这样可以直接将./dist,./server,./node_module 拷贝至服务器，直接 pm2 运行./server/index.js 即可
 
 ### 关于调试部署
 
@@ -53,16 +53,22 @@
 │ ├── index.js # 页面资源
 │ └── index.css # 页面 css 资源
 ├── server
+│ ├── app
+│ │ ├── controller # 控制器
+│ │ ├── db # 数据库
+│ │ ├── middleware # 中间件
+│ │ ├── model # 领域模型
+│ │ ├── view # ejs 模板
+│ │ ├── assets # 静态资源
+│ │ ├── schedule # 定时任务
+│ │ ├── service # 业务逻辑
+│ │ └── router.js # 路由配置
 │ ├── common # 公共文件
 │ │ ├── utils # 公共工具
+│ │ ├── error # 错误码
 │ │ └── config # 公共配置
-│ ├── controllers # 控制器
-│ ├── db # 数据库相关
-│ ├── middleware # 中间件
-│ ├── model # 模型
 │ ├── test # 单测文件
-│ ├── view # ejs 模板
-│ └── app.js # bff 入口文件
+│ └── index.js # bff 入口文件
 ├── src
 │ ├── assets # 额外资源
 │ ├── common # 公共文件
@@ -95,5 +101,6 @@
 ├── babel.config.js # jest babel 对应的配置
 ├── commitlint.config.js # git commit 校验配置
 ├── jest.config.js # jest 配置
+├── ecosystem.config # pm2 启动配置文件
 ├── jsconfig.js
 └── package.json

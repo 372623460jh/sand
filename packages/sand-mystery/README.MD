@@ -1,7 +1,5 @@
 ## 加解密工具包
 
-嘿嘿嘿
-
 ### 加密 demo
 
 node ./bin/sand-mystery.js encrypt /Users/jianghe/Desktop/jianghe_ws/mergeFile/examples/input/image/3.png /Users/jianghe/Desktop/jianghe_ws/mergeFile/examples/input/file/project /Users/jianghe/Desktop/jianghe_ws/mergeFile/examples/output/encrypt/ss.png 1472583690zx -n jianghe

@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return */
 const Sequelize = require('sequelize');
-const config = require('../common/config/dbConf');
+const config = require('../../common/config/dbConf');
 
 const sequelize = new Sequelize(
   config.database,

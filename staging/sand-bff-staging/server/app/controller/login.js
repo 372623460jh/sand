@@ -1,13 +1,13 @@
 const redis = require('../db/redis');
-const { errorLog } = require('../common/utils/log');
-const errorCode = require('../common/error');
-const { decryptByPrivateKey } = require('../common/utils/cert');
+const { errorLog } = require('../../common/utils/log');
+const errorCode = require('../../common/error');
+const { decryptByPrivateKey } = require('../../common/utils/cert');
 const {
   sessionTTL,
   getSessionId,
   SESSION_ID,
   getCookieConfig,
-} = require('../common/config/sessionConf');
+} = require('../../common/config/sessionConf');
 
 /**
  * 解密，校验登录信息的方法
@@ -204,22 +204,4 @@ class LoginController {
   }
 }
 
-const loginController = new LoginController();
-
-module.exports = [
-  {
-    method: 'POST',
-    route: '/login.json',
-    controller: loginController.login,
-  },
-  {
-    method: 'POST',
-    route: '/test.json',
-    controller: loginController.test,
-  },
-  {
-    method: 'POST',
-    route: '/logout.json',
-    controller: loginController.logout,
-  },
-];
+module.exports = LoginController;

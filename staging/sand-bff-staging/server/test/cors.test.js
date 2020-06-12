@@ -1,4 +1,4 @@
-const { checkCorsOrigin } = require('../middleware/corsMiddleware');
+const { checkCorsOrigin } = require('../app/middleware/corsMiddleware');
 
 describe('checkCorsOrigin', () => {
   test('checkCorsOrigin', () => {

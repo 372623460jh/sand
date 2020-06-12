@@ -3,9 +3,9 @@ const {
   unsign,
   sessionTTL,
   getCookieConfig,
-} = require('../common/config/sessionConf');
-const errorCode = require('../common/error');
-const { errorLog } = require('../common/utils/log');
+} = require('../../common/config/sessionConf');
+const errorCode = require('../../common/error');
+const { errorLog } = require('../../common/utils/log');
 /**
  * redis实例
  */

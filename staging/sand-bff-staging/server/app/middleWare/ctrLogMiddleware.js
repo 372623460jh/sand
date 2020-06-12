@@ -1,4 +1,4 @@
-const { commonLog, defaultLog, errorLog } = require('../common/utils/log');
+const { commonLog, defaultLog, errorLog } = require('../../common/utils/log');
 
 /**
  * controller 日志信息输出中间件

@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 const resumeModule = require('../model/resumeModule');
 
 /**
@@ -27,22 +26,4 @@ class ResumeController {
   }
 }
 
-const resumeController = new ResumeController();
-
-module.exports = [
-  {
-    method: 'GET',
-    route: '/getSkills/:userId',
-    controller: resumeController.getSkills,
-  },
-  {
-    method: 'GET',
-    route: '/getProject/:userId',
-    controller: resumeController.getProject,
-  },
-  {
-    method: 'GET',
-    route: '/getMainInfo/:userId',
-    controller: resumeController.getMainInfo,
-  },
-];
+module.exports = ResumeController;

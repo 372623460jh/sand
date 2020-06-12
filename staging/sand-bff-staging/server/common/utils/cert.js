@@ -19,7 +19,9 @@ const getCertkey = (certPath) => {
  * 获取公钥
  */
 const getPublicKey = () => {
-  return getCertkey(getPath(__dirname, '../../assets/cert/rsa_public_key.pem'));
+  return getCertkey(
+    getPath(__dirname, '../../app/assets/cert/rsa_public_key.pem')
+  );
 };
 
 /**
@@ -35,7 +37,7 @@ const getPrivateKey = () => {
     return privateKey;
   }
   privateKey = getCertkey(
-    getPath(__dirname, '../../assets/cert/rsa_private_key.pem')
+    getPath(__dirname, '../../app/assets/cert/rsa_private_key.pem')
   );
   return privateKey;
 };

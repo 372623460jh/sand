@@ -1,7 +1,8 @@
-const { getAssets, ENV_ENUM, getNowEnvConst } = require('../common/utils/env');
-
-// routerPrefix
-const routerPrefix = '/spa';
+const {
+  getAssets,
+  ENV_ENUM,
+  getNowEnvConst,
+} = require('../../common/utils/env');
 
 class EntryController {
   /**
@@ -27,17 +28,4 @@ class EntryController {
   }
 }
 
-const entryController = new EntryController();
-
-module.exports = [
-  {
-    method: 'GET',
-    route: '/',
-    controller: entryController.entryIndex,
-  },
-  {
-    method: 'GET',
-    route: new RegExp(`^${routerPrefix}(?:/|$)`),
-    controller: entryController.entryIndex,
-  },
-];
+module.exports = EntryController;

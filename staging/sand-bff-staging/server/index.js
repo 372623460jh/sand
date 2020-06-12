@@ -5,15 +5,15 @@ const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
 const cors = require('koa2-cors');
 // 加载控制器的中间件返回koa_router.routes对象
-const ctrMiddleware = require('./middleware/controllerMiddleware');
+const ctrMiddleware = require('./app/middleware/controllerMiddleware');
 // cors中间件
-const { getCors } = require('./middleware/corsMiddleware');
+const { getCors } = require('./app/middleware/corsMiddleware');
 // 控制器日志输出中间件
-const ctrLogMiddleware = require('./middleware/ctrLogMiddleware');
+const ctrLogMiddleware = require('./app/middleware/ctrLogMiddleware');
 // 模版引擎中间件用于ssr前端spa页面
-const viewMiddleware = require('./middleware/viewMiddleware');
+const viewMiddleware = require('./app/middleware/viewMiddleware');
 // 登录模块中间件
-const authMiddleware = require('./middleware/authMiddleware');
+const authMiddleware = require('./app/middleware/authMiddleware');
 // 控制台日志
 const { defaultLog } = require('./common/utils/log');
 // 登录中间件白名单配置

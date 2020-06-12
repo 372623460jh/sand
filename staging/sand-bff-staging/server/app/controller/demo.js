@@ -21,17 +21,4 @@ class DemoController {
   }
 }
 
-const demoController = new DemoController();
-
-module.exports = [
-  {
-    method: 'GET',
-    route: '/demo/getUserInfo.json',
-    controller: demoController.getUserInfo,
-  },
-  {
-    method: 'POST',
-    route: '/demo/setUserInfo.json',
-    controller: demoController.setUserInfo,
-  },
-];
+module.exports = DemoController;

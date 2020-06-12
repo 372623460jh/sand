@@ -2,9 +2,9 @@ module.exports = {
   apps: [
     // 生产环境
     {
-      name: 'sand',
+      name: 'sand-bff',
       // 项目启动入口文件
-      script: './server/app.js',
+      script: './server/index.js',
       // // 监听
       // watch: true,
       // 启用多少个实例

@@ -1,6 +1,6 @@
 @jianghe/sand-core
 
-sand-pc 脚手架核心功能,对外暴露。
+sand-pc 脚手架核心功能,对外暴露
 @jianghe/sand-core/react
 @jianghe/sand-core/server
 @jianghe/sand-core/react-dom

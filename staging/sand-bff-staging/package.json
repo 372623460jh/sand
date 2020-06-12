@@ -29,8 +29,8 @@
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
-    "@jianghe/sand-build": "^1.0.4-4",
-    "@jianghe/sand-lint": "^1.0.4-4",
+    "@jianghe/sand-build": "^1.2.2-0",
+    "@jianghe/sand-lint": "^1.2.2-0",
     "cross-env": "^7.0.2",
     "eslint": "^6.8.0",
     "jest": "^26.0.1",
@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.2.1",
-    "@jianghe/sand-core": "^1.0.4-4",
+    "@jianghe/sand-core": "^1.2.2-0",
     "antd": "^4.3.3",
     "axios": "^0.19.2",
     "crypto-js": "^4.0.0",

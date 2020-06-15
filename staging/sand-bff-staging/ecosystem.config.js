@@ -4,7 +4,7 @@ module.exports = {
     {
       name: 'sand-bff',
       // 项目启动入口文件
-      script: './server/index.js',
+      script: './app/index.js',
       // // 监听
       // watch: true,
       // 启用多少个实例

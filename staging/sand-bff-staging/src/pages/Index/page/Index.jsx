@@ -1,42 +1,33 @@
 import React from '@jianghe/sand-core/react';
 import { NavLink } from '@jianghe/sand-core/router-dom';
-import { Button } from 'antd';
+import { Button, message } from 'antd';
 import { post } from '@/common/fetch';
-import { encryptLoginInfo } from '@/common/utils/cert';
 import styles from './index.module.less';
 
 class Index extends React.PureComponent {
   /**
-   * 登录
-   */
-  login = () => {
-    /**
-     * 加密登录信息
-     */
-    const encryptStr = encryptLoginInfo(
-      {
-        accountName: 'jianghe',
-        password: '112233',
-      },
-      // eslint-disable-next-line no-underscore-dangle
-      window.__public_key__
-    );
-
-    post('/login.json', { info: encryptStr });
-  };
-
-  /**
    * 测试
    */
-  test = () => {
-    post('/test.json', {});
+  test = async () => {
+    const { data } = await post('/test.json', {});
+    const { stat, result } = data;
+    if (stat === 'ok') {
+      const {
+        userInfo: { accountName = '' },
+      } = result;
+      message.success(`${accountName}已登录`);
+    }
   };
 
   /**
    * 登出
    */
-  logout = () => {
-    post('/logout.json', {});
+  logout = async () => {
+    const { data } = await post('/logout.json', {});
+    const { stat, result } = data;
+    if (stat === 'ok') {
+      message.success(result);
+    }
   };
 
   render() {
@@ -70,7 +61,6 @@ class Index extends React.PureComponent {
         <NavLink className={styles.link} to="/spa/attention/index/aaa">
           /spa/attention/index/aaa
         </NavLink>
-        <Button onClick={this.login}>登录</Button>
         <Button onClick={this.test}>测试</Button>
         <Button onClick={this.logout}>登出</Button>
       </div>

@@ -5,7 +5,8 @@
       "packages/sand-lint",
       "packages/sand-cli",
       "packages/sand-mystery",
-      "packages/sand-core"
+      "packages/sand-core",
+      "packages/sand-noco"
     ],
     "command": {
       "version": {

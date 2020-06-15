@@ -40,5 +40,7 @@ module.exports = {
     'no-param-reassign': [0], // 允许对函数入参进行操作
     'react/forbid-prop-types': [0], // prop-types允许使用object，any等
     'react/jsx-wrap-multilines': [0], // 单个jsx元素外包裹括号
+    'react/jsx-curly-newline': [0], // 花括号在新行
+    'react/jsx-props-no-spreading': [0], // propsx允许结构
   },
 };

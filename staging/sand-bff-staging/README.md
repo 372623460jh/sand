@@ -13,13 +13,12 @@
 ### start 命令
 
 1. 对 sand-pc 执行 start -watch 在/下生成监听的构建产物
-2. 执行./server/index.js
+2. 执行./app/index.js
 3. .sandbuildrc.js 中无需配置 port
 
 ### build 命令
 
 1. 对 sand-pc 执行 build 在./dist 下生成构建产物
-2. 这样可以直接将./dist,./server,./node_module 拷贝至服务器，直接 pm2 运行./server/index.js 即可
 
 ### 关于调试部署
 
@@ -48,21 +47,21 @@
 ├── dist # 页面构建产物
 │ ├── common.js # react,react-dom 相关资源
 │ ├── vonder.js # 项目静态资源
-│ └── pages # 动态路由文件
-│ └── index # index 页面
+│ ├── pages # 动态路由文件
+│ ├── index.html # index 页面
 │ ├── index.js # 页面资源
 │ └── index.css # 页面 css 资源
-├── server
-│ ├── app
-│ │ ├── controller # 控制器
-│ │ ├── db # 数据库
-│ │ ├── middleware # 中间件
-│ │ ├── model # 领域模型
-│ │ ├── view # ejs 模板
-│ │ ├── assets # 静态资源
-│ │ ├── schedule # 定时任务
-│ │ ├── service # 业务逻辑
-│ │ └── router.js # 路由配置
+├── app
+│ ├── controller # 控制器
+│ ├── db # 数据库
+│ ├── middleware # 中间件
+│ ├── model # 领域模型
+│ ├── view # ejs 模板
+│ ├── assets # 静态资源
+│ ├── schedule # 定时任务
+│ ├── service # 业务逻辑
+│ ├── router # 路由配置
+│ │ └── index.js
 │ ├── common # 公共文件
 │ │ ├── utils # 公共工具
 │ │ ├── error # 错误码

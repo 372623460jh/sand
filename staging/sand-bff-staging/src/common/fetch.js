@@ -1,5 +1,6 @@
 import axios from 'axios';
 import debug from './debug';
+import handleError from './handleError';
 
 /**
  * axios请求的默认配置
@@ -48,6 +49,14 @@ export default function request(url, params) {
   }
 
   /**
+   * 通用错误处理
+   * @param {*} res
+   */
+  function handleResult(res) {
+    return handleError(res);
+  }
+
+  /**
    * 通用异常处理中间件，如超时异常等
    * @param {*} err
    */
@@ -83,6 +92,8 @@ export default function request(url, params) {
     axios({ ...reqParams })
       // 请求结果日志输出
       .then(logRes)
+      // 通用结果处理
+      .then(handleResult)
       // 处理网络异常等报错
       .catch(processError)
   );

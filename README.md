@@ -76,7 +76,6 @@ sand 相关脚手架的 cli 工具。详细文档见./packages/sand-cli/README.m
 - ~~重复登录~~
 - ~~node 应用间 session 同步~~
 - ~~sand-lint babel-eslint 放 dependencies~~
-
 - ~~登录接口非对称加密~~
 - ~~sand-bff node 应用启动时可以区分环境，并把该环境写到前端。~~
 - ~~sso 登录实现 按照 https://www.yuque.com/b121/sand/ha39k6~~

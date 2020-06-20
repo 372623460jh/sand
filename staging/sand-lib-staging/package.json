@@ -38,16 +38,16 @@
     "eslint": "^6.8.0",
     "lerna": "2.11.0",
     "npm-run-all": "^4.1.5",
-    "husky": "^3.1.0",
-    "stylelint": "^13.6.0",
+    "husky": "^4.2.5",
+    "stylelint": "^13.6.1",
     "jest": "^26.0.1",
     "dumi": "^1.0.31",
-    "@jianghe/sand-build": "^1.2.2-0",
-    "@jianghe/sand-lint": "^1.2.2-0"
+    "@jianghe/sand-build": "^1.2.2-6",
+    "@jianghe/sand-lint": "^1.2.2-6"
   },
   "dependencies": {
-    "@jianghe/sand-core": "^1.2.2-0",
+    "@jianghe/sand-core": "^1.2.2-6",
     "@ant-design/icons": "^4.2.1",
-    "antd": "^4.3.3"
+    "antd": "^4.3.4"
   }
 }

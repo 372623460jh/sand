@@ -28,15 +28,15 @@
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
     "eslint": "^6.8.0",
-    "stylelint": "^13.6.0",
-    "husky": "^3.1.0",
+    "stylelint": "^13.6.1",
+    "husky": "^4.2.5",
     "jest": "^26.0.1",
-    "@jianghe/sand-build": "^1.2.2-0",
-    "@jianghe/sand-lint": "^1.2.2-0"
+    "@jianghe/sand-build": "^1.2.2-6",
+    "@jianghe/sand-lint": "^1.2.2-6"
   },
   "dependencies": {
     "@ant-design/icons": "^4.2.1",
-    "@jianghe/sand-core": "^1.2.2-0",
-    "antd": "^4.3.3"
+    "@jianghe/sand-core": "^1.2.2-6",
+    "antd": "^4.3.4"
   }
 }

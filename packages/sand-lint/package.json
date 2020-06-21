@@ -1,6 +1,6 @@
 {
   "name": "@jianghe/sand-lint",
-  "version": "1.2.2-9",
+  "version": "1.2.2-10",
   "private": false,
   "description": "sand项目的lint统一规范",
   "main": "./react.js",

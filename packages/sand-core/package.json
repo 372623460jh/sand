@@ -1,6 +1,6 @@
 {
   "name": "@jianghe/sand-core",
-  "version": "1.2.2-10",
+  "version": "1.2.2-11",
   "private": false,
   "description": "sand pc的核心功能",
   "license": "MIT",
@@ -24,6 +24,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^6.0.1",
+    "react-router": "^4.3.1",
     "react-router-config": "^5.1.1",
     "react-router-dom": "^4.3.1"
   },

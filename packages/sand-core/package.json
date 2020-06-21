@@ -1,6 +1,6 @@
 {
   "name": "@jianghe/sand-core",
-  "version": "1.2.2-8",
+  "version": "1.2.2-9",
   "private": false,
   "description": "sand pc的核心功能",
   "license": "MIT",
@@ -19,12 +19,12 @@
   "scripts": {},
   "dependencies": {
     "dva-core": "^1.4.0",
-    "history": "^4.9.0",
+    "history": "^4.10.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^6.0.1",
-    "react-router-config": "^5.0.0",
+    "react-router-config": "^5.1.1",
     "react-router-dom": "^4.3.1"
   },
   "repository": {

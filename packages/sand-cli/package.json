@@ -1,6 +1,6 @@
 {
   "name": "@jianghe/sand-cli",
-  "version": "1.2.2-8",
+  "version": "1.2.2-9",
   "private": false,
   "description": "sand cli工具",
   "main": "./bin/sand-cli.js",
@@ -30,13 +30,13 @@
     "init": "node ./bin/sand-cli.js init"
   },
   "dependencies": {
-    "chalk": "^2.4.2",
+    "chalk": "^4.1.0",
     "child_process": "^1.0.2",
-    "commander": "^2.20.3",
+    "commander": "^5.1.0",
     "copy-dir": "^1.3.0",
     "edit-json-file": "^1.4.0",
     "empty-dir": "^2.0.0",
-    "inquirer": "^6.5.2"
+    "inquirer": "^7.2.0"
   },
   "repository": {
     "type": "git",

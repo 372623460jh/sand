@@ -1,6 +1,6 @@
 {
   "name": "@jianghe/sand-lint",
-  "version": "1.2.2-8",
+  "version": "1.2.2-9",
   "private": false,
   "description": "sand项目的lint统一规范",
   "main": "./react.js",
@@ -24,7 +24,7 @@
     "access": "public"
   },
   "peerDependencies": {
-    "eslint": "^7.3.0",
+    "eslint": "~7.2.0",
     "stylelint": "^13.6.1"
   },
   "dependencies": {

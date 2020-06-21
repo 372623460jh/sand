@@ -1,6 +1,6 @@
 {
   "name": "@jianghe/sand-mystery",
-  "version": "1.2.2-8",
+  "version": "1.2.2-9",
   "private": false,
   "description": "合并",
   "main": "./bin/sand-mystery.js",
@@ -19,8 +19,8 @@
   },
   "scripts": {},
   "dependencies": {
-    "chalk": "^2.4.2",
-    "commander": "^2.20.3",
+    "chalk": "^4.1.0",
+    "commander": "^5.1.0",
     "fstream": "^1.0.12",
     "tar": "^2.2.2"
   },

@@ -15,13 +15,14 @@ function getCommonPlugin(opts) {
        * copy插件将某个文件夹下的内容拷贝到指定目录下
        * ./src/assets拷贝到./dist/assets
        */
-      new CopyWebpackPlugin([
-        {
-          from: getPath(basePath, './src/assets'),
-          to: getPath(basePath, './dist/assets'),
-          ignore: ['.*'],
-        },
-      ]),
+      new CopyWebpackPlugin({
+        patterns: [
+          {
+            from: getPath(basePath, './src/assets'),
+            to: getPath(basePath, './dist/assets'),
+          },
+        ],
+      }),
     ];
   }
   return [];

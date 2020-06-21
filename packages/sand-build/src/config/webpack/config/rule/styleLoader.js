@@ -18,9 +18,15 @@ function getStyleLoader(isProd, enableModule = false, enableLess = false) {
       options: {
         // css-loader 前还有几个loader
         importLoaders: enableLess ? 2 : 1,
-        modules: enableModule,
-        camelCase: 'dashesOnly',
-        localIdentName: '[local]___[hash:base64:5]',
+        // css modules
+        modules: enableModule
+          ? {
+              // css-loader更新后的写法
+              localIdentName: '[path][name]-[local]-[hash:5]',
+            }
+          : enableModule,
+        // 使用驼峰命名，类名中的破折号将被处理，原始的类名将从局部变量中删除
+        localsConvention: 'camelCaseOnly',
       },
     },
     // postcss-loader
@@ -36,7 +42,9 @@ function getStyleLoader(isProd, enableModule = false, enableLess = false) {
     result.push({
       loader: 'less-loader',
       options: {
-        javascriptEnabled: true,
+        lessOptions: {
+          javascriptEnabled: true,
+        },
       },
     });
   }

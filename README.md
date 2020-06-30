@@ -86,7 +86,6 @@ sand 相关脚手架的 cli 工具。详细文档见./packages/sand-cli/README.m
 - ~~eslint 6 升 7.2, 不升 7.3 的原因是 7.3 对 import/no-cycle 兼容有问题，see：https://github.com/airbnb/javascript/issues/2227 ~~
 - ~~@babel 升 7.10~~
 - ~~node-bff 项目优化，通用错误处理中间件。通用日志处理方法~~
-
 - sand-build 增加 ts 的构建
 - sand-lint 丰富，vue，prettier，commitlint，ts
 - node-bff node-schedule 处理定时任务，定时任务通用方法

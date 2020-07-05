@@ -1,4 +1,37 @@
-<a name="1.0.0-6"></a>
+<a name="1.2.2"></a>
+
+## 1.2.2 (2020-07-05)
+
+### Bug Fixes
+
+- 修复 sand-cli 初始化 sand-lib 时拷贝 packages 目录下的 package.json 没有重命名的问题 ([88cb75f](https://github.com/372623460jh/sand/commit/88cb75f))
+- 用 husky 替代 pre-commit 解决 commitlint 失效的问题 ([0929ccc](https://github.com/372623460jh/sand/commit/0929ccc))
+
+### Features
+
+- sand-bff 增加 session cookie 中间件 ([10426d0](https://github.com/372623460jh/sand/commit/10426d0))
+- sand-bff 接口支持非对称加密,完善 sand-bff 项目启动时可以区分环境，并把该环境写到前端 ([05b0380](https://github.com/372623460jh/sand/commit/05b0380))
+- sand-bff 支持 sso,通过 redis 解决 session 共享问题,解决重复登录问题,解决 sand-lint@1.0.3 的问题 ([3f31109](https://github.com/372623460jh/sand/commit/3f31109))
+- 修改[@jianghe](https://github.com/jianghe)/sand-lint 支持 ts,commitlint,prettier,并且更合理的分类;[@jianghe](https://github.com/jianghe)/sand-build 支持 webpack ts 构建 ([5c85a86](https://github.com/372623460jh/sand/commit/5c85a86))
+- 修改 sand 整体项目版本号至 1.2.0,原因是 sand-core 有一个老的 1.1.5 的废弃版本导致默认拉取新包时报错 ([5980821](https://github.com/372623460jh/sand/commit/5980821))
+- 修改项目依赖,升级为最新版本 ([2c1e290](https://github.com/372623460jh/sand/commit/2c1e290))
+- 修改项目依赖,升级为最新版本 ([9a70092](https://github.com/372623460jh/sand/commit/9a70092))
+- 回归每一个脚手架,修复发现的问题,增加 phaser game ts 脚手架 ([c0fc01e](https://github.com/372623460jh/sand/commit/c0fc01e))
+- 增加 prettier ([6611f74](https://github.com/372623460jh/sand/commit/6611f74))
+- 完成应用的依赖升级 babal 升 7.10,eslint 升 7.2(7.3 有问题),css-loader less-loader 升为最新版本,并进行了回归 ([c371115](https://github.com/372623460jh/sand/commit/c371115))
+
+<a name="1.0.0-7"></a>
+
+# 1.0.0-7 (2020-07-05)
+
+### Bug Fixes
+
+- 修复 sand-cli 初始化 sand-lib 时拷贝 packages 目录下的 package.json 没有重命名的问题 ([88cb75f](https://github.com/372623460jh/sand/commit/88cb75f))
+- 用 husky 替代 pre-commit 解决 commitlint 失效的问题 ([0929ccc](https://github.com/372623460jh/sand/commit/0929ccc))
+- 提取 sand-noco 并在 sand-bff 中应用,sand-bff 应用增加登录弹窗 ([12e9a0a](https://github.com/372623460jh/sand/commit/12e9a0a))
+- 将项目中的 pre-commit 替换成 husky 用来支持 commitlint ([7c256bd](https://github.com/372623460jh/sand/commit/7c256bd))
+
+### Features
 
 # 1.0.0-6 (2020-06-04)
 

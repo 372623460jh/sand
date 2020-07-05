@@ -38,6 +38,7 @@ async function init() {
     case 'sand-lib':
     case 'sand-bff':
     case 'sand-docs':
+    case 'sand-game-phaser-ts':
       // 选择项目脚手架
       createStaging({ type: stagingEnum[type].name });
       break;

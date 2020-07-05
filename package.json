@@ -1,6 +1,6 @@
 {
   "name": "sand",
-  "version": "1.0.0-7",
+  "version": "1.2.2",
   "description": "sand核心包仓库",
   "author": "jianghe",
   "license": "MIT",
@@ -37,9 +37,9 @@
     "start": "npm-run-all --parallel --print-label build:watch server",
     "start:docs": "dumi dev",
     "publish": "npm run build:production && lerna publish",
-    "lint": "eslint ./packages ./examples ./staging --ext .jsx,.js,.ts,.tsx",
+    "lint": "eslint ./packages ./examples --ext .jsx,.js,.ts,.tsx",
     "lint:fix": "npm run lint -- --fix",
-    "lint:style": "stylelint \"packages/**/*.less\" \"examples/**/*.less\" \"staging/**/*.less\" --syntax less",
+    "lint:style": "stylelint \"packages/**/*.less\" \"examples/**/*.less\" --syntax less",
     "lint:style:fix": "npm run lint:style -- --fix",
     "test": "jest",
     "ci": "npm run lint:fix && npm run lint:style:fix && npm run lint && npm run lint:style && npm run test"
@@ -55,8 +55,8 @@
   ],
   "devDependencies": {
     "@commitlint/cli": "^9.0.1",
-    "@jianghe/sand-build": "^1.2.2-12",
-    "@jianghe/sand-lint": "^1.2.2-12",
+    "@jianghe/sand-build": "^1.2.3-0",
+    "@jianghe/sand-lint": "^1.2.3-0",
     "conventional-changelog": "^3.1.21",
     "dumi": "^1.0.31",
     "eslint": "~7.2.0",

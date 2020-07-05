@@ -1,0 +1,50 @@
+{
+  "name": "sand-game-phaser-ts-staging",
+  "version": "1.0.0",
+  "description": "sand phaser游戏ts脚手架",
+  "author": "jianghe",
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "scripts": {
+    "init": "npm run clean && npm i && npm run start",
+    "clean": "rm -rf ./node_modules ./dist ./package-lock.json ./coverage ./declaration",
+    "start": "sand-build start -t mob",
+    "build": "sand-build build -t mob",
+    "eslint": "eslint ./src --ext .jsx,.js,.ts,.tsx",
+    "eslint:fix": "eslint ./src --ext .jsx,.js,.ts,.tsx --fix",
+    "stylelint": "stylelint \"src/**/*.less\" --syntax less",
+    "stylelint:fix": "stylelint \"src/**/*.less\" --syntax less --fix",
+    "test": "jest",
+    "ci": "npm run eslint:fix && npm run stylelint:fix && npm run eslint && npm run stylelint && npm run test"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "devDependencies": {
+    "@babel/preset-env": "7.10.4",
+    "@babel/preset-typescript": "^7.10.4",
+    "@commitlint/cli": "^9.0.1",
+    "@jianghe/sand-build": "^1.2.3-0",
+    "@jianghe/sand-lint": "^1.2.3-0",
+    "@types/jest": "^26.0.3",
+    "@types/react": "^16.9.41",
+    "@types/react-dom": "^16.9.8",
+    "@types/webpack-env": "^1.15.2",
+    "eslint": "~7.2.0",
+    "stylelint": "^13.6.1",
+    "husky": "^4.2.5",
+    "jest": "^26.1.0",
+    "jest-css-modules": "^2.1.0",
+    "ts-jest": "^26.1.1",
+    "typescript": "^3.9.6"
+  },
+  "dependencies": {
+    "phaser": "^3.23.0",
+    "@jianghe/sand-core": "^1.2.3-0",
+    "antd": "^4.4.0"
+  }
+}

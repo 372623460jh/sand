@@ -1,0 +1,10 @@
+node_modules/
+build/
+declaration/
+dist/
+.DS_Store
+.idea/
+*.tmp
+*.bak
+coverage/
+.vscode

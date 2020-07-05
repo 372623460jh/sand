@@ -1,0 +1,14 @@
+**/*.svg
+/yarn.lock
+node_modules
+coverage
+dist
+build
+declaration
+
+# OS files.
+.DS_Store
+.idea/
+.vscode/
+.git
+*.log

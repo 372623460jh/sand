@@ -3,3 +3,4 @@ esm
 cjs
 node_modules
 sand-bff-staging
+/packages/sand-cli/staging/*

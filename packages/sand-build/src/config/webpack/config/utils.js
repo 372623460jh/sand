@@ -107,7 +107,7 @@ function getHtmlWebpackPlugin(entryMap) {
           hash: true, // 给编译的js加？hash 用于清楚缓存  //<script type=text/javascript src=bundle.js?22b9692e22e7be37b57e></script>
           // minify 的作用是对 html 文件进行压缩
           minify: {
-            removeAttributeQuotes: true, // 对属性的引号进行删除
+            removeAttributeQuotes: false, // 对属性的引号进行删除
             minifyJS: true,
             minifyCSS: true,
           },
@@ -139,7 +139,7 @@ function getSandWebpackPlugin(opts) {
       hash: true, // 给编译的js加？hash 用于清楚缓存  //<script type=text/javascript src=bundle.js?22b9692e22e7be37b57e></script>
       // minify 的作用是对 html 文件进行压缩
       minify: {
-        removeAttributeQuotes: true, // 对属性的引号进行删除
+        removeAttributeQuotes: false, // 对属性的引号进行删除
         minifyJS: true,
         minifyCSS: true,
       },

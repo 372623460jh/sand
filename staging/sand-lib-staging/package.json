@@ -39,14 +39,14 @@
     "npm-run-all": "^4.1.5",
     "husky": "^4.2.5",
     "stylelint": "^13.6.1",
-    "jest": "^26.0.1",
+    "jest": "^26.1.0",
     "dumi": "^1.0.31",
-    "@jianghe/sand-build": "^1.2.2-12",
-    "@jianghe/sand-lint": "^1.2.2-12"
+    "@jianghe/sand-build": "^1.2.3-0",
+    "@jianghe/sand-lint": "^1.2.3-0"
   },
   "dependencies": {
-    "@jianghe/sand-core": "^1.2.2-12",
+    "@jianghe/sand-core": "^1.2.3-0",
     "@ant-design/icons": "^4.2.1",
-    "antd": "^4.3.5"
+    "antd": "^4.4.0"
   }
 }

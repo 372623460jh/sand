@@ -83,11 +83,12 @@ sand 相关脚手架的 cli 工具。详细文档见./packages/sand-cli/README.m
 - ~~node-bff 项目分层 service，model，controller。controller 处理入口，service 处理业务逻辑，model 领域模型，项目文件目录优化~~
 - ~~单独抽离出 node-noco 基于 koa 的框架~~
 - ~~husky 替换 pre-commit~~
-- ~~eslint 6 升 7.2, 不升 7.3 的原因是 7.3 对 import/no-cycle 兼容有问题，see：https://github.com/airbnb/javascript/issues/2227 ~~
+- ~~eslint 6 升 7.2, 不升 7.3 的原因是 7.3 对 import/no-cycle 兼容有问题~~ 看：https://github.com/airbnb/javascript/issues/2227
 - ~~@babel 升 7.10~~
 - ~~node-bff 项目优化，通用错误处理中间件。通用日志处理方法~~
-- sand-build 增加 ts 的构建
-- sand-lint 丰富，vue，prettier，commitlint，ts，完善 sand-lint 文档站点
+- ~~sand-build 增加 ts 的构建~~
+- ~~sand-lint 丰富 prettier，commitlint，ts，完善 sand-lint 文档站点~~
+- ~~增加 sand-game-phaser-ts 脚手架~~
 - node-bff node-schedule 处理定时任务，定时任务通用方法
 - sand-utils 纯 js 类库，提供像 fetch 之类的方法
 - 脚手架.gitignore 拷贝丢失问题，脚手架项目抽离，sand-cli init 时动态拉脚手架项目可以解决该问题

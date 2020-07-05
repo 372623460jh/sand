@@ -14,5 +14,11 @@ module.exports = {
       // 白名单
       whiteList: ['^/spa(?:/|$)', '^/$'],
     },
+    copyPlugin: [
+      {
+        from: path.resolve(__dirname, './src/assets'),
+        to: path.resolve(__dirname, './dist/assets'),
+      },
+    ],
   },
 };

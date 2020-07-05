@@ -25,7 +25,7 @@ npm i @jianghe/sand-lint --save
 
 #### 1. react
 
-- 安装依赖
+- 安装依赖.
 
   1. eslint
   2. @jianghe/sand-lint

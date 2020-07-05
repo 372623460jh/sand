@@ -109,6 +109,8 @@ function getProdWebpackConfig(opts) {
           cache: true,
           parallel: true,
           sourceMap: true,
+          // 不单独提取注释文件
+          extractComments: false,
           terserOptions: {
             output: {
               ascii_only: true,

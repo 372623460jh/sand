@@ -1,0 +1,6 @@
+dist
+build
+declaration
+node_modules
+src/@types/*
+*.html

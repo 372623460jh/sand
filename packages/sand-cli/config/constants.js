@@ -24,6 +24,10 @@ const stagingEnum = {
     name: 'sand-docs',
     fileName: 'sand-docs-staging',
   },
+  'sand-game-phaser-ts': {
+    name: 'sand-game-phaser-ts',
+    fileName: 'sand-game-phaser-ts-staging',
+  },
 };
 
 module.exports = {

@@ -19,7 +19,7 @@
   },
   "scripts": {},
   "peerDependencies": {
-    "@jianghe/sand-core": "^1.2.2-14"
+    "@jianghe/sand-core": "^1.2.3-0"
   },
   "dependencies": {
     "@babel/cli": "^7.10.4",

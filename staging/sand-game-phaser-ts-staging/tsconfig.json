@@ -1,0 +1,104 @@
+{
+  "compilerOptions": {
+    /* 基本选项 */
+    // 最终生成es5
+    "target": "es5",
+    // 自动生成描述d.ts
+    "declaration": true,
+    // 生成相应的 '.map' 文件
+    "sourceMap": true,
+    // 指定要包含在编译中的库文件
+    // "lib": ["es2015"],
+    // 报告 javascript 文件中的错误
+    "checkJs": true,
+    // 允许编译 javascript 文件
+    "allowJs": true,
+    // 指定使用模块: 'commonjs', 'amd'等
+    "module": "esnext",
+    // 指定 jsx 代码的生成 'preserve', 'react-native', or 'react'
+    "jsx": "react",
+    // 将输出文件合并为一个文件
+    // "outFile": "./",
+    // ts声明输出的目录
+    "outDir": "./declaration",
+    // 用来控制输出目录结构 --outDir.
+    "rootDir": "./src",
+    // 删除编译后的所有的注释
+    "removeComments": false,
+    // 不生成输出文件
+    "noEmit": false,
+    // 从 tslib 导入辅助工具函数
+    "importHelpers": true,
+    // 将每个文件做为单独的模块
+    "isolatedModules": true,
+
+    /* 严格的类型检查选项 */
+    // 启用所有严格类型检查选项
+    "strict": false,
+    // 在表达式和声明上有隐含的 any类型时报错
+    "noImplicitAny": false,
+    // 启用严格的 null ，undefined检查，为false是null和undefined可以赋值给任意类型
+    "strictNullChecks": false,
+    // 当 this 表达式值为 any 类型的时候，生成一个错误
+    "noImplicitThis": false,
+    // 以严格模式检查每个模块，并在每个文件里加入 'use strict'
+    "alwaysStrict": true,
+
+    /* 额外的检查 */
+    // 有未使用的变量时，抛出错误
+    "noUnusedLocals": true,
+    // 有未使用的参数时，抛出错误
+    "noUnusedParameters": true,
+    // 并不是所有函数里的代码都有返回值时，抛出错误
+    "noImplicitReturns": true,
+    // 报告 switch 语句的 fallthrough 错误。（即，不允许 switch 的 case 语句贯穿）
+    "noFallthroughCasesInSwitch": true,
+
+    /* 模块解析选项 */
+    // 选择模块解析策略： 'node' (Node.js) or 'classic' (TypeScript pre-1.6)
+    "moduleResolution": "node",
+    // 用于解析非相对模块名称的基目录
+    "baseUrl": "./",
+    // 模块名到基于 baseUrl 的路径映射的列表
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    // 根文件夹列表，其组合内容表示项目运行时的结构内容
+    "rootDirs": [],
+    // 包含类型声明的文件列表
+    "typeRoots": [
+      "node_modules/@types",
+      "src/@types",
+      "node_module/phaser/types"
+    ],
+    // 需要包含的类型声明文件名列表
+    "types": ["jest", "react", "react-dom"],
+    // 允许从没有设置默认导出的模块中默认导入。
+    "allowSyntheticDefaultImports": true
+
+    /* Source Map Options */
+    // 指定调试器应该找到 TypeScript 文件而不是源文件的位置
+    // "sourceRoot": "./",
+    // 指定调试器应该找到映射文件而不是生成文件的位置
+    // "mapRoot": "./",
+    // 生成1个 soucemaps 文件，而不是将 sourcemaps 生成不同的文件
+    // "inlineSourceMap": true,
+    // 将代码与 sourcemaps 生成到一个文件中，要求同时设置了 --inlineSourceMap 或 --sourceMap 属性
+    // "inlineSources": true,
+
+    /* 其他选项 */
+    // 启用装饰器
+    // "experimentalDecorators": true,
+    // 为装饰器提供元数据的支持
+    // "emitDecoratorMetadata": true,
+    // 支持使用import d from cjs的方式引入commonjs
+    // "esModuleInterop": true
+  },
+  // 指定需要编译的文件
+  "include": [
+    // 使用 globs：**/* （一个示例用法：some/folder/**/*）意味着匹配所有的文件夹和所有文件（扩展名为 .ts/.tsx，当开启了 allowJs: true 选项时，扩展名可以是 .js/.jsx）。
+    "src/**/*"
+  ],
+  // 排除的文件
+  "exclude": []
+}

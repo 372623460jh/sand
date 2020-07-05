@@ -31,8 +31,7 @@ node ./packages/sand-build/bin/sand-build.js build --env prod --watch --link
 ```
 import factory from './config/rollup';
 import lib1 from './packages/lib1/package.json';
-import path from 'path'
-
+import path from 'path';
 {
   // 服务启动端口
   port: 9538,
@@ -53,7 +52,10 @@ import path from 'path'
         use,
       }
     ],
-    // 别名,非必填
+    // 别名,非必填,例子如下
+    // alias: {
+    //   '@': path.resolve(__dirname, '../../src/'),
+    // },
     alias: {},
     // history中间件选项，决定哪些请求需要重定向到index.html,解决history路由找不到页面的情况,非必填
     historyApiOpts: {

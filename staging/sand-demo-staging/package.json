@@ -29,13 +29,13 @@
     "eslint": "~7.2.0",
     "stylelint": "^13.6.1",
     "husky": "^4.2.5",
-    "jest": "^26.0.1",
-    "@jianghe/sand-build": "^1.2.2-12",
-    "@jianghe/sand-lint": "^1.2.2-12"
+    "jest": "^26.1.0",
+    "@jianghe/sand-build": "^1.2.3-0",
+    "@jianghe/sand-lint": "^1.2.3-0"
   },
   "dependencies": {
     "@ant-design/icons": "^4.2.1",
-    "@jianghe/sand-core": "^1.2.2-12",
-    "antd": "^4.3.5"
+    "@jianghe/sand-core": "^1.2.3-0",
+    "antd": "^4.4.0"
   }
 }

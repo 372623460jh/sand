@@ -1,6 +1,6 @@
 {
   "name": "@jianghe/sand-noco",
-  "version": "1.2.2-12",
+  "version": "1.2.2-13",
   "private": false,
   "description": "node",
   "main": "./index.js",

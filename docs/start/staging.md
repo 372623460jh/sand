@@ -18,10 +18,14 @@ order: 3
 
 ### 5. sand-bff
 
-### 6. sand-mob
+### 6. sand-game-phaser-ts
+
+ts phaser 2d 游戏脚手架
+
+### 7. sand-mob
 
 > TODO: 移动端最佳实践。
 
-### 7. sand-node
+### 8. sand-node
 
 > TODO: node 微服务，gRPC 服务最佳实践。

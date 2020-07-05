@@ -1,4 +1,4 @@
-# sand v1.0.0
+# sand v1.2.2
 
 [中文文档](https://sand.zirupay.com/)
 
@@ -37,7 +37,8 @@ sand 相关脚手架的 cli 工具。详细文档见./packages/sand-cli/README.m
 3. sand-pc-staging pc 脚手架
 4. sand-bff-staging bff 应用脚手架
 5. sand-docs-staging 基于 dumi 的文档脚手架
-6. sand-mob-staging 移动脚手架（TODO）
+6. sand-game-phaser-ts-staging 基于 phaser 的游戏 ts 脚手架
+7. sand-mob-staging 移动脚手架（TODO）
 
 ### debug 目录
 
@@ -89,6 +90,7 @@ sand 相关脚手架的 cli 工具。详细文档见./packages/sand-cli/README.m
 - ~~sand-build 增加 ts 的构建~~
 - ~~sand-lint 丰富 prettier，commitlint，ts，完善 sand-lint 文档站点~~
 - ~~增加 sand-game-phaser-ts 脚手架~~
+- sand.zirupay.com nginx 修改，解决刷新 404 问题
 - node-bff node-schedule 处理定时任务，定时任务通用方法
 - sand-utils 纯 js 类库，提供像 fetch 之类的方法
 - 脚手架.gitignore 拷贝丢失问题，脚手架项目抽离，sand-cli init 时动态拉脚手架项目可以解决该问题

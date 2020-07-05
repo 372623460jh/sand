@@ -119,6 +119,8 @@ function stdWebpackOptions(options) {
     otherRules = [], // webpack要扩展的其他rules（非必填，默认：[]）
     alias = {}, // 别名,非必填
     historyApiOpts = {}, // history中间件选项，决定哪些请求需要重定向到index.html,解决history路由找不到页面的情况
+    outputPath = '', // 输出路径 为空的话指向process.cwd()/dist
+    copyPlugin = [], // 拷贝插件
   } = options;
   if (!entryHtml || !entry) {
     logError('webpackOptions.entryHtml和webpackOptions.entry为必填项');
@@ -131,6 +133,8 @@ function stdWebpackOptions(options) {
     otherRules,
     alias,
     historyApiOpts,
+    outputPath,
+    copyPlugin,
   };
 }
 

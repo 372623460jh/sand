@@ -2,6 +2,7 @@ const { getPath } = require('../../../utils');
 const { getCommonStyleLoader } = require('./rule/styleLoader');
 const { getOtherLoader } = require('./rule/otherLoader');
 const { getJsLoader } = require('./rule/jsLoader');
+const { getTsLoader } = require('./rule/tsLoader');
 const { typeEnum } = require('../../../constant');
 const { getCommonPlugin } = require('./plugin/commonPlugin');
 const { logError } = require('../../../utils');
@@ -12,11 +13,11 @@ const { logError } = require('../../../utils');
  */
 function getOutputConfig(opts) {
   const { type = typeEnum.pc, webpackOptions = {} } = opts;
-  const { basePath } = webpackOptions;
+  const { basePath, outputPath } = webpackOptions;
   if (type === typeEnum.pc) {
     return {
       // 输出路径
-      path: getPath(basePath, './dist'),
+      path: outputPath || getPath(basePath, './dist'),
       filename: '[name].js',
       chunkFilename: '[name].js',
       publicPath: '/',
@@ -25,14 +26,19 @@ function getOutputConfig(opts) {
   if (type === typeEnum.demo) {
     return {
       // 输出路径
-      path: getPath(basePath, './dist'),
+      path: outputPath || getPath(basePath, './dist'),
       filename: '[name].js',
       publicPath: '/',
     };
   }
   if (type === typeEnum.mob) {
-    logError('暂不支持mob');
-    return {};
+    return {
+      // 输出路径
+      path: outputPath || getPath(basePath, './dist'),
+      filename: '[name].js',
+      chunkFilename: '[name].js',
+      publicPath: '/',
+    };
   }
   logError('传入的type不对，只允许传入pc/mob/demo');
   return {};
@@ -49,8 +55,10 @@ function getCommonConfig(opts) {
   return {
     output: getOutputConfig(opts),
     rules: []
-      // 获取处理脚本的loader
+      // 获取处理js的loader
       .concat(getJsLoader(opts))
+      // 获取处理ts的loader
+      .concat(getTsLoader(opts))
       // 获取公共的style loader
       .concat(getCommonStyleLoader(isProd))
       // 获取图片，字体的loader

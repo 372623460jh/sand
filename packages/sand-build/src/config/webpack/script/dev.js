@@ -14,10 +14,11 @@ const historyApiFallback = require('../../../middleware/historyApiMiddleware');
 const { getSandBuildConfig, getPath } = require('../../../utils');
 
 /**
- * 启动应用
+ * 启动应用 start命令env都是development
  * obj: {
- *    env: prod/dev
+ *    env: production/development
  *    type: pc/mob/demo
+ *    sandbuildrcPath
  * }
  */
 function startApp(obj) {
@@ -39,14 +40,15 @@ function startApp(obj) {
   // 创建koa2实例
   const app = new Koa();
 
+  // webpackConfig
+  const webpackConfig = getDevWebpackConfig({
+    ...opts,
+    env,
+    type,
+  });
+
   // 使用webpack处理webpack_dev_config
-  const compiler = webpack(
-    getDevWebpackConfig({
-      ...opts,
-      env,
-      type,
-    })
-  );
+  const compiler = webpack(webpackConfig);
 
   // 是否启用中间件
   if (enable) {

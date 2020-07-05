@@ -12,19 +12,26 @@ const { typeEnum } = require('../../../constant');
  */
 function getEntryAndPlugins(opts) {
   const { type = typeEnum.pc } = opts;
+  const {
+    getEntryMap,
+    getSandEntry,
+    getSandWebpackPlugin,
+    getWebpackEntry,
+    getHtmlWebpackPlugin,
+  } = utils;
   if (type === typeEnum.demo) {
     // 解析examples目录生成入口map
-    const entryMap = utils.getEntryMap(opts);
+    const entryMap = getEntryMap(opts);
     // 根据entryMap生成webpack entryMap
     return {
-      entry: utils.getWebpackEntry(entryMap, opts),
-      plugins: utils.getHtmlWebpackPlugin(entryMap, opts),
+      entry: getWebpackEntry(entryMap, opts),
+      plugins: getHtmlWebpackPlugin(entryMap, opts),
     };
   }
-  if (type === typeEnum.pc) {
+  if (type === typeEnum.pc || type === typeEnum.mob) {
     return {
-      entry: utils.getSandPcEntry(opts),
-      plugins: utils.getSandPcWebpackPlugin(opts),
+      entry: getSandEntry(opts),
+      plugins: getSandWebpackPlugin(opts),
     };
   }
   return { entry: {}, plugins: [] };
@@ -55,7 +62,7 @@ function getProdWebpackConfig(opts) {
     // 解析
     resolve: {
       // 文件引入时支持以下类型不加后缀
-      extensions: ['.js', '.jsx', '.json'],
+      extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
       mainFields: ['browser', 'module', 'main'],
       // 别名
       alias,

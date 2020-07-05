@@ -1,3 +1,1 @@
-module.exports = {
-  extends: ['@commitlint/config-conventional'],
-};
+module.exports = { extends: ['@jianghe/sand-lint/commitlint'] };

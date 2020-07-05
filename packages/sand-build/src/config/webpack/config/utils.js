@@ -123,7 +123,7 @@ function getHtmlWebpackPlugin(entryMap) {
  * 获取sand-pc WebpackPlugin
  * @param {*}
  */
-function getSandPcWebpackPlugin(opts) {
+function getSandWebpackPlugin(opts) {
   const { webpackOptions = {} } = opts;
   const { entryHtml } = webpackOptions;
   if (!entryHtml) {
@@ -152,7 +152,7 @@ function getSandPcWebpackPlugin(opts) {
  * 获取sand-pc entry
  * @param {*}
  */
-function getSandPcEntry(opts) {
+function getSandEntry(opts) {
   const { env, webpackOptions } = opts;
   const { entry = '' } = webpackOptions;
   if (!entry) {
@@ -175,6 +175,6 @@ module.exports = {
   getEntryMap,
   getWebpackEntry,
   getHtmlWebpackPlugin,
-  getSandPcEntry,
-  getSandPcWebpackPlugin,
+  getSandEntry,
+  getSandWebpackPlugin,
 };

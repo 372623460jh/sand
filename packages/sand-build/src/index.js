@@ -36,10 +36,10 @@ function start(options) {
     type = typeEnum.pc,
     sandbuildrcPath = '', // 指定sandbuildrc入口只有debug时会有此入参
   } = options;
-  // start都是dev
+  // start都是development
   const env = 'development';
-  if (type === typeEnum.pc || type === typeEnum.demo) {
-    // pc或者demo时启动webpack服务
+  if (type === typeEnum.pc || type === typeEnum.demo || type === typeEnum.mob) {
+    // pc||demo||mob时启动webpack服务
     startApp({
       type,
       env,

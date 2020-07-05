@@ -16,7 +16,7 @@
     "dumi": "^1.0.31"
   },
   "dependencies": {
-    "@jianghe/sand-core": "^1.2.2-11",
+    "@jianghe/sand-core": "^1.2.2-12",
     "@ant-design/icons": "^4.2.1",
     "antd": "^4.3.5"
   }

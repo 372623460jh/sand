@@ -1,5 +1,5 @@
 /**
- * eslint-node配置
+ * eslint-node配置 支持prettier
  */
 module.exports = {
   extends: ['eslint-config-airbnb-base', 'prettier'],

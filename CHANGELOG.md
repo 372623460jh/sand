@@ -84,7 +84,7 @@
 - 增加规划 ([736d710](https://github.com/372623460jh/sand/commit/736d710))
 - 增加规划 ([2eafc0e](https://github.com/372623460jh/sand/commit/2eafc0e))
 - 完善 sand-bff 应用 ([4b17bcd](https://github.com/372623460jh/sand/commit/4b17bcd))
-- 完善 sand-build 的功能,支持 lib,demo dev/prod 的构建 ([5f87ebd](https://github.com/372623460jh/sand/commit/5f87ebd))
+- 完善 sand-build 的功能,支持 lib,demo development/production 的构建 ([5f87ebd](https://github.com/372623460jh/sand/commit/5f87ebd))
 - 完成 sand-cli 的开发,支持 sand-lib-staging ([bdeb4e3](https://github.com/372623460jh/sand/commit/bdeb4e3))
 - 文档修改和 rollup 支持 babel 替换 ([ded20ab](https://github.com/372623460jh/sand/commit/ded20ab))
 - 梳理 sand-bff 应用目录结构 ([a362b92](https://github.com/372623460jh/sand/commit/a362b92))

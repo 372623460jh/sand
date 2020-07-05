@@ -13,6 +13,8 @@ test('读取并标准化.sandbuildrc.js => json', () => {
       basePath: rootPath,
       babelConfig: undefined,
       otherRules: [],
+      copyPlugin: [],
+      outputPath: '',
       alias: {},
       historyApiOpts: {},
     },

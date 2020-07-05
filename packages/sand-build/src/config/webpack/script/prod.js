@@ -6,10 +6,11 @@ const getProdWebpackConfig = require('../config/prodConfig');
 const { getPath, getSandBuildConfig } = require('../../../utils');
 
 /**
- * 启动应用
+ * 启动应用 build命令都是env都是production
  * obj: {
- *    env: prod/dev
+ *    env: production/development
  *    type: pc/mob/demo
+ *    sandbuildrcPath
  * }
  */
 function buildApp(obj) {

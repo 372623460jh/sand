@@ -6,13 +6,13 @@ type === lib 时 env，link，watch 参数才生效
 type === pc/mob/demo 时 env，link，watch 参数不生效
 
 - --type 构建类型 pc/mob/lib/demo 必填
-- --env 环境，传 prod 时会进行 umd 构建
+- --env 环境，传 production 时会进行 umd 构建
 - --link 构建完成后在根目录下的 node_modules 下创建软链接链接到构建产物方便调试
 - --watch 开启监听
 
 ### start
 
-start 使用 webpack 启动服务，只有 mob||pc||demo 有 start 模式，start 没有 env 参数，都是 env===dev
+start 使用 webpack 启动服务，只有 mob||pc||demo 有 start 模式，start 没有 env 参数，都是 env===development
 
 - --type 构建类型 pc/mob/demo 必填
 
@@ -63,7 +63,17 @@ import path from 'path'
       whiteList: ['^/spa(?:/|$)', '^/$'],
       // 黑名单
       blackList: [],
-    }
+    },
+    // 输出路径 为空的话指向process.cwd()/dist
+    outputPath: '',
+    // 拷贝插件默认是[],可以按照如下方式自由传参:
+    // copyPlugin: [
+    //   {
+    //     from: path.resolve(__dirname, '../../src/assets'),
+    //     to: path.resolve(__dirname, '../../dist/assets'),
+    //   },
+    // ]
+    copyPlugin: []
   }
   // rollup 配置
   // 用于生成依赖文件,会用作rollup external 判断在deps中的库不会被打入包中

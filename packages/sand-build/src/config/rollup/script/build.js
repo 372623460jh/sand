@@ -11,7 +11,7 @@ const {
 
 /**
  * 处理rc文件生成可用的配置文件
- * @param {*} env 环境，prod还是dev
+ * @param {*} env 环境，production还是development
  */
 function handleConfig(props) {
   const { env, sandbuildrcPath } = props;
@@ -138,7 +138,7 @@ function createLink(packagesInfo) {
 /**
  * 启动应用
  * options: {
- *    env: prod/dev
+ *    env: production/development
  *    type: pc/mob/demo
  * }
  */

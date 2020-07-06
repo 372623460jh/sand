@@ -2,7 +2,7 @@
 # 配置 hero 后，该页面将会以首页形式呈现
 hero:
   title: Sand
-  desc: 一枚（群）前端（全栈）程序猿的日常积累，最佳实践
+  desc: 一枚前端（全栈）程序猿的日常积累，最佳实践
   actions:
     - text: 快速开始
       link: /start

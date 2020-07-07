@@ -121,6 +121,11 @@ function stdWebpackOptions(options) {
     historyApiOpts = {}, // history中间件选项，决定哪些请求需要重定向到index.html,解决history路由找不到页面的情况
     outputPath = '', // 输出路径 为空的话指向process.cwd()/dist
     copyPlugin = [], // 拷贝插件
+    // 构建时设置publicPath
+    publicPath = {
+      devPath: '/',
+      prodPath: '/',
+    },
   } = options;
   if (!entryHtml || !entry) {
     logError('webpackOptions.entryHtml和webpackOptions.entry为必填项');
@@ -135,6 +140,7 @@ function stdWebpackOptions(options) {
     historyApiOpts,
     outputPath,
     copyPlugin,
+    publicPath,
   };
 }
 

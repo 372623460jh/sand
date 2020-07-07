@@ -75,7 +75,12 @@ import path from 'path';
     //     to: path.resolve(__dirname, '../../dist/assets'),
     //   },
     // ]
-    copyPlugin: []
+    copyPlugin: [],
+    // 设置不同环境的publicPath
+    publicPath: {
+      devPath: '/',
+      prodPath: '/',
+    }
   }
   // rollup 配置
   // 用于生成依赖文件,会用作rollup external 判断在deps中的库不会被打入包中

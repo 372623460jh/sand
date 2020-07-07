@@ -17,6 +17,10 @@ test('读取并标准化.sandbuildrc.js => json', () => {
       outputPath: '',
       alias: {},
       historyApiOpts: {},
+      publicPath: {
+        devPath: '/',
+        prodPath: '/',
+      },
     },
     configurations: [
       {

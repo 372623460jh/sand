@@ -12,15 +12,17 @@ const { logError } = require('../../../utils');
  * @param {*} opts
  */
 function getOutputConfig(opts) {
-  const { type = typeEnum.pc, webpackOptions = {} } = opts;
-  const { basePath, outputPath } = webpackOptions;
+  const { type = typeEnum.pc, webpackOptions = {}, env } = opts;
+  const { basePath, outputPath, publicPath } = webpackOptions;
+  const { prodPath = '/', devPath = '/' } = publicPath;
+  const isProd = env === 'production';
   if (type === typeEnum.pc) {
     return {
       // 输出路径
       path: outputPath || getPath(basePath, './dist'),
       filename: '[name].js',
       chunkFilename: '[name].js',
-      publicPath: '/',
+      publicPath: isProd ? prodPath : devPath,
     };
   }
   if (type === typeEnum.demo) {
@@ -28,7 +30,7 @@ function getOutputConfig(opts) {
       // 输出路径
       path: outputPath || getPath(basePath, './dist'),
       filename: '[name].js',
-      publicPath: '/',
+      publicPath: isProd ? prodPath : devPath,
     };
   }
   if (type === typeEnum.mob) {
@@ -37,7 +39,7 @@ function getOutputConfig(opts) {
       path: outputPath || getPath(basePath, './dist'),
       filename: '[name].js',
       chunkFilename: '[name].js',
-      publicPath: '/',
+      publicPath: isProd ? prodPath : devPath,
     };
   }
   logError('传入的type不对，只允许传入pc/mob/demo');

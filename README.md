@@ -91,6 +91,8 @@ sand 相关脚手架的 cli 工具。详细文档见./packages/sand-cli/README.m
 - ~~sand-lint 丰富 prettier，commitlint，ts，完善 sand-lint 文档站点~~
 - ~~增加 sand-game-phaser-ts 脚手架~~
 - ~~sand.zirupay.com nginx 修改，解决刷新 404 问题~~
+- sand-mob 单页应用脚手架开发
+- sand-game-spa-ts 单页游戏脚手架开发
 - node-bff node-schedule 处理定时任务，定时任务通用方法
 - sand-utils 纯 js 类库，提供像 fetch 之类的方法
 - 脚手架.gitignore 拷贝丢失问题，脚手架项目抽离，sand-cli init 时动态拉脚手架项目可以解决该问题
@@ -104,13 +106,12 @@ sand 相关脚手架的 cli 工具。详细文档见./packages/sand-cli/README.m
 
 ## 4. 学习，调研，提案
 
-- 看 koa2 源码。
+- ~~看 koa2 源码。~~
 - 看 egg 思想。
 - ts，sand 全部 ts 化
 - node 微服务，sand-node-staging 微服务应用脚手架，只提供服务，gRPC 框架
-- docker 学习，服务器容器化
+- docker k8s 学习，服务器容器化
 - 学习 dumi 源码，sand 原生支持
-- sand-mob 脚手架开发
 
 ## 5. 项目
 

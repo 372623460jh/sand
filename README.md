@@ -91,7 +91,6 @@ sand 相关脚手架的 cli 工具。详细文档见./packages/sand-cli/README.m
 - ~~sand-lint 丰富 prettier，commitlint，ts，完善 sand-lint 文档站点~~
 - ~~增加 sand-game-phaser-ts 脚手架~~
 - ~~sand.zirupay.com nginx 修改，解决刷新 404 问题~~
-
 - node-bff node-schedule 处理定时任务，定时任务通用方法
 - sand-utils 纯 js 类库，提供像 fetch 之类的方法
 - 脚手架.gitignore 拷贝丢失问题，脚手架项目抽离，sand-cli init 时动态拉脚手架项目可以解决该问题

@@ -91,6 +91,7 @@ sand 相关脚手架的 cli 工具。详细文档见./packages/sand-cli/README.m
 - ~~sand-lint 丰富 prettier，commitlint，ts，完善 sand-lint 文档站点~~
 - ~~增加 sand-game-phaser-ts 脚手架~~
 - ~~sand.zirupay.com nginx 修改，解决刷新 404 问题~~
+- sand-editor 编辑器库
 - sand-mob 单页应用脚手架开发
 - sand-game-spa-ts 单页游戏脚手架开发
 - node-bff node-schedule 处理定时任务，定时任务通用方法

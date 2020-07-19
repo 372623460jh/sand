@@ -2,7 +2,7 @@ const { getPath } = require('../../../utils');
 const { getCommonStyleLoader } = require('./rule/styleLoader');
 const { getOtherLoader } = require('./rule/otherLoader');
 const { getJsLoader } = require('./rule/jsLoader');
-const { getTsLoader } = require('./rule/tsLoader');
+const { getTsLoader, getTsLoaderShouldBable } = require('./rule/tsLoader');
 const { typeEnum } = require('../../../constant');
 const { getCommonPlugin } = require('./plugin/commonPlugin');
 const { logError } = require('../../../utils');
@@ -52,15 +52,15 @@ function getOutputConfig(opts) {
  */
 function getCommonConfig(opts) {
   const { env, webpackOptions = {} } = opts;
-  const { otherRules = [], alias = {} } = webpackOptions;
+  const { otherRules = [], alias = {}, tsShouldBabel = false } = webpackOptions;
   const isProd = env === 'production';
   return {
     output: getOutputConfig(opts),
     rules: []
       // 获取处理js的loader
       .concat(getJsLoader(opts))
-      // 获取处理ts的loader
-      .concat(getTsLoader(opts))
+      // 获取处理ts的loader,根据是否需要babel来加载不同的loader
+      .concat(tsShouldBabel ? getTsLoaderShouldBable(opts) : getTsLoader(opts))
       // 获取公共的style loader
       .concat(getCommonStyleLoader(isProd))
       // 获取图片，字体的loader

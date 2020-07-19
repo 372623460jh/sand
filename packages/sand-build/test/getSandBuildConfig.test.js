@@ -21,6 +21,7 @@ test('读取并标准化.sandbuildrc.js => json', () => {
         devPath: '/',
         prodPath: '/',
       },
+      tsShouldBabel: true,
     },
     configurations: [
       {

@@ -96,15 +96,16 @@ sand 相关脚手架的 cli 工具。详细文档见./packages/sand-cli/README.m
 - ~~sand-moco 开发~~
 - ~~sand-build demo 部分入口检索支持 ts,tsx 入口检索~~
 - ~~sand 工程升级为 ts 版本~~
-- sand-demo 脚手架支持 ts
-- sand-core 去 react react-dom props-type 的依赖
-- sand-noco 库 ts 化
+- ~~sand-build 支持 ts 过 babel~~
+- sand-demo-ts-staging 脚手架支持 ts
 - sand-mob-staging 依赖 sand-moco 的移动端单页应用库和脚手架
 - sand-mob-ts-staging ts 版本移动端单页应用库和脚手架
 - sand-bff 脚手架支持 ts
 - sand-lib 脚手架支持 ts
 - sand-pc 脚手架支持 ts
 - sand-core 库 ts 化
+- sand-core 去 react react-dom props-type 的依赖
+- sand-noco 库 ts 化
 - example 中增加 sand-pc 调试代码
 - sand-slate fork slate 解决光标问题，
 - sand-editor 编辑器库，编辑器站点。

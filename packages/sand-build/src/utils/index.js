@@ -126,6 +126,7 @@ function stdWebpackOptions(options) {
       devPath: '/',
       prodPath: '/',
     },
+    tsShouldBabel = false, // ts是否需要过babel。web项目需要过babel，node项目不需要。如果需要过babel，ts的编译产物必须是es规范。
   } = options;
   if (!entryHtml || !entry) {
     logError('webpackOptions.entryHtml和webpackOptions.entry为必填项');
@@ -141,6 +142,7 @@ function stdWebpackOptions(options) {
     outputPath,
     copyPlugin,
     publicPath,
+    tsShouldBabel,
   };
 }
 

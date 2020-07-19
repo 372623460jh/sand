@@ -7,6 +7,8 @@ module.exports = {
   webpackOptions: {
     entry: path.resolve(__dirname, './examples/common/index.tsx'),
     entryHtml: path.resolve(__dirname, './examples/common/index.html'),
+    // ts过babel
+    tsShouldBabel: true,
   },
   // rollup 配置
   configurations: [

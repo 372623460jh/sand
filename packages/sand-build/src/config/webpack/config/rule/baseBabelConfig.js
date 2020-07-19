@@ -20,6 +20,7 @@ function getBaseBabelConfig() {
           delay: true,
         },
       ],
+      // antd 按需加载的逻辑
       [
         'import',
         {

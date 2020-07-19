@@ -81,6 +81,10 @@ import path from 'path';
       devPath: '/',
       prodPath: '/',
     }
+    // ts是否需要过babel。web项目需要过babel，node项目不需要。如果需要过babel，ts的编译产物必须是es规范。
+    // 如果tsShouldBabel === true时babelConfig配置将生效
+    // 过babel的流程，ts -ts parse-> es -babel-> es5
+    tsShouldBabel: false,
   }
   // rollup 配置
   // 用于生成依赖文件,会用作rollup external 判断在deps中的库不会被打入包中

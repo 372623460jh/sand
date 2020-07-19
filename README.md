@@ -92,11 +92,22 @@ sand 相关脚手架的 cli 工具。详细文档见./packages/sand-cli/README.m
 - ~~增加 sand-game-phaser-ts 脚手架~~
 - ~~sand.zirupay.com nginx 修改，解决刷新 404 问题~~
 - ~~sand-build rollup 支持 ts~~
-- sand-mob 移动端单页应用库和脚手架开发
-- sand-mob-ts ts 版本移动端单页应用库和脚手架开发
-- sand-pc sand-bff sand-mob sand-lib 脚手架支持 ts
+- ~~example 中增加 sand-mob 调试代码~~
+- ~~sand-moco 开发~~
+- ~~sand-build demo 部分入口检索支持 ts,tsx 入口检索~~
+- ~~sand 工程升级为 ts 版本~~
+- example 中增加 sand-pc 调试代码
+- sand-core 库 ts 化
+- sand-noco 库 ts 化
+- sand-mob-staging 依赖 sand-moco 的移动端单页应用库和脚手架
+- sand-mob-ts-staging ts 版本移动端单页应用库和脚手架
+- sand-bff 脚手架支持 ts
+- sand-demo 脚手架支持 ts
+- sand-lib 脚手架支持 ts
+- sand-pc 脚手架支持 ts
 - sand-slate fork slate 解决光标问题，
 - sand-editor 编辑器库，编辑器站点。
+- 考虑如何拆项目，如将脚手架从项目中移除，初始化脚手架时从线上拉取脚手架文件，将 debug 移入每一个库中
 - sand 文档完善
 - sand-utils 纯 js 类库，提供像 fetch 之类的方法
 - node-bff node-schedule 处理定时任务，定时任务通用方法

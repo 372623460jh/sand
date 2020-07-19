@@ -5,7 +5,7 @@ module.exports = {
   port: 9533,
   //webpack配置
   webpackOptions: {
-    entry: path.resolve(__dirname, './examples/common/index.jsx'),
+    entry: path.resolve(__dirname, './examples/common/index.tsx'),
     entryHtml: path.resolve(__dirname, './examples/common/index.html'),
   },
   // rollup 配置
@@ -23,6 +23,19 @@ module.exports = {
         'react-redux': 'react-redux',
         'dva-core': 'dva-core',
         'prop-types': 'prop-types',
+      },
+    },
+    {
+      entry: path.resolve(__dirname, './packages/sand-moco/src/index.ts'),
+      pkgPath: path.resolve(__dirname, './packages/sand-moco'),
+      bundleName: 'sand-moco',
+      isTs: true,
+      cssExtract: false,
+      umdGlobals: {
+        'react-redux': 'react-redux',
+        'dva-core': 'dva-core',
+        react: 'react',
+        'react-dom': 'react-dom',
       },
     },
   ],

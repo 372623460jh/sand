@@ -55,9 +55,14 @@
   ],
   "devDependencies": {
     "@commitlint/cli": "^9.0.1",
-    "@jianghe/sand-build": "^1.2.3-0",
-    "@jianghe/sand-lint": "^1.2.3-0",
+    "@jianghe/sand-build": "^1.2.3-1",
+    "@jianghe/sand-lint": "^1.2.3-1",
+    "@types/jest": "^26.0.4",
+    "@types/react": "^16.9.43",
+    "@types/react-dom": "^16.9.8",
     "conventional-changelog": "^3.1.21",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-typescript": "^7.10.4",
     "dumi": "^1.0.31",
     "eslint": "~7.2.0",
     "jest": "^26.0.1",
@@ -68,6 +73,8 @@
     "stylelint": "^13.6.1"
   },
   "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "@ant-design/icons": "^4.2.1",
     "antd": "^4.3.5"
   }

@@ -1,6 +1,6 @@
 {
   "name": "@jianghe/sand-build",
-  "version": "1.2.3-1",
+  "version": "1.2.3-2",
   "private": false,
   "description": "sand库构建工具",
   "main": "./bin/sand-build.js",
@@ -19,7 +19,7 @@
   },
   "scripts": {},
   "peerDependencies": {
-    "@jianghe/sand-core": "^1.2.3-0"
+    "@jianghe/sand-core": "^1.2.3-1"
   },
   "dependencies": {
     "@babel/cli": "^7.10.4",

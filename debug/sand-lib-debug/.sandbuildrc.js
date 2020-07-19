@@ -17,5 +17,18 @@ module.exports = {
         '@jianghe/sand-core/react-dom': 'react-dom',
       },
     },
+    {
+      entry: path.resolve(__dirname, './packages/ts-test/src/index.ts'),
+      pkgPath: path.resolve(__dirname, './packages/ts-test'),
+      bundleName: 'test',
+      isTs: true,
+      cssExtract: false,
+      umdGlobals: {
+        'react-redux': 'react-redux',
+        'dva-core': 'dva-core',
+        react: 'react',
+        'react-dom': 'react-dom',
+      },
+    },
   ],
 };

@@ -17,12 +17,12 @@ function getEntryMap(opts) {
   const { basePath, entry, entryHtml } = webpackOptions;
   const examplesPath = getPath(basePath, './examples');
   const relativePath = examplesPath.replace(`${process.cwd()}/`, '');
-  // *(entry.js|entry.jsx|entry.html) 表示匹配中其中额一个或多个
+  // *(entry.js|entry.jsx|entry.html|entry.ts|entry.tsx) 表示匹配中其中额一个或多个
   const files = glob.sync(
-    `${relativePath}/**/*-*(entry.js|entry.jsx|entry.html)`
+    `${relativePath}/**/*-*(entry.js|entry.jsx|entry.html|entry.ts|entry.tsx)`
   );
   const regHtml = /\.html$/;
-  const regAll = /-entry\.(jsx|html|js)$/;
+  const regAll = /-entry\.(jsx|html|js|ts|tsx)$/;
   if (!entryHtml || !entry) {
     logError('entryHtml,entry必填');
   }

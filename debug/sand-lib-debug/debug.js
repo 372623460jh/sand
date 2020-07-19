@@ -29,6 +29,14 @@ const { build } = require('../../packages/sand-build/src');
 //   sandbuildrcPath: path.resolve(__dirname, './.sandbuildrc.js'),
 // });
 
+// build({
+//   watch: true,
+//   link: true,
+//   env: 'development',
+//   type: 'lib',
+//   sandbuildrcPath: path.resolve(__dirname, './.sandbuildrc.js'),
+// });
+
 build({
   watch: false,
   link: false,

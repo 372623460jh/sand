@@ -1,6 +1,6 @@
 {
   "name": "@jianghe/sand-core",
-  "version": "1.2.3-1",
+  "version": "1.2.3-2",
   "private": false,
   "description": "sand pc的核心功能",
   "license": "MIT",
@@ -10,11 +10,13 @@
       "email": "573748150jh@163.com"
     }
   ],
-  "main": "./index.js",
+  "main": "esm/sand-core.js",
   "module": "esm/sand-core.js",
   "cjs": "cjs/sand-core.js",
   "keywords": [
-    "sand-core"
+    "sand",
+    "spa",
+    "pc"
   ],
   "scripts": {},
   "dependencies": {

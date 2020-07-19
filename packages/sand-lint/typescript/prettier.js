@@ -71,6 +71,11 @@ module.exports = {
     '@typescript-eslint/no-triple-slash-reference': [0],
     '@typescript-eslint/ban-ts-ignore': [0],
     '@typescript-eslint/no-this-alias': [0],
+    // 允许'.js', '.jsx', '.tsx', '.ts'中有jsx语法
+    'react/jsx-filename-extension': [
+      1,
+      { extensions: ['.js', '.jsx', '.tsx', '.ts'] },
+    ],
     '@typescript-eslint/triple-slash-reference': [
       'error',
       {

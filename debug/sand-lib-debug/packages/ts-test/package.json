@@ -1,0 +1,47 @@
+{
+  "name": "@jianghe/sand-moco",
+  "version": "1.2.3-1",
+  "private": false,
+  "description": "sand移动端单页核心框架",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "jianghe",
+      "email": "573748150jh@163.com"
+    }
+  ],
+  "main": "esm/sand-moco.js",
+  "module": "esm/sand-moco.js",
+  "cjs": "cjs/sand-moco.js",
+  "keywords": [
+    "sand",
+    "spa",
+    "mob"
+  ],
+  "files": [
+    "dist",
+    "esm",
+    "cjs"
+  ],
+  "scripts": {},
+  "peerDependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "dependencies": {
+    "dva-core": "^1.4.0",
+    "react-redux": "^6.0.1"
+  },
+  "devDependencies": {
+    "@types/react-redux": "^6.0.14",
+    "@types/webpack-env": "^1.15.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/372623460jh/sand.git"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  }
+}

@@ -5,7 +5,7 @@ import './index.less';
 autoViewPort(100, 1, 7.5);
 
 // eslint-disable-next-line
-// __webpack_public_path__ = 'https://dev.g.alicdn.com/ltao-fe/ranch-jianhe-test/0.0.1/';
+// __webpack_public_path__ = 'https://assets.zirupay.com/assets/xxxx/0.0.1/';
 
 // 引入pages下所有的router-config.js文件，
 // 第一个参数是相对路径

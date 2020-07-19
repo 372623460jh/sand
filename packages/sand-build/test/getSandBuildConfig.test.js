@@ -1,6 +1,7 @@
 const { getSandBuildConfig } = require('../src/utils');
 const { getPath } = require('../src/utils');
 const { version } = require('../../sand-core/package.json');
+const { version: versionMoco } = require('../../sand-moco/package.json');
 
 test('读取并标准化.sandbuildrc.js => json', () => {
   const rootPath = process.cwd();
@@ -127,7 +128,7 @@ test('读取并标准化.sandbuildrc.js => json', () => {
             url: 'https://github.com/372623460jh/sand.git',
           },
           scripts: {},
-          version: '1.2.3-3',
+          version: versionMoco,
         },
         pkgPath: '/Users/jianghe/Desktop/jianghe_ws/sand/packages/sand-moco',
         umdGlobals: {

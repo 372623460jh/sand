@@ -35,6 +35,7 @@ async function init() {
   switch (type) {
     case 'sand-pc':
     case 'sand-demo':
+    case 'sand-demo-ts':
     case 'sand-lib':
     case 'sand-bff':
     case 'sand-docs':

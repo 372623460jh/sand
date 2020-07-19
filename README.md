@@ -97,11 +97,11 @@ sand 相关脚手架的 cli 工具。详细文档见./packages/sand-cli/README.m
 - ~~sand-build demo 部分入口检索支持 ts,tsx 入口检索~~
 - ~~sand 工程升级为 ts 版本~~
 - ~~sand-build 支持 ts 过 babel~~
-- sand-demo-ts-staging 脚手架支持 ts
+- ~~sand-demo-ts-staging 脚手架支持 ts~~
 - sand-mob-staging 依赖 sand-moco 的移动端单页应用库和脚手架
 - sand-mob-ts-staging ts 版本移动端单页应用库和脚手架
+- sand-lib-ts-staging ts 脚手架
 - sand-bff 脚手架支持 ts
-- sand-lib 脚手架支持 ts
 - sand-pc 脚手架支持 ts
 - sand-core 库 ts 化
 - sand-core 去 react react-dom props-type 的依赖

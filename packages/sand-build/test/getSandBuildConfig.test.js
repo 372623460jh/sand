@@ -127,7 +127,7 @@ test('读取并标准化.sandbuildrc.js => json', () => {
             url: 'https://github.com/372623460jh/sand.git',
           },
           scripts: {},
-          version: '1.2.3-2',
+          version: '1.2.3-3',
         },
         pkgPath: '/Users/jianghe/Desktop/jianghe_ws/sand/packages/sand-moco',
         umdGlobals: {

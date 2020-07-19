@@ -12,6 +12,10 @@ const stagingEnum = {
     name: 'sand-demo',
     fileName: 'sand-demo-staging',
   },
+  'sand-demo-ts': {
+    name: 'sand-demo-ts',
+    fileName: 'sand-demo-ts-staging',
+  },
   'sand-mob': {
     name: 'sand-mob',
     fileName: 'sand-mob-staging',

@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -5,7 +6,6 @@ import styles from './index.module.less';
 
 class Index extends React.Component {
   state = {
-    // eslint-disable-next-line no-undef
     entryMap: __entryMap__,
   };
 

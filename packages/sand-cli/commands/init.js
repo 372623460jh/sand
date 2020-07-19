@@ -37,6 +37,7 @@ async function init() {
     case 'sand-demo':
     case 'sand-demo-ts':
     case 'sand-lib':
+    case 'sand-lib-ts':
     case 'sand-bff':
     case 'sand-docs':
     case 'sand-game-phaser-ts':

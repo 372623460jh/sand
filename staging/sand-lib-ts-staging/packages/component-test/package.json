@@ -1,0 +1,41 @@
+{
+  "name": "@jianghe/component-test",
+  "version": "1.0.1-0",
+  "private": false,
+  "description": "react 组件测试",
+  "authors": [
+    {
+      "name": "jianghe",
+      "email": "573748150jh@163.com"
+    }
+  ],
+  "keywords": [
+    "todo"
+  ],
+  "homepage": "",
+  "license": "MIT",
+  "main": "esm/todo.js",
+  "module": "esm/todo.js",
+  "cjs": "cjs/todo.js",
+  "files": [
+    "dist",
+    "esm",
+    "cjs"
+  ],
+  "scripts": {},
+  "peerDependencies": {
+    "@ant-design/icons": "^4.2.1",
+    "antd": "^4.4.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  }
+}

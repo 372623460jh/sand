@@ -29,5 +29,10 @@ module.exports = {
     'react/jsx-wrap-multilines': [0], // 单个jsx元素外包裹括号
     'react/jsx-curly-newline': [0], // 花括号在新行
     'react/jsx-props-no-spreading': [0], // propsx允许结构
+    // 允许'.js', '.jsx', '.tsx', '.ts'中有jsx语法
+    'react/jsx-filename-extension': [
+      1,
+      { extensions: ['.js', '.jsx', '.tsx', '.ts'] },
+    ],
   },
 };

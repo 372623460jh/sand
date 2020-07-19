@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 const TEST_FETCH = 'TEST_FETCH';
 const SET_STATE = 'SET_STATE';
 
@@ -10,7 +11,7 @@ export default {
 
   subscriptions: {
     // 初始化
-    init({ dispatch }) {
+    init({ dispatch }): void {
       dispatch({
         type: TEST_FETCH,
         payload: {

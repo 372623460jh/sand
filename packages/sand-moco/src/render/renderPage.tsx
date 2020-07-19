@@ -10,7 +10,7 @@ const { PAGE_ROOT_ELE } = CONSTANTS;
 /**
  * 将页面组件渲染至sand-main-box,并返回真实dom
  */
-function getPageDom(page: Page) {
+function getPageDom(page: Page): HTMLDivElement {
   const { component: Component, moco } = page;
   // 生成页面根节点
   const div = document.createElement('div');

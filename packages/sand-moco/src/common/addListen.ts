@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import router from '../router/director';
 import getMoco, { Moco } from '../model/Moco';
 import CONSTANTS from '../common/constants';

@@ -30,12 +30,12 @@
     "stylelint": "^13.6.1",
     "husky": "^4.2.5",
     "jest": "^26.1.0",
-    "@jianghe/sand-build": "^1.2.3-1",
-    "@jianghe/sand-lint": "^1.2.3-1"
+    "@jianghe/sand-build": "^1.2.3-2",
+    "@jianghe/sand-lint": "^1.2.3-2"
   },
   "dependencies": {
     "@ant-design/icons": "^4.2.1",
-    "@jianghe/sand-core": "^1.2.3-1",
+    "@jianghe/sand-core": "^1.2.3-2",
     "antd": "^4.4.0"
   }
 }

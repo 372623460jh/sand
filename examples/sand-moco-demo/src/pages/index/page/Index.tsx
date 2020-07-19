@@ -1,11 +1,14 @@
-/* eslint-disable react/prop-types */
 import React, { useEffect } from 'react';
-import { getMoco } from '@jianghe/sand-moco';
+import { getMoco, Page } from '@jianghe/sand-moco';
 import styles from './index.module.less';
 
 const moco = getMoco();
 
-function IndexPage(props) {
+interface indexProps {
+  mocoPage: Page;
+}
+
+function IndexPage(props: indexProps): JSX.Element {
   useEffect(() => {
     const { mocoPage } = props;
     const { monitor, pagePath } = mocoPage;

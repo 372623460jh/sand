@@ -10,7 +10,7 @@ const { getRootEle } = CONSTANTS;
  * 首次页面显示的转场动画，直接显示
  * @param showPage 需要显示的页面
  */
-function firstShowTransition(showPage: Page) {
+function firstShowTransition(showPage: Page): void {
   const rootEle = getRootEle();
   // 获取渲染根节点
   const parentEle = window.document.querySelector(rootEle);
@@ -27,7 +27,7 @@ function baseInTransition(
   hidePage: Page,
   showPage: Page,
   endCallBack: () => void
-) {
+): void {
   const rootEle = getRootEle();
 
   // 要显示页
@@ -66,7 +66,7 @@ function baseOutTransition(
   hidePage: Page,
   showPage: Page,
   endCallBack: () => void
-) {
+): void {
   const rootEle = getRootEle();
 
   // 要显示页

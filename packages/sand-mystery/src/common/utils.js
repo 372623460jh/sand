@@ -60,7 +60,7 @@ function reduceFolderSync(inputPath) {
   // 创建一个gzip转换流，是一个可读可写流。
   const gzip = zlib.createGzip();
   // 返回一个promise
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   return new Promise((resolve, reject) => {
     // 读操作
     const r = fstream.Reader({
@@ -71,7 +71,7 @@ function reduceFolderSync(inputPath) {
     const w = fstream.Writer({
       path: outputFilePath, // 输出文件
     });
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     w.on('close', (e) => {
       // 同步写完回调
       resolve({

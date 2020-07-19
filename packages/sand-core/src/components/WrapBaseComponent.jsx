@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import React from 'react';
 import { renderRoutes } from 'react-router-config';
 import PropTypes from 'prop-types';

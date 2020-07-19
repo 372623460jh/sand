@@ -1,10 +1,19 @@
 // @ts-nocheck
+
+interface viewportInfo {
+  htmlFontSize: number;
+}
+
 /**
  * Created by jianghe on 2017/12/19.
  * @param {Number} [baseFontSize = 100] - 基础fontSize, 默认100px;
  * @param {Number} [fontscale = 1] - 有的业务希望能放大一定比例的字体;
  */
-export default function AutoViewPort(baseFontSize, fontscale, size) {
+export default function AutoViewPort(
+  baseFontSize: number,
+  fontscale: number,
+  size: number
+): viewportInfo {
   const _baseFontSize = baseFontSize || 100;
   const _fontscale = fontscale || 1;
   const _size = size || 10;

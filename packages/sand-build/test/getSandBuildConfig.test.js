@@ -9,7 +9,7 @@ test('读取并标准化.sandbuildrc.js => json', () => {
     port: 9533,
     webpackOptions: {
       entryHtml: getPath(rootPath, './examples/common/index.html'),
-      entry: getPath(rootPath, './examples/common/index.jsx'),
+      entry: getPath(rootPath, './examples/common/index.tsx'),
       basePath: rootPath,
       babelConfig: undefined,
       otherRules: [],
@@ -39,10 +39,10 @@ test('读取并标准化.sandbuildrc.js => json', () => {
               email: '573748150jh@163.com',
             },
           ],
-          main: './index.js',
+          main: 'esm/sand-core.js',
           module: 'esm/sand-core.js',
           cjs: 'cjs/sand-core.js',
-          keywords: ['sand-core'],
+          keywords: ['sand', 'spa', 'pc'],
           scripts: {},
           dependencies: {
             'dva-core': '^1.4.0',
@@ -79,6 +79,62 @@ test('读取并标准化.sandbuildrc.js => json', () => {
           'react-router-config': 'react-router-config',
         },
         namedExports: {},
+      },
+      {
+        alias: [],
+        babelConfig: undefined,
+        bundleName: 'sand-moco',
+        cssExtract: false,
+        entry:
+          '/Users/jianghe/Desktop/jianghe_ws/sand/packages/sand-moco/src/index.ts',
+        isTs: true,
+        namedExports: {},
+        pkg: {
+          authors: [
+            {
+              email: '573748150jh@163.com',
+              name: 'jianghe',
+            },
+          ],
+          cjs: 'cjs/sand-moco.js',
+          dependencies: {
+            'dva-core': '^1.4.0',
+            'react-redux': '^6.0.1',
+          },
+          description: 'sand移动端单页核心框架',
+          devDependencies: {
+            '@types/react-redux': '^6.0.14',
+            '@types/webpack-env': '^1.15.2',
+          },
+          files: ['dist', 'esm', 'cjs'],
+          keywords: ['sand', 'spa', 'mob'],
+          license: 'MIT',
+          main: 'esm/sand-moco.js',
+          module: 'esm/sand-moco.js',
+          name: '@jianghe/sand-moco',
+          peerDependencies: {
+            react: '^16.13.1',
+            'react-dom': '^16.13.1',
+          },
+          private: false,
+          publishConfig: {
+            access: 'public',
+            registry: 'https://registry.npmjs.org',
+          },
+          repository: {
+            type: 'git',
+            url: 'https://github.com/372623460jh/sand.git',
+          },
+          scripts: {},
+          version: '1.2.3-2',
+        },
+        pkgPath: '/Users/jianghe/Desktop/jianghe_ws/sand/packages/sand-moco',
+        umdGlobals: {
+          'dva-core': 'dva-core',
+          react: 'react',
+          'react-dom': 'react-dom',
+          'react-redux': 'react-redux',
+        },
       },
     ],
   };

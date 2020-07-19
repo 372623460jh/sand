@@ -17,6 +17,8 @@
     // 支持使用import d from cjs的方式引入commonjs
     "esModuleInterop": true,
     // 指定 jsx 代码的生成 'preserve', 'react-native', or 'react'
+    // preserve模式将保持JSX作为输出的一部分，以便由另一个变换步骤（例如Babel）进一步编译,输出将具有.jsx文件扩展名
+    // react模式将编译React.createElement，在使用之前不需要经过JSX转换，输出将具有.js文件扩展名
     "jsx": "react",
     // 生成的模块形式: 'commonjs', 'amd'等
     "module": "esnext",

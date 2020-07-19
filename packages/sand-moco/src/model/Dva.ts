@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { create } from 'dva-core';
 
 /**
@@ -13,7 +15,7 @@ class DvaApp {
   /**
    * 获取dva实例
    */
-  getDvaApp = () => {
+  getDvaApp = (): any => {
     if (!this.dva) {
       // 创建dva-core实例
       this.dva = create({}, {});
@@ -27,7 +29,7 @@ class DvaApp {
   /**
    * 获取store
    */
-  getStore = () => {
+  getStore = (): any => {
     return !this.dva ? this.getDvaApp()._store : this.dva._store;
   };
 
@@ -35,7 +37,7 @@ class DvaApp {
    * 注册dva model 使用replaceModel方法如果存在直接替换
    * @param {*} model
    */
-  setModel = (model: any) => {
+  setModel = (model: any): any => {
     return !this.dva
       ? this.getDvaApp().replaceModel(model)
       : this.dva.replaceModel(model);
@@ -44,7 +46,7 @@ class DvaApp {
   /**
    * 注销dva model
    */
-  unModel = (namespace: string) => {
+  unModel = (namespace: string): any => {
     if (!this.dva) {
       this.getDvaApp().unmodel(namespace);
     } else {

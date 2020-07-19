@@ -1,5 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable no-console */
 import '@babel/polyfill';
 
 // IE 8,9 typeof console.log 返回 'object'不能apply的情况

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { getRandom } from '../common/utils';
 import CONSTANTS from '../common/constants';
 import { getPageDom } from '../render/renderPage';
@@ -52,17 +53,17 @@ class Page {
   // 页面传入的监听器hook
   public monitorHook = {
     // 页面创建
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    [LIFE_CYCLE.onCreate]: (_page: Page) => {},
+    // eslint-disable-next-line
+    [LIFE_CYCLE.onCreate]: (_page: Page): void => {},
     // 页面挂起
     // eslint-disable-next-line
-    [LIFE_CYCLE.onPause]: (_page: Page) => {},
+    [LIFE_CYCLE.onPause]: (_page: Page): void => {},
     // 页面重回
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    [LIFE_CYCLE.onResume]: (_page: Page) => {},
+    // eslint-disable-next-line
+    [LIFE_CYCLE.onResume]: (_page: Page): void => {},
     // 页面销毁
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    [LIFE_CYCLE.onDestroy]: (_page: Page) => {},
+    // eslint-disable-next-line
+    [LIFE_CYCLE.onDestroy]: (_page: Page): void => {},
   };
 
   constructor(opts: pageConfig) {
@@ -95,7 +96,8 @@ class Page {
   /**
    * 监听器方法
    */
-  monitor = (lifeCycleName, hook) => {
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  monitor = (lifeCycleName: string, hook: (_page: Page) => {}): void => {
     if (LIFE_CYCLE[lifeCycleName]) {
       this.monitorHook[LIFE_CYCLE[lifeCycleName]] = hook;
     } else {
@@ -106,7 +108,7 @@ class Page {
   /**
    * 页面创建的方法
    */
-  onCreate() {
+  onCreate(): void {
     // 有hook时执行hook
     this.monitorHook[LIFE_CYCLE.onCreate] &&
       this.monitorHook[LIFE_CYCLE.onCreate](this);
@@ -115,7 +117,7 @@ class Page {
   /**
    * 页面暂停，挂起
    */
-  onPause() {
+  onPause(): void {
     this.monitorHook[LIFE_CYCLE.onPause] &&
       this.monitorHook[LIFE_CYCLE.onPause](this);
   }
@@ -123,7 +125,7 @@ class Page {
   /**
    * 重新回到页面的方法
    */
-  onResume() {
+  onResume(): void {
     this.monitorHook[LIFE_CYCLE.onResume] &&
       this.monitorHook[LIFE_CYCLE.onResume](this);
   }
@@ -131,7 +133,7 @@ class Page {
   /**
    * 销毁页面的方法
    */
-  onDestroy() {
+  onDestroy(): void {
     try {
       if (this.moco) {
         // 移除栈
@@ -150,7 +152,7 @@ class Page {
   /**
    * 创建dom
    */
-  createDom() {
+  createDom(): void {
     if (!this.dom) {
       this.dom = getPageDom(this);
     }

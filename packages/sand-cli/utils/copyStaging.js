@@ -13,7 +13,7 @@ function delDir(filePath) {
   let files = [];
   if (fs.existsSync(filePath)) {
     files = fs.readdirSync(filePath);
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     files.forEach((file, index) => {
       const curPath = `${filePath}/${file}`;
       if (fs.statSync(curPath).isDirectory()) {

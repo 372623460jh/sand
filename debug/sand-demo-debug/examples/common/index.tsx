@@ -1,6 +1,7 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
-import React from '@jianghe/sand-core/react';
-import ReactDOM from '@jianghe/sand-core/react-dom';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import styles from './index.module.less';
 
 class Index extends React.Component {

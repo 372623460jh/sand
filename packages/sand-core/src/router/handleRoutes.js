@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import BaseLayout from '../components/BaseLayout';
 import WrapBaseComponent from '../components/WrapBaseComponent';
 

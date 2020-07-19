@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * 获取8位随机字符串
  */
@@ -14,7 +16,7 @@ function getRandom(): string {
  */
 function throttle(fn: any, time: number): any {
   let lastTime = 0;
-  return function (...args) {
+  return (...args) => {
     const nowTime = +new Date();
     if (!lastTime || nowTime - lastTime > time) {
       fn(...args);
@@ -29,7 +31,7 @@ function throttle(fn: any, time: number): any {
  */
 function obj2url(data: any): string {
   const result: string[] = [];
-  // eslint-disable-next-line guard-for-in
+  // eslint-disable-next-line
   for (const key in data) {
     const value = data[key];
     if (typeof value !== 'string') {

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Stacks from './Stacks';
 import Page from './Page';
 import { throttle, isType, obj2url } from '../common/utils';
@@ -125,7 +126,7 @@ class Moco {
   /**
    * 命中路由时
    */
-  hitPath = (opts: newPageOpts) => {
+  hitPath = (opts: newPageOpts): void => {
     if (this.targetPageInfo.jumpMethod === JUMP_METHOD_ENUM.INIT) {
       // 初始化命中路由
       this.newPage(opts);
@@ -141,7 +142,11 @@ class Moco {
   /**
    * 转场动画结束回调
    */
-  transitionEnd = (hidePage: Page, showPage: Page, jumpMethod: string) => {
+  transitionEnd = (
+    hidePage: Page,
+    showPage: Page,
+    jumpMethod: string
+  ): void => {
     if (jumpMethod === JUMP_METHOD_ENUM.GO) {
       // 前进转场动画结束
       // 执行下一个页面创建生命周期和上一个页面的pause生命周期
@@ -167,7 +172,7 @@ class Moco {
    * 返回页面
    * @param opts 需要显示的页面
    */
-  backPage = () => {
+  backPage = (): void => {
     if (this.stacks.pageFlag.length > 1) {
       // 取出栈顶页面
       const hidePage = this.stacks.getPage(-1);
@@ -208,7 +213,7 @@ class Moco {
    * 显示页面
    * @param opts 需要显示的页面
    */
-  goPage = (opts: newPageOpts) => {
+  goPage = (opts: newPageOpts): void => {
     // 页面栈中有几个页
     const len = this.stacks.pageFlag.length;
     if (len > 0) {
@@ -258,7 +263,7 @@ class Moco {
    * 创建新页(栈中无页面)
    * @param page 页面对象
    */
-  newPage = (opts: newPageOpts) => {
+  newPage = (opts: newPageOpts): void => {
     const { component, pagePath, model } = opts;
 
     // 实例化一个新页面

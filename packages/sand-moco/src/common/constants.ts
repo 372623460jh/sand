@@ -23,18 +23,18 @@ const JUMP_METHOD_ENUM = {
 /**
  * 根节点
  */
-let ROOT_ELE: string = '#sand-root';
-const setRootEle = (id: string) => {
+let ROOT_ELE = '#sand-root';
+const setRootEle = (id: string): void => {
   ROOT_ELE = id;
 };
-const getRootEle = () => {
+const getRootEle = (): string => {
   return ROOT_ELE;
 };
 
 /**
  * 页面根节点类名
  */
-const PAGE_ROOT_ELE: string = 'sand-main-box';
+const PAGE_ROOT_ELE = 'sand-main-box';
 
 /**
  * 页面生命周期枚举

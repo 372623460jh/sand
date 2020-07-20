@@ -99,7 +99,6 @@ sand 相关脚手架的 cli 工具。详细文档见./packages/sand-cli/README.m
 - ~~sand-build 支持 ts 过 babel~~
 - ~~sand-demo-ts-staging 脚手架支持 ts~~
 - ~~sand-lib-ts-staging ts 脚手架~~
-- 将 sand-mystery 抽离
 - sand-mob-staging 依赖 sand-moco 的移动端单页应用库和脚手架
 - sand-mob-ts-staging ts 版本移动端单页应用库和脚手架
 - sand-core 库 ts 化
@@ -117,6 +116,7 @@ sand 相关脚手架的 cli 工具。详细文档见./packages/sand-cli/README.m
 - sand-node 微服务，sand-node-staging 微服务应用脚手架，只提供服务，gRPC 框架
 - 脚手架.gitignore 拷贝丢失问题，脚手架项目抽离，sand-cli init 时动态拉脚手架项目可以解决该问题
 - package.json 中的依赖升级到最高额可靠版本，比如 rollup 升 2
+- 将 sand-mystery 抽离
 
 ## bug
 

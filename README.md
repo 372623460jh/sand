@@ -99,13 +99,14 @@ sand 相关脚手架的 cli 工具。详细文档见./packages/sand-cli/README.m
 - ~~sand-build 支持 ts 过 babel~~
 - ~~sand-demo-ts-staging 脚手架支持 ts~~
 - ~~sand-lib-ts-staging ts 脚手架~~
+- 将 sand-mystery 抽离
 - sand-mob-staging 依赖 sand-moco 的移动端单页应用库和脚手架
 - sand-mob-ts-staging ts 版本移动端单页应用库和脚手架
-- sand-bff 脚手架支持 ts
-- sand-pc 脚手架支持 ts
 - sand-core 库 ts 化
 - sand-core 去 react react-dom props-type 的依赖
 - sand-noco 库 ts 化
+- sand-bff 脚手架支持 ts
+- sand-pc 脚手架支持 ts
 - example 中增加 sand-pc 调试代码
 - sand-slate fork slate 解决光标问题，
 - sand-editor 编辑器库，编辑器站点。

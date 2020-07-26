@@ -30,7 +30,7 @@ sand-moco 移动端 spa 框架（mobile core 简称 moco）。
 
 加解密工具。详细文档见./packages/sand-mystery/README.md
 
-### sand-moco
+### sand-noco
 
 sand-noco node 基于 koa 的扩展，增加了日志中间件，sso 中间件等。node 框架（node core 简称 noco）。
 
@@ -145,9 +145,9 @@ sand-noco node 基于 koa 的扩展，增加了日志中间件，sso 中间件�
 ## 8. 学习，调研，提案
 
 - ~~看 koa2 源码。~~
-- 看 egg 思想。
+- 看 egg 源码。
 - docker k8s 学习，服务器容器化
-- 学习 dumi 源码，sand 原生支持
+- 学习 dumi 源码，sand 原生支持 md 解析
 
 ## 9. CHANGELOG
 
@@ -156,4 +156,6 @@ sand-noco node 基于 koa 的扩展，增加了日志中间件，sso 中间件�
 ## 10. 项目
 
 - 完成 images.zirupay.com 图片上传管理
+- 完成 editor.zirupay.com 文档编辑器项目
+- 完成 sand.zirupay.com sand 项目文档
 - rich 项目

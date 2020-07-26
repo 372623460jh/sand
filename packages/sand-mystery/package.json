@@ -19,10 +19,10 @@
   },
   "scripts": {},
   "dependencies": {
-    "chalk": "^4.1.0",
-    "commander": "^5.1.0",
-    "fstream": "^1.0.12",
-    "tar": "^2.2.2"
+    "chalk": "4.1.0",
+    "commander": "5.1.0",
+    "fstream": "1.0.12",
+    "tar": "2.2.2"
   },
   "repository": {
     "type": "git",

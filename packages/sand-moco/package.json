@@ -25,16 +25,16 @@
   ],
   "scripts": {},
   "peerDependencies": {
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react": "16.13.1",
+    "react-dom": "16.13.1"
   },
   "dependencies": {
-    "dva-core": "^1.4.0",
-    "react-redux": "^6.0.1"
+    "dva-core": "1.4.0",
+    "react-redux": "6.0.1"
   },
   "devDependencies": {
-    "@types/react-redux": "^6.0.14",
-    "@types/webpack-env": "^1.15.2"
+    "@types/react-redux": "6.0.14",
+    "@types/webpack-env": "1.15.2"
   },
   "repository": {
     "type": "git",

@@ -104,8 +104,9 @@ sand 相关脚手架的 cli 工具。详细文档见./packages/sand-cli/README.m
 - sand-core 库 ts 化
 - sand-core 去 react react-dom props-type 的依赖
 - sand-noco 库 ts 化
-- sand-bff 脚手架支持 ts
-- sand-pc 脚手架支持 ts
+- sand-bff-ts 脚手架支持 ts
+- sand-pc-ts 脚手架支持 ts
+- sand-node,sand-node-ts 微服务应用脚手架，只提供服务，gRPC 框架
 - example 中增加 sand-pc 调试代码
 - sand-slate fork slate 解决光标问题，
 - sand-editor 编辑器库，编辑器站点。
@@ -113,10 +114,9 @@ sand 相关脚手架的 cli 工具。详细文档见./packages/sand-cli/README.m
 - sand 文档完善
 - sand-utils 纯 js 类库，提供像 fetch 之类的方法
 - node-bff node-schedule 处理定时任务，定时任务通用方法
-- sand-node 微服务，sand-node-staging 微服务应用脚手架，只提供服务，gRPC 框架
 - 脚手架.gitignore 拷贝丢失问题，脚手架项目抽离，sand-cli init 时动态拉脚手架项目可以解决该问题
 - package.json 中的依赖升级到最高额可靠版本，比如 rollup 升 2
-- 将 sand-mystery 抽离
+- 将 sand-mystery 项目分离
 
 ## bug
 

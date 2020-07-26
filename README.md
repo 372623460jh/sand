@@ -101,6 +101,7 @@ sand 相关脚手架的 cli 工具。详细文档见./packages/sand-cli/README.m
 - ~~sand-lib-ts-staging ts 脚手架~~
 - ~~sand-mob-staging 依赖 sand-moco 的移动端单页应用库和脚手架~~
 - ~~sand-mob-ts-staging ts 版本移动端单页应用库和脚手架~~
+- sand-editor 编辑器库，编辑器站点。
 - sand-core 库 ts 化
 - sand-core 去 react react-dom props-type 的依赖
 - sand-noco 库 ts 化
@@ -109,7 +110,6 @@ sand 相关脚手架的 cli 工具。详细文档见./packages/sand-cli/README.m
 - sand-node,sand-node-ts 微服务应用脚手架，只提供服务，gRPC 框架
 - example 中增加 sand-pc 调试代码
 - sand-slate fork slate 解决光标问题，
-- sand-editor 编辑器库，编辑器站点。
 - 考虑如何拆项目，如将脚手架从项目中移除，初始化脚手架时从线上拉取脚手架文件，将 debug 移入每一个库中
 - sand 文档完善
 - sand-utils 纯 js 类库，提供像 fetch 之类的方法

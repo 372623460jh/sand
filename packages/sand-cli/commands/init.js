@@ -33,20 +33,18 @@ async function init() {
   ]);
 
   switch (type) {
-    case 'sand-pc':
     case 'sand-demo':
     case 'sand-demo-ts':
     case 'sand-lib':
     case 'sand-lib-ts':
+    case 'sand-mob':
+    case 'sand-mob-ts':
+    case 'sand-pc':
     case 'sand-bff':
     case 'sand-docs':
     case 'sand-game-phaser-ts':
       // 选择项目脚手架
       createStaging({ type: stagingEnum[type].name });
-      break;
-    case 'sand-mob':
-      // eslint-disable-next-line no-console
-      console.log(chalk.red('暂未开发sand-mob，请选择其他项目'));
       break;
     default:
       // eslint-disable-next-line no-console

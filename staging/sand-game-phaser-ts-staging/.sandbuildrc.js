@@ -5,7 +5,6 @@ module.exports = {
   port: 7776,
   //webpack配置
   webpackOptions: {
-    isTs: true,
     entry: path.resolve(__dirname, './src/entry/index.tsx'),
     entryHtml: path.resolve(__dirname, './src/entry/index.html'),
     alias: {

@@ -8,10 +8,6 @@ const stagingEnum = {
     name: 'sand-lib-ts',
     fileName: 'sand-lib-ts-staging',
   },
-  'sand-pc': {
-    name: 'sand-pc',
-    fileName: 'sand-pc-staging',
-  },
   'sand-demo': {
     name: 'sand-demo',
     fileName: 'sand-demo-staging',
@@ -23,6 +19,14 @@ const stagingEnum = {
   'sand-mob': {
     name: 'sand-mob',
     fileName: 'sand-mob-staging',
+  },
+  'sand-mob-ts': {
+    name: 'sand-mob-ts',
+    fileName: 'sand-mob-ts-staging',
+  },
+  'sand-pc': {
+    name: 'sand-pc',
+    fileName: 'sand-pc-staging',
   },
   'sand-bff': {
     name: 'sand-bff',

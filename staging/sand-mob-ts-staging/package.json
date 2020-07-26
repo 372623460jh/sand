@@ -1,0 +1,50 @@
+{
+  "name": "sand-mob-ts-staging",
+  "version": "1.0.0",
+  "description": "sand-mob ts脚手架",
+  "author": "jianghe",
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "scripts": {
+    "init": "npm run clean && npm i && npm run start",
+    "clean": "rm -rf ./node_modules ./dist ./package-lock.json ./coverage",
+    "build": "sand-build build -t mob",
+    "start": "sand-build start -t mob",
+    "lint": "eslint ./src --ext .jsx,.js,.ts,.tsx",
+    "lint:fix": "npm run lint -- --fix",
+    "lint:style": "stylelint \"src/**/*.less\" --syntax less",
+    "lint:style:fix": "npm run lint:style -- --fix",
+    "test": "jest",
+    "ci": "npm run lint:fix && npm run lint:style:fix && npm run test && npm run lint && npm run lint:style"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run ci",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^9.1.1",
+    "@types/jest": "^26.0.7",
+    "@types/react": "^16.9.43",
+    "@types/react-dom": "^16.9.8",
+    "@types/webpack-env": "^1.15.2",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-typescript": "^7.10.4",
+    "husky": "^4.2.5",
+    "eslint": "^7.5.0",
+    "stylelint": "^13.6.1",
+    "jest": "^26.1.0",
+    "@jianghe/sand-build": "^1.2.3-5",
+    "@jianghe/sand-lint": "^1.2.3-5"
+  },
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "@ant-design/icons": "^4.2.1",
+    "antd": "^4.4.3",
+    "debug": "^4.1.1",
+    "@jianghe/sand-moco": "^1.2.3-5"
+  }
+}

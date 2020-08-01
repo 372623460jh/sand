@@ -30,8 +30,8 @@
     "eslint": "^7.5.0",
     "stylelint": "^13.6.1",
     "jest": "^26.1.0",
-    "@jianghe/sand-build": "^1.2.3-5",
-    "@jianghe/sand-lint": "^1.2.3-5"
+    "@jianghe/sand-build": "^1.2.3-6",
+    "@jianghe/sand-lint": "^1.2.3-6"
   },
   "dependencies": {
     "react": "^16.13.1",
@@ -39,6 +39,6 @@
     "@ant-design/icons": "^4.2.1",
     "antd": "^4.4.3",
     "debug": "^4.1.1",
-    "@jianghe/sand-moco": "^1.2.3-5"
+    "@jianghe/sand-moco": "^1.2.3-6"
   }
 }

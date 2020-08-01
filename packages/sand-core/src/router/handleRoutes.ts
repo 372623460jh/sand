@@ -1,6 +1,10 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import BaseLayout from '../components/BaseLayout';
 import WrapBaseComponent from '../components/WrapBaseComponent';
+
+interface routeEntry {
+  path: string;
+  routes: routeEntry[];
+}
 
 /**
  * 拼接路径
@@ -19,7 +23,7 @@ function joinPath(path1, path2) {
  * @param {*} route 路由
  * @param {*} parentPath 父路径
  */
-function handleRoute(route, parentPath) {
+function handleRoute(route, parentPath: string): void {
   if (!route.component) {
     // 没有component设置BaseLayout（直接render children）
     route.component = BaseLayout;
@@ -44,9 +48,9 @@ function handleRoute(route, parentPath) {
  * 用于查找某个文件下下的所有router-config.js
  * @param {*} subRouteConfig 路由配置
  */
-function handleRoutes(routes) {
+function handleRoutes(routes: routeEntry[]): routeEntry[] {
   routes.forEach((route) => {
-    handleRoute(route);
+    handleRoute(route, '');
   });
   return routes;
 }

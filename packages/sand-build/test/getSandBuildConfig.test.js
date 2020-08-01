@@ -26,7 +26,7 @@ test('读取并标准化.sandbuildrc.js => json', () => {
     },
     configurations: [
       {
-        entry: getPath(rootPath, './packages/sand-core/index.js'),
+        entry: getPath(rootPath, './packages/sand-core/src/index.ts'),
         pkgPath: getPath(rootPath, './packages/sand-core'),
         bundleName: 'sand-core',
         pkg: {
@@ -40,6 +40,20 @@ test('读取并标准化.sandbuildrc.js => json', () => {
               name: 'jianghe',
               email: '573748150jh@163.com',
             },
+          ],
+          files: [
+            'dist',
+            'esm',
+            'cjs',
+            'history.js',
+            'polyfill.js',
+            'prop-types.js',
+            'react.js',
+            'react-dom.js',
+            'react-redux.js',
+            'router-config.js',
+            'router-dom.js',
+            'server.js',
           ],
           main: 'esm/sand-core.js',
           module: 'esm/sand-core.js',
@@ -66,7 +80,7 @@ test('读取并标准化.sandbuildrc.js => json', () => {
             access: 'public',
           },
         },
-        isTs: false,
+        isTs: true,
         cssExtract: false,
         alias: [],
         babelConfig: undefined,

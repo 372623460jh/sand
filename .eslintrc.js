@@ -22,5 +22,7 @@ module.exports = {
     '@typescript-eslint/ban-ts-comment': [0],
     // 允许ts中方法实体为空
     '@typescript-eslint/no-empty-function': [0],
+    // 允许any
+    '@typescript-eslint/no-explicit-any': [0],
   },
 };

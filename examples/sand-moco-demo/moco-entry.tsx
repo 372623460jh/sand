@@ -1,4 +1,4 @@
-import { addListen, autoViewPort } from '@jianghe/sand-moco';
+import { addListen, autoViewPort } from '@jianghe/sand-moco/esm/sand-moco';
 import './index.less';
 
 // 设置视口

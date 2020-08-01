@@ -13,9 +13,10 @@ module.exports = {
   // rollup 配置
   configurations: [
     {
-      entry: path.resolve(__dirname, './packages/sand-core/index.js'),
+      entry: path.resolve(__dirname, './packages/sand-core/src/index.ts'),
       pkgPath: path.resolve(__dirname, './packages/sand-core'),
       bundleName: 'sand-core',
+      isTs: true,
       umdGlobals: {
         react: 'react',
         'react-dom': 'react-dom',

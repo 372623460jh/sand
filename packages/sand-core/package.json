@@ -18,6 +18,20 @@
     "spa",
     "pc"
   ],
+  "files": [
+    "dist",
+    "esm",
+    "cjs",
+    "history.js",
+    "polyfill.js",
+    "prop-types.js",
+    "react.js",
+    "react-dom.js",
+    "react-redux.js",
+    "router-config.js",
+    "router-dom.js",
+    "server.js"
+  ],
   "scripts": {},
   "dependencies": {
     "dva-core": "1.4.0",

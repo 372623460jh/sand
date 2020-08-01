@@ -1,16 +1,19 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable no-underscore-dangle */
 import { create } from 'dva-core';
 
 /**
  * 管理sandpc对面暴露的属性
  * routerConfig: 项目的路由配置
  */
-function SandPc() {
-  // 路由配置
-  this.routerConfig = {};
-  // dva-core实例(单例)
-  this.app = null;
+class SandPc {
+  public routerConfig: any = {};
+  public app: any = null;
+  constructor() {
+    // 路由配置
+    this.routerConfig = {};
+    // dva-core实例(单例)
+    this.app = null;
+  }
 }
 
 const sandPc = new SandPc();

@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+// @ts-nocheck
 import React, { lazy, Suspense, Component } from 'react';
 
 /**
@@ -11,6 +11,7 @@ let DefaultLoading = () => null;
  * @param {*} module 组件path
  * @param {*} param1 opts
  */
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 function async(module, { loading = DefaultLoading } = {}) {
   // lazy加载模块
   const LazyComponent = lazy(module);

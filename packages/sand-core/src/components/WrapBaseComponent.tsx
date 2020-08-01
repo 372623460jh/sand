@@ -1,21 +1,27 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+// @ts-nocheck
 import React from 'react';
 import { renderRoutes } from 'react-router-config';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
+
+interface IProps {
+  route: {
+    routes: any[];
+  };
+}
 
 /**
  * 用于包装每一个路由对应组件的HOC组件
  * @param {*} Component
  */
-const WrapBaseComponent = (Component) => {
-  class BaseComponentWrapper extends React.PureComponent {
-    static propTypes = {
-      route: PropTypes.object,
-    };
+const WrapBaseComponent = (Component: React.Component): React.Component => {
+  class BaseComponentWrapper extends React.PureComponent<IProps> {
+    // static propTypes = {
+    //   route: PropTypes.object,
+    // };
 
-    static defaultProps = {
-      route: undefined,
-    };
+    // static defaultProps = {
+    //   route: undefined,
+    // };
 
     render() {
       const { route } = this.props;

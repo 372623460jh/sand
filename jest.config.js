@@ -24,10 +24,7 @@ module.exports = {
   coverageDirectory: 'coverage',
 
   // 排除出coverage的文件列表
-  coveragePathIgnorePatterns: [
-    '<rootDir>/node_modules/',
-    '<rootDir>/packages/sand-cli/staging/',
-  ],
+  coveragePathIgnorePatterns: ['<rootDir>/node_modules/'],
 
   // A list of reporter names that Jest uses when writing coverage reports
   // coverageReporters: [
@@ -62,7 +59,7 @@ module.exports = {
   // maxWorkers: "50%",
 
   // An array of directory names to be searched recursively up from the requiring module's location
-  // moduleDirectories: ['node_modules'],
+  moduleDirectories: ['node_modules'],
 
   // An array of file extensions your modules use
   // moduleFileExtensions: ['js', 'json', 'jsx', 'ts', 'tsx', 'node'],
@@ -139,7 +136,7 @@ module.exports = {
   // ],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
-  // testPathIgnorePatterns: ['/node_modules/'],
+  testPathIgnorePatterns: ['/node_modules/', '/packages/sand-cli/staging'],
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
   // testRegex: [],

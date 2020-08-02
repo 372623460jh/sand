@@ -27,6 +27,7 @@ module.exports = {
         'dva-core': 'dva-core',
         'prop-types': 'prop-types',
       },
+      moduleType: ['cjs', 'esm', 'umd'],
     },
     {
       entry: path.resolve(__dirname, './packages/sand-moco/src/index.ts'),
@@ -40,6 +41,14 @@ module.exports = {
         react: 'react',
         'react-dom': 'react-dom',
       },
+      moduleType: ['cjs', 'esm', 'umd'],
+    },
+    {
+      entry: path.resolve(__dirname, './packages/sand-noco/src/index.ts'),
+      pkgPath: path.resolve(__dirname, './packages/sand-noco'),
+      bundleName: 'sand-noco',
+      isTs: true,
+      moduleType: ['cjs'],
     },
   ],
 };

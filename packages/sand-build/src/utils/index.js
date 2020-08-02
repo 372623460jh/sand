@@ -3,7 +3,7 @@ const fs = require('fs');
 const chalk = require('chalk');
 const path = require('path');
 const childProcess = require('child_process');
-const { DEFAULT_PORT } = require('../constant');
+const { DEFAULT_PORT, moduleTypeEnum } = require('../constant');
 
 /**
  * 错误处理
@@ -162,6 +162,7 @@ function stdRollupConfig(options) {
       alias = [],
       umdGlobals = {},
       namedExports = {},
+      moduleType = [moduleTypeEnum.cjs, moduleTypeEnum.esm, moduleTypeEnum.umd], // 打哪些规范的包
       babelConfig = undefined, // bable配置用于替换内置babel配置（非必填，默认：内置babel配置）
     } = options[n];
     if (!entry || !pkgPath || !bundleName) {
@@ -184,6 +185,7 @@ function stdRollupConfig(options) {
       umdGlobals,
       namedExports,
       babelConfig,
+      moduleType,
     });
   }
   return stdOpts;
@@ -222,6 +224,31 @@ function getSandBuildConfig(SandBuildPath) {
   return stdSandBuildOpts(getDefault(require(SandBuildPath)));
 }
 
+/**
+ * 获取当前配置中cjs，esm，umd的支持情况
+ * @param {*} moduleType 支持的模块类型数组
+ */
+function getModuleTypeEnable(moduleType = []) {
+  if (!Array.isArray(configurations)) {
+    logError('moduleType非数组');
+    return {
+      cjsEnable: false,
+      esmEnable: false,
+      umdEnable: false,
+    };
+  }
+
+  const cjsEnable = !!(moduleType.indexOf(moduleTypeEnum.cjs) >= 0);
+  const esmEnable = !!(moduleType.indexOf(moduleTypeEnum.esm) >= 0);
+  const umdEnable = !!(moduleType.indexOf(moduleTypeEnum.umd) >= 0);
+
+  return {
+    cjsEnable,
+    esmEnable,
+    umdEnable,
+  };
+}
+
 module.exports = {
   mkdirsSync,
   createSymbolicLink,
@@ -230,4 +257,5 @@ module.exports = {
   logError,
   getBrowsersList,
   getSandBuildConfig,
+  getModuleTypeEnable,
 };

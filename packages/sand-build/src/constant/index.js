@@ -9,7 +9,15 @@ const typeEnum = {
   demo: 'demo',
 };
 
+// 构建类型枚举
+const moduleTypeEnum = {
+  cjs: 'cjs',
+  esm: 'esm',
+  umd: 'umd',
+};
+
 module.exports = {
   typeEnum,
   DEFAULT_PORT,
+  moduleTypeEnum,
 };

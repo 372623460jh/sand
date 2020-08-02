@@ -145,6 +145,13 @@ function createLink(packagesInfo) {
 async function buildLib(options) {
   const { link = false, watch = false } = options;
   const { configs, packagesInfo } = handleConfig(options);
+
+  if (configs.length === 0 && packagesInfo.length === 0) {
+    // 没有rollup打包配置，直接return
+    logError('没有rollup的打包配置');
+    return;
+  }
+
   if (link) {
     // 需要在.sandbuildrc.js所在目录中的node_modules下创建软链，
     // 链接到packages中的对应包，方便调试packages中的应用

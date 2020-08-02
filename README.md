@@ -123,6 +123,7 @@ sand-noco node 基于 koa 的扩展，增加了日志中间件，sso 中间件�
 - ~~sand-mob-ts-staging ts 版本移动端单页应用库和脚手架~~
 - ~~sand-core 库 ts 化~~
 - ~~example 中增加 @jianghe/sand-core 调试代码~~
+- ~~sand-build 支持生成 cjs，ejs，umd 的灵活配置~~
 - sand-noco 库 ts 化
 - sand-bff-ts 脚手架支持 ts
 - sand-pc-ts 脚手架支持 ts

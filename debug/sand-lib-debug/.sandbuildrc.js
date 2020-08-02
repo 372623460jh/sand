@@ -16,6 +16,7 @@ module.exports = {
         '@jianghe/sand-core/react': 'react',
         '@jianghe/sand-core/react-dom': 'react-dom',
       },
+      moduleType: ['cjs', 'esm'],
     },
     {
       entry: path.resolve(__dirname, './packages/ts-test/src/index.ts'),
@@ -29,6 +30,7 @@ module.exports = {
         react: 'react',
         'react-dom': 'react-dom',
       },
+      moduleType: ['esm', 'umd'],
     },
   ],
 };

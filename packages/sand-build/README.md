@@ -109,7 +109,9 @@ import path from 'path';
           find: 'model',
           replacement: path.resolve(__dirname, './packages/lib1/src/model/index.js')
         }
-      ]
+      ],
+      // 构建哪些规范的包(默认['cjs', 'esm', 'umd'])
+      moduleType: ['cjs', 'esm', 'umd'],
       // 全局模块，例如告诉Rollup jQuery 模块的id等同于 $ 变量最后生成umd代码时会是
       // var MyBundle = (function ($) {
       // }(window.jQuery));

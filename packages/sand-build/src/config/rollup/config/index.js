@@ -14,7 +14,11 @@ const { startCase } = require('lodash');
 const path = require('path');
 const { getBabelConfig } = require('./getBabelConfig');
 const { getDepsConfig } = require('./getDepsConfig');
-const { getPath, getBrowsersList } = require('../../../utils');
+const {
+  getPath,
+  getBrowsersList,
+  getModuleTypeEnable,
+} = require('../../../utils');
 
 /**
  * 根据options生成plugins
@@ -268,17 +272,21 @@ function configure(config, env, target) {
 
 /**
  * 生产rullup打包配置的方法
- * @param {*} config
- * @param {*} rootPath
- * @param {*} env
+ * @param {*} config 打包配置
+ * @param {*} env 环境
  */
 function factory(config, env) {
   const isProd = env === 'production';
+
+  // 获取当前配置支持哪些类型的包构建
+  const { moduleType } = config;
+  const { cjsEnable, esmEnable, umdEnable } = getModuleTypeEnable(moduleType);
+
   return [
-    configure(config, 'development', 'cjs'), // dev环境cjs输出
-    configure(config, 'development', 'esm'), // dev环境esm输出
-    isProd && configure(config, 'development', 'umd'), // prod环境 非压缩 umd 输出
-    isProd && configure(config, 'production', 'umd'), // prod环境 umd 输出
+    cjsEnable && configure(config, 'development', 'cjs'), // dev环境cjs输出
+    esmEnable && configure(config, 'development', 'esm'), // dev环境esm输出
+    umdEnable && isProd && configure(config, 'development', 'umd'), // prod环境 非压缩 umd 输出
+    umdEnable && isProd && configure(config, 'production', 'umd'), // prod环境 umd 输出
   ].filter(Boolean); // .filter(Boolean)用于移除数组中的false
 }
 

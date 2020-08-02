@@ -26,10 +26,6 @@ pc 端脚手架核心框架。详细文档见./packages/sand-core/README.md
 
 sand-moco 移动端 spa 框架（mobile core 简称 moco）。
 
-### sand-mystery
-
-加解密工具。详细文档见./packages/sand-mystery/README.md
-
 ### sand-noco
 
 sand-noco node 基于 koa 的扩展，增加了日志中间件，sso 中间件等。node 框架（node core 简称 noco）。
@@ -137,8 +133,7 @@ sand-noco node 基于 koa 的扩展，增加了日志中间件，sso 中间件�
 ### 非 sand 项目
 
 - sand-libs，基于 sand-lib 新建一个的工具库，里面包含
-  - sand-mystery
-    - 从 sand 项目中迁移出来
+  - ~~sand-mystery 从 sand 项目中迁移出来~~
   - sand-utils
     - 基础方法：url 处理，encode，fetch
   - sand-viewport

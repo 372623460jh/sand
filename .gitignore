@@ -5,7 +5,6 @@ esm
 node_modules
 coverage
 CHANGELOG.backup.md
-/packages/sand-mystery/examples/output/decrypt/*
 dist
 dist-docs
 

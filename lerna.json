@@ -4,7 +4,6 @@
     "packages/sand-build",
     "packages/sand-lint",
     "packages/sand-cli",
-    "packages/sand-mystery",
     "packages/sand-core",
     "packages/sand-noco",
     "packages/sand-moco"
@@ -18,7 +17,7 @@
       "registry": "https://npm.pkg.github.com",
       "verifyRegistry": false,
       "verifyAccess": false,
-      "allowBranch": ["master", "jianghe20200416-feat"]
+      "allowBranch": ["master"]
     }
   },
   "version": "independent",

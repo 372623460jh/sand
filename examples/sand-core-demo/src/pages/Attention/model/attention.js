@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 const TEST_FETCH = 'TEST_FETCH';
 const SET_STATE = 'SET_STATE';
 

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /**
  * 获取url上参数
  * @param {*} key 参数key

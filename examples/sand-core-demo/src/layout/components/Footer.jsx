@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import React from '@jianghe/sand-core/react';
 import styles from './layout.module.less';
 

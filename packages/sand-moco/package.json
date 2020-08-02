@@ -11,17 +11,13 @@
     }
   ],
   "main": "esm/sand-moco.js",
-  "module": "esm/sand-moco.js",
-  "cjs": "cjs/sand-moco.js",
   "keywords": [
     "sand",
     "spa",
     "mob"
   ],
   "files": [
-    "dist",
-    "esm",
-    "cjs"
+    "esm"
   ],
   "scripts": {},
   "peerDependencies": {

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import React from '@jianghe/sand-core/react';
 import { NavLink } from '@jianghe/sand-core/router-dom';
 import styles from './layout.module.less';

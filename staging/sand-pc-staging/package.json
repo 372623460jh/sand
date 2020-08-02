@@ -30,13 +30,13 @@
     "eslint": "~7.2.0",
     "stylelint": "^13.6.1",
     "jest": "^26.1.0",
-    "@jianghe/sand-build": "^1.2.3-8",
-    "@jianghe/sand-lint": "^1.2.3-8"
+    "@jianghe/sand-build": "^1.2.3-9",
+    "@jianghe/sand-lint": "^1.2.3-9"
   },
   "dependencies": {
     "@ant-design/icons": "^4.2.1",
     "antd": "^4.4.0",
     "debug": "^4.1.1",
-    "@jianghe/sand-core": "^1.2.3-8"
+    "@jianghe/sand-core": "^1.2.3-9"
   }
 }

@@ -1,8 +1,9 @@
-import { addListen, autoViewPort } from '@jianghe/sand-moco/esm/sand-moco';
+import { addListen } from '@jianghe/sand-moco/esm/sand-moco';
+import setViewport from '@jianghe/sand-viewport';
 import './index.less';
 
 // 设置视口
-autoViewPort(100, 1, 7.5);
+setViewport(7.5);
 
 // eslint-disable-next-line
 // __webpack_public_path__ = 'https://assets.zirupay.com/assets/xxxx/0.0.1/';

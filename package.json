@@ -80,6 +80,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "@ant-design/icons": "^4.2.1",
+    "@jianghe/sand-viewport": "^1.2.5",
     "antd": "^4.5.1"
   }
 }

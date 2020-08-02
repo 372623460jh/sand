@@ -43,8 +43,9 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "@ant-design/icons": "^4.2.1",
-    "antd": "^4.4.3",
+    "antd": "^4.5.1",
     "debug": "^4.1.1",
+    "@jianghe/sand-viewport": "^1.2.5",
     "@jianghe/sand-moco": "^1.2.3-9"
   }
 }

@@ -55,8 +55,8 @@
   ],
   "devDependencies": {
     "@commitlint/cli": "^9.1.1",
-    "@jianghe/sand-build": "^1.2.3-6",
-    "@jianghe/sand-lint": "^1.2.3-6",
+    "@jianghe/sand-build": "^1.2.3-8",
+    "@jianghe/sand-lint": "^1.2.3-8",
     "@types/jest": "^26.0.8",
     "@types/react": "^16.9.44",
     "@types/react-dom": "^16.9.8",
@@ -80,6 +80,6 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "@ant-design/icons": "^4.2.1",
-    "antd": "^4.4.3"
+    "antd": "^4.5.1"
   }
 }

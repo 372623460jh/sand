@@ -5,9 +5,8 @@ const getKoaInstance = require('../utils/koaInstance');
  */
 class Controller {
   constructor() {
-    const app = getKoaInstance();
     this.tag = 'sand-noco';
-    this.app = app;
+    this.app = getKoaInstance();
   }
 }
 

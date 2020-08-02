@@ -1,9 +1,8 @@
 {
   "name": "@jianghe/sand-noco",
-  "version": "1.2.3-8",
+  "version": "1.2.3-9",
   "private": false,
   "description": "node",
-  "main": "./index.js",
   "license": "MIT",
   "authors": [
     {
@@ -11,8 +10,14 @@
       "email": "573748150jh@163.com"
     }
   ],
+  "main": "./lib/index.js",
   "keywords": [
+    "sand",
     "sand-noco"
+  ],
+  "files": [
+    "lib",
+    "koa.js"
   ],
   "scripts": {},
   "dependencies": {

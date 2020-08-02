@@ -229,7 +229,7 @@ function getSandBuildConfig(SandBuildPath) {
  * @param {*} moduleType 支持的模块类型数组
  */
 function getModuleTypeEnable(moduleType = []) {
-  if (!Array.isArray(configurations)) {
+  if (!Array.isArray(moduleType)) {
     logError('moduleType非数组');
     return {
       cjsEnable: false,

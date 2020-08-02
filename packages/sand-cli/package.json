@@ -1,10 +1,19 @@
 {
   "name": "@jianghe/sand-cli",
-  "version": "1.2.3-8",
+  "version": "1.2.3-9",
   "private": false,
   "description": "sand cli工具",
-  "main": "./bin/sand-cli.js",
   "license": "MIT",
+  "authors": [
+    {
+      "name": "jianghe",
+      "email": "573748150jh@163.com"
+    }
+  ],
+  "main": "./bin/sand-cli.js",
+  "keywords": [
+    "sand-cli"
+  ],
   "files": [
     "bin",
     "commands",
@@ -12,15 +21,6 @@
     "script",
     "staging",
     "utils"
-  ],
-  "authors": [
-    {
-      "name": "jianghe",
-      "email": "573748150jh@163.com"
-    }
-  ],
-  "keywords": [
-    "sand-cli"
   ],
   "bin": {
     "sand-cli": "./bin/sand-cli.js"

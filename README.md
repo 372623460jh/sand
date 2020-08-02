@@ -124,16 +124,15 @@ sand-noco node 基于 koa 的扩展，增加了日志中间件，sso 中间件�
 - ~~sand-core 库 ts 化~~
 - ~~example 中增加 @jianghe/sand-core 调试代码~~
 - ~~sand-build 支持生成 cjs，ejs，umd 的灵活配置~~
-- sand-noco 库 ts 化
 - sand-bff-ts 脚手架支持 ts
 - sand-pc-ts 脚手架支持 ts
-- sand-node,sand-node-ts 微服务应用脚手架，只提供服务，gRPC 框架
 - example 中增加 @jianghe/sand-noco 调试代码
 - sand 文档完善
 - node-bff node-schedule 处理定时任务，定时任务通用方法
 - 脚手架.gitignore 拷贝丢失问题，脚手架项目抽离，sand-cli init 时动态拉脚手架项目可以解决该问题
 - package.json 中的依赖升级到最高额可靠版本，比如 rollup 升 2
 - 考虑如何拆项目，如将脚手架从项目中移除，初始化脚手架时从线上拉取脚手架文件，将 debug 移入每一个库中
+- sand-node 微服务应用脚手架，只提供服务，gRPC 框架
 
 ### 非 sand 项目
 

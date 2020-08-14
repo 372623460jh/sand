@@ -135,7 +135,7 @@ sand-noco node 基于 koa 的扩展，增加了日志中间件，sso 中间件�
 
 - sand-libs，基于 sand-lib 新建一个的工具库，里面包含
   - ~~sand-mystery 从 sand 项目中迁移出来~~
-  - sand-utils 基础方法：url 处理，encode，fetch
+  - ~~sand-utils 基础方法：url 处理，encode，fetch~~
   - ~~sand-viewport 视口库~~
 - ~~sand-slate，基于 sand-lib 新建一个 slate 库，目前已有但是需要维护~~
 - sand-editor，基于 sand-lib 模仿 editor 新建一个 editor 库
@@ -148,7 +148,6 @@ sand-noco node 基于 koa 的扩展，增加了日志中间件，sso 中间件�
 - ~~看 koa2 源码。~~
 - 看 egg 源码。
 - docker k8s 学习，服务器容器化
-- 学习 dumi 源码，sand 原生支持 md 解析
 
 ## 9. CHANGELOG
 
@@ -156,6 +155,7 @@ sand-noco node 基于 koa 的扩展，增加了日志中间件，sso 中间件�
 
 ## 10. 项目
 
+- 完成 login.zirupay.com 登录服务
 - 完成 images.zirupay.com 图片上传管理
 - 完成 editor.zirupay.com 文档编辑器项目
 - 完成 sand.zirupay.com sand 项目文档

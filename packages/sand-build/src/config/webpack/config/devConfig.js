@@ -39,7 +39,14 @@ function getEntryAndPlugins(opts) {
  * @param {*} env
  */
 function getDevWebpackConfig(opts) {
-  const { type = typeEnum.pc } = opts;
+  const { type = typeEnum.pc, webpackOptions = {} } = opts;
+  const {
+    externals, // 哪些库不需要打进bundle中
+    extendPlugin,
+    replaceConfig, // 外部传入的扩展变量
+  } = webpackOptions;
+  // 生产环境的扩展插件
+  const { devExtendPlugin } = extendPlugin;
 
   const {
     alias, // 别名
@@ -80,15 +87,22 @@ function getDevWebpackConfig(opts) {
             type === typeEnum.demo
               ? JSON.stringify(utils.getEntryMap(opts))
               : {},
+          // 外部扩展的替换配置
+          ...replaceConfig,
         }),
         new webpack.HotModuleReplacementPlugin(), // 热替换插件
       ])
-      .concat(plugins),
+      .concat(plugins)
+      .concat(devExtendPlugin),
     // 代码分离，公共js打包
     optimization: {
       noEmitOnErrors: true,
       namedModules: true,
       splitChunks,
+    },
+    // 哪些包不打入bundle中
+    externals: {
+      ...externals,
     },
   };
 }

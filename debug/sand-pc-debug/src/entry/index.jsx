@@ -19,6 +19,8 @@ const elementId = '#root';
 // routerPrefix
 const routerPrefix = '/spa';
 
+__TEST_VARIABLE__;
+
 /**
  * 获取路由配置的方法
  */

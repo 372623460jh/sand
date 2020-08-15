@@ -85,6 +85,18 @@ import path from 'path';
     // 如果tsShouldBabel === true时babelConfig配置将生效
     // 过babel的流程，ts -ts parse-> es -babel-> es5
     tsShouldBabel: false,
+    // 替换配置，内置了将'process.env.NODE_ENV': JSON.stringify('development/production'),
+    // 如果配置为如下配置，会将构建代码中的__TEST_VARIABLE__替换为`console.log('test replace config')`,
+    replaceConfig: {
+      __TEST_VARIABLE__: `console.log('test replace config')`,
+    },
+    // 扩展的插件
+    extendPlugin:{
+      devExtendPlugin: [],
+      prodExtendPlugin: [],
+    }
+    // 扩展的externals
+    externals:{}
   }
   // rollup 配置
   // 用于生成依赖文件,会用作rollup external 判断在deps中的库不会被打入包中
@@ -132,6 +144,11 @@ import path from 'path';
       },
       // bable配置用于替换内置babel配置（非必填，默认：内置babel配置）
       babelConfig: {},
+      // 替换配置，内置了将'process.env.NODE_ENV': JSON.stringify(env),
+      // 如果配置为如下配置，会将构建代码中的__TEST_VARIABLE__替换为`console.log('test replace config')`,
+      replaceConfig: {
+        __TEST_VARIABLE__: `console.log('test replace config')`,
+      }
     },
   ]
 }

@@ -17,6 +17,9 @@ module.exports = {
         '@jianghe/sand-core/react-dom': 'react-dom',
       },
       moduleType: ['cjs', 'esm'],
+      replaceConfig: {
+        __TEST_VARIABLE__: `console.log('test replace config')`,
+      },
     },
     {
       entry: path.resolve(__dirname, './packages/ts-test/src/index.ts'),
@@ -31,6 +34,9 @@ module.exports = {
         'react-dom': 'react-dom',
       },
       moduleType: ['esm', 'umd'],
+      replaceConfig: {
+        __TEST_VARIABLE__: `console.log('test replace config')`,
+      },
     },
   ],
 };

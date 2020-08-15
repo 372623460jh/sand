@@ -120,8 +120,10 @@ sand-noco node 基于 koa 的扩展，增加了日志中间件，sso 中间件�
 - ~~sand-core 库 ts 化~~
 - ~~example 中增加 @jianghe/sand-core 调试代码~~
 - ~~sand-build 支持生成 cjs，ejs，umd 的灵活配置~~
-- sand-build rollup 支持 replace 扩展
-- sand-build webpack 支持 DefinePlugin 扩展
+- ~~sand-build rollup 支持 replace 扩展~~
+- ~~sand-build webpack 支持 DefinePlugin 扩展~~
+- ~~sand-build webpack plugin 漏出区分环境~~
+- ~~sand-build webpack externals 漏出~~
 - example 中增加 @jianghe/sand-noco 调试代码
 - sand 文档完善
 - node-bff node-schedule 处理定时任务，定时任务通用方法

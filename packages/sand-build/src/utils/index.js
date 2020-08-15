@@ -127,6 +127,17 @@ function stdWebpackOptions(options) {
       prodPath: '/',
     },
     tsShouldBabel = false, // ts是否需要过babel。web项目需要过babel，node项目不需要。如果需要过babel，ts的编译产物必须是es规范。
+    // 外部传入的替换变量
+    replaceConfig = {},
+    // 外部传入的扩展插件
+    extendPlugin = {
+      // development 扩展插件
+      devExtendPlugin: [],
+      // production 扩展插件
+      prodExtendPlugin: [],
+    },
+    // 哪些库不打入bundle中
+    externals = {},
   } = options;
   if (!entryHtml || !entry) {
     logError('webpackOptions.entryHtml和webpackOptions.entry为必填项');
@@ -143,6 +154,9 @@ function stdWebpackOptions(options) {
     copyPlugin,
     publicPath,
     tsShouldBabel,
+    replaceConfig,
+    extendPlugin,
+    externals,
   };
 }
 
@@ -164,6 +178,7 @@ function stdRollupConfig(options) {
       namedExports = {},
       moduleType = [moduleTypeEnum.cjs, moduleTypeEnum.esm, moduleTypeEnum.umd], // 打哪些规范的包
       babelConfig = undefined, // bable配置用于替换内置babel配置（非必填，默认：内置babel配置）
+      replaceConfig = {}, // 替换配置replace的漏出
     } = options[n];
     if (!entry || !pkgPath || !bundleName) {
       logError(
@@ -186,6 +201,7 @@ function stdRollupConfig(options) {
       namedExports,
       babelConfig,
       moduleType,
+      replaceConfig,
     });
   }
   return stdOpts;

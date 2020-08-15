@@ -42,6 +42,15 @@ function getEntryAndPlugins(opts) {
  * @param {*} env
  */
 function getProdWebpackConfig(opts) {
+  const { type = typeEnum.pc, webpackOptions = {} } = opts;
+  const {
+    externals, // 哪些库不需要打进bundle中
+    extendPlugin,
+    replaceConfig, // 外部传入的扩展变量
+  } = webpackOptions;
+  // 生产环境的扩展插件
+  const { prodExtendPlugin } = extendPlugin;
+
   const {
     alias, // 别名
     output, // 输出
@@ -79,6 +88,13 @@ function getProdWebpackConfig(opts) {
          */
         new webpack.DefinePlugin({
           'process.env.NODE_ENV': JSON.stringify('production'),
+          // 将代码中__entryMap__替换成entryMap
+          __entryMap__:
+            type === typeEnum.demo
+              ? JSON.stringify(utils.getEntryMap(opts))
+              : {},
+          // 外部扩展的替换配置
+          ...replaceConfig,
         }),
         // 将css单独输出
         new MiniCssExtractPlugin({
@@ -98,7 +114,8 @@ function getProdWebpackConfig(opts) {
           canPrint: true,
         }),
       ])
-      .concat(plugins),
+      .concat(plugins)
+      .concat(prodExtendPlugin),
     // 代码分离，公共js打包
     optimization: {
       noEmitOnErrors: true,
@@ -119,6 +136,10 @@ function getProdWebpackConfig(opts) {
         }),
       ],
       splitChunks,
+    },
+    // 哪些包不打入bundle中
+    externals: {
+      ...externals,
     },
   };
 }

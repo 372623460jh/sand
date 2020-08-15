@@ -44,6 +44,8 @@ function getBasePlugins(options = {}) {
     packagesPath,
     // 覆盖的babel配置
     babelConfig,
+    // replace插件漏出的扩展配置，
+    replaceConfig,
   } = options;
 
   // 是否是生产环境
@@ -105,6 +107,7 @@ function getBasePlugins(options = {}) {
     // 替换代码中的'process.env.NODE_ENV'为JSON.stringify(env)
     replace({
       'process.env.NODE_ENV': JSON.stringify(env),
+      ...replaceConfig,
     }),
     // 让浏览器端支持node内置模块
     builtins(),
@@ -160,6 +163,8 @@ function configure(config, env, target) {
     namedExports = {}, // cjs的模块在umd打包时需要手动声明名称：
     cssExtract = false, // 是否单独提起css文件
     babelConfig = undefined, // bable配置用于替换内置babel配置（非必填，默认：内置babel配置）
+    // replace插件漏出的扩展配置，
+    replaceConfig,
   } = config;
 
   // 版本
@@ -206,6 +211,8 @@ function configure(config, env, target) {
     isUmd,
     namedExports,
     packagesPath,
+    // replace插件漏出的扩展配置，
+    replaceConfig,
   });
 
   if (isUmd) {

@@ -9,5 +9,15 @@ module.exports = {
     basePath: path.resolve(__dirname, '../sand-demo-debug'),
     // ts过babel
     tsShouldBabel: true,
+    replaceConfig: {
+      __TEST_VARIABLE__: `console.log('test replace config')`,
+    },
+    extendPlugin: {
+      devExtendPlugin: [],
+      prodExtendPlugin: [],
+    },
+    // externals: {
+    //   react: 'react',
+    // },
   },
 };

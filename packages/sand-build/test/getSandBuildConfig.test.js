@@ -23,6 +23,12 @@ test('读取并标准化.sandbuildrc.js => json', () => {
         prodPath: '/',
       },
       tsShouldBabel: true,
+      replaceConfig: {},
+      extendPlugin: {
+        devExtendPlugin: [],
+        prodExtendPlugin: [],
+      },
+      externals: {},
     },
     configurations: [
       {
@@ -92,6 +98,7 @@ test('读取并标准化.sandbuildrc.js => json', () => {
         },
         moduleType: ['esm'],
         namedExports: {},
+        replaceConfig: {},
       },
       {
         entry: getPath(rootPath, './packages/sand-moco/src/index.ts'),
@@ -146,6 +153,7 @@ test('读取并标准化.sandbuildrc.js => json', () => {
           'react-dom': 'react-dom',
           'react-redux': 'react-redux',
         },
+        replaceConfig: {},
       },
     ],
   };

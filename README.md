@@ -162,6 +162,7 @@ sand-noco node 基于 koa 的扩展，增加了日志中间件，sso 中间件�
   - 抽离 node 登录中间件
   - ~~申请 login.zirupay.com，img.zirupay.com，editor.zirupay.com 域名~~
   - ~~部署 login.zirupay.com 服务~~
+  - 解决 win 下登录解密失败的报错，mac 下成功
 - 完成 images.zirupay.com 图片上传管理
 - 完成 editor.zirupay.com 文档编辑器项目
 - 完成 sand.zirupay.com sand 项目文档

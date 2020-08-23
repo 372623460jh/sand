@@ -3,7 +3,7 @@ const fs = require('fs');
 const chalk = require('chalk');
 const path = require('path');
 const childProcess = require('child_process');
-const { DEFAULT_PORT, moduleTypeEnum } = require('../constant');
+const { DEFAULT_PORT, moduleTypeEnum, buildTypeEnum } = require('../constant');
 
 /**
  * 错误处理
@@ -161,50 +161,81 @@ function stdWebpackOptions(options) {
 }
 
 /**
- * configurations标准化
+ * configurations rollup标准化
+ * @param {*} option
+ */
+function stdRollupConfig(option) {
+  const {
+    buildType = buildTypeEnum.rollup, // 构建方式（rollup，babel）
+    entry = '', // 入口文件，绝对路径
+    pkgPath = '', // 包的目录
+    bundleName = '', // 构建出来的文件名, 必填
+    isTs,
+    cssExtract,
+    alias = [],
+    umdGlobals = {},
+    namedExports = {},
+    moduleType = [moduleTypeEnum.cjs, moduleTypeEnum.esm, moduleTypeEnum.umd], // 打哪些规范的包
+    babelConfig = undefined, // babel扩展
+    replaceConfig = {}, // 替换配置replace的漏出
+    nodeVersion = '6', // cjs模式可以指定node版本 默认6。其他模式下不生效
+  } = option;
+  if (!entry || !pkgPath || !bundleName) {
+    logError(
+      'rollup模式configurations[].entry和configurations[].pkgPath和configurations[].bundleName为必填项'
+    );
+    return {};
+  }
+  // 读取package.json
+  // eslint-disable-next-line
+  const pkgJson = require(getPath(pkgPath, './package.json'));
+  return {
+    buildType,
+    entry,
+    pkgPath,
+    bundleName,
+    pkg: pkgJson,
+    isTs: !!isTs,
+    cssExtract: !!cssExtract,
+    alias,
+    umdGlobals,
+    namedExports,
+    babelConfig, // babel扩展
+    moduleType,
+    replaceConfig,
+    nodeVersion,
+  };
+}
+
+/**
+ * configurations babel标准化
  * @param {*} options
  */
-function stdRollupConfig(options) {
-  const stdOpts = [];
-  for (let n = 0; n < options.length; n++) {
-    const {
-      entry = '', // 入口文件，绝对路径
-      pkgPath = '', // 包的目录
-      bundleName = '', // 构建出来的文件名, 必填
-      isTs,
-      cssExtract,
-      alias = [],
-      umdGlobals = {},
-      namedExports = {},
-      moduleType = [moduleTypeEnum.cjs, moduleTypeEnum.esm, moduleTypeEnum.umd], // 打哪些规范的包
-      babelConfig = undefined, // bable配置用于替换内置babel配置（非必填，默认：内置babel配置）
-      replaceConfig = {}, // 替换配置replace的漏出
-    } = options[n];
-    if (!entry || !pkgPath || !bundleName) {
-      logError(
-        'configurations[].entry和configurations[].pkgPath和configurations[].bundleName为必填项'
-      );
-      break;
-    }
-    // 读取package.json
-    // eslint-disable-next-line
-    const pkgJson = require(getPath(pkgPath, './package.json'));
-    stdOpts.push({
-      entry,
-      pkgPath,
-      bundleName,
-      pkg: pkgJson,
-      isTs: !!isTs,
-      cssExtract: !!cssExtract,
-      alias,
-      umdGlobals,
-      namedExports,
-      babelConfig,
-      moduleType,
-      replaceConfig,
-    });
+function stdBabelConfig(option) {
+  const {
+    pkgPath = '', // 包的目录
+    buildType = buildTypeEnum.babel, // 构建方式（rollup，babel）
+    isTs, // 是否是ts,默认false
+    moduleType = [moduleTypeEnum.cjs, moduleTypeEnum.esm], // 打哪些规范的包
+    babelConfig = undefined, // babel扩展
+    nodeVersion = '6', // cjs模式可以指定node版本 默认6。其他模式下不生效
+  } = option;
+  if (!pkgPath) {
+    logError('babel模式configurations[].pkgPath为必填项');
+    return {};
   }
-  return stdOpts;
+  // 读取package.json
+  // eslint-disable-next-line
+  const pkgJson = require(getPath(pkgPath, './package.json'));
+  return {
+    pkgPath,
+    buildType,
+    pkg: pkgJson,
+    isTs: !!isTs,
+    moduleType,
+    babelConfig,
+    nodeVersion,
+  };
 }
 
 /**
@@ -225,7 +256,19 @@ function stdSandBuildOpts(options) {
     Array.isArray(configurations) &&
     configurations.length > 0
   ) {
-    stdOpts.configurations = stdRollupConfig(configurations);
+    const stdconfig = [];
+    for (let n = 0; n < configurations.length; n++) {
+      const option = configurations[n];
+      const { buildType = buildTypeEnum.rollup } = option;
+      if (buildType === buildTypeEnum.rollup) {
+        // rollup构建方式
+        stdconfig.push(stdRollupConfig(option));
+      } else if (buildType === buildTypeEnum.babel) {
+        // babel构建方式
+        stdconfig.push(stdBabelConfig(option));
+      }
+    }
+    stdOpts.configurations = stdconfig;
   }
   return stdOpts;
 }
@@ -265,6 +308,27 @@ function getModuleTypeEnable(moduleType = []) {
   };
 }
 
+/**
+ * 同步删除文件夹
+ * @param {*} path
+ */
+function delDirSync(filePath) {
+  let files = [];
+  if (fs.existsSync(filePath)) {
+    files = fs.readdirSync(filePath);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    files.forEach((file, index) => {
+      const curPath = `${filePath}/${file}`;
+      if (fs.statSync(curPath).isDirectory()) {
+        delDirSync(curPath); // 递归删除文件夹
+      } else {
+        fs.unlinkSync(curPath); // 删除文件
+      }
+    });
+    fs.rmdirSync(filePath);
+  }
+}
+
 module.exports = {
   mkdirsSync,
   createSymbolicLink,
@@ -274,4 +338,5 @@ module.exports = {
   getBrowsersList,
   getSandBuildConfig,
   getModuleTypeEnable,
+  delDirSync,
 };

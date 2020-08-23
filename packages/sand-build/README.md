@@ -149,6 +149,10 @@ import path from 'path';
       replaceConfig: {
         __TEST_VARIABLE__: `console.log('test replace config')`,
       }
+      // 构建方式（rollup，babel）
+      buildType: 'rollup'
+      // cjs模式可以指定node版本 默认6。其他模式下不生效
+      nodeVersion:'6'
     },
   ]
 }

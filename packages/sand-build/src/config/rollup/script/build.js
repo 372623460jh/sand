@@ -1,7 +1,9 @@
 /* eslint-disable no-console */
 const rollup = require('rollup');
 const chalk = require('chalk');
-const factory = require('../config');
+const { factory } = require('../config');
+const { buildTypeEnum } = require('../../../constant');
+const { babelFactory } = require('../../../babel/babelFactory');
 const {
   createSymbolicLink,
   logError,
@@ -20,13 +22,21 @@ function handleConfig(props) {
     sandbuildrcPath || getPath(process.cwd(), './.sandbuildrc.js')
   );
   // rollup配置
-  let configs = [];
+  let rollupConfigs = [];
+  // babel配置
+  let babelConfigs = [];
   configurations.forEach((config) => {
-    // 调用factory生成rollup打包配置
-    configs = configs.concat([...factory(config, env)]);
+    const { buildType = buildTypeEnum.rollup } = config;
+    if (buildType === buildTypeEnum.rollup) {
+      // 调用factory生成rollup打包配置
+      rollupConfigs = rollupConfigs.concat([...factory(config, env)]);
+    } else if (buildType === buildTypeEnum.babel) {
+      babelConfigs = babelConfigs.concat([...babelFactory({ config })]);
+    }
   });
   return {
-    configs,
+    rollupConfigs,
+    babelConfigs,
     packagesInfo: configurations,
   };
 }
@@ -40,7 +50,9 @@ async function buildEntry(config) {
   const bundle = await rollup.rollup(config);
   await bundle.generate(output);
   await bundle.write(output);
-  console.log(chalk.green(`${chalk.yellow('[BUILD]')} -> ${output.file}`));
+  console.log(
+    chalk.green(`${chalk.yellow('[BUILD:ROLLUP]')} -> ${output.file}`)
+  );
 }
 
 /**
@@ -78,7 +90,6 @@ function buildAll(allConfig) {
  * @param {*} configs rollup配置
  */
 function watching(configs) {
-  console.log(chalk.yellow('======== sand-build 开始构建（watch）========'));
   // 开启监听
   const watcher = rollup.watch(configs);
   watcher.on('event', (event) => {
@@ -144,11 +155,14 @@ function createLink(packagesInfo) {
  */
 async function buildLib(options) {
   const { link = false, watch = false } = options;
-  const { configs, packagesInfo } = handleConfig(options);
+  const { packagesInfo, rollupConfigs, babelConfigs } = handleConfig(options);
 
-  if (configs.length === 0 && packagesInfo.length === 0) {
-    // 没有rollup打包配置，直接return
-    logError('没有rollup的打包配置');
+  if (
+    packagesInfo.length === 0 ||
+    (rollupConfigs.length === 0 && babelConfigs.length === 0)
+  ) {
+    // 没有配置，直接return
+    logError('没有库打包配置');
     return;
   }
 
@@ -157,23 +171,43 @@ async function buildLib(options) {
     // 链接到packages中的对应包，方便调试packages中的应用
     createLink(packagesInfo);
   }
-  if (watch) {
-    watching(configs);
-  } else {
-    try {
-      console.log(
-        chalk.yellow('======== sand-build 开始构建（build）========')
-      );
-      /**
-       * 构建所有配置
-       */
-      await buildAll(configs);
-      console.log(
-        chalk.yellow('======== sand-build 构建结束（build）========')
-      );
-    } catch (error) {
-      logError(error);
+
+  console.log(
+    chalk.yellow(
+      `======== sand-build 开始构建（${watch ? 'watch' : 'build'}）========`
+    )
+  );
+
+  // rollup 方式
+  if (rollupConfigs.length > 0) {
+    if (watch) {
+      watching(rollupConfigs);
+    } else {
+      try {
+        /**
+         * 构建所有配置
+         */
+        await buildAll(rollupConfigs);
+      } catch (error) {
+        logError(error);
+      }
     }
+  }
+
+  // babel 方式
+  if (babelConfigs.length > 0) {
+    for (let index = 0; index < babelConfigs.length; index++) {
+      const babelFactoryFn = babelConfigs[index];
+      await babelFactoryFn({ watch });
+    }
+  }
+
+  if (!watch) {
+    console.log(
+      chalk.yellow(
+        `======== sand-build 构建结束（${watch ? 'watch' : 'build'}）========`
+      )
+    );
   }
 }
 

@@ -1,0 +1,30 @@
+{
+  "name": "@jianghe/babel-ts-build",
+  "version": "1.2.3-3",
+  "private": false,
+  "description": "babel ts build test",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "jianghe",
+      "email": "573748150jh@163.com"
+    }
+  ],
+  "main": "esm/src/index.js",
+  "module": "esm/src/index.js",
+  "cjs": "cjs/src/index.js",
+  "keywords": [],
+  "files": [
+    "esm",
+    "cjs"
+  ],
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/372623460jh/sand.git"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  }
+}

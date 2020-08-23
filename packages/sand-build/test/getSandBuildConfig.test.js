@@ -35,6 +35,8 @@ test('读取并标准化.sandbuildrc.js => json', () => {
         entry: getPath(rootPath, './packages/sand-core/src/index.ts'),
         pkgPath: getPath(rootPath, './packages/sand-core'),
         bundleName: 'sand-core',
+        buildType: 'rollup',
+        nodeVersion: '6',
         pkg: {
           name: '@jianghe/sand-core',
           version,
@@ -109,6 +111,8 @@ test('读取并标准化.sandbuildrc.js => json', () => {
         cssExtract: false,
         isTs: true,
         namedExports: {},
+        buildType: 'rollup',
+        nodeVersion: '6',
         pkg: {
           authors: [
             {

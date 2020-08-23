@@ -12,13 +12,14 @@ const postcss = require('rollup-plugin-postcss');
 const autoprefixer = require('autoprefixer');
 const { startCase } = require('lodash');
 const path = require('path');
-const { getBabelConfig } = require('./getBabelConfig');
+const { getBabelConfig } = require('../../getBabelConfig');
 const { getDepsConfig } = require('./getDepsConfig');
 const {
   getPath,
   getBrowsersList,
   getModuleTypeEnable,
 } = require('../../../utils');
+const { buildTypeEnum } = require('../../../constant');
 
 /**
  * 根据options生成plugins
@@ -26,6 +27,8 @@ const {
  */
 function getBasePlugins(options = {}) {
   const {
+    // 构建类型esm | cjs | umd
+    moduleType,
     // 是否单独提起css文件
     cssExtract,
     // 构建环境
@@ -46,6 +49,8 @@ function getBasePlugins(options = {}) {
     babelConfig,
     // replace插件漏出的扩展配置，
     replaceConfig,
+    // cjs模式下的node版本
+    nodeVersion,
   } = options;
 
   // 是否是生产环境
@@ -60,6 +65,20 @@ function getBasePlugins(options = {}) {
       replacement: getPath(packagesPath, `./${pkgName}/src/$1`),
     },
   ];
+
+  // 读取babel配置
+  const babelConfigObj = getBabelConfig({
+    // 构建方式
+    buildType: buildTypeEnum.rollup,
+    // 构建类型esm | cjs | umd
+    moduleType,
+    // 包的绝对路径
+    packagesPath,
+    // 包名
+    pkgName,
+    // cjs模式下的node版本
+    nodeVersion,
+  });
 
   return [
     // 处理css,less
@@ -112,14 +131,7 @@ function getBasePlugins(options = {}) {
     // 让浏览器端支持node内置模块
     builtins(),
     // 使用babel处理代码
-    babel(
-      babelConfig ||
-        getBabelConfig({
-          packagesPath,
-          isUmd,
-          pkgName,
-        })
-    ),
+    babel(babelConfig || babelConfigObj),
     // 别名
     alias({
       entries: [...baseAlias, ...aliasConfig],
@@ -162,9 +174,10 @@ function configure(config, env, target) {
     umdGlobals = {}, // 全局模块
     namedExports = {}, // cjs的模块在umd打包时需要手动声明名称：
     cssExtract = false, // 是否单独提起css文件
-    babelConfig = undefined, // bable配置用于替换内置babel配置（非必填，默认：内置babel配置）
+    babelConfig, // bable配置用于替换内置babel配置（非必填，默认：内置babel配置）
     // replace插件漏出的扩展配置，
     replaceConfig,
+    nodeVersion,
   } = config;
 
   // 版本
@@ -201,6 +214,7 @@ function configure(config, env, target) {
 
   // 获取插件配置
   const plugins = getBasePlugins({
+    moduleType: target,
     babelConfig,
     // 是否单独提起css文件
     cssExtract,
@@ -213,6 +227,7 @@ function configure(config, env, target) {
     packagesPath,
     // replace插件漏出的扩展配置，
     replaceConfig,
+    nodeVersion,
   });
 
   if (isUmd) {
@@ -297,4 +312,6 @@ function factory(config, env) {
   ].filter(Boolean); // .filter(Boolean)用于移除数组中的false
 }
 
-module.exports = factory;
+module.exports = {
+  factory,
+};

@@ -43,5 +43,19 @@ module.exports = {
       },
       moduleType: ['esm'],
     },
+    // {
+    //   buildType: 'babel',
+    //   pkgPath: path.resolve(__dirname, './packages/sand-core'),
+    //   isTs: true,
+    //   nodeVersion: 8,
+    //   moduleType: ['esm', 'cjs'],
+    // },
+    // {
+    //   buildType: 'babel',
+    //   pkgPath: path.resolve(__dirname, './packages/sand-moco'),
+    //   isTs: true,
+    //   nodeVersion: 8,
+    //   moduleType: ['esm', 'cjs'],
+    // },
   ],
 };

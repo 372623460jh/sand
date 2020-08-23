@@ -18,6 +18,7 @@ class SandPc {
 
 const sandPc = new SandPc();
 
+// @ts-ignore
 window.$sandPc = sandPc;
 
 /**

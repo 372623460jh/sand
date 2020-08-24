@@ -28,11 +28,12 @@ node ./packages/sand-build/bin/sand-build.js build --env prod --watch --link
 
 ### 一个完整的.sandbuildrc.js 配置
 
-```
+```javascript
 import factory from './config/rollup';
 import lib1 from './packages/lib1/package.json';
 import path from 'path';
-{
+
+const allConfig = {
   // 服务启动端口
   port: 9538,
   // webpack补充配置
@@ -48,9 +49,9 @@ import path from 'path';
     // webpack要扩展的其他rules（非必填，默认：[]）
     otherRules: [
       {
-        test,
-        use,
-      }
+        test: '',
+        use: {},
+      },
     ],
     // 别名,非必填,例子如下
     // alias: {
@@ -80,7 +81,7 @@ import path from 'path';
     publicPath: {
       devPath: '/',
       prodPath: '/',
-    }
+    },
     // ts是否需要过babel。web项目需要过babel，node项目不需要。如果需要过babel，ts的编译产物必须是es规范。
     // 如果tsShouldBabel === true时babelConfig配置将生效
     // 过babel的流程，ts -ts parse-> es -babel-> es5
@@ -91,71 +92,73 @@ import path from 'path';
       __TEST_VARIABLE__: `console.log('test replace config')`,
     },
     // 扩展的插件
-    extendPlugin:{
+    extendPlugin: {
       devExtendPlugin: [],
       prodExtendPlugin: [],
-    }
+    },
     // 扩展的externals
-    externals:{}
-  }
-  // rollup 配置
+    externals: {},
+  },
+  // rollup babel模式配置
   // 用于生成依赖文件,会用作rollup external 判断在deps中的库不会被打入包中
   // 读取版本号
   configurations: [
     {
-      // 入口文件，绝对路径
-      entry: '',
+      // 构建方式（rollup，babel）
+      buildType: 'rollup',
+      // 构建哪些规范的包(默认['cjs', 'esm', 'umd'])
+      moduleType: ['cjs', 'esm', 'umd'],
       // 需要构建库的入口文件，绝对路径./packages/包名
       pkgPath: '',
-      // 构建出来的文件名,必填
-      bundleName: 'module1'
-      // 是否是ts,默认false
-      // ts会去加载 ${pkgPath}/tsconfig.json
+      // 是否是ts,默认false。ts会去加载 ${pkgPath}/tsconfig.json
       isTs: false,
-      // 是否单独提取css文件，默认是false
+      // bable配置用于替换内置babel配置（非必填，默认：内置babel配置）
+      babelConfig: {},
+      // 可以指定node版本 默认6。（rollup|babel-cjs模式下生效）
+      nodeVersion: '6',
+      // 入口文件，绝对路径（rollup-all模式下生效）
+      entry: '',
+      // 构建出来的文件名，非babel模式下必填（rollup-all模式下生效）
+      bundleName: 'module1',
+      // 是否单独提取css文件，默认是false（rollup-all模式下生效）
       cssExtract: false,
-      // 别名,内置了@ -> src的别名
-      // model -> ./packages/lib1/src/model/index.js
+      // 别名,内置了@ -> src的别名。model -> ./packages/lib1/src/model/index.js（rollup-all模式下生效）
       alias: [
         {
           find: 'model',
-          replacement: path.resolve(__dirname, './packages/lib1/src/model/index.js')
-        }
+          replacement: path.resolve(
+            __dirname,
+            './packages/lib1/src/model/index.js'
+          ),
+        },
       ],
-      // 构建哪些规范的包(默认['cjs', 'esm', 'umd'])
-      moduleType: ['cjs', 'esm', 'umd'],
-      // 全局模块，例如告诉Rollup jQuery 模块的id等同于 $ 变量最后生成umd代码时会是
+      // 替换配置（rollup-all模式下生效）
+      // 内置了将'process.env.NODE_ENV': JSON.stringify(env),
+      // 如果配置为如下配置，会将构建代码中的__TEST_VARIABLE__替换为`console.log('test replace config')`,
+      replaceConfig: {
+        __TEST_VARIABLE__: `console.log('test replace config')`,
+      },
+      // 全局模块，例如告诉Rollup jQuery 模块的id等同于 $ 变量最后生成umd代码时会是（rollup-umd模式下生效）
       // var MyBundle = (function ($) {
       // }(window.jQuery));
-      // umd打包时不需要将底线库,jquery打包
+      // umd构建时不需要将底线库,jquery打包
       // sand-build umd构建时默认会将peerDependencies中的依赖添加到umdGlobals中，不打进bundle包中
       umdGlobals: {
-        'lodash': '_',
-        'jQuery': '$',
+        lodash: '_',
+        jQuery: '$',
       },
-      // cjs的模块在umd打包时需要手动声明名称例如：
+      // cjs的模块在umd打包时需要手动声明名称例如：（rollup-umd模式下生效）
       // esrever是一个node模块在esm中使用
       // import { reverse } from 'esrever';
       // 在umd打包时会报错需要手动声明'esrever': ['reverse'],
       namedExports: {
-        'esrever': ['reverse'],
+        esrever: ['reverse'],
         'react-dom': ['findDOMNode'],
         'react-dom/server': ['renderToStaticMarkup'],
       },
-      // bable配置用于替换内置babel配置（非必填，默认：内置babel配置）
-      babelConfig: {},
-      // 替换配置，内置了将'process.env.NODE_ENV': JSON.stringify(env),
-      // 如果配置为如下配置，会将构建代码中的__TEST_VARIABLE__替换为`console.log('test replace config')`,
-      replaceConfig: {
-        __TEST_VARIABLE__: `console.log('test replace config')`,
-      }
-      // 构建方式（rollup，babel）
-      buildType: 'rollup'
-      // cjs模式可以指定node版本 默认6。其他模式下不生效
-      nodeVersion:'6'
     },
-  ]
-}
+  ],
+};
 
 export default configurations;
 ```

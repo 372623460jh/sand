@@ -125,6 +125,7 @@ sand-noco node 基于 koa 的扩展，增加了日志中间件，sso 中间件�
 - ~~sand-build webpack plugin 漏出区分环境~~
 - ~~sand-build webpack externals 漏出~~
 - ~~sand-build lib 增加纯 babel 编译方式~~
+
 - sand-build 重构
   - 1.配置方式重构 lib 构建分为 babel|rollup-esm，babel|rollup-cjs，babel-umd
   - 2.对外暴露命令和可以直接调用的 node 方法一个模式支持一种编译方式。
@@ -141,7 +142,7 @@ sand-noco node 基于 koa 的扩展，增加了日志中间件，sso 中间件�
 - sand-libs，基于 sand-lib 新建一个的工具库，里面包含
   - ~~sand-mystery 从 sand 项目中迁移出来~~
   - ~~sand-utils 基础方法：url 处理，encode，fetch~~
-  - ~~sand-viewport 视口库~~∏∏
+  - ~~sand-viewport 视口库~~
 - ~~sand-slate，基于 sand-lib 新建一个 slate 库，目前已有但是需要维护~~
 - sand-editor，基于 sand-lib 模仿 editor 新建一个 editor 库
 - editor 项目，基于 sand-bff 的编辑器项目，并部署

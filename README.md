@@ -125,7 +125,6 @@ sand-noco node 基于 koa 的扩展，增加了日志中间件，sso 中间件�
 - ~~sand-build webpack plugin 漏出区分环境~~
 - ~~sand-build webpack externals 漏出~~
 - ~~sand-build lib 增加纯 babel 编译方式~~
-
 - sand-build 重构
   - 1.配置方式重构 lib 构建分为 babel|rollup-esm，babel|rollup-cjs，babel-umd
   - 2.对外暴露命令和可以直接调用的 node 方法一个模式支持一种编译方式。

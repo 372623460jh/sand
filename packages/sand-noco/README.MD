@@ -10,7 +10,7 @@ node-core === noco 基于 koa 的扩展最佳实践
 
 1. 日志中间件中自定义框架自身的错误码。
 2. 提供日志中间件，日志中间件会初始化 log4js ，包装后挂载到 ctx 上：commonLogger 和 errorLogger
-3. ctx.commonLogger 和 ctx.errorLogger, 该对象有 log4j 提供的多种日志方式，debug，info，warn，error 等和 log4js 一致。
+3. ctx.commonLogger 和 ctx.errorLogger, 该对象有 log4j 提供的多种日志方式，debug，info，warn，error 等和 log4js 一致
 
 #### 使用方式
 

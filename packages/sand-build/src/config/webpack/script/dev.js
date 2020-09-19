@@ -112,10 +112,10 @@ function startApp(obj) {
   compiler.hooks.done.tap('done', () => {
     // 宏任务日志输出
     setTimeout(() => {
-      // 清空控制台
-      process.stdout.write(
-        process.platform === 'win32' ? '\x1B[2J\x1B[0f' : '\x1B[2J\x1B[3J\x1B[H'
-      );
+      // // 清空控制台
+      // process.stdout.write(
+      //   process.platform === 'win32' ? '\x1B[2J\x1B[0f' : '\x1B[2J\x1B[3J\x1B[H'
+      // );
       console.log(chalk.green('\n[start] 构建完成'));
       console.log(chalk.green(`[start] 访问 http://127.0.0.1:${port}`));
       console.log(chalk.green(`[start] 访问 http://${getIPAdress()}:${port}`));

@@ -1,6 +1,6 @@
 {
   "name": "@jianghe/sand-moco",
-  "version": "1.2.3-12",
+  "version": "1.2.3",
   "private": false,
   "description": "sand移动端单页核心框架",
   "license": "MIT",
@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@types/react-redux": "6.0.14",
-    "@types/webpack-env": "1.15.2"
+    "@types/webpack-env": "1.15.3"
   },
   "repository": {
     "type": "git",

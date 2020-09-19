@@ -1,6 +1,6 @@
 {
   "name": "@jianghe/sand-lint",
-  "version": "1.2.3-12",
+  "version": "1.2.3",
   "private": false,
   "description": "sand项目的lint统一规范",
   "main": "./react/index.js",
@@ -38,9 +38,9 @@
     "eslint-plugin-import": "2.22.0",
     "eslint-plugin-jsx-a11y": "6.3.1",
     "eslint-plugin-prettier": "3.1.4",
-    "eslint-plugin-react": "7.20.5",
-    "eslint-plugin-react-hooks": "4.0.8",
-    "prettier": "2.0.5",
+    "eslint-plugin-react": "7.20.6",
+    "eslint-plugin-react-hooks": "4.1.2",
+    "prettier": "2.1.2",
     "stylelint-scss": "3.18.0",
     "typescript": "3.9.7"
   }

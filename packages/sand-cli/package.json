@@ -1,6 +1,6 @@
 {
   "name": "@jianghe/sand-cli",
-  "version": "1.2.3",
+  "version": "1.2.4-0",
   "private": false,
   "description": "sand cli工具",
   "license": "MIT",

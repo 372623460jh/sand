@@ -127,7 +127,7 @@ test('读取并标准化.sandbuildrc.js => json', () => {
           description: 'sand移动端单页核心框架',
           devDependencies: {
             '@types/react-redux': '6.0.14',
-            '@types/webpack-env': '1.15.2',
+            '@types/webpack-env': '1.15.3',
           },
           files: ['esm'],
           keywords: ['sand', 'spa', 'mob'],

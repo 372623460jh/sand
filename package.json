@@ -1,6 +1,6 @@
 {
   "name": "sand",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "sand核心包仓库",
   "author": "jianghe",
   "license": "MIT",
@@ -54,34 +54,34 @@
     "changelog"
   ],
   "devDependencies": {
-    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-env": "^7.11.5",
     "@babel/preset-typescript": "^7.10.4",
-    "@commitlint/cli": "^9.1.1",
-    "@jianghe/sand-build": "^1.2.3-12",
-    "@jianghe/sand-lint": "^1.2.3-12",
-    "@types/jest": "^26.0.10",
-    "@types/react": "^16.9.46",
+    "@commitlint/cli": "^9.1.2",
+    "@jianghe/sand-build": "^1.2.3",
+    "@jianghe/sand-lint": "^1.2.3",
+    "@types/jest": "^26.0.14",
+    "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",
-    "@types/webpack-env": "^1.15.2",
-    "webpack-bundle-analyzer": "^3.8.0",
+    "@types/webpack-env": "^1.15.3",
+    "webpack-bundle-analyzer": "^3.9.0",
     "conventional-changelog": "^3.1.23",
     "dumi": "^1.0.34",
-    "eslint": "^7.7.0",
-    "husky": "^4.2.5",
-    "jest": "^26.4.0",
+    "eslint": "^7.9.0",
+    "husky": "^4.3.0",
+    "jest": "^26.4.2",
     "jest-css-modules": "^2.1.0",
     "lerna": "2.11.0",
     "npm-run-all": "^4.1.5",
     "post-commit": "0.0.1",
-    "stylelint": "^13.6.1",
-    "ts-jest": "^26.2.0",
+    "stylelint": "^13.7.1",
+    "ts-jest": "^26.3.0",
     "typescript": "^3.9.7"
   },
   "dependencies": {
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "@ant-design/icons": "^4.2.2",
-    "@jianghe/sand-viewport": "^1.2.6-1",
-    "antd": "^4.5.4"
+    "@jianghe/sand-viewport": "^1.2.6-3",
+    "antd": "^4.6.4"
   }
 }

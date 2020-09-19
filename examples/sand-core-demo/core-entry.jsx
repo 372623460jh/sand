@@ -1,5 +1,5 @@
-import React from '@jianghe/sand-core/react';
-import ReactDOM from '@jianghe/sand-core/react-dom';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Router } from '@jianghe/sand-core/router-dom';
 import { createBrowserHistory } from '@jianghe/sand-core/history';
 import { Provider } from '@jianghe/sand-core/react-redux';

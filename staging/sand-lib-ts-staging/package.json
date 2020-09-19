@@ -47,8 +47,8 @@
     "stylelint": "^13.6.1",
     "jest": "^26.1.0",
     "dumi": "^1.0.33",
-    "@jianghe/sand-build": "^1.2.3-12",
-    "@jianghe/sand-lint": "^1.2.3-12"
+    "@jianghe/sand-build": "^1.2.3",
+    "@jianghe/sand-lint": "^1.2.3"
   },
   "dependencies": {
     "react": "^16.13.1",

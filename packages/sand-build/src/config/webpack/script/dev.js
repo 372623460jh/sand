@@ -12,6 +12,8 @@ const koaHotMiddleware = require('../../../middleware/hotMiddleware');
 // koa2 historyApiMiddleware
 const historyApiFallback = require('../../../middleware/historyApiMiddleware');
 const { getSandBuildConfig, getPath } = require('../../../utils');
+// 读取本地ip
+const { getIPAdress } = require('../../../utils/getIpAddress');
 
 /**
  * 启动应用 start命令env都是development
@@ -22,7 +24,7 @@ const { getSandBuildConfig, getPath } = require('../../../utils');
  * }
  */
 function startApp(obj) {
-  console.log(chalk.green('[start] Webpack dev环境启动服务'));
+  console.log(chalk.green('[start] sand-build dev环境启动'));
 
   const { env, type, sandbuildrcPath = '' } = obj;
 
@@ -101,7 +103,23 @@ function startApp(obj) {
   app.use(koaHotMiddleware(compiler, {}));
 
   app.listen(port, () => {
-    console.log(chalk.green(`[start] Listening at http://127.0.0.1:${port}\n`));
+    // 监听完成
+    console.log(chalk.green(`[start] koa2服务启动，监听${port}端口`));
+    console.log(chalk.green(`[start] 开启webpack构建`));
+  });
+
+  // compiler 完成 hook
+  compiler.hooks.done.tap('done', () => {
+    // 宏任务日志输出
+    setTimeout(() => {
+      // 清空控制台
+      process.stdout.write(
+        process.platform === 'win32' ? '\x1B[2J\x1B[0f' : '\x1B[2J\x1B[3J\x1B[H'
+      );
+      console.log(chalk.green('\n[start] 构建完成'));
+      console.log(chalk.green(`[start] 访问 http://127.0.0.1:${port}`));
+      console.log(chalk.green(`[start] 访问 http://${getIPAdress()}:${port}`));
+    });
   });
 }
 

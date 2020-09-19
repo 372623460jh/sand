@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import React from '@jianghe/sand-core/react';
+import React from 'react';
 import PropTypes from '@jianghe/sand-core/prop-types';
 import MenuBox from './components/Menu';
 import HeaderBox from './components/Header';

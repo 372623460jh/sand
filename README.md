@@ -126,11 +126,11 @@ sand-noco node 基于 koa 的扩展，增加了日志中间件，sso 中间件�
 - ~~sand-build webpack externals 漏出~~
 - ~~sand-build lib 增加纯 babel 编译方式~~
 - ~~sand-build 优化 koa2+webpack 控制台输出~~
-- sand-core 优化不导出 react，react-dom
-- webpack 插件来优化控制台输出
 - sand-build 重构（ts babel 构建）
   - 1.配置方式重构 lib 构建分为 babel|rollup-esm，babel|rollup-cjs，babel-umd
   - 2.对外暴露命令和可以直接调用的 node 方法一个模式支持一种编译方式。
+- sand-core 优化不导出 react，react-dom
+- webpack 插件来优化控制台输出
 - example 中增加 @jianghe/sand-noco 调试代码
 - sand 文档完善
 - node-bff node-schedule 处理定时任务，定时任务通用方法
@@ -171,5 +171,5 @@ sand-noco node 基于 koa 的扩展，增加了日志中间件，sso 中间件�
   - 解决 win 下登录解密失败的报错，mac 下成功
 - 完成 images.zirupay.com 图片上传管理
 - ~~完成 editor.zirupay.com 文档编辑器项目~~
-- 完成 sand.zirupay.com sand 项目文档
+- 完善 sand.zirupay.com sand 项目文档
 - rich 项目

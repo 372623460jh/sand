@@ -1,4 +1,4 @@
-# sand v1.2.2
+# sand v1.3.0
 
 [中文文档](https://sand.zirupay.com/)
 

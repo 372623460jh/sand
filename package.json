@@ -1,6 +1,6 @@
 {
   "name": "sand",
-  "version": "1.2.3",
+  "version": "1.3.0",
   "description": "sand核心包仓库",
   "author": "jianghe",
   "license": "MIT",
@@ -57,8 +57,8 @@
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-typescript": "^7.10.4",
     "@commitlint/cli": "^9.1.2",
-    "@jianghe/sand-build": "^1.2.4",
-    "@jianghe/sand-lint": "^1.2.4",
+    "@jianghe/sand-build": "^1.3.0",
+    "@jianghe/sand-lint": "^1.3.0",
     "@types/jest": "^26.0.14",
     "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",

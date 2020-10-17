@@ -2,7 +2,7 @@
 
 ### build
 
-type === lib 时 env，link，watch 参数才生效
+type === lib 时 env，link，watch 参数才生效.
 type === pc/mob/demo 时 env，link，watch 参数不生效
 
 - --type 构建类型 pc/mob/lib/demo 必填

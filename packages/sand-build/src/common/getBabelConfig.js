@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 const { extname } = require('path');
 const { buildTypeEnum, moduleTypeEnum } = require('../constant');
 const { getPath } = require('../utils');

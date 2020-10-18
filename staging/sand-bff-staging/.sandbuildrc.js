@@ -1,10 +1,10 @@
 const path = require('path');
 
 module.exports = {
-  // webpack服务启动端口
-  port: 9538,
   //webpack配置
   webpackOptions: {
+    // webpack服务启动端口
+    port: 9538,
     // 入口文件
     entry: path.resolve(__dirname, './src/entry/index.jsx'),
     // 入口html

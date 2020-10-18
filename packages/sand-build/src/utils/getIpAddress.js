@@ -1,3 +1,4 @@
+/* eslint-disable guard-for-in */
 const os = require('os');
 
 /**

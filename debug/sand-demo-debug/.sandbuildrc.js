@@ -1,8 +1,8 @@
 const path = require('path');
 
 module.exports = {
-  port: 9540,
   webpackOptions: {
+    port: 9540,
     entry: path.resolve(__dirname, './examples/common/index.tsx'),
     entryHtml: path.resolve(__dirname, './examples/common/index.html'),
     // 入口文件所在文件夹

@@ -1,4 +1,4 @@
-import React from '@jianghe/sand-core/react';
+import React from 'react';
 import { NavLink } from '@jianghe/sand-core/router-dom';
 import { Breadcrumb } from 'antd';
 

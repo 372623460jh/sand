@@ -1,6 +1,6 @@
-const startApp = require('./config/webpack/script/dev');
-const buildApp = require('./config/webpack/script/prod');
-const buildLib = require('./config/rollup/script/build');
+const startApp = require('./webpack/script/dev');
+const buildApp = require('./webpack/script/prod');
+const buildLib = require('./common/libBuild');
 const { typeEnum } = require('./constant');
 const { logError } = require('./utils');
 
@@ -10,14 +10,15 @@ const { logError } = require('./utils');
  */
 async function build(options) {
   const {
-    type = typeEnum.pc,
-    sandbuildrcPath = '', // 指定sandbuildrc入口只有debug时会有此入参
+    type = typeEnum.webpack,
+    // 指定sandbuildrc入口只有debug时会有此入参
+    sandbuildrcPath = '',
   } = options;
   if (type === typeEnum.lib) {
     // lib
     buildLib(options);
   } else {
-    // pc||demo||mob
+    // webpack||demo
     buildApp({
       type,
       env: 'production',
@@ -33,16 +34,15 @@ async function build(options) {
  */
 function start(options) {
   const {
-    type = typeEnum.pc,
-    sandbuildrcPath = '', // 指定sandbuildrc入口只有debug时会有此入参
+    type = typeEnum.webpack,
+    // 指定sandbuildrc入口只有debug时会有此入参
+    sandbuildrcPath = '',
   } = options;
-  // start都是development
-  const env = 'development';
-  if (type === typeEnum.pc || type === typeEnum.demo || type === typeEnum.mob) {
+  if (type === typeEnum.webpack || type === typeEnum.demo) {
     // pc||demo||mob时启动webpack服务
     startApp({
       type,
-      env,
+      env: 'development',
       sandbuildrcPath,
     });
   } else {

@@ -1,5 +1,5 @@
 // 异步加载组件的方法
-import { async, redirect } from '@jianghe/sand-core/';
+import { async, redirect } from '@jianghe/sand-core';
 import BaseLayout from '../../layout/BaseLayout';
 
 // 配置book页的路由信息

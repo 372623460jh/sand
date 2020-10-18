@@ -3,10 +3,10 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin;
 
 module.exports = {
-  // webpack服务启动端口
-  port: 9897,
   //webpack配置
   webpackOptions: {
+    // webpack服务启动端口
+    port: 9897,
     entry: path.resolve(__dirname, './src/entry/index.jsx'),
     entryHtml: path.resolve(__dirname, './src/entry/index.html'),
     basePath: path.resolve(__dirname, '../sand-pc-debug'),

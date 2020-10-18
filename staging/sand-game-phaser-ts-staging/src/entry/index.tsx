@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from '@jianghe/sand-core/react';
-import ReactDOM from '@jianghe/sand-core/react-dom';
+import React, { useEffect, useState } from 'react';
+import ReactDOM from 'react-dom';
 import { RangchGame } from '@/games/ranchGame';
 import styles from './index.module.less';
 

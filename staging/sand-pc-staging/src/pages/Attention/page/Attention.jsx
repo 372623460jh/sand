@@ -1,4 +1,4 @@
-import React from '@jianghe/sand-core/react';
+import React from 'react';
 import { setModel } from '@jianghe/sand-core';
 import PropTypes from '@jianghe/sand-core/prop-types';
 import { connect } from '@jianghe/sand-core/react-redux';

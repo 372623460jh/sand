@@ -1,6 +1,6 @@
 const glob = require('glob');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { getPath, logError } = require('../../../utils');
+const { getPath, logError } = require('../../utils');
 
 /**
  * 遍历basePath/examples下的页面输出成
@@ -87,7 +87,7 @@ function getWebpackEntry(entryMap, opts) {
 }
 
 /**
- * sand-demo获取HtmlWebpackPlugin数组
+ * type === demo获取HtmlWebpackPlugin数组
  * @param {*} entryMap
  * @param {*} opts
  */
@@ -120,7 +120,7 @@ function getHtmlWebpackPlugin(entryMap) {
 }
 
 /**
- * 获取sand-pc WebpackPlugin
+ * type===webpack 获取 WebpackPlugin
  * @param {*}
  */
 function getSandWebpackPlugin(opts) {
@@ -149,7 +149,7 @@ function getSandWebpackPlugin(opts) {
 }
 
 /**
- * 获取sand-pc entry
+ * type===webpack 获取 entry
  * @param {*}
  */
 function getSandEntry(opts) {

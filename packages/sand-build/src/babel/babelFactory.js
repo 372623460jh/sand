@@ -1,44 +1,29 @@
 const { babelBuild } = require('./babelBuild');
-const { moduleTypeEnum } = require('../constant');
 
 /**
  * babel构建生产器
- * @param {*} opts
+ * @param {*} config 配置
+ * @param {*} env 环境
+ * @param {*} moduleType 模块类型
  */
-function babelFactory(opts) {
-  const { config } = opts;
-  const {
-    pkgPath,
-    buildType,
-    isTs,
-    moduleType,
-    babelConfig,
-    nodeVersion,
-  } = config;
+function babelFactory(config, env, moduleType) {
+  const { pkgPath, isTs, babelConfig, nodeVersion } = config;
 
   // babel构建factory的数组
   const babelBuildList = [];
 
-  for (let index = 0; index < moduleType.length; index++) {
-    const mt = moduleType[index];
-    if (mt === moduleTypeEnum.umd) {
-      // babel 模式下的umd丢弃
-      continue;
-    }
-    babelBuildList.push(async (options) => {
-      // 是否开启监听
-      const { watch = false } = options;
-      await babelBuild({
-        pkgPath,
-        watch,
-        buildType,
-        moduleType: mt,
-        isTs,
-        babelConfig,
-        nodeVersion,
-      });
+  babelBuildList.push(async (options) => {
+    // 是否开启监听
+    const { watch = false } = options;
+    await babelBuild({
+      pkgPath,
+      watch,
+      moduleType,
+      isTs,
+      babelConfig,
+      nodeVersion,
     });
-  }
+  });
 
   return babelBuildList;
 }

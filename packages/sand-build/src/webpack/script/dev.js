@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 const webpack = require('webpack');
 const Koa = require('koa');
 const cors = require('koa2-cors');
@@ -6,20 +5,22 @@ const chalk = require('chalk');
 // webpack dev config
 const getDevWebpackConfig = require('../config/devConfig');
 // koa2 devMiddleware
-const koaDevMiddleware = require('../../../middleware/devMiddleware');
+const koaDevMiddleware = require('../../middleware/devMiddleware');
 // koa2 hotMiddleware
-const koaHotMiddleware = require('../../../middleware/hotMiddleware');
+const koaHotMiddleware = require('../../middleware/hotMiddleware');
 // koa2 historyApiMiddleware
-const historyApiFallback = require('../../../middleware/historyApiMiddleware');
-const { getSandBuildConfig, getPath } = require('../../../utils');
+const historyApiFallback = require('../../middleware/historyApiMiddleware');
+const { getPath } = require('../../utils');
+const { getSandBuildConfig } = require('../../common/stdConfig');
+const { buildConfigFileName } = require('../../constant');
 // 读取本地ip
-const { getIPAdress } = require('../../../utils/getIpAddress');
+const { getIPAdress } = require('../../utils/getIpAddress');
 
 /**
  * 启动应用 start命令env都是development
  * obj: {
  *    env: production/development
- *    type: pc/mob/demo
+ *    type: webpack/demo
  *    sandbuildrcPath
  * }
  */
@@ -30,12 +31,12 @@ function startApp(obj) {
 
   // 动态读取sandbuildrc.js配置
   const opts = getSandBuildConfig(
-    sandbuildrcPath || getPath(process.cwd(), './.sandbuildrc.js')
+    sandbuildrcPath || getPath(process.cwd(), `./.${buildConfigFileName}.js`)
   );
 
-  const { port = 9531, webpackOptions = {} } = opts;
+  const { webpackOptions = {} } = opts;
 
-  const { historyApiOpts = {} } = webpackOptions;
+  const { historyApiOpts = {}, port } = webpackOptions;
 
   const { enable = false } = historyApiOpts;
 

@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 const { extname } = require('path');
 const { buildTypeEnum, moduleTypeEnum } = require('../constant');
 const { getPath } = require('../utils');
@@ -70,7 +68,7 @@ function getBabelConfig(opts) {
   } = opts;
 
   // 是不是浏览器模式
-  let isBrowser = getIsBrowser({
+  const isBrowser = getIsBrowser({
     buildType,
     moduleType,
     filePath,

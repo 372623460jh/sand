@@ -12,7 +12,7 @@ const { join, extname } = require('path');
 const { existsSync, readFileSync, statSync } = require('fs');
 const babel = require('@babel/core');
 const ts = require('typescript');
-const { getBabelConfig } = require('../config/getBabelConfig');
+const { getBabelConfig } = require('../common/getBabelConfig');
 const { delDirSync } = require('../utils');
 const { buildTypeEnum, moduleTypeEnum } = require('../constant');
 
@@ -30,39 +30,40 @@ function transform(opts) {
     targetPath, // 输出路径
   } = opts;
 
-  let babelOpts = {};
+  // 获取babael配置
+  let bConfig = getBabelConfig({
+    // 构建方式rollup | babel
+    buildType: buildTypeEnum.babel,
+    // 构建类型esm | cjs | umd
+    moduleType,
+    // 要构建的文件路径，只有babel模式下才有
+    filePath: slash(file.path),
+    // node的版本号，只有cjs模式下支持此参数
+    nodeVersion,
+  });
 
   if (babelConfig) {
-    // 使用外部babel
-    babelOpts = babelConfig;
-  } else {
-    // 获取babael配置
-    const { presets = [], plugins = [] } = getBabelConfig({
-      // 构建方式rollup | babel
-      buildType: buildTypeEnum.babel,
-      // 构建类型esm | cjs | umd
-      moduleType,
-      // 要构建的文件路径，只有babel模式下才有
-      filePath: slash(file.path),
-      // node的版本号，只有cjs模式下支持此参数
-      nodeVersion,
-    });
-    babelOpts = {
-      presets,
-      plugins,
-    };
+    // 外部扩展babel
+    bConfig = babelConfig(bConfig);
   }
+
+  const { presets = [], plugins = [] } = bConfig;
+
+  const babelOpts = {
+    presets,
+    plugins,
+  };
 
   // 文件输出日志
   const relFile = slash(file.path).replace(`${pkgPath}/src`, `${targetPath}`);
   console.log(`[BUILD:BABEL] -> ${chalk.yellow(relFile)}`);
 
-  const code = babel.transform(file.contents, {
+  const { code } = babel.transform(file.contents, {
     ...babelOpts,
     filename: file.path,
     // 不读取babel配置文件，全采用babelOpts中的配置
     configFile: false,
-  }).code;
+  });
 
   return code;
 }
@@ -72,12 +73,18 @@ function transform(opts) {
  */
 const babelBuild = async (opts) => {
   const {
-    pkgPath, // 包绝对路径
-    watch, // 是否开启监听
-    moduleType, // 模块类型cjs | esm ；babel模式下不会有umd模式
-    isTs, // 是否是ts
-    babelConfig, // 替换的babel配置
-    nodeVersion, // cjs模式可以指定node版本 默认6。其他模式下不生效
+    // 包绝对路径
+    pkgPath,
+    // 是否开启监听
+    watch,
+    // 模块类型cjs | esm ；babel模式下不会有umd模式
+    moduleType,
+    // 是否是ts
+    isTs,
+    // babel配置扩展
+    babelConfig,
+    // cjs模式可以指定node版本 默认6。其他模式下不生效
+    nodeVersion,
   } = opts;
 
   // 要构建的目录
@@ -93,9 +100,9 @@ const babelBuild = async (opts) => {
   /**
    * tsconfig.json is not valid json file
    */
-  function parseTsconfig(path) {
-    const readFile = (path) => readFileSync(path, 'utf-8');
-    const result = ts.readConfigFile(path, readFile);
+  function parseTsconfig(tsconfigPath) {
+    const readFile = (tsPath) => readFileSync(tsPath, 'utf-8');
+    const result = ts.readConfigFile(tsconfigPath, readFile);
     if (result.error) {
       return;
     }
@@ -219,6 +226,8 @@ const babelBuild = async (opts) => {
         });
 
         const files = [];
+
+        // eslint-disable-next-line no-inner-declarations
         function compileFiles() {
           while (files.length) {
             createStream(files.pop());

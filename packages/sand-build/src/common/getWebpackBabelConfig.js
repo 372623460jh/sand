@@ -1,21 +1,23 @@
 /**
  * 获取基础的babel配置
  */
-function getBaseBabelConfig() {
+function getWebpackBabelConfig() {
   return {
     presets: ['@babel/react', '@babel/env'],
     plugins: [
       '@babel/transform-runtime',
       '@babel/plugin-proposal-class-properties',
-      '@babel/plugin-syntax-dynamic-import', // 动态引入
+      // 动态引入
+      '@babel/plugin-syntax-dynamic-import',
       [
         '@babel/plugin-proposal-decorators',
         {
           legacy: true,
         },
       ],
+      // chunk命名：动态引入的chunks使用path作为名字
       [
-        'babel-plugin-path-chunk-name', // chunk命名：动态引入的chunks使用path作为名字
+        'babel-plugin-path-chunk-name',
         {
           delay: true,
         },
@@ -35,5 +37,5 @@ function getBaseBabelConfig() {
 }
 
 module.exports = {
-  getBaseBabelConfig,
+  getWebpackBabelConfig,
 };

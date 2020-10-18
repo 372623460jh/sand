@@ -6,7 +6,7 @@ const path = require('path');
 const { start, build } = require('../../packages/sand-build/src');
 
 start({
-  type: 'pc',
+  type: 'webpack',
   sandbuildrcPath: path.resolve(__dirname, './.sandbuildrc.js'),
 });
 

@@ -1,15 +1,14 @@
-/* eslint-disable no-console */
 const rollup = require('rollup');
 const chalk = require('chalk');
-const { factory } = require('../config');
-const { buildTypeEnum } = require('../../../constant');
-const { babelFactory } = require('../../../babel/babelFactory');
+const { factory } = require('../rollup');
+const { babelFactory } = require('../babel/babelFactory');
 const {
-  createSymbolicLink,
-  logError,
-  getPath,
-  getSandBuildConfig,
-} = require('../../../utils');
+  buildTypeEnum,
+  buildConfigFileName,
+  moduleTypeEnum,
+} = require('../constant');
+const { createSymbolicLink, logError, getPath } = require('../utils');
+const { getSandBuildConfig } = require('./stdConfig');
 
 /**
  * 处理rc文件生成可用的配置文件
@@ -17,27 +16,64 @@ const {
  */
 function handleConfig(props) {
   const { env, sandbuildrcPath } = props;
+
   // 读取sandbuildrc.js配置,并且标准化配置
-  const { configurations = [] } = getSandBuildConfig(
-    sandbuildrcPath || getPath(process.cwd(), './.sandbuildrc.js')
+  const { libsOptions = [] } = getSandBuildConfig(
+    sandbuildrcPath || getPath(process.cwd(), `./.${buildConfigFileName}.js`)
   );
+
   // rollup配置
   let rollupConfigs = [];
+
   // babel配置
   let babelConfigs = [];
-  configurations.forEach((config) => {
-    const { buildType = buildTypeEnum.rollup } = config;
-    if (buildType === buildTypeEnum.rollup) {
-      // 调用factory生成rollup打包配置
-      rollupConfigs = rollupConfigs.concat([...factory(config, env)]);
-    } else if (buildType === buildTypeEnum.babel) {
-      babelConfigs = babelConfigs.concat([...babelFactory({ config })]);
+
+  libsOptions.forEach((config) => {
+    const { esm, cjs, umd } = config;
+    if (esm) {
+      const { buildType = buildTypeEnum.rollup } = esm;
+      if (buildType === buildTypeEnum.rollup) {
+        // rollup esm
+        rollupConfigs = rollupConfigs.concat([
+          ...factory(config, env, moduleTypeEnum.esm),
+        ]);
+      } else {
+        // babel esm
+        babelConfigs = babelConfigs.concat([
+          ...babelFactory(config, env, moduleTypeEnum.esm),
+        ]);
+      }
+    }
+    if (cjs) {
+      const { buildType = buildTypeEnum.rollup } = cjs;
+      if (buildType === buildTypeEnum.rollup) {
+        // rollup cjs
+        rollupConfigs = rollupConfigs.concat([
+          ...factory(config, env, moduleTypeEnum.cjs),
+        ]);
+      } else {
+        // babel cjs
+        babelConfigs = babelConfigs.concat([
+          ...babelFactory(config, env, moduleTypeEnum.cjs),
+        ]);
+      }
+    }
+    if (umd) {
+      const { buildType = buildTypeEnum.rollup } = umd;
+      const isProd = env === 'production';
+      if (buildType === buildTypeEnum.rollup && isProd) {
+        // 生产环境下构建 rollup umd
+        rollupConfigs = rollupConfigs.concat([
+          ...factory(config, env, moduleTypeEnum.umd),
+        ]);
+      }
     }
   });
+
   return {
     rollupConfigs,
     babelConfigs,
-    packagesInfo: configurations,
+    packagesInfo: libsOptions,
   };
 }
 
@@ -198,6 +234,7 @@ async function buildLib(options) {
   if (babelConfigs.length > 0) {
     for (let index = 0; index < babelConfigs.length; index++) {
       const babelFactoryFn = babelConfigs[index];
+      // eslint-disable-next-line no-await-in-loop
       await babelFactoryFn({ watch });
     }
   }

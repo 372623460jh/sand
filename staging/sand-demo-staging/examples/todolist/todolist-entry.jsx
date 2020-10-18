@@ -1,5 +1,5 @@
-import React, { useState } from '@jianghe/sand-core/react';
-import ReactDOM from '@jianghe/sand-core/react-dom';
+import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
 import { Button } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import styles from './index.module.less';

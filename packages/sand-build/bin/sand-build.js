@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
 const chalk = require('chalk');
 const program = require('commander');
 const { start, build } = require('../src/index');
@@ -11,10 +10,10 @@ program.version(`${pkg.version}`, '-v, --version');
 // sand-build build 命令
 program
   .command('build')
-  .description('sand-build build --watch --link --env <env>')
+  .description('sand-build build --type <type> --env <env> --watch --link')
   // build的子命令
   .option('-w, --watch', '开启监听')
-  .option('-t, --type <type>', '构建类型（lib||mob||pc||demo）')
+  .option('-t, --type <type>', '构建类型（lib||webpack||demo）')
   .option('-e, --env <env>', '构建方式（production||development')
   .option(
     '-l, --link',

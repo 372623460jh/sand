@@ -1,4 +1,4 @@
-import React from '@jianghe/sand-core/react';
+import React from 'react';
 import styles from './layout.module.less';
 
 /**

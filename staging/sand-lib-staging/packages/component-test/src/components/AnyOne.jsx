@@ -1,6 +1,6 @@
-/* eslint-disable import/no-unresolved */
-import React, { useState } from '@jianghe/sand-core/react';
-import PropTypes from '@jianghe/sand-core/prop-types';
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable react/prop-types */
+import React, { useState } from 'react';
 import { Button } from 'antd';
 import sayHello from '@/utils/sayHello';
 import styles from './AnyOne.module.less';
@@ -28,9 +28,5 @@ function AnyOne(props) {
     </div>
   );
 }
-
-AnyOne.propTypes = {
-  source: PropTypes.string.isRequired,
-};
 
 export default AnyOne;

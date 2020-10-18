@@ -4,14 +4,14 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const getCommonConfig = require('./commonConfig');
 const utils = require('./utils');
-const { typeEnum } = require('../../../constant');
+const { typeEnum } = require('../../constant');
 
 /**
  * 获取入口
  * @param {*} opts
  */
 function getEntryAndPlugins(opts) {
-  const { type = typeEnum.pc } = opts;
+  const { type = typeEnum.webpack } = opts;
   const {
     getEntryMap,
     getSandEntry,
@@ -28,7 +28,7 @@ function getEntryAndPlugins(opts) {
       plugins: getHtmlWebpackPlugin(entryMap, opts),
     };
   }
-  if (type === typeEnum.pc || type === typeEnum.mob) {
+  if (type === typeEnum.webpack) {
     return {
       entry: getSandEntry(opts),
       plugins: getSandWebpackPlugin(opts),
@@ -42,7 +42,7 @@ function getEntryAndPlugins(opts) {
  * @param {*} env
  */
 function getProdWebpackConfig(opts) {
-  const { type = typeEnum.pc, webpackOptions = {} } = opts;
+  const { type = typeEnum.webpack, webpackOptions = {} } = opts;
   const {
     externals, // 哪些库不需要打进bundle中
     extendPlugin,

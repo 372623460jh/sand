@@ -1,26 +1,27 @@
 /* eslint-disable no-console */
 const webpack = require('webpack');
 const chalk = require('chalk');
-const { logError } = require('../../../utils');
 const getProdWebpackConfig = require('../config/prodConfig');
-const { getPath, getSandBuildConfig } = require('../../../utils');
+const { getPath, logError } = require('../../utils');
+const { getSandBuildConfig } = require('../../common/stdConfig');
+const { buildConfigFileName } = require('../../constant');
 
 /**
  * 启动应用 build命令都是env都是production
  * obj: {
  *    env: production/development
- *    type: pc/mob/demo
+ *    type: webpack/demo
  *    sandbuildrcPath
  * }
  */
 function buildApp(obj) {
-  console.log(chalk.green('[build] Webpack pro环境，开始编译，构建。'));
+  console.log(chalk.green('[build] sand-build pro环境，开始编译，构建。'));
 
   const { env, type, sandbuildrcPath = '' } = obj;
 
   // 动态读取sandbuildrc.js配置
   const opts = getSandBuildConfig(
-    sandbuildrcPath || getPath(process.cwd(), './.sandbuildrc.js')
+    sandbuildrcPath || getPath(process.cwd(), `./.${buildConfigFileName}.js`)
   );
 
   // 使用webpack处理webpack_dev_config
@@ -35,7 +36,7 @@ function buildApp(obj) {
   // 编译回调方法
   function callBack(err, stats) {
     if (err) {
-      logError('[build] Webpack 编译失败。');
+      logError('[build] sand-build 编译失败。');
       process.exit(1);
     } else {
       // spinner.stop()
@@ -50,10 +51,16 @@ function buildApp(obj) {
           version: false,
         })
       );
-      console.log(chalk.green('[build] Webpack 编译成功，详细看/dist目录。'));
+      console.log(chalk.green('\n[build] sand-build 编译成功。'));
       process.exit(0);
     }
   }
+
+  // compiler 报错 hook
+  compiler.hooks.failed.tap('failed', (err) => {
+    logError(`compiler报错:${err}`);
+    process.exit(0);
+  });
 
   // 执行编译
   compiler.run(callBack);

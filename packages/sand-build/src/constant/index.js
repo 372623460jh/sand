@@ -3,8 +3,7 @@ const DEFAULT_PORT = 9538;
 
 // 构建类型枚举
 const typeEnum = {
-  pc: 'pc',
-  mob: 'mob',
+  webpack: 'webpack',
   lib: 'lib',
   demo: 'demo',
 };
@@ -23,9 +22,13 @@ const buildTypeEnum = {
   babel: 'babel',
 };
 
+// 构建配置文件名
+const buildConfigFileName = 'sandbuildrc';
+
 module.exports = {
   typeEnum,
   buildTypeEnum,
   DEFAULT_PORT,
   moduleTypeEnum,
+  buildConfigFileName,
 };

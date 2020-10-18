@@ -1,6 +1,6 @@
 /* eslint-disable import/no-unresolved */
-import React from '@jianghe/sand-core/react';
-import ReactDOM from '@jianghe/sand-core/react-dom';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import AnyOne from '@jianghe/component-test/esm/component-test';
 import '@jianghe/component-test/esm/component-test.css';
 import styles from './index.module.less';

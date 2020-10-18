@@ -12,14 +12,11 @@ const postcss = require('rollup-plugin-postcss');
 const autoprefixer = require('autoprefixer');
 const { startCase } = require('lodash');
 const path = require('path');
-const { getBabelConfig } = require('../../getBabelConfig');
+const { getBabelConfig } = require('../common/getBabelConfig');
 const { getDepsConfig } = require('./getDepsConfig');
-const {
-  getPath,
-  getBrowsersList,
-  getModuleTypeEnable,
-} = require('../../../utils');
-const { buildTypeEnum } = require('../../../constant');
+const { getPath } = require('../utils');
+const { getBrowsersList } = require('../common/getBrowsersList');
+const { buildTypeEnum } = require('../constant');
 
 /**
  * 根据options生成plugins
@@ -67,7 +64,7 @@ function getBasePlugins(options = {}) {
   ];
 
   // 读取babel配置
-  const babelConfigObj = getBabelConfig({
+  let babelConfigObj = getBabelConfig({
     // 构建方式
     buildType: buildTypeEnum.rollup,
     // 构建类型esm | cjs | umd
@@ -79,6 +76,10 @@ function getBasePlugins(options = {}) {
     // cjs模式下的node版本
     nodeVersion,
   });
+
+  if (babelConfig) {
+    babelConfigObj = babelConfig(babelConfigObj);
+  }
 
   return [
     // 处理css,less
@@ -131,7 +132,7 @@ function getBasePlugins(options = {}) {
     // 让浏览器端支持node内置模块
     builtins(),
     // 使用babel处理代码
-    babel(babelConfig || babelConfigObj),
+    babel(babelConfigObj),
     // 别名
     alias({
       entries: [...baseAlias, ...aliasConfig],
@@ -284,11 +285,15 @@ function configure(config, env, target) {
           },
     // 我们需要显式地声明哪些模块是外部的，这意味着它们在运行时出现。
     // 对于非umd配置，这意味着所有的非slate包。
-    external: (id) =>
+    external: (id) => {
       // 当构建时有引入模块时会执行该回调方法，如果返回true就表示是外部引入，false表示是内部引入，内部引入将会被打包构建，外部映入将不会被打包。
       // dependencies和peerDependencies中声明的包都会被当做外部引用不打包到项目中。
       // eslint-disable-next-line implicit-arrow-linebreak
-      !!deps.find((dep) => dep === id || id.startsWith(`${dep}/`)),
+      const outSide = !!deps.find((dep) => {
+        return dep === id || id.startsWith(`${dep}/`);
+      });
+      return outSide;
+    },
   };
 }
 
@@ -296,20 +301,10 @@ function configure(config, env, target) {
  * 生产rullup打包配置的方法
  * @param {*} config 打包配置
  * @param {*} env 环境
+ * @param {*} moduleType 构建模块的类型
  */
-function factory(config, env) {
-  const isProd = env === 'production';
-
-  // 获取当前配置支持哪些类型的包构建
-  const { moduleType } = config;
-  const { cjsEnable, esmEnable, umdEnable } = getModuleTypeEnable(moduleType);
-
-  return [
-    cjsEnable && configure(config, 'development', 'cjs'), // dev环境cjs输出
-    esmEnable && configure(config, 'development', 'esm'), // dev环境esm输出
-    umdEnable && isProd && configure(config, 'development', 'umd'), // prod环境 非压缩 umd 输出
-    umdEnable && isProd && configure(config, 'production', 'umd'), // prod环境 umd 输出
-  ].filter(Boolean); // .filter(Boolean)用于移除数组中的false
+function factory(config, env, moduleType) {
+  return [configure(config, env, moduleType)];
 }
 
 module.exports = {

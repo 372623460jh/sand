@@ -1,6 +1,6 @@
 const autoprefixer = require('autoprefixer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { getBrowsersList } = require('../../../../utils');
+const { getBrowsersList } = require('../../../common/getBrowsersList');
 
 /**
  * 获取style的loader

@@ -1,14 +1,14 @@
 const webpack = require('webpack');
 const getCommonConfig = require('./commonConfig');
 const utils = require('./utils');
-const { typeEnum } = require('../../../constant');
+const { typeEnum } = require('../../constant');
 
 /**
  * 获取入口
  * @param {*} opts
  */
 function getEntryAndPlugins(opts) {
-  const { type = typeEnum.pc } = opts;
+  const { type = typeEnum.webpack } = opts;
   const {
     getEntryMap,
     getSandEntry,
@@ -25,7 +25,7 @@ function getEntryAndPlugins(opts) {
       plugins: getHtmlWebpackPlugin(entryMap, opts),
     };
   }
-  if (type === typeEnum.pc || type === typeEnum.mob) {
+  if (type === typeEnum.webpack) {
     return {
       entry: getSandEntry(opts),
       plugins: getSandWebpackPlugin(opts),
@@ -39,23 +39,31 @@ function getEntryAndPlugins(opts) {
  * @param {*} env
  */
 function getDevWebpackConfig(opts) {
-  const { type = typeEnum.pc, webpackOptions = {} } = opts;
+  const { type = typeEnum.webpack, webpackOptions = {} } = opts;
   const {
-    externals, // 哪些库不需要打进bundle中
+    // 哪些库不需要打进bundle中
+    externals,
+    // 扩展的插件
     extendPlugin,
-    replaceConfig, // 外部传入的扩展变量
+    // 外部传入的扩展变量
+    replaceConfig,
   } = webpackOptions;
-  // 生产环境的扩展插件
+
+  // dev环境的扩展插件
   const { devExtendPlugin } = extendPlugin;
 
   const {
-    alias, // 别名
-    output, // 输出
+    // 别名
+    alias,
+    // 输出
+    output,
     rules,
     splitChunks,
-    commonPlugin, // 公共插件
+    // 公共插件
+    commonPlugin,
   } = getCommonConfig(opts);
 
+  // 获取入口文件和html插件
   const { entry = {}, plugins = [] } = getEntryAndPlugins(opts);
 
   return {

@@ -1,23 +1,28 @@
 const path = require('path');
 
 module.exports = {
-  // webpack服务启动端口
-  port: 9898,
-  //webpack配置
   webpackOptions: {
+    port: 9898,
     entry: path.resolve(__dirname, './examples/common/index.tsx'),
     entryHtml: path.resolve(__dirname, './examples/common/index.html'),
-    // ts过babel
     tsShouldBabel: true,
   },
-  // rollup 配置
-  configurations: [
+  libsOptions: [
     {
       entry: path.resolve(__dirname, './packages/component-test/src/index.ts'),
       pkgPath: path.resolve(__dirname, './packages/component-test'),
       bundleName: 'component-test',
       cssExtract: true,
       isTs: true,
+      esm: {
+        buildType: 'rollup',
+      },
+      cjs: {
+        buildType: 'rollup',
+      },
+      umd: {
+        buildType: 'rollup',
+      },
       umdGlobals: {
         antd: 'antd',
         react: 'react',

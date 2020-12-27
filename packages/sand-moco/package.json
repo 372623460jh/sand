@@ -1,6 +1,6 @@
 {
   "name": "@jianghe/sand-moco",
-  "version": "2.0.0-1",
+  "version": "2.0.1-0",
   "private": false,
   "description": "sand移动端单页核心框架",
   "license": "MIT",
@@ -10,14 +10,15 @@
       "email": "573748150jh@163.com"
     }
   ],
-  "main": "esm/sand-moco.js",
+  "main": "es/sand-moco.js",
   "keywords": [
     "sand",
     "spa",
     "mob"
   ],
   "files": [
-    "esm"
+    "es",
+    "lib"
   ],
   "scripts": {},
   "peerDependencies": {
@@ -30,7 +31,7 @@
   },
   "devDependencies": {
     "@types/react-redux": "6.0.14",
-    "@types/webpack-env": "1.15.3"
+    "@types/webpack-env": "1.16.0"
   },
   "repository": {
     "type": "git",

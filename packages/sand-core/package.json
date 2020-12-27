@@ -1,6 +1,6 @@
 {
   "name": "@jianghe/sand-core",
-  "version": "2.0.0-1",
+  "version": "2.0.1-0",
   "private": false,
   "description": "sand pc的核心功能",
   "license": "MIT",
@@ -10,14 +10,16 @@
       "email": "573748150jh@163.com"
     }
   ],
-  "main": "esm/sand-core.js",
+  "main": "es/sand-core.js",
   "keywords": [
     "sand",
     "spa",
     "pc"
   ],
   "files": [
-    "esm",
+    "es",
+    "lib",
+    "dist",
     "history.js",
     "polyfill.js",
     "prop-types.js",

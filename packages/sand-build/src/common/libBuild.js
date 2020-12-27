@@ -135,7 +135,7 @@ function rollupWatch(configs) {
        *  ERROR        — 构建时遇到错误
        *  FATAL        — 遇到无可修复的错误
        */
-      const { code, output, error, duration } = event;
+      const { code, output, error } = event;
       if (code === 'BUNDLE_END') {
         // 构建完成
         console.log(

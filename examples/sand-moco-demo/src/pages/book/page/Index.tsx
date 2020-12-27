@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect } from 'react';
-import { getMoco, connect } from '@jianghe/sand-moco/esm/sand-moco';
+import { getMoco, connect } from '@jianghe/sand-moco/es/sand-moco';
 import styles from './index.module.less';
 
 // 获取moco实例

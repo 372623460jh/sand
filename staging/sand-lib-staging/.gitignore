@@ -1,8 +1,8 @@
 /yarn.lock
 /coverage
 node_modules
-esm
-cjs
+es
+lib
 dist
 dist-docs
 

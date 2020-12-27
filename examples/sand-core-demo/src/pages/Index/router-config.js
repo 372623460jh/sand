@@ -1,5 +1,5 @@
 // 异步加载组件的方法
-import { async, redirect } from '@jianghe/sand-core/esm/sand-core';
+import { async, redirect } from '@jianghe/sand-core/es/sand-core';
 
 // 配置book页的路由信息
 export default {

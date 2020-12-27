@@ -1,7 +1,7 @@
 **/*.svg
 /yarn.lock
-cjs
-esm
+lib
+es
 node_modules
 coverage
 CHANGELOG.backup.md

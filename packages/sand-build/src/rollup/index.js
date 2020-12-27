@@ -271,13 +271,13 @@ function configure(config, env, target) {
     output:
       target === 'esm'
         ? {
-            file: getPath(packagesPath, `./${pkgName}/esm/${bundleName}.js`),
+            file: getPath(packagesPath, `./${pkgName}/es/${bundleName}.js`),
             format: 'es',
             sourcemap: true,
             banner,
           }
         : {
-            file: getPath(packagesPath, `./${pkgName}/cjs/${bundleName}.js`),
+            file: getPath(packagesPath, `./${pkgName}/lib/${bundleName}.js`),
             format: 'cjs',
             exports: 'named',
             sourcemap: true,

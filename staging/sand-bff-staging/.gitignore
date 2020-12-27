@@ -8,7 +8,7 @@ yarn.lock
 
 dist
 log
-cjs
-esm
+lib
+es
 node_modules
 coverage

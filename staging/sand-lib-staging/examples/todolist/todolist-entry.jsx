@@ -1,8 +1,8 @@
 /* eslint-disable import/no-unresolved */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AnyOne from '@jianghe/component-test/esm/component-test';
-import '@jianghe/component-test/esm/component-test.css';
+import AnyOne from '@jianghe/component-test/es/component-test';
+import '@jianghe/component-test/es/component-test.css';
 import styles from './index.module.less';
 
 class TodoList extends React.PureComponent {

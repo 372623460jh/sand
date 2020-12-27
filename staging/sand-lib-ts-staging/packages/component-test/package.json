@@ -14,13 +14,11 @@
   ],
   "homepage": "",
   "license": "MIT",
-  "main": "esm/todo.js",
-  "module": "esm/todo.js",
-  "cjs": "cjs/todo.js",
+  "main": "es/index.js",
   "files": [
     "dist",
-    "esm",
-    "cjs"
+    "es",
+    "lib"
   ],
   "scripts": {},
   "peerDependencies": {

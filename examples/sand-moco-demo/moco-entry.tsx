@@ -1,4 +1,4 @@
-import { addListen } from '@jianghe/sand-moco/esm/sand-moco';
+import { addListen } from '@jianghe/sand-moco/es/sand-moco';
 import setViewport from '@jianghe/sand-viewport';
 import './index.less';
 

@@ -1,7 +1,7 @@
 /yarn.lock
 /packages/sand-cli/staging
-cjs
-esm
+lib
+es
 node_modules
 coverage
 CHANGELOG.backup.md

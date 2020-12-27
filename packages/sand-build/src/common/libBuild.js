@@ -22,57 +22,54 @@ function handleConfig(props) {
     sandbuildrcPath || getPath(process.cwd(), `./.${buildConfigFileName}.js`)
   );
 
-  // rollup配置
-  let rollupConfigs = [];
-
-  // babel配置
-  let babelConfigs = [];
+  // rollup和babel配置结合
+  let allConfigs = [];
 
   libsOptions.forEach((config) => {
+    // esm
     const { esm, cjs, umd } = config;
     if (esm) {
       const { buildType = buildTypeEnum.rollup } = esm;
-      if (buildType === buildTypeEnum.rollup) {
-        // rollup esm
-        rollupConfigs = rollupConfigs.concat([
-          ...factory(config, env, moduleTypeEnum.esm),
-        ]);
-      } else {
-        // babel esm
-        babelConfigs = babelConfigs.concat([
-          ...babelFactory(config, env, moduleTypeEnum.esm),
-        ]);
-      }
+      allConfigs = allConfigs.concat([
+        {
+          type: buildType,
+          configs:
+            buildType === buildTypeEnum.rollup
+              ? factory(config, env, moduleTypeEnum.esm) // rollup esm
+              : babelFactory(config, env, moduleTypeEnum.esm), // babel esm
+        },
+      ]);
     }
     if (cjs) {
+      // cjs
       const { buildType = buildTypeEnum.rollup } = cjs;
-      if (buildType === buildTypeEnum.rollup) {
-        // rollup cjs
-        rollupConfigs = rollupConfigs.concat([
-          ...factory(config, env, moduleTypeEnum.cjs),
-        ]);
-      } else {
-        // babel cjs
-        babelConfigs = babelConfigs.concat([
-          ...babelFactory(config, env, moduleTypeEnum.cjs),
-        ]);
-      }
+      allConfigs = allConfigs.concat([
+        {
+          type: buildType,
+          configs:
+            buildType === buildTypeEnum.rollup
+              ? factory(config, env, moduleTypeEnum.cjs) // rollup cjs
+              : babelFactory(config, env, moduleTypeEnum.cjs), // babel cjs
+        },
+      ]);
     }
     if (umd) {
       const { buildType = buildTypeEnum.rollup } = umd;
       const isProd = env === 'production';
       if (buildType === buildTypeEnum.rollup && isProd) {
         // 生产环境下构建 rollup umd
-        rollupConfigs = rollupConfigs.concat([
-          ...factory(config, env, moduleTypeEnum.umd),
+        allConfigs = allConfigs.concat([
+          {
+            type: buildType,
+            configs: factory(config, env, moduleTypeEnum.umd),
+          },
         ]);
       }
     }
   });
 
   return {
-    rollupConfigs,
-    babelConfigs,
+    allConfigs,
     packagesInfo: libsOptions,
   };
 }
@@ -92,18 +89,17 @@ async function buildEntry(config) {
 }
 
 /**
- * 构建所有配置
- * @param {*} allConfig 全部配置数组
+ * rollup只构建
+ * @param {*} configs rollup配置
  */
-function buildAll(allConfig) {
+function rollupBuild(configs) {
   let built = 0;
   // 配置项长度
-  const total = allConfig.length;
-  // 返回Promise用做同步
+  const total = configs.length;
   return new Promise((resolve, reject) => {
     const next = () => {
       // 构建单个配置
-      buildEntry(allConfig[built])
+      buildEntry(configs[built])
         .then(() => {
           built++;
           if (built < total) {
@@ -122,38 +118,81 @@ function buildAll(allConfig) {
 }
 
 /**
- * 构建监听模式
- * @param {*} configs rollup配置
+ * rollup监听构建单个配置
+ * @param {*} configs
  */
-function watching(configs) {
-  // 开启监听
-  const watcher = rollup.watch(configs);
-  watcher.on('event', (event) => {
-    /**
-     * event.code 会是下面其中一个：
-     *  START        — 监听器正在启动（重启）
-     *  BUNDLE_START — 构建单个文件束
-     *  BUNDLE_END   — 完成文件束构建
-     *  END          — 完成所有文件束构建
-     *  ERROR        — 构建时遇到错误
-     *  FATAL        — 遇到无可修复的错误
-     */
-    const { code, output, error } = event;
-    if (code === 'BUNDLE_END') {
-      // 构建完成
-      console.log(chalk.green(`${chalk.yellow('[WATCHING]')} -> ${output[0]}`));
-    }
-    if (code === 'ERROR') {
-      // 构建时遇到错误
-      logError(error);
-    }
-    if (code === 'FATAL') {
-      // 构建时遇到无可修复的错误，关闭构建
-      logError(error);
-      // 停止监听
-      watcher.close();
-    }
+function rollupWatch(configs) {
+  return new Promise((resolve, reject) => {
+    // rollup构建带监听
+    const watcher = rollup.watch(configs);
+    watcher.on('event', (event) => {
+      /**
+       * event.code 会是下面其中一个：
+       *  START        — 监听器正在启动（重启）
+       *  BUNDLE_START — 构建单个文件束
+       *  BUNDLE_END   — 完成文件束构建
+       *  END          — 完成所有文件束构建
+       *  ERROR        — 构建时遇到错误
+       *  FATAL        — 遇到无可修复的错误
+       */
+      const { code, output, error, duration } = event;
+      if (code === 'BUNDLE_END') {
+        // 构建完成
+        console.log(
+          chalk.green(`${chalk.yellow('[BUILD:ROLLUP]')} -> ${output[0]}`)
+        );
+        resolve(event);
+      }
+      if (code === 'ERROR') {
+        // 构建时遇到错误
+        logError(error);
+      }
+      if (code === 'FATAL') {
+        // 构建时遇到无可修复的错误，关闭构建
+        logError(error);
+        // 停止监听
+        watcher.close();
+        // 报错
+        reject(event);
+      }
+    });
   });
+}
+
+/**
+ * 构建的方法
+ * @param {*} configs 全部配置
+ * @param {*} watch 是否开启监听
+ */
+async function build(allConfigs, watch) {
+  try {
+    for (let index = 0; index < allConfigs.length; index++) {
+      const { type = buildTypeEnum.rollup, configs = [] } = allConfigs[index];
+      if (type === buildTypeEnum.rollup) {
+        if (watch) {
+          // eslint-disable-next-line no-await-in-loop
+          await rollupWatch(configs);
+        } else {
+          // eslint-disable-next-line no-await-in-loop
+          await rollupBuild(configs);
+        }
+      } else if (type === buildTypeEnum.babel) {
+        // babel构建带监听
+        if (configs.length > 0) {
+          for (let n = 0; n < configs.length; n++) {
+            const babelFactoryFn = configs[n];
+            // eslint-disable-next-line no-await-in-loop
+            await babelFactoryFn({ watch });
+          }
+        }
+      } else {
+        logError(`构建类型不正确.${type}`);
+      }
+    }
+  } catch (error) {
+    // 构建报错
+    logError(`构建报错。${error}`);
+  }
 }
 
 /**
@@ -191,12 +230,9 @@ function createLink(packagesInfo) {
  */
 async function buildLib(options) {
   const { link = false, watch = false } = options;
-  const { packagesInfo, rollupConfigs, babelConfigs } = handleConfig(options);
+  const { packagesInfo, allConfigs } = handleConfig(options);
 
-  if (
-    packagesInfo.length === 0 ||
-    (rollupConfigs.length === 0 && babelConfigs.length === 0)
-  ) {
+  if (packagesInfo.length === 0 || allConfigs.length === 0) {
     // 没有配置，直接return
     logError('没有库打包配置');
     return;
@@ -214,30 +250,7 @@ async function buildLib(options) {
     )
   );
 
-  // rollup 方式
-  if (rollupConfigs.length > 0) {
-    if (watch) {
-      watching(rollupConfigs);
-    } else {
-      try {
-        /**
-         * 构建所有配置
-         */
-        await buildAll(rollupConfigs);
-      } catch (error) {
-        logError(error);
-      }
-    }
-  }
-
-  // babel 方式
-  if (babelConfigs.length > 0) {
-    for (let index = 0; index < babelConfigs.length; index++) {
-      const babelFactoryFn = babelConfigs[index];
-      // eslint-disable-next-line no-await-in-loop
-      await babelFactoryFn({ watch });
-    }
-  }
+  await build(allConfigs, watch);
 
   if (!watch) {
     console.log(

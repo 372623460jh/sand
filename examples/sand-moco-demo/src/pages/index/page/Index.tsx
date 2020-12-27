@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { getMoco, Page } from '@jianghe/sand-moco/esm/sand-moco';
+import { getMoco, Page } from '@jianghe/sand-moco/es/sand-moco';
 import styles from './index.module.less';
 
 const moco = getMoco();

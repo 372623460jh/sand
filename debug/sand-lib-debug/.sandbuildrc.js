@@ -6,7 +6,7 @@ module.exports = {
     {
       entry: path.resolve(__dirname, './packages/component-test/src/index.js'),
       pkgPath: path.resolve(__dirname, './packages/component-test'),
-      bundleName: 'component-test',
+      bundleName: 'index',
       esm: {
         buildType: 'babel',
       },
@@ -30,7 +30,7 @@ module.exports = {
     {
       entry: path.resolve(__dirname, './packages/ts-test/src/index.ts'),
       pkgPath: path.resolve(__dirname, './packages/ts-test'),
-      bundleName: 'ts-test',
+      bundleName: 'index',
       isTs: true,
       esm: {
         buildType: 'rollup',
@@ -55,7 +55,7 @@ module.exports = {
     {
       entry: path.resolve(__dirname, './packages/babel-ts/src/index.ts'),
       pkgPath: path.resolve(__dirname, './packages/babel-ts'),
-      bundleName: 'babel-ts',
+      bundleName: 'index',
       isTs: true,
       nodeVersion: 6,
       esm: {
@@ -71,7 +71,7 @@ module.exports = {
     {
       entry: path.resolve(__dirname, './packages/babel-js/src/index.js'),
       pkgPath: path.resolve(__dirname, './packages/babel-js'),
-      bundleName: 'babel-js',
+      bundleName: 'index',
       nodeVersion: 6,
       esm: {
         buildType: 'babel',

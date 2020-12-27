@@ -10,9 +10,7 @@
       "email": "573748150jh@163.com"
     }
   ],
-  "main": "esm/sand-moco.js",
-  "module": "esm/sand-moco.js",
-  "cjs": "cjs/sand-moco.js",
+  "main": "es/index.js",
   "keywords": [
     "sand",
     "spa",
@@ -20,8 +18,8 @@
   ],
   "files": [
     "dist",
-    "esm",
-    "cjs"
+    "es",
+    "lib"
   ],
   "scripts": {},
   "peerDependencies": {

@@ -14,18 +14,16 @@
   ],
   "homepage": "",
   "license": "MIT",
-  "main": "dist/todo.js",
-  "module": "esm/todo.js",
-  "cjs": "cjs/todo.js",
+  "main": "es/index.js",
   "files": [
     "dist",
-    "esm",
-    "cjs"
+    "es",
+    "lib"
   ],
   "scripts": {},
   "peerDependencies": {
     "antd": "^4.7.0",
-    "@jianghe/sand-core": "^2.0.0-0"
+    "@jianghe/sand-core": "^2.0.1-0"
   },
   "dependencies": {
     "classnames": "^2.2.6"

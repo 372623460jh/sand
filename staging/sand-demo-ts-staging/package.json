@@ -35,8 +35,8 @@
     "@types/react-dom": "^16.9.8",
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-typescript": "^7.12.1",
-    "@jianghe/sand-build": "^2.0.0-0",
-    "@jianghe/sand-lint": "^2.0.0-0"
+    "@jianghe/sand-build": "^2.0.1-0",
+    "@jianghe/sand-lint": "^2.0.1-0"
   },
   "dependencies": {
     "@ant-design/icons": "^4.2.2",

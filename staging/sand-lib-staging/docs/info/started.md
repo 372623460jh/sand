@@ -12,8 +12,8 @@ order: 2
 
 ```jsx
 import React from 'react';
-import AnyOne from '../../packages/component-test/esm/component-test';
-import '../../packages/component-test/esm/component-test.css';
+import AnyOne from '../../packages/component-test/es/component-test';
+import '../../packages/component-test/es/component-test.css';
 
 export default () => <AnyOne source="11111" />;
 ```

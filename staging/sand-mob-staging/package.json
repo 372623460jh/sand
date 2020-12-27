@@ -30,8 +30,8 @@
     "eslint": "^7.11.0",
     "stylelint": "^13.7.2",
     "jest": "^26.5.3",
-    "@jianghe/sand-build": "^2.0.0-0",
-    "@jianghe/sand-lint": "^2.0.0-0"
+    "@jianghe/sand-build": "^2.0.1-0",
+    "@jianghe/sand-lint": "^2.0.1-0"
   },
   "dependencies": {
     "@babel/runtime": "^7.12.1",
@@ -41,6 +41,6 @@
     "antd": "^4.7.0",
     "debug": "^4.2.0",
     "@jianghe/sand-viewport": "1.2.6-3",
-    "@jianghe/sand-moco": "^2.0.0-0"
+    "@jianghe/sand-moco": "^2.0.1-0"
   }
 }

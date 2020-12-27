@@ -1,6 +1,7 @@
 dist
-esm
-cjs
+es
+lib
 node_modules
 sand-bff-staging
+@types
 /packages/sand-cli/staging/*

@@ -91,7 +91,7 @@ const babelBuild = async (opts) => {
   const srcPath = join(pkgPath, 'src');
 
   // 输出目录
-  const targetDir = moduleType === moduleTypeEnum.esm ? 'esm' : 'cjs';
+  const targetDir = moduleType === moduleTypeEnum.esm ? 'es' : 'lib';
   const targetPath = join(pkgPath, targetDir);
 
   // 删除文件
@@ -145,6 +145,8 @@ const babelBuild = async (opts) => {
     // 是不是tsx | ts文件 排除.d.ts
     function isTsFile(path) {
       return /\.tsx?$/.test(path) && !path.endsWith('.d.ts');
+      // 不忽略d.ts
+      // return /\.tsx?$/.test(path);
     }
 
     // 是不是less文件

@@ -23,7 +23,7 @@
   "scripts": {},
   "peerDependencies": {
     "antd": "^4.7.0",
-    "@jianghe/sand-core": "^2.0.1-0"
+    "@jianghe/sand-core": "^2.1.0"
   },
   "dependencies": {
     "classnames": "^2.2.6"

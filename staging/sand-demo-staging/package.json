@@ -30,8 +30,8 @@
     "stylelint": "^13.7.2",
     "husky": "^4.3.0",
     "jest": "^26.5.3",
-    "@jianghe/sand-build": "^2.0.1-0",
-    "@jianghe/sand-lint": "^2.0.1-0"
+    "@jianghe/sand-build": "^2.1.0",
+    "@jianghe/sand-lint": "^2.1.0"
   },
   "dependencies": {
     "@ant-design/icons": "^4.2.2",

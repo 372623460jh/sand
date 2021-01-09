@@ -28,7 +28,8 @@ function getOutputConfig(opts) {
       publicPath: isProd ? prodPath : devPath,
     };
   }
-  if (type === typeEnum.demo) {
+  if (type === typeEnum.demo || type === typeEnum.lib) {
+    // lib的start也进度demo模式
     return {
       // 输出路径
       path: outputPath || getPath(basePath, './dist'),

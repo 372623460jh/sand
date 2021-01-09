@@ -229,7 +229,12 @@ function createLink(packagesInfo) {
  * }
  */
 async function buildLib(options) {
-  const { link = false, watch = false } = options;
+  const {
+    link = false,
+    watch = false,
+    // 构建完成回调
+    buildFinishCallback = () => {},
+  } = options;
   const { packagesInfo, allConfigs } = handleConfig(options);
 
   if (packagesInfo.length === 0 || allConfigs.length === 0) {
@@ -259,6 +264,9 @@ async function buildLib(options) {
       )
     );
   }
+
+  // 执行构建完成回调
+  buildFinishCallback();
 }
 
 module.exports = buildLib;

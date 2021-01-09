@@ -19,7 +19,7 @@ function getEntryAndPlugins(opts) {
     getWebpackEntry,
     getHtmlWebpackPlugin,
   } = utils;
-  if (type === typeEnum.demo) {
+  if (type === typeEnum.demo || type === typeEnum.lib) {
     // 解析examples目录生成入口map
     const entryMap = getEntryMap(opts);
     // 根据entryMap生成webpack entryMap
@@ -79,6 +79,7 @@ function getProdWebpackConfig(opts) {
     module: {
       rules,
     },
+    devtool: 'source-map',
     // 插件
     plugins: commonPlugin
       .concat([
@@ -90,7 +91,7 @@ function getProdWebpackConfig(opts) {
           'process.env.NODE_ENV': JSON.stringify('production'),
           // 将代码中__entryMap__替换成entryMap
           __entryMap__:
-            type === typeEnum.demo
+            type === typeEnum.demo || type === typeEnum.lib
               ? JSON.stringify(utils.getEntryMap(opts))
               : {},
           // 外部扩展的替换配置

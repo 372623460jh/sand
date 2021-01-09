@@ -45,6 +45,19 @@ function start(options) {
       env: 'development',
       sandbuildrcPath,
     });
+  } else if (type === typeEnum.lib) {
+    // 调lib时，先执行build lib watch 再执行 s.tart example
+    build({
+      ...options,
+      // 构建完成后执行start
+      buildFinishCallback: () => {
+        startApp({
+          type,
+          env: 'development',
+          sandbuildrcPath,
+        });
+      },
+    });
   } else {
     logError(`暂不支持${type}类型的start`);
   }

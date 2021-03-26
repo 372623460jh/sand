@@ -133,6 +133,8 @@ sand-noco node 基于 koa 的扩展，增加了日志中间件，sso 中间件�
 - ~~同步 sand start -t lib 命令~~
 - rollup 升级 2.0
 - 支持 babelruntime 开关配置
+- sand-build 单独提出文件
+- sand-build ts 化
 - sand-core 优化不导出 react，react-dom
 - webpack 插件来优化控制台输出
 - example 中增加 @jianghe/sand-noco 调试代码

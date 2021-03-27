@@ -47,7 +47,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "npm run ci",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+      "commit-msg": "npx commitlint -E HUSKY_GIT_PARAMS"
     }
   },
   "post-commit": [

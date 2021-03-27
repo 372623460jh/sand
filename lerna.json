@@ -7,7 +7,7 @@
       "hoist": true
     },
     "version": {
-      "conventionalCommits": true
+      "conventionalCommits": false
     },
     "publish": {
       "registry": "https://npm.pkg.github.com",

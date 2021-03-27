@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 const { extname } = require('path');
-const { buildTypeEnum, moduleTypeEnum } = require('../constant');
+const { buildTypeEnum, moduleTypeEnum, extensions } = require('../constant');
 const { getPath } = require('../utils');
 
 /**
@@ -66,6 +66,8 @@ function getBabelConfig(opts) {
     packagesPath = '',
     // 要构建的包名
     pkgName = '',
+    // 是否开启babelruntime
+    babelRuntime = false,
   } = opts;
 
   // 是不是浏览器模式
@@ -75,6 +77,10 @@ function getBabelConfig(opts) {
     filePath,
   });
 
+  // cjs 关闭runtimeHelpers
+  const runtimeHelpers =
+    moduleType === moduleTypeEnum.cjs ? false : babelRuntime;
+
   // babel targets 配置
   const targets = isBrowser
     ? {
@@ -83,9 +89,13 @@ function getBabelConfig(opts) {
     : { node: nodeVersion || 6 };
 
   return {
-    runtimeHelpers: true,
-    include: [`${getPath(packagesPath, `./${pkgName}/src/**`)}`],
-    extensions: ['.js', '.ts', '.tsx', '.jsx'],
+    // https://github.com/rollup/plugins/tree/master/packages/babel#babelhelpers
+    babelHelpers: runtimeHelpers ? 'runtime' : 'bundled',
+    // include: [`${getPath(packagesPath, `./${pkgName}/src/**`)}`],
+    exclude: /\/node_modules\//,
+    // 忽略外部babel配置
+    babelrc: false,
+    extensions,
     presets: [
       // 处理ts
       require.resolve('@babel/preset-typescript'),
@@ -125,20 +135,24 @@ function getBabelConfig(opts) {
         require.resolve('@babel/plugin-proposal-class-properties'),
         { loose: true },
       ],
-      [
-        // 把 helper 方法提取到 @babel/runtime 里。
-        // 一定要在 dependencies 里有 @babel/runtime 依赖
-        // runtimeHelpers 只对 esm 有效，cjs 下无效，因为 cjs 已经不给浏览器用了，
-        // 只在 ssr 时会用到，无需关心小的尺寸差异
-        require.resolve('@babel/plugin-transform-runtime'),
-        moduleType === moduleTypeEnum.umd
-          ? {}
-          : {
-              regenerator: false,
-              useESModules: isBrowser && moduleType === moduleTypeEnum.esm,
-              version: require('@babel/runtime/package.json').version,
-            },
-      ],
+      ...(runtimeHelpers
+        ? [
+            [
+              // 把 helper 方法提取到 @babel/runtime 里。
+              // 一定要在 dependencies 里有 @babel/runtime 依赖
+              // runtimeHelpers 只对 esm 有效，cjs 下无效，因为 cjs 已经不给浏览器用了，
+              // 只在 ssr 时会用到，无需关心小的尺寸差异
+              require.resolve('@babel/plugin-transform-runtime'),
+              moduleType === moduleTypeEnum.umd
+                ? {}
+                : {
+                    useESModules:
+                      isBrowser && moduleType === moduleTypeEnum.esm,
+                    version: require('@babel/runtime/package.json').version,
+                  },
+            ],
+          ]
+        : []),
     ],
   };
 }

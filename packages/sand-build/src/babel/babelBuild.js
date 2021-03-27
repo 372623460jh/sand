@@ -28,6 +28,7 @@ function transform(opts) {
     babelConfig, // 替换的babel配置
     pkgPath, // 包路径
     targetPath, // 输出路径
+    babelRuntime,
   } = opts;
 
   // 获取babael配置
@@ -40,6 +41,8 @@ function transform(opts) {
     filePath: slash(file.path),
     // node的版本号，只有cjs模式下支持此参数
     nodeVersion,
+    // 是否开启babelruntime
+    babelRuntime,
   });
 
   if (babelConfig) {
@@ -85,6 +88,8 @@ const babelBuild = async (opts) => {
     babelConfig,
     // cjs模式可以指定node版本 默认6。其他模式下不生效
     nodeVersion,
+    // 是否开启babelruntime
+    babelRuntime,
   } = opts;
 
   // 要构建的目录
@@ -189,6 +194,7 @@ const babelBuild = async (opts) => {
                   babelConfig,
                   pkgPath, // 包路径
                   targetPath, // 输出路径
+                  babelRuntime,
                 })
               );
               // 文件名替换 js jsx ts tsx -> js

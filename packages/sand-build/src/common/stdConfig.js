@@ -109,8 +109,8 @@ function stdLibConfig(option) {
     replaceConfig = {},
     // 全局模块，只有 rollup，umd 模式下生效。
     umdGlobals = {},
-    // cjs 的模块在 umd 打包时需要手动声明名称例如。只有 rollup，umd 模式下生效。
-    namedExports = {},
+    // 是否开启babelruntime，把 helper 方法提取到 @babel/runtime 里。一定要在 dependencies 里有 @babel/runtime 依赖
+    babelRuntime = false,
   } = option;
 
   if (!entry || !pkgPath || !bundleName) {
@@ -136,7 +136,7 @@ function stdLibConfig(option) {
     cssExtract: !!cssExtract,
     alias,
     umdGlobals,
-    namedExports,
+    babelRuntime,
     babelConfig,
     replaceConfig,
     nodeVersion,

@@ -1,25 +1,18 @@
 {
-  "lerna": "2.11.0",
-  "packages": [
-    "packages/sand-build",
-    "packages/sand-lint",
-    "packages/sand-cli",
-    "packages/sand-core",
-    "packages/sand-noco",
-    "packages/sand-moco"
-  ],
+  "version": "2.1.1",
+  "packages": ["packages/*"],
+  "npmClient": "npm",
   "command": {
+    "bootstrap": {
+      "hoist": true
+    },
     "version": {
       "conventionalCommits": true
     },
     "publish": {
-      "npmClient": "npm",
       "registry": "https://npm.pkg.github.com",
-      "verifyRegistry": false,
-      "verifyAccess": false,
-      "allowBranch": ["master"]
+      "allowBranch": ["master"],
+      "verifyAccess": false
     }
-  },
-  "version": "independent",
-  "npmClient": "npm"
+  }
 }

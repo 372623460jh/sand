@@ -25,10 +25,14 @@ const buildTypeEnum = {
 // 构建配置文件名
 const buildConfigFileName = 'sandbuildrc';
 
+// 需要处理的文件
+const extensions = ['.js', '.jsx', '.ts', '.tsx', '.es6', '.es', '.mjs'];
+
 module.exports = {
   typeEnum,
   buildTypeEnum,
   DEFAULT_PORT,
   moduleTypeEnum,
   buildConfigFileName,
+  extensions,
 };

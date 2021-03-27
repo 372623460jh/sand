@@ -1,11 +1,11 @@
 /**
- * 获取依赖配置
+ * 获取依赖配置dependencies和peerDependencies的集合
  * @param {*} param0
  */
 function getDepsConfig({ pkg }) {
   return []
-    .concat(pkg.dependencies ? Object.keys(pkg.dependencies) : [])
-    .concat(pkg.peerDependencies ? Object.keys(pkg.peerDependencies) : []);
+    .concat(Object.keys(pkg.dependencies || {}))
+    .concat(Object.keys(pkg.peerDependencies || {}));
 }
 
 /**

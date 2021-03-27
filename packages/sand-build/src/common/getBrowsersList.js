@@ -4,6 +4,8 @@
  */
 function getBrowsersList(isProd) {
   return {
+    // https://github.com/postcss/autoprefixer/issues/776
+    remove: false,
     overrideBrowserslist: isProd
       ? ['last 2 versions', 'ios >= 9', 'android >= 4']
       : [

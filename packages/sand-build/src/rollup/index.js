@@ -1,22 +1,21 @@
-const babel = require('rollup-plugin-babel');
-const builtins = require('rollup-plugin-node-builtins');
-const commonjs = require('rollup-plugin-commonjs');
-const globals = require('rollup-plugin-node-globals');
-const json = require('rollup-plugin-json');
-const replace = require('rollup-plugin-replace');
-const resolve = require('rollup-plugin-node-resolve');
-const typescript = require('rollup-plugin-typescript2');
-const alias = require('rollup-plugin-alias');
-const { terser } = require('rollup-plugin-terser');
+const path = require('path');
+const url = require('@rollup/plugin-url');
+const json = require('@rollup/plugin-json');
 const postcss = require('rollup-plugin-postcss');
+const replace = require('@rollup/plugin-replace');
+const nodeResolve = require('@rollup/plugin-node-resolve').default;
+const typescript2 = require('rollup-plugin-typescript2');
+const commonjs = require('@rollup/plugin-commonjs');
+const babel = require('@rollup/plugin-babel').default;
+const { terser } = require('rollup-plugin-terser');
 const autoprefixer = require('autoprefixer');
 const { startCase } = require('lodash');
-const path = require('path');
+const alias = require('@rollup/plugin-alias');
 const { getBabelConfig } = require('../common/getBabelConfig');
 const { getDepsConfig } = require('./getDepsConfig');
-const { getPath } = require('../utils');
+const { getPath, logError } = require('../utils');
 const { getBrowsersList } = require('../common/getBrowsersList');
-const { buildTypeEnum } = require('../constant');
+const { buildTypeEnum, moduleTypeEnum, extensions } = require('../constant');
 
 /**
  * 根据options生成plugins
@@ -38,8 +37,8 @@ function getBasePlugins(options = {}) {
     pkgName,
     // isUmd
     isUmd,
-    // umd构建时用来兼容commonjs
-    namedExports,
+    // 是否开启babelruntime
+    babelRuntime,
     // packages文件绝对路径
     packagesPath,
     // 覆盖的babel配置
@@ -75,6 +74,8 @@ function getBasePlugins(options = {}) {
     pkgName,
     // cjs模式下的node版本
     nodeVersion,
+    // 是否开启babelruntime
+    babelRuntime,
   });
 
   if (babelConfig) {
@@ -82,6 +83,8 @@ function getBasePlugins(options = {}) {
   }
 
   return [
+    // 支持非js、css的模块引入
+    url(),
     // 处理css,less
     postcss({
       // 是否单独提起css文件
@@ -92,11 +95,12 @@ function getBasePlugins(options = {}) {
       inject: true,
       // // css modules
       // modules: false,
-      // .module.css .module.less 自动使用css module
+      // 根据文件名自动使用css module（*.module.css、*.module.less）
       autoModules: true,
       // 压缩css
       minimize: isProd,
       use: {
+        // 支持less
         less: {
           plugins: [],
           javascriptEnabled: true,
@@ -108,48 +112,55 @@ function getBasePlugins(options = {}) {
         autoprefixer(getBrowsersList(isProd)),
       ],
     }),
-    // rollup-plugin-node-resolve, 它会允许加载在 node_modules 中的第三方模块。
-    resolve({
-      preferBuiltins: true,
-      browser: true,
-      // 允许引入以下3种文件类型
-      extensions: ['.js', '.jsx', 'ts', 'tsx', '.json'],
+    // 替换代码中的'process.env.NODE_ENV'为JSON.stringify(env)
+    replace({
+      preventAssignment: true,
+      values: {
+        'process.env.NODE_ENV': JSON.stringify(env),
+        ...replaceConfig,
+      },
+    }),
+    // @rollup/plugin-node-resolve, 它会允许加载在 node_modules 中的第三方模块。
+    nodeResolve({
+      mainFields: ['module', 'jsnext:main', 'main'],
+      // 允许引入以下文件类型
+      extensions,
     }),
     // 支持ts
     isTs &&
-      typescript({
-        abortOnError: false,
-        tsconfig: getPath(packagesPath, `./${pkgName}/tsconfig.json`),
+      typescript2({
+        // 设置为true以进行干净的构建（清除每个构建上的缓存）。
         clean: true,
+        // tsconfig配置
+        tsconfig: getPath(packagesPath, `./${pkgName}/tsconfig.json`),
       }),
-    // 支持json模块的引入
-    json(),
-    // 替换代码中的'process.env.NODE_ENV'为JSON.stringify(env)
-    replace({
-      'process.env.NODE_ENV': JSON.stringify(env),
-      ...replaceConfig,
-    }),
-    // 让浏览器端支持node内置模块
-    builtins(),
     // 使用babel处理代码
     babel(babelConfigObj),
     // 别名
     alias({
       entries: [...baseAlias, ...aliasConfig],
     }),
-    // 让浏览器端支持node内置模块
-    globals(),
+    // 支持json模块的引入
+    json(),
     // umd 使用 rollup-plugin-commonjs, 它会将 CommonJS 模块转换为 ES6,来为 Rollup 获得兼容。
     isUmd &&
       commonjs({
+        include: /node_modules/,
         // 忽略
-        exclude: [`${getPath(packagesPath, `./${pkgName}/src/**`)}`],
-        namedExports: {
-          ...namedExports,
-        },
+        // exclude: [`${getPath(packagesPath, `./${pkgName}/src/**`)}`],
+        // namedExports 配置以及被rollup移除 from https://github.com/rollup/plugins/pull/149
       }),
     // 如果是umd并且是生产环境就使用uglify压缩代码
-    isUmd && isProd && terser(),
+    isUmd &&
+      isProd &&
+      terser({
+        compress: {
+          pure_getters: true,
+          unsafe: true,
+          unsafe_comps: true,
+          warnings: false,
+        },
+      }),
   ].filter(Boolean); // .filter(Boolean)用于移除数组中的false
 }
 
@@ -173,7 +184,7 @@ function configure(config, env, target) {
     isTs = false, // 是不是ts
     alias: aliasConfig = [], // 别名
     umdGlobals = {}, // 全局模块
-    namedExports = {}, // cjs的模块在umd打包时需要手动声明名称：
+    babelRuntime = false, // 是否开启babelruntime
     cssExtract = false, // 是否单独提起css文件
     babelConfig, // bable配置用于替换内置babel配置（非必填，默认：内置babel配置）
     // replace插件漏出的扩展配置，
@@ -202,6 +213,19 @@ function configure(config, env, target) {
   const deps = getDepsConfig({ pkg });
 
   /**
+   * 当构建时有引入模块时会执行该回调方法，如果返回true就表示是外部引入，false表示是内部引入，内部引入将会被打包构建，外部映入将不会被打包。
+   * dependencies和peerDependencies中声明的包都会被当做外部引用不打包到项目中。
+   * @param {*} id
+   * @returns
+   */
+  const externalFn = (id) => {
+    const outSide = !!deps.find((dep) => {
+      return dep === id || id.startsWith(`${dep}/`);
+    });
+    return outSide;
+  };
+
+  /**
    * rollup构建时有警告回调
    * @param {*} warning
    */
@@ -224,7 +248,7 @@ function configure(config, env, target) {
     aliasConfig,
     pkgName,
     isUmd,
-    namedExports,
+    babelRuntime,
     packagesPath,
     // replace插件漏出的扩展配置，
     replaceConfig,
@@ -234,12 +258,8 @@ function configure(config, env, target) {
   if (isUmd) {
     // umd构建配置
     return {
-      plugins,
       input,
-      onwarn,
       output: {
-        // umd方式输出
-        format: 'umd',
         // 输出
         file: getPath(
           packagesPath,
@@ -247,7 +267,9 @@ function configure(config, env, target) {
             isProd ? `dist/${bundleName}.min.js` : `dist/${bundleName}.js`
           }`
         ),
-        exports: 'named',
+        // umd方式输出
+        format: 'umd',
+        sourcemap: true,
         // 首字母大写
         name: startCase(bundleName).replace(/ /g, ''),
         // 全局模块，例如告诉Rollup jQuery 模块的id等同于 $ 变量最后生成umd代码时会是
@@ -258,43 +280,45 @@ function configure(config, env, target) {
         },
         banner,
       },
-      // 外部引用不打包
-      external: Object.keys(umdGlobals || {}),
+      plugins,
+      onwarn,
+      // 哪些包不需要被打包
+      external: externalFn,
     };
+  } else if (target === moduleTypeEnum.esm) {
+    // esm构建配置
+    return {
+      input,
+      output: {
+        file: getPath(packagesPath, `./${pkgName}/es/${bundleName}.js`),
+        format: 'es',
+        sourcemap: true,
+        banner,
+      },
+      plugins,
+      onwarn,
+      // 哪些包不需要被打包
+      external: externalFn,
+    };
+  } else if (target === moduleTypeEnum.cjs) {
+    // cjs构建配置
+    return {
+      input,
+      output: {
+        file: getPath(packagesPath, `./${pkgName}/lib/${bundleName}.js`),
+        format: 'cjs',
+        sourcemap: true,
+        exports: 'named',
+        banner,
+      },
+      plugins,
+      onwarn,
+      // 哪些包不需要被打包
+      external: externalFn,
+    };
+  } else {
+    logError('rollup构建产物配置不合法，只允许cjs，esm，umd模式');
   }
-
-  // esm,cjs构建配置
-  return {
-    plugins,
-    input,
-    onwarn,
-    output:
-      target === 'esm'
-        ? {
-            file: getPath(packagesPath, `./${pkgName}/es/${bundleName}.js`),
-            format: 'es',
-            sourcemap: true,
-            banner,
-          }
-        : {
-            file: getPath(packagesPath, `./${pkgName}/lib/${bundleName}.js`),
-            format: 'cjs',
-            exports: 'named',
-            sourcemap: true,
-            banner,
-          },
-    // 我们需要显式地声明哪些模块是外部的，这意味着它们在运行时出现。
-    // 对于非umd配置，这意味着所有的非slate包。
-    external: (id) => {
-      // 当构建时有引入模块时会执行该回调方法，如果返回true就表示是外部引入，false表示是内部引入，内部引入将会被打包构建，外部映入将不会被打包。
-      // dependencies和peerDependencies中声明的包都会被当做外部引用不打包到项目中。
-      // eslint-disable-next-line implicit-arrow-linebreak
-      const outSide = !!deps.find((dep) => {
-        return dep === id || id.startsWith(`${dep}/`);
-      });
-      return outSide;
-    },
-  };
 }
 
 /**

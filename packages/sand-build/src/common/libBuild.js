@@ -145,7 +145,7 @@ function rollupWatch(configs) {
       }
       if (code === 'ERROR') {
         // 构建时遇到错误
-        logError(error);
+        reject(error);
       }
       if (code === 'FATAL') {
         // 构建时遇到无可修复的错误，关闭构建
@@ -165,34 +165,34 @@ function rollupWatch(configs) {
  * @param {*} watch 是否开启监听
  */
 async function build(allConfigs, watch) {
-  try {
-    for (let index = 0; index < allConfigs.length; index++) {
-      const { type = buildTypeEnum.rollup, configs = [] } = allConfigs[index];
-      if (type === buildTypeEnum.rollup) {
-        if (watch) {
-          // eslint-disable-next-line no-await-in-loop
-          await rollupWatch(configs);
-        } else {
-          // eslint-disable-next-line no-await-in-loop
-          await rollupBuild(configs);
-        }
-      } else if (type === buildTypeEnum.babel) {
-        // babel构建带监听
-        if (configs.length > 0) {
-          for (let n = 0; n < configs.length; n++) {
-            const babelFactoryFn = configs[n];
-            // eslint-disable-next-line no-await-in-loop
-            await babelFactoryFn({ watch });
-          }
-        }
+  // try {
+  for (let index = 0; index < allConfigs.length; index++) {
+    const { type = buildTypeEnum.rollup, configs = [] } = allConfigs[index];
+    if (type === buildTypeEnum.rollup) {
+      if (watch) {
+        // eslint-disable-next-line no-await-in-loop
+        await rollupWatch(configs);
       } else {
-        logError(`构建类型不正确.${type}`);
+        // eslint-disable-next-line no-await-in-loop
+        await rollupBuild(configs);
       }
+    } else if (type === buildTypeEnum.babel) {
+      // babel构建带监听
+      if (configs.length > 0) {
+        for (let n = 0; n < configs.length; n++) {
+          const babelFactoryFn = configs[n];
+          // eslint-disable-next-line no-await-in-loop
+          await babelFactoryFn({ watch });
+        }
+      }
+    } else {
+      logError(`构建类型不正确.${type}`);
     }
-  } catch (error) {
-    // 构建报错
-    logError(`构建报错。${error}`);
   }
+  // } catch (error) {
+  //   // 构建报错
+  //   logError(`构建报错。${error}`);
+  // }
 }
 
 /**

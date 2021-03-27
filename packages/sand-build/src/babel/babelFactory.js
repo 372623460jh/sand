@@ -7,7 +7,7 @@ const { babelBuild } = require('./babelBuild');
  * @param {*} moduleType 模块类型
  */
 function babelFactory(config, env, moduleType) {
-  const { pkgPath, isTs, babelConfig, nodeVersion } = config;
+  const { pkgPath, isTs, babelConfig, nodeVersion, babelRuntime } = config;
 
   // babel构建factory的数组
   const babelBuildList = [];
@@ -22,6 +22,7 @@ function babelFactory(config, env, moduleType) {
       isTs,
       babelConfig,
       nodeVersion,
+      babelRuntime,
     });
   });
 

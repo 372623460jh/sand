@@ -135,6 +135,11 @@ function getBabelConfig(opts) {
         require.resolve('@babel/plugin-proposal-class-properties'),
         { loose: true },
       ],
+      [
+        // 非严格支持私有方法
+        require.resolve('@babel/plugin-proposal-private-methods'),
+        { loose: true },
+      ],
       ...(runtimeHelpers
         ? [
             [

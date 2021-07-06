@@ -1,8 +1,6 @@
 {
   "version": "2.1.2",
-  "packages": [
-    "packages/*"
-  ],
+  "packages": ["packages/sand-lint", "packages/sand-build"],
   "npmClient": "npm",
   "command": {
     "bootstrap": {
@@ -13,9 +11,7 @@
     },
     "publish": {
       "registry": "https://npm.pkg.github.com",
-      "allowBranch": [
-        "master"
-      ],
+      "allowBranch": ["master"],
       "verifyAccess": false
     }
   }

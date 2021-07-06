@@ -33,7 +33,9 @@ function getStyleLoader(isProd, enableModule = false, enableLess = false) {
     {
       loader: 'postcss-loader',
       options: {
-        plugins: [autoprefixer(getBrowsersList(isProd))],
+        postcssOptions: {
+          plugins: [[autoprefixer(getBrowsersList(isProd))]],
+        },
       },
     },
   ];

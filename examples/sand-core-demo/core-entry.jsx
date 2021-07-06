@@ -9,7 +9,7 @@ import {
   setRoutes,
   redirect,
   RouteLoader,
-} from '@jianghe/sand-core/es/sand-core';
+} from '@jianghe/sand-core';
 // 引入polyfill
 import '@jianghe/sand-core/polyfill';
 import './index.less';

@@ -10,7 +10,7 @@
       "email": "573748150jh@163.com"
     }
   ],
-  "main": "es/sand-core.js",
+  "main": "es/index.js",
   "keywords": [
     "sand",
     "spa",

@@ -15,13 +15,13 @@ module.exports = {
     {
       entry: path.resolve(__dirname, './packages/sand-core/src/index.ts'),
       pkgPath: path.resolve(__dirname, './packages/sand-core'),
-      bundleName: 'sand-core',
+      bundleName: 'index',
       isTs: true,
       esm: {
-        buildType: 'rollup',
+        buildType: 'babel',
       },
       cjs: {
-        buildType: 'rollup',
+        buildType: 'babel',
       },
       umd: {
         buildType: 'rollup',
@@ -40,7 +40,7 @@ module.exports = {
     {
       entry: path.resolve(__dirname, './packages/sand-moco/src/index.ts'),
       pkgPath: path.resolve(__dirname, './packages/sand-moco'),
-      bundleName: 'sand-moco',
+      bundleName: 'index',
       isTs: true,
       esm: {
         buildType: 'rollup',

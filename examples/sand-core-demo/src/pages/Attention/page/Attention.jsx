@@ -1,5 +1,5 @@
 import React from 'react';
-import { setModel } from '@jianghe/sand-core/es/sand-core';
+import { setModel } from '@jianghe/sand-core';
 import PropTypes from '@jianghe/sand-core/prop-types';
 import { connect } from '@jianghe/sand-core/react-redux';
 import { NavLink } from '@jianghe/sand-core/router-dom';

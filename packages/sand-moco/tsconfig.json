@@ -19,6 +19,7 @@
     // 生成相应的 '.map' 文件
     "sourceMap": true,
     // 启用所有严格类型检查选项
-    "strict": true
+    // "strict": true
+    "jsx": "react"
   }
 }

@@ -143,13 +143,13 @@ function getBasePlugins(options = {}) {
     // 支持json模块的引入
     json(),
     // umd 使用 rollup-plugin-commonjs, 它会将 CommonJS 模块转换为 ES6,来为 Rollup 获得兼容。
-    isUmd &&
-      commonjs({
-        include: /node_modules/,
-        // 忽略
-        // exclude: [`${getPath(packagesPath, `./${pkgName}/src/**`)}`],
-        // namedExports 配置以及被rollup移除 from https://github.com/rollup/plugins/pull/149
-      }),
+    // isUmd &&
+    commonjs({
+      include: /node_modules/,
+      // 忽略
+      // exclude: [`${getPath(packagesPath, `./${pkgName}/src/**`)}`],
+      // namedExports 配置以及被rollup移除 from https://github.com/rollup/plugins/pull/149
+    }),
     // 如果是umd并且是生产环境就使用uglify压缩代码
     isUmd &&
       isProd &&

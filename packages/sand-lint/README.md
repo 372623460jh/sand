@@ -1,4 +1,4 @@
-# sand 项目的 lint 统一规范
+# sand 项目的 lint 统一规范.
 
 ## 简介
 

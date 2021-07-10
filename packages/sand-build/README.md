@@ -1,4 +1,4 @@
-### 调试 @jianghe/sand-build 库时
+### 调试 @jianghe/sand-build 库时.
 
 文档：https://sand.zirupay.com/
 

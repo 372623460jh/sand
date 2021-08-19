@@ -135,6 +135,7 @@ sand-noco node 基于 koa 的扩展，增加了日志中间件，sso 中间件�
 - ~~支持 babelruntime 开关配置~~
 - ~~sand-build 单独提出文件~~
 - ~~sand-build ts 化~~
+- 考虑 tsc 以及 esbuild 构建
 - webpack 升 5
 - ts 升 4
 - 看 rollup 0.3 源码
